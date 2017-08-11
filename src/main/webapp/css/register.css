@@ -1,0 +1,121 @@
+@charset "utf-8";
+*{margin:0; padding:0; list-style:none; outline:none; font-family:"微软雅黑"; font-size: 14px;}
+input[type=button] {
+    color: #fff;
+    background-color: #eb6100;
+    border-radius: 3px;
+    border: 0px;
+}
+input[type=button]:hover{
+	cursor: pointer;
+	background-color: #FF6900;
+}
+input[type=button]:focus{
+	outline: thin dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+	outline-offset: -2px;
+	background-color: #E66205;
+}
+input[type=button].disabled{
+	background: grey;
+}
+input[type=button].disabled:hover {
+	cursor: default;
+}
+input[type=button].disabled:focus {
+	outline: none;
+}
+
+
+body {
+	/* background-color: #045485; */
+}
+.register {
+    width: 675px;
+    padding: 10px;
+    margin: 0 auto;
+    margin-top: 100px;
+    background: white;
+    box-shadow: 3px 4px 23px rgba(0,0,0,.7);
+}
+.register ul li{
+	margin: 20px;
+}
+.register .register-title {
+	text-align: center;
+	width: 400px;
+}
+.register .register-title label {
+	font-size: 16px;
+}
+.register .register-title a {
+	float: right;
+	text-decoration: none;
+    color: #eb6100;
+    font-size: 13px;
+}
+.register a:hover {
+    text-decoration: underline;
+    color: #FF6900;
+}
+.register .error-message-li {
+	color: red;
+	height: 4px;
+}
+.register ul li input[type=text], .register ul li input[type=password] {
+	width:400px;
+	height:40px;
+	border-radius: 3px;
+    border: 1px solid #CCC;
+    padding: 10px;
+    margin-right: 10px;
+}
+.register ul li input[type=text]:focus, .register ul li input[type=password]:focus {
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.register ul li input[type=checkbox] {
+	vertical-align: middle;
+	margin-right: 5px;
+}
+.register ul li .descript {
+	/* color: #E2DDDD; */
+	color: #B7B7B7;
+	font-size: 13px;
+}
+.register ul li .necessary {
+    color:red;
+    font-size: 16px;
+    vertical-align: middle;
+}
+.register ul li .error-message {
+	color: red;
+	font-size: 13px;
+}
+.register .register-btn-li {
+	text-align:center;
+	width: 400px;
+}
+.register .register-button {
+    width: 241px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+}
+.register .get-verifycode-btn {
+	width: 125px;
+    height: 30px;
+}
+.register .server-clause {
+	text-decoration: none;
+    color: #eb6100;
+    font-size: 13px;
+}
+.register .server-clause:hover {
+    text-decoration: underline;
+}
+.register .success-msg-li {
+	width: 400px;
+	text-align: center;
+	color:green;
+}

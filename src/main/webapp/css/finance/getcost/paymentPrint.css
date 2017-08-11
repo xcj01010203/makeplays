@@ -1,0 +1,295 @@
+/*控制打印分页*/
+@media print {
+	.pageNext {
+     page-break-after: always; 
+  }
+}
+
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-size: 13px;
+    font-family: '微软雅黑', arial, sans-serif;
+    bakcground-color: #fff;
+    color: #000;
+    width: 99%;
+    overflow: hidden;
+}
+/* .my-container {
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+} */
+ul,li {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+.jqx-window {
+    display: none;
+    border: none;
+    color: #333;
+}
+dl,dt,dd {
+    margin: 0px;
+    padding: 0px;
+    background: #fff;
+}
+.payment-order-box {
+    width: 100%;
+    /* height: 90%; */
+    margin-bottom: 20px;
+    color: #333333;
+    position: relative;
+    overflow: hidden;
+    padding: 6px;
+}
+dl.payment-box-dl {
+    font-size: 13px;
+    border: 2px solid #000;
+}
+dt {
+    line-height: 38px;
+    border-bottom: 1px solid #000;
+}
+dl.payment-box-dl .payment-header {
+    margin: 9px 0px;
+    position: relative;
+}
+.bills-num {
+	  color: #000;
+	  font-size: 16px;
+	  font-family: '微软雅黑';
+    position: absolute;
+    top: 0px;
+}
+input[type=text] {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #000;
+    box-shadow: none;
+    color: #000;
+    font-family: '微软雅黑';
+    outline: none;
+}
+input[type=text]:focus {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color: #000;
+    box-shadow: none;
+    border-shadow: none;
+    padding: 0px;
+    margin: 0px;
+    outline: none;
+    background-color: transparent;
+} 
+input[type=text].header-input {
+    border: none;
+    border-bottom: 1px solid #000;
+    width: 120px;
+    height: 30px;
+    outline: none;
+    background: transparent;
+    font-size: 13px;
+}
+.header-title {
+    text-align: center;
+    font-size: 26px;
+}
+.bills-date {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    font-size: 16px;
+    color: #000;
+    font-family:'微软雅黑';   
+}
+div.div-clear {
+    clear: both;
+}
+.payment-order-box table {
+    table-layout: fixed;
+    font-size: 13px;
+}
+.payment-order-box table td {
+    border: none;
+    height: 45px;
+}
+.payment-order-box table td.shoukuan-td {
+    width: 95px;
+}
+input[type=text].shoukuan-person {
+ 		width: 40%;
+	  height: 30px;
+	  outline: none;
+	  margin-right: 30px;
+	  background: transparent;
+}
+.check-box-label {
+    float: left;
+}
+
+
+table.payment-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table.payment-detail-table td {
+    height: 30px;
+    border: 1px solid #000;
+    font-size: 13px;
+    font-family:'微软雅黑';
+    color: #000;
+}
+table.payment-detail-table tr td:first-child {
+	  border-left: none;
+}
+table.payment-detail-table tr td:last-child {
+	  border-right: none;
+}
+
+table.payment-detail-table .td-div {
+    padding: 6px 5px;
+    font-size: 13px;
+    font-family: '微软雅黑';
+    color: #000;
+}
+table.payment-detail-table .td-div input {
+    width: 100%;
+    border: none;
+    height: 100%;
+    background: transparent;
+}
+.check-box-div {
+    line-height: 35px;
+}
+.tr-back-color {
+    background: #ebebeb 50% 50% repeat-x;
+    height: 35px;
+    color: black;
+    font-weight: bold;
+}
+.payment-detail-table tbody td {
+    border: 1px solid #000;
+}
+
+input.select-currency {
+	  width: 100%;
+    outline: none;
+    border: 0px;
+    background-color: rgba(255,255,255,0);
+}
+table.payment-detail-table td.money-td {
+    padding-right: 5px;
+}
+table.payment-detail-table td.money-td input {
+    border-bottom: 0px;
+    text-align: right;
+}
+
+.total-account-money {
+    font-weight: normal;
+    font-size: 13px;
+}
+
+/*下方选项*/
+div.bottom-option {
+	  font-family: '微软雅黑';
+	  font-size: 14px;
+	  color: #000;
+    float: left;
+    margin-right: 20px;
+   
+    
+    position: relative;
+}
+input[type=text].is-has-bill {
+	  width: 92px;
+    margin-left: 5px;
+    border: 0px;
+    border-bottom: 1px solid #000;
+    outline: none;
+    background: transparent;
+    color:　#000;
+    font-size: 13px;
+}
+div.bottom-option input {
+    width: 60px;
+    background: transparent;
+}
+div.bottom-option input.arrows-low {
+    width: 130px;
+    background: url(../image/iconfont-sanjiao-copy.png) no-repeat 112px 0px;
+    background-size: 10px 10px;
+}
+div.bottom-option input.agent-people {
+    width: 100px;
+}
+/*下方选项div*/
+div.bottom-option-con {
+    line-height: 30px;
+    padding-bottom: 15px; 
+    overflow: hidden;
+}
+div.bottom-option-div {
+    display: inline-block;
+    float: left;
+}
+div.bottom-option input[type=text].if-receive-bill {
+	  width: 40px;
+}
+/*提醒时间*/
+div.remind-time {
+    display: none;
+    float: left;
+}
+input[type=text].time-input {
+    width: 90px;
+    background: transparent;
+}
+span.remind-image {
+    width: 25px;
+    height: 25px;
+    background: url(../../../images/timer_1.png) no-repeat 0px 0px;
+    background-size: 25px 25px;
+    display: inline-block;
+    margin-bottom: -7px;
+}
+.loan-balance-div {
+    clear: both;
+    overflow:hidden;
+}
+.loan-balance-div input[type=button] {
+    width: 60px;
+    height: 25px;
+    background: rgba(255,102,0,1);
+    border: 1px solid  rgba(255,102,0,1);
+    border-radius: 7px;
+    color: rgba(255,255,255,1);
+    box-sizing: border-box !important;
+    outline: none;
+    float: right;
+    font-family: '微软雅黑';
+}
+input[type=button]:hover {
+    background: rgba(230,93,1,1);
+}
+div.loan-balance-money {
+    
+}
+span.loan-balance {
+    float: right;
+    margin-right: 20px;
+}
+
+.department-text{
+	width:146px !important;
+	height: 30px;
+}
+

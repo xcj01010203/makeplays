@@ -1,0 +1,289 @@
+.my-container {
+	  width: 100%;
+	  height: 100%;
+	  /* overflow: auto; */
+	  position: relative;
+}
+.jqx-window {
+	  display: none;
+}
+
+div.finance-subj-settle-list-div {
+	  width: 100%;
+	  height: 80%;
+}
+div.settle-account-list {
+	  width: 100%;
+	  height: 5%;
+	 /*  overflow-x: auto; */ 
+}
+
+div.jqx-grid-toolbar {
+	  background: #fff;
+}
+
+
+.jqx-column {
+	  display: inline-block;
+	  width: 100%;
+	  overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 25px;
+    color: #333;
+}
+.text-align-right {
+	  text-align: right;
+}
+.red-color {
+	  color: #f00;
+}
+
+.toolbar input[type=button],.toolbar input[type=button]:hover {
+    margin: 0 8px;
+    margin-top: 5px;
+    width: 24px;
+    height: 24px;
+    float:left;
+}
+
+.toolbar input.export-btn {
+	  margin-left: 24px;
+	  background: url(image/daochu.png) no-repeat;
+	  background-size: 24px;
+	  cursor: pointer;
+}
+.toolbar input.export-btn:hover {
+	  margin-left: 24px;
+    background: url(image/daochu1.png) no-repeat;
+    background-size: 24px;
+    cursor: pointer;
+}
+.toolbar input.finance-time-para {
+	  background: url(image/shijian.png) no-repeat;
+	  background-size: 24px;
+	  cursor: pointer;
+}
+.toolbar input.finance-time-para:hover {
+	  background: url(image/shijian1.png) no-repeat;
+	  background-size: 24px;
+	  cursor: pointer;
+}
+
+
+/*结算时间段窗口*/
+
+.jqx-window ul {
+	  text-align: center;
+	  width: 360;
+	  padding: 0px;
+	  margin: 0px;
+	  padding: 0px 20px;
+	  margin: 20px 0px;
+}
+.jqx-window ul li {
+	  width: 320px;
+	  height: 60px;
+}
+.jqx-window ul li span {
+	
+	  display: inline-block;
+	  font-size: 14px;
+	  font-weight: bold;
+	  height: 40px;
+	  line-height: 40px;
+	  color: #000;
+	  font-family: '微软雅黑';
+}
+.jqx-window ul li input {
+	  width: 290px;
+	  height: 30px;
+}
+
+
+
+.btn-list {
+	  width:  100%;
+    height: 40px;
+    text-align: center;
+}
+.btn-list input[type=button] {
+	  width: 60px;
+    height: 25px;
+    border-radius: 7px;
+    background: rgba(255,102,0,1);
+    color: #fff;
+    margin-left: 10px;
+}
+.btn-list input[type=button]:hover {
+	  background: rgba(230,93,1,1);
+}
+
+
+
+
+/*结算汇总信息*/
+table.settle-account-table {
+	  width: 99%; 
+	  border: 1px solid #ccc;
+}
+table.settle-account-table tr {
+	  width: 100%;
+	  height: 30px;
+}
+table.settle-account-table  tr td {
+	  /* width: 287px; */
+	  border: 1px solid #ccc;
+	  border-left: none;
+	  border-top: none;
+}
+table.settle-account-table  tr td div {
+	  min-width: 60px;
+	  text-align: center;
+}
+
+table.settle-account-table tr:last-child td {
+	  border-bottom: none;
+}
+table.settle-account-table tr td div.text-align-right {
+	  padding-right: 2px;
+    text-align: right;
+}
+
+.divide_line {
+    border-right: solid 2px #3E8ADA !important;
+}
+
+.jqx-column a{
+	color: #409dfe;
+}
+
+
+
+/*滑动窗口*/
+.right-popup-win {
+    display: none;
+    position: absolute;
+    right: -1000px;
+    top: 0px;
+    width: 77%;
+    height: calc(100% - 2px);
+    background: #f2f2f0;
+    z-index: 1000;
+    border: 1px solid #ccc;
+     box-shadow: 0 0 1em #cec9c9;
+    overflow: hidden;
+}
+.win-header-div {
+	  position: absolute;
+	  top: 0px;
+	  left: 0px;
+	  width: 100%;
+	  height: 40px;
+    text-align: center;
+    background: #e1ebfa;
+    z-index: 600;
+}
+.win-header-div input[type=button] {
+	  width: 80px;
+    height: 25px;
+    letter-spacing: 10px;
+    line-height: 25px;
+    color: #fff;
+    margin-right: 50px;
+    background: rgba(255,102,0,1); 
+    border-radius: 5px;
+    margin-top: 7px;
+}
+.win-header-div input[type=button]:hover {
+	  background: rgba(230,93,1,1);
+}
+.finance-settlement-info {
+	  height: calc(100% - 40px);
+	  margin-top: 40px;
+	  padding: 0px 20px;
+	  
+}
+.tab-body-wrap {
+    width: 100%;
+    height: 100%;
+}
+div.btn_wrap, div.tab_wrap {
+	  width: 50%;
+}
+div.btn_wrap {
+	  max-width: calc(100% - 585px);
+}
+div.tab_wrap {
+	  min-width: 585px;
+}
+.btn_tab_wrap {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+div.tab_wrap li {
+    width: 20%;
+}
+.public-content-style {
+	  display: none;
+	  padding-top: 20px;
+	  height: calc(100% - 64px);
+	  overflow-y: auto;
+}
+div.grid-style {
+	  margin: 0px auto;
+}
+div.jqx-column-cell {
+	  box-sizing: border-box;
+	  width: 100%;
+	  height: 30px;
+	  line-height: 30px;
+	  overflow: hidden;
+	  white-spacing: nowrap;
+	  text-overflow: ellipsis;
+}
+.align-center {
+	  text-align: center;
+}
+.align-left {
+	  text-align: left;
+	  padding-left: 5px;
+}
+.align-right {
+	  text-align: right;
+	  padding-right: 5px;
+}
+
+.finance-SubjName-span{
+	font-size: 14px;
+    font-family: 微软雅黑;
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.payment-count {
+	  height: 30px;
+	  width: 99%;
+	  margin: 0px auto;
+	  font-size: 13px;
+    font-weight: bold;
+}
+.payment-count table {
+	  width: 100%;
+	  border-collapse: collapse;
+	  border: 1px solid #ccc;
+	  border-top: 0px;
+}
+.payment-count table tr {
+	  height: 30px;
+	  box-sizing: border-box;
+}
+.payment-count table td {
+	 border: 0px;
+}
+.payment-count table td div {
+	  height: 28px;
+	  line-height: 28px;
+	  text-align: center;
+	  padding-left: 640px;
+}

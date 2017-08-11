@@ -1,0 +1,153 @@
+@CHARSET "UTF-8";
+
+.my-container {
+	 width: 100%;
+	 height: 100%;
+	 overflow: hidden;
+	 position: relative;
+	 padding: 20px 30px;
+	 box-sizing: border-box;
+}
+/*tab键*/
+.btn_tab_wrap {
+    overflow: hidden;
+}
+div.btn_wrap {
+    background: #fff;
+}
+div.tab_wrap ul {
+   margin: 0px;
+   padding: 0px;
+   height: 32px;
+}
+div.tab_wrap li {
+    width: 50%;
+}
+/*tab键*/
+.toolbar {
+    height: 30px;
+    background: #fff;
+}
+.toolbar input[type=button], .toolbar input[type=button]:hover {
+    margin: 0 8px;
+    margin-top: 4px;
+    width: 24px;
+    height: 24px;
+    float: left;
+    background-size: 100%;
+    cursor: pointer;
+}
+.toolbar .advance-search-btn {
+    background: url(../../images/roleform/search.png) no-repeat;
+    background-size: 24px 24px;
+}
+.toolbar .advance-search-btn:hover {
+  background: url("../../images/roleform/search1.png") no-repeat;
+  background-size: 24px 24px;
+}
+.toolbar .delete-btn {
+	background: url(../../images/delete.png) no-repeat;
+    background-size: 24px 24px;
+    margin-left: 55px;
+}
+.toolbar .delete-btn:HOVER {
+	background: url(../../images/delete1.png) no-repeat;
+    background-size: 24px 24px;
+}
+.community-public {
+	height: calc(100% - 30px);
+}
+.title-table {
+    width: 100%;
+    table-layout: fixed;
+    overflow: hidden;
+    background-color: transparent;
+}
+.title-table tr {
+    line-height: 30px;
+    background-color: #DDDDDD;
+}
+.title-table td {
+    text-align: center;
+    font-family: 微软雅黑;
+    font-size: 13px;
+}
+.title-table input[type='checkbox'],.search-team-list-table input[type='checkbox'] {
+    height: 16px;
+    width: 16px;
+}
+.search-team-div {
+    height: calc(100% - 102px);
+    width: 100%;
+    overflow: auto;
+    border-bottom: 1px solid #c5c5c5;
+}
+.search-team-list-table {
+    width: 100%;
+    table-layout: fixed;
+    background-color: white;
+    border-collapse: collapse;
+}
+.search-team-list-table tr {
+    line-height: 30px;
+}
+.search-team-list-table td {
+    border: 1px solid #DDDDDD;
+    text-align: center;
+    font-family: 微软雅黑;
+    font-size: 12px;
+    padding: 0 5px;
+    overflow: hidden;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+}
+/*分页*/
+.table-page-div {
+    text-align: right;
+    width: 100%;
+    margin-top: 2px;
+    padding-right: 20px;
+    overflow: hidden;
+}
+/*搜索*/
+.searchWindow ul label:first-child {
+	width: 80px;
+	font-weight: normal;
+	float: left;
+	text-align: right;
+	margin-right: 10px;
+}
+.searchWindow ul input[type=text] {
+	width: calc(100% - 160px);
+}
+.searchWindow ul label:not(:first-child) {
+	font-weight: normal;
+	display: inline-block;
+}
+.searchWindow .Popups_box>ul:not(:last-child) {
+	margin: 20px auto;
+	padding: 0px 0px;
+	width: 100%;
+	line-height: 25px;
+}
+.searchWindow li.search-subject {
+	overflow: hidden;
+}
+.searchWindow li.search-subject div {
+	float: left;
+	width: calc(100% - 90px);
+}
+.searchWindow li.search-subject label:not(:first-child) {
+	width: 80px;
+	margin-right: 10px;
+}
+.searchWindow .oper_ul {
+	text-align: center;
+	line-height: 30px;
+}
+.searchWindow input[type=text] {
+	line-height: 25px;
+}
+.link {
+	cursor: pointer;
+}

@@ -1,0 +1,311 @@
+@charset "utf-8";
+*{margin:0; padding:0; list-style:none; outline:none; font-family:"微软雅黑"; font-size: 14px;}
+input[type=button] {
+    color: #fff;
+    background-color: #0277BD;
+    border-radius: 3px;
+    border: 0px;
+}
+input[type=button]:hover{
+    cursor: pointer;
+    background-color: #1A8CD0;
+}
+input[type=button]:focus{
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    background-color: #0265A0;
+}
+input[type=button].disabled{
+    background: grey;
+}
+input[type=button].disabled:hover {
+    cursor: default;
+}
+input[type=button].disabled:focus {
+    outline: none;
+}
+.necessory {
+    color:red;
+    font-size: 16px;
+    vertical-align: middle;
+}
+.error-message {
+    color: red;
+    font-size: 13px;
+}
+.descrip {
+    color: #B7B7B7;
+    font-size: 13px;
+}
+.ms-container .ms-selectable li.ms-elem-selectable, .ms-container .ms-selection li.ms-elem-selection {
+	line-height: 24px;
+}
+
+
+
+/*joinCrew.jsp页面样式*/
+.join-crew {
+    width: 260px;
+    padding: 10px;
+    margin: 0 auto;
+}
+.join-crew .join-title {
+    text-align: center;
+    font-size: 20px;
+    color: #B7B7B7;
+    margin-bottom: 55px
+}
+.join-crew .join-content {
+    
+}
+.join-crew .join-content .join-sub-content {
+    text-align: center;
+}
+.join-crew .join-content .join-sub-content .join-btn {
+	margin-bottom: 30px;
+}
+.join-crew .join-content .join-sub-content .join-btn input[type=button] {
+	width: 260px;
+    height: 50px;
+    line-height: 42px;
+    font-size: 16px;
+    box-shadow: 1px 1px 1px grey;
+}
+.join-crew .join-content .join-sub-content .join-img {
+	width: 380px;
+	height: 420px;
+	background: #0277BD;
+    box-shadow: 1px 1px 1px grey;
+    border-radius: 2px;
+}
+.join-crew .join-content .join-sub-content .join-img img {
+	width: 380px;
+    height: 420px;
+}
+.join-crew .join-content .join-sub-content .join-img:hover{
+	cursor: pointer;
+}
+
+
+/*createCrew.jsp页面样式*/
+.create-crew {
+    width: 100%;
+    margin: 0 auto;
+}
+.create-crew .error-message-li {
+    color: red;
+    height: 4px;
+}
+.create-crew .error-message-li label {
+	margin-left: 100px;
+}
+.create-crew .create-title-li {
+	width: 550px;
+	text-align: center;
+}
+.create-crew .create-title-li .create-crew-title {
+	font-size: 16px;
+	color: #B7B7B7;
+}
+.create-crew .create-title-li .create-crew-tips {
+	font-size: 14px;
+	color: #eb6100;
+}
+.create-crew .create-title-li a {
+	float: left;
+    text-decoration: none;
+    color: #eb6100;
+    font-size: 13px;
+}
+.create-crew .create-title-li a:hover {
+    text-decoration: underline;
+    color: #FF6900;
+}
+.create-crew ul li {
+	margin: 15px 0px;
+}
+.create-crew ul li p {
+	width: 100px;
+	text-align: right;
+	display: inline-block;
+}
+
+.create-crew ul li input[type=text], .create-crew ul li select {
+	width:340px;
+    height:35px;
+    border-radius: 3px;
+    border: 1px solid #CCC;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+.create-crew ul li input[type=text]:focus, .create-crew ul li select:focus {
+	box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.create-crew .create-btn-li {
+	width: 550px;
+    text-align: center;
+}
+.create-crew .create-btn {
+	width: 241px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+    background-color: #eb6100;
+}
+.create-crew .create-btn:hover {
+	background-color: #FF6900;
+}
+.create-crew .create-btn:focus {
+	background-color: #E66205;
+}
+.create-crew .success-msg-li {
+	width: 550px;
+	text-align: center;
+	color:green;
+}
+
+/*selectCrew.jsp页面样式*/
+.select-crew {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+.select-crew input[type=text] {
+    border-radius: 3px;
+    border: 1px solid #CCC;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+.select-crew input[type=text]:focus {
+	box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.select-crew input[type=button] {
+    background-color: rgba(255,102,0,1);
+}
+.select-crew input[type=button]:hover {
+    background-color: #FF6900;
+}
+.select-crew input[type=button]:focus {
+    background-color: #E66205;
+}
+/* .select-crew select {
+    border-radius: 3px;
+    border: 1px solid #CCC;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+} */
+
+.select-crew .search-div {
+	text-align: center;
+	margin-bottom: 35px;
+}
+.select-crew .search-div a {
+    float: left;
+    text-decoration: none;
+    color: #eb6100;
+    font-size: 13px;
+    line-height: 40px;
+}
+.select-crew .search-div a:hover {
+    text-decoration: underline;
+    color: #FF6900;
+}
+.select-crew .search-div input[type=text] {
+	width: 400px;
+	height: 30px;
+	background: white;
+}
+.select-crew .search-div input[type=text].has-error {
+	box-shadow: 0px 0px 1px red;
+    border: 1px solid red;
+}
+.select-crew .search-div input[type=button] {
+	width: 100px;
+    height: 30px;
+}
+.select-crew .empty-div {
+    text-align:center;
+}
+.select-crew .empty-div .descrip{
+	font-size: 16px;
+    line-height: 30px;
+}
+
+.select-crew .crew-list {
+	
+}
+.select-crew .crew-list .crew-info {
+    background: white;
+    cursor: pointer;
+    min-width: 720px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px 20px 40px 20px;
+    position: relative;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.select-crew .crew-list .crew-info.selected {
+    /* box-shadow: 0 0 3px #409DFE; */
+    cursor: default;
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+
+.select-crew .crew-list .crew-info .crew-base-info {
+	
+}
+.select-crew .crew-list .crew-info.selected .crew-base-info {
+	width: 580px;
+    margin: 0 auto;
+}
+.select-crew .crew-list .crew-info .crew-base-info ul li {
+	margin:10px 0px;
+}
+.select-crew .crew-list .crew-info .crew-base-info .crew-name {
+	font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.select-crew .crew-list .crew-info .crew-form-info {
+	display: none;
+	margin-top: 30px;
+    width: 580px;
+    margin: 0 auto
+}
+.select-crew .crew-list .crew-info.selected .crew-form-info {
+	display: block;
+}
+.select-crew .crew-list .crew-info .crew-form-info>ul>li {
+	margin:15px 0px;
+}
+.select-crew .crew-list .crew-info .crew-form-info input[type=text] {
+	width: 348px;
+    height: 30px;
+}
+/* .select-crew .crew-list .crew-info .crew-form-info select {
+	width: 322px;
+    height: 33px;
+} */
+.select-crew .crew-list .crew-info .crew-form-info input[type=button] {
+    width: 200px;
+    height: 35px;
+    font-size: 16px;
+}
+.select-crew .crew-list .crew-info .crew-form-info .enter-crew-btn {
+	text-align: center;
+    width: 368px;
+}
+.select-crew .success-msg-li {
+    width: 300px;
+    text-align: center;
+    color:green;
+}

@@ -1,0 +1,523 @@
+/*适应不同分辨率，兼容到1366px*/
+@media screen and (min-width: 1439px) and (max-width: 1599px) {
+	 div, span, p, li, a, input {
+	     font-size: x-small;
+	 }
+	 div.toolbar input[type=button] {
+	    margin: 0 8px;
+	    margin-top: 7px;
+	    width: 22px;
+	    height: 22px;
+	    background-size: 22px 22px;
+	    float: left;
+	 }
+	 div.toolbar input[type=button]:hover {
+	     width: 22px;
+	     height: 22px;
+	     background-size: 22px 22px;
+	 }
+	 div.toolbar input.pack-down-subject, div.toolbar input.pack-up-subject,div.toolbar input.pack-down-subject:hover, div.toolbar input.pack-up-subject:hover {
+	    width: 22px;
+	    height: 22px;
+	    background-size: 22px 22px;
+	    margin-left: 30px;
+	 }
+}
+
+@media screen and (min-width: 1366px) and (max-width: 1399px) {
+	  div, span, p, li, a, input {
+       font-size: small;
+   }
+   div.toolbar input[type=button] {
+      margin: 0 6px;
+      margin-top: 7px;
+      width: 22px;
+      height: 22px;
+      background-size: 22px 22px;
+      float: left;
+   }
+   div.toolbar input[type=button]:hover {
+       width: 22px;
+       height: 22px;
+       background-size: 22px 22px;
+   }
+   div.toolbar input.pack-down-subject, div.toolbar input.pack-up-subject,div.toolbar input.pack-down-subject:hover, div.toolbar input.pack-up-subject:hover {
+      width: 22px;
+      height: 22px;
+      background-size: 22px 22px;
+      margin-left: 30px;
+   }
+}
+
+.my-container {
+    width: 100%;
+    height: 100%;
+    /* overflow: auto; */
+}
+.jqx-window {
+	  display: none;
+}
+/*重写工具条的样式*/
+div.jqx-grid-toolbar {
+	  background: #fff;
+}
+
+/*工具条*/
+.toolbar input[type=button] {
+    margin: 0 8px;
+    margin-top: 7px;
+    width: 24px;
+    height: 24px;
+    float:left;
+}
+/* .toolbar {
+	  width: 100%;
+	  height: 35px;
+	  background: #fff;
+} */
+
+/* a {
+	  color: #428bca;
+} */
+
+/*工具条的所有按钮*/
+.pack-up-subject, .pack-down-subject, .export-btn, .re-budget-template, .cost-control-list, .accountant-course {
+	  width: 24px; 
+	  height: 24px;
+	  background-size: 24px 24px;
+}
+.toolbar input.pack-up-subject,.toolbar input.pack-up-subject:hover {
+	  width: 24px; 
+    height: 24px;
+	  margin-left: 30px;
+    background: url("image/open.png") no-repeat;
+    cursor: pointer;
+    background-size: 24px 24px;
+}
+.toolbar input.pack-up-subject:hover {
+	  width: 24px; 
+    height: 24px;
+	  margin-left: 30px;
+	  background: url("image/open1.png") no-repeat;
+	  background-size: 24px 24px;
+	  cursor: pointer;
+	  width: 24px;
+	  height: 24px;
+	  background-size: 24px 24px; 
+}
+.toolbar input.pack-down-subject {
+	  display: none;
+	  background: url("image/retract.png") no-repeat;
+	  background-size: 24px 24px;
+	  cursor: pointer;
+	  /* position: absolute;
+	  left:0px;
+	  top: 0px; */
+	  margin-left: 30px;
+}
+input.pack-down-subject:hover {
+	  width: 24px;
+    height: 24px;
+	  background: url("image/retract1.png") no-repeat;
+	  background-size: 24px 24px;
+	  cursor: pointer;
+	  /* position: absolute;
+	  left:0px;
+    top: 0px; */
+    margin-left: 30px;
+}
+.toolbar input.export-btn-margin {
+	  /* margin-left: 66px; */
+	  margin-left: 8px;
+}
+.export-btn {
+	  background: url("image/daochu.png") no-repeat;
+	  background-size:24px 24px;
+	  cursor: pointer;
+}
+.export-btn:hover {
+	  background: url("image/daochu1.png") no-repeat;
+	  background-size: 24px 24px;
+	  cursor: pointer;
+}
+.re-budget-template {
+	  background: url("image/chongxuan.png") no-repeat;
+	  background-size: 24px 24px;
+	  cursor: pointer;
+}
+.re-budget-template:hover {
+	  background: url("image/chongxuan1.png") no-repeat;
+	  background-size: 24px 24px;
+	  cursor: pointer;
+}
+.set-sort {
+	  background: url("image/iconfont-paixu.png") no-repeat;
+	  cursor: pointer;
+	  width: 24px;
+	  height: 24px; 
+	  background-size: 24px 24px;
+}
+.set-sort:hover {
+	  background: url("image/iconfont-paixu1.png") no-repeat;
+	  cursor: pointer;
+	  width: 24px;
+	  height: 24px;
+	  background-size: 24px 24px;
+}
+.cost-control-list {
+	  background: url("image/iconfont-cost-info.png") no-repeat;
+	  cursor: pointer;
+	  width: 24px; 
+	  height: 24px;
+	  background-size: 24px 24px;
+}
+.cost-control-list:hover {
+	  background: url("image/iconfont-cost-info1.png") no-repeat;
+	  cursor: pointer;
+	  width: 24px;
+	  height: 24px;
+	  background-size: 24px 24px; 
+}
+.accountant-course {
+	  width: 24px;
+	  height: 24px;
+	  background: url("image/kuaijikm.png") no-repeat 0px -1px;
+	  cursor: pointer;
+	  background-size: 24px 24px;
+}
+.accountant-course:hover {
+	  width: 24px;
+	  height: 24px;
+	  background: url("image/kuaijikm_hover.png") no-repeat 0px -1px;
+	  cursor: pointer;
+	  background-size: 24px 24px;
+}
+
+.return-btn {
+	  width: 24px;
+    height: 24px;
+	  background: url("../../images/return.png") no-repeat;
+	  background-size: 24px 24px;
+	  cursor: pointer;
+}
+.return-btn:hover {
+	  background: url("../../images/return1.png") no-repeat;
+	  background-size: 24px 24px;
+	  cursor: pointer;
+}
+.import-btn {
+	width: 24px; 
+	height: 24px;
+	background: url("../../images/leading-in.png") no-repeat; 
+	margin-right: 19px;
+	margin-top: 6px;
+	background-size: 24px 24px;
+	
+}
+.import-btn:hover {
+	background: url("../../images/leading-in_hover.png") no-repeat;
+	background-size: 24px 24px;
+}
+
+
+
+
+/*滑动显示工具*/
+.jqx-column {
+	  line-height: 25px;
+}
+.background {
+	  background-color: #f2f2f2;
+}
+.operate-btn-list {
+	  display: none;
+	  float: right;
+}
+.operate-btn-list a{
+	  width: 16px;
+    height: 16px;
+    background-size: 16px 16px;
+    margin-left: 15px;
+}
+.operate-btn-list a:hover {
+	  width: 16px;
+    height: 16px;
+    background-size: 16px 16px;
+}
+.float-right {
+	  float: right;
+}
+.move-to-level {
+	  background: url("image/xiangshang.png") no-repeat;
+	  cursor: pointer;
+}
+.move-to-level:hover {
+	  background: url("image/xiangshang1.png") no-repeat;
+    cursor: pointer;
+}
+
+.add-finance-subject {
+	  background: url("image/tianjia.png") no-repeat;
+	  cursor: pointer;
+}
+.add-finance-subject:hover {
+	  background: url("image/tianjia1.png") no-repeat;
+	  cursor: pointer;
+}
+
+.edit-finance-subject {
+	  background: url("image/icon-edit.png") no-repeat;
+	  cursor: pointer;
+}
+
+.delete-finance-subject {
+	  background: url("image/icon-delete.png") no-repeat;
+	  cursor: pointer;
+}
+.delete-finance-subject:hover {
+	  background: url("image/icon-delete1.png") no-repeat;
+    cursor: pointer;
+}
+
+
+
+/*表格样式*/
+.currency-money {
+	  float: right;
+	  font-size: 13px;
+	  color: #8b0000;
+	  margin-left :5px;
+}
+.budget-details-money {
+	  float: right;
+	  color: #aaa;
+	  margin-left: 5px;
+}
+
+/*添加财务科目窗口*/
+.subjectwin-container {
+	  width: 630px;
+	  height: 383px;
+}
+.subjectwin-container ul {
+	  width: 540px;
+	  height: 333px;
+/* 	  text-align: center; */
+	  margin: 10px auto 0px auto;
+	  
+
+}
+.subjectwin-container ul li {
+	  height: 56px;
+}
+.subjectwin-container ul li p {
+	  float: left;
+	  width: 60px;
+	  height: 30px;
+	  line-height: 30px;
+	  text-align: right;
+	  font-size: 12px;
+	  font-weight: bold;
+}
+input[type=text] {
+	  margin-left: 5px;
+	  float: left;
+	  width: 470px;
+	  height: 30px;
+}
+input[type=text]:hover {
+	  border:1px solid #409DFE;
+    outline:none;
+    border-bottom:1px solid #409DFE;
+    box-shadow:0 0 3px #409DFE;
+}
+input[type=text].subject-amount {
+	  width: 105px;
+}
+
+.subject-unitType-input{
+	width: 158px !important;
+	text-align: center;
+}
+select.unit-type {
+	  width: 55px;
+	  height: 30px;
+	  float: left;
+	  margin-left: 5px;
+}
+select.currency-type {
+	  width: 78px;
+	  height: 30px;
+}
+textarea {
+	  border: 1px solid #ddd;
+	  border-radius: 6px;
+	  resize: none;
+	  margin-left: 5px;
+	  float: left;
+}
+.win-btn-list-div {
+	  width: 100%;
+	  height: 40px;
+	  text-align: center;
+}
+.win-btn-list-div input[type=button] {
+	  width: 65px;
+	  height: 25px;
+	  line-height: 25px;
+	  letter-spacing: 0px;
+	  border-radius: 7px;
+	  background: rgba(255,102,0,1);
+	  color: #fff;
+	  margin-left: 10px;
+}
+.win-btn-list-div input[type=button]:hover {
+	  background: rgba(230,93,1,1);
+}
+/*提示信息*/
+.finance-subject-tips {
+	  clear: both;
+	  height: 10px;
+	  margin-left: 70px;
+	  color: #f00;
+	  display: none; 
+}
+/*错误提示样式*/
+input[type=text].error-finance-tips {
+	  border: 1px solid #f00 !important;
+}
+
+/*费用管控-表格的样式*/
+.finance-balance-container {
+	 /*  overflow-x: hidden;
+	  overflow-y: auto;
+	  width: 100%; */
+	  height: calc(100% - 51px);
+	  overflow-x: hidden;
+	  overflow-y: auto;
+}
+
+.table-finance-total-list {
+	  width: 100%;
+	  position: fixed;
+	  left: 0px;
+	  bottom: 2px;
+}
+
+.table-finance-total-list table {
+	  border: 1px solid #aaa;
+	  background-color: #f8f8f8;
+	  /* height: 35px; */
+	  width: 100%; 
+}
+.table-finance-total-list table tr {
+	  width: 100%; 
+	  height: 35px;
+	  text-align: right;
+}
+.table-finance-total-list table th {
+	  border-right: 1px solid #aaa;
+	  
+}
+.table-finance-total-list table .dig_sty {
+	  padding-right: 6px;
+}
+.table-finance-total-list table .font_v_m {
+	  width: 95%;
+	  padding-right: 10px;
+}
+.table-finance-total-list table td {
+	  /* border-left: 1px solid #ccc; */
+	  border-right: 1px solid #aaa;
+}
+
+
+
+/*调整预算表顺序*/
+.sort-win-title {
+	  font-size: 14px;
+}
+.sort-win-container {
+    overflow: auto;
+    width: 440px;
+    height: 100%;
+}
+.sort-win-div-tips {
+	  padding-bottom: 10px;
+	  padding-top: 5px;
+	  padding-left: 10px;
+}
+.sort-win-span-point {
+	  font-weight: bold;
+}
+.sort-win-span-content {
+	  color: red;
+}
+.close-sort-win {
+	  width: 100%;
+	  text-align: center;
+	  margin-top: 17px;
+}
+.close-sort-btn {
+	   
+	  color: #fff;
+    background-color: #FF6900;
+    border-radius: 7px;
+    border: 1px solid transform;
+    width: 65px;
+    height: 25px;
+    line-height: 25px;
+    letter-spacing: 0px;
+   
+}
+.close-sort-btn:hover {
+	   background: rgba(230,93,1,1);
+}
+
+/*导入窗口样式*/
+form.import-form {
+	  padding: 0px 20px;
+	  font-size: 13px;
+	  font-family: '微软雅黑';
+}
+.import-form input[type=button], .import-form input[type=submit] {
+	  width: 65px;
+    height: 25px;
+    line-height: 25px;
+    letter-spacing: 0px;
+    border-radius: 7px;
+    background: rgba(255,102,0,1);
+    color: #fff;
+    margin-left: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.import-form input[type=button]:hover, .import-form input[type=submit]:hover {
+	  background: rgba(230,93,1,1);
+}
+
+.unitType-main-div{
+	display: block;
+    position: absolute;
+    width: 158px;
+    height: 205px;
+    z-index: 10;
+    background: #FFF;
+    border: 1px solid #3399ff;
+    border-radius: 3px;
+    top: 131px;
+    left: 287px;
+    overflow: auto;
+}
+
+.unitType-select-div{
+	margin: 0 auto;
+    text-align: center;
+    font-size: 14px;
+    line-height: 27px;
+    cursor: pointer;
+}
+
+.unitType-select-div:HOVER {
+	background-color: #3399FF;
+}

@@ -1,0 +1,60 @@
+@charset "utf-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	outline: none;
+	font-family: "微软雅黑";
+	font-size: 12px;
+}
+div.jqx-grid-toolbar {
+	background: #fff;
+}
+.topDiv {
+	width:100%;
+	height: calc(100% - 70px);
+}
+.totalDiv {
+	height: 70px;
+	width: 100%;
+}
+.totalTable {
+	table-layout: fixed;
+	width: 100%;
+	text-align: center;
+}
+.totalTable tr {
+	height: 35px;
+}
+.totalTable td {
+	/* border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc; */
+	  border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background: #ddd;
+}
+.export-btn {
+	float:left;
+	width: 24px;
+	height: 24px;
+	background: url("../../images/export.png") no-repeat;
+	background-size: 24px 24px;
+	margin-left: 20px;
+	margin-top: 4px;
+	cursor: pointer;
+}
+.export-btn:HOVER {
+	background: url("../../images/export_hover.png") no-repeat;
+  	background-size: 24px 24px;
+}
+.divide_line {
+	border-right: solid 2px #3E8ADA !important;
+}
+.praybackground {
+	background-color: #E2E2E2;
+}
+.colstyle {
+	margin-top:10px;
+	text-align:center;
+}

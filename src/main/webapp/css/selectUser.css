@@ -1,0 +1,173 @@
+@charset "utf-8";
+*{margin:0; padding:0; list-style:none; outline:none; font-family:"微软雅黑"; font-size: 14px;}
+input[type=button] {
+    color: #fff;
+    background-color: #0277BD;
+    border-radius: 3px;
+    border: 0px;
+}
+input[type=button]:hover{
+    cursor: pointer;
+    background-color: #1A8CD0;
+}
+input[type=button]:focus{
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    background-color: #0265A0;
+}
+input[type=button].disabled{
+    background: grey;
+}
+input[type=button].disabled:hover {
+    cursor: default;
+}
+input[type=button].disabled:focus {
+    outline: none;
+}
+.necessory {
+    color:red;
+    font-size: 16px;
+    vertical-align: middle;
+}
+.error-message {
+    color: red;
+    font-size: 13px;
+}
+.descrip {
+    color: #B7B7B7;
+    font-size: 13px;
+}
+.ms-container .ms-selectable li.ms-elem-selectable, .ms-container .ms-selection li.ms-elem-selection {
+    line-height: 24px;
+}
+
+
+/*selectuser.jsp页面样式*/
+.select-user {
+    width: 780px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.select-user input[type=text] {
+    border-radius: 3px;
+    border: 1px solid #CCC;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+.select-user input[type=text]:focus {
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.select-user input[type=button] {
+    background-color: #eb6100;
+}
+.select-user input[type=button]:hover {
+    background-color: #FF6900;
+}
+.select-user input[type=button]:focus {
+    background-color: #E66205;
+}
+.select-user .search-div {
+    text-align: center;
+    margin-bottom: 35px;
+}
+.select-user .search-div a {
+    float: left;
+    text-decoration: none;
+    color: #eb6100;
+    font-size: 13px;
+    line-height: 40px;
+}
+.select-user .search-div a:hover {
+    text-decoration: underline;
+    color: #FF6900;
+}
+.select-user .search-div input[type=text] {
+    width: 400px;
+    height: 30px;
+    background: white;
+}
+.select-user .search-div input[type=text].has-error {
+    box-shadow: 0px 0px 1px red;
+    border: 1px solid red;
+}
+.select-user .search-div input[type=button] {
+    width: 100px;
+    height: 30px;
+}
+.select-user .empty-div {
+    text-align:center;
+}
+.select-user .empty-div .descrip{
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.select-user .user-list {
+    
+}
+.select-user .user-list .user-info {
+    box-shadow: 0 0 3px #A5A3A3;
+    background: white;
+    border-radius: 3px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+.select-user .user-list .user-info:hover {
+    cursor: pointer;
+}
+
+.select-user .user-list .user-info.selected {
+    box-shadow: 0 0 3px #409DFE;
+    cursor: default;
+}
+
+.select-user .user-list .user-info .user-base-info {
+    
+}
+.select-user .user-list .user-info.selected .user-base-info {
+    width: 600px;
+    margin: 0 auto;
+}
+.select-user .user-list .user-info .user-base-info ul li {
+    margin:10px 0px;
+}
+
+.select-user .user-list .user-info .user-form-info {
+    display: none;
+    margin-top: 30px;
+    width: 600px;
+    margin: 0 auto
+}
+.select-user .user-list .user-info.selected .user-form-info {
+    display: block;
+}
+.select-user .user-list .user-info .user-form-info>ul>li {
+    margin:15px 0px;
+}
+.select-user .user-list .user-info .user-form-info input[type=button] {
+    width: 200px;
+    height: 35px;
+    font-size: 16px;
+}
+.select-user .user-list .user-info .user-form-info .enter-user-btn {
+    text-align: center;
+    width: 368px;
+}
+.select-user .success-msg-li {
+    width: 368px;
+    text-align: center;
+    color:green;
+    display: none;
+}
+.select-user .success-msg-li a {
+	color: #eb6100;
+	text-decoration: none;
+	font-size: 13px;
+}
+.select-user .success-msg-li a:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}

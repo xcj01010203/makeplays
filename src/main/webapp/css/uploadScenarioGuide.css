@@ -1,0 +1,241 @@
+@charset "UTF-8";
+
+.tipwizard-container {
+	background-color: #767676;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display:none;
+	z-index: 2000;
+}
+
+.tipwizard-container .tipwizard-bg {
+	width: 1065px;
+	height: 650px;
+	position: absolute;
+	top: 50%;
+	margin-top: -325px;
+	left: 50%;
+	margin-left: -532px;
+}
+
+.tipwizard-container .tipwizard-bg .step {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	background-color: #f8f8f8;
+	background-repeat: no-repeat;
+	transition: background-image 0.3s ease-out;
+	transform: translate3d(0, 0, 0);
+	-webkit-perspective: 1000;
+	perspective: 1000;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.tipwizard-container .tipwizard-bg .step .btn-next,
+.tipwizard-container .tipwizard-bg .step .btn-close,
+.tipwizard-container .tipwizard-bg .step .btn-step {
+	border: none;
+	background: none;
+	text-indent: -99999px;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	z-index: 9;
+	opacity: 0;
+}
+
+.tipwizard-container .tipwizard-bg .step .btn-next {
+	position: absolute;
+	width: 100px;
+	height: 50px;
+}
+
+.tipwizard-container .tipwizard-bg .step .btn-close {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+}
+
+.tipwizard-container .tipwizard-bg .step .tipwizard-btn {
+	position: absolute;
+	width: 300px;
+	height: 51px;
+}
+
+.tipwizard-container .tipwizard-bg .step .tipwizard-btn:before,
+.tipwizard-container .tipwizard-bg .step .tipwizard-btn:after {
+	content: "";
+	display: table;
+}
+
+.tipwizard-container .tipwizard-bg .step .tipwizard-btn:after {
+	clear: both;
+}
+
+.tipwizard-container .tipwizard-bg .step .tipwizard-btn .btn-step {
+	float: left;
+	width: 12px;
+	height: 12px;
+	margin-top: 23px;
+	margin-left: 18px;
+}
+
+.tipwizard-container .tipwizard-bg .step .tipwizard-btn .btn-step:first-child {
+	margin-left: 40px;
+}
+
+.step1 {
+	background-image: url(/images/upload/guide/step1.jpg);
+}
+
+.step1 .btn-next {
+	top: 256px;
+	right: 76px;
+}
+
+.step1 .btn-close {
+	top: 67px;
+	right: 76px;
+}
+
+.step1 .tipwizard-btn {
+	top: 256px;
+	right: 176px;
+}
+
+.step2 {
+	background-image: url(/images/upload/guide/step2.jpg);
+}
+
+.step2 .btn-next {
+	bottom: 196px;
+	right: 70px;
+}
+
+.step2 .btn-close {
+	top: 215px;
+	right: 70px;
+}
+
+.step2 .tipwizard-btn {
+	bottom: 195px;
+	right: 170px;
+}
+
+.step3 {
+	background-image: url(/images/upload/guide/step3.jpg);
+}
+
+.step3 .btn-next {
+	bottom: 205px;
+	right: 276px;
+}
+
+.step3 .tipwizard-btn {
+	bottom: 204px;
+	right: 376px;
+}
+
+.step3 .btn-close {
+	top: 206px;
+	right: 276px;
+}
+
+.step4 {
+	background-image: url(/images/upload/guide/step4.jpg);
+}
+
+.step4 .btn-next {
+	bottom: 137px;
+	right: 76px;
+}
+
+.step4 .tipwizard-btn {
+	bottom: 136px;
+	right: 176px;
+}
+
+.step4 .btn-close {
+	top: 274px;
+	right: 76px;
+}
+
+.step5 {
+	background-image: url(/images/upload/guide/step5.jpg);
+}
+
+.step5 .btn-next {
+	bottom: 59px;
+	right: 66px;
+}
+
+.step5 .tipwizard-btn {
+	bottom: 59px;
+	right: 166px;
+}
+
+.step5 .btn-close {
+	bottom: 269px;
+	right: 66px;
+}
+
+.step6 {
+	background-image: url(/images/upload/guide/step6.jpg);
+}
+
+.step6 .btn-next {
+	top: 355px;
+	right: 515px;
+}
+
+.step6 .tipwizard-btn {
+	top: 355px;
+	right: 615px;
+}
+
+.step6 .btn-close {
+	top: 166px;
+	right: 515px;
+}
+
+.step7 {
+	background-image: url(/images/upload/guide/step7.jpg);
+}
+
+.step7 .btn-next {
+	bottom: 63px;
+	right: 527px;
+}
+
+.step7 .tipwizard-btn {
+	bottom: 63px;
+	right: 627px;
+}
+
+.step7 .btn-close {
+	bottom: 273px;
+	right: 527px;
+}
+
+.step8 {
+	background-image: url(/images/upload/guide/step8.jpg);
+}
+
+.step8 .btn-next {
+	bottom: 0;
+	right: 502px;
+}
+
+.step8 .tipwizard-btn {
+	bottom: -1px;
+	right: 602px;
+}
+
+.step8 .btn-close {
+	bottom: 209px;
+	right: 502px;
+}

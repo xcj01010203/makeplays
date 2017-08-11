@@ -1,0 +1,274 @@
+.my-container {
+	  width: 100%;
+	  height: 100%;
+	  overflow: auto;
+}
+.jqx-window {
+	  display: none;
+}
+
+.jqx-column {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 25px;
+    color: #333;
+    padding: 0px 5px;
+}
+.column-align-right {
+    text-align: right;
+    padding-right: 5px;
+}
+iframe.loan-receipt-div {
+	  height: 460px;
+}
+
+/*借款信息表格*/
+div.loan-information-list-div {
+	  width: 100%;
+	  height: 70%;
+}
+span.payment-detail {
+	  float: right;
+}
+.toolbar input[type=button], .toolbar input[type=button]:hover {
+    margin: 0 8px;
+    margin-top: 5px;
+    width: 24px;
+    height: 24px;
+    float:left;
+}
+input[type=button].export-btn {
+	  margin-left: 20px;
+    background: url(../image/daochu.png) no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer;
+}
+input[type=button].export-btn:hover {
+	  margin-left: 20px;
+    background: url(../image/daochu1.png) no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer;
+}
+
+.jqx-column a:link, .jqx-column a:visited {
+	  color: #fb822f;
+	  text-decoration: none;
+}
+.jqx-column a:hover {
+	  color: #fb822f;
+	  text-decoration: none;
+}
+span.payment-detail a:link, span.payment-detail a:visited {
+	  color: #1f94c1;
+	  text-decoration: none;
+}
+span.payment-detail a:hover {
+	  color: #1f94c1;
+	  text-decoration: none;
+}
+.operate-btn-list {
+	  display: none;
+}
+span.code-color {
+	  color: #1f94c1;
+}
+
+
+
+
+
+/*借款金额汇总信息表格*/
+div.curr-information-sum {
+	  width: 100%;
+	  height: 30%;
+}
+/*货币总信息*/
+table.currency-list-table {
+    border: 1px solid #ccc;
+    border-right: none;
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+table.currency-list-table tr {
+	  width: 100%;
+	  height: 30px;
+}
+table.currency-list-table td {
+	  border: 1px solid #ccc;
+	  border-top: none;
+	  border-left: none;
+}
+table.currency-list-table td.align-right {
+	  text-align: right;
+	  padding: 0px 5px 0px 0px;
+}
+
+
+
+/*单个借款单弹窗*/
+div.full-receipt-div {
+    width: 100%;
+    min-height: 76%;
+}
+div.btn-list {
+    /* height: 10%;
+    width: 100%;
+    text-align: center;
+    padding-top: 8px; */
+    /* position: absolute; */
+    height: 45px;
+    width: 100%;
+    text-align: center;
+    padding-top: 8px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    
+}
+div.btn-list input[type=button] {
+    width: 65px;
+    height: 25px;
+    background: rgba(255,102,0,1);
+    border-color: rgba(255,102,0,1);
+    border-radius: 7px;
+    color: rgba(255,255,255,1);
+    box-sizing: border-box !important;
+    font-family: '微软雅黑';
+    outline: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+div.btn-list input[type=button]:hover {
+    background: rgba(230,93,1,1);
+    
+}
+
+div.loan-order-box {
+	  box-sizing: border-box;
+}
+
+
+
+/*付款单附件上传的样式*/
+.payment-upload-wrap, .collection-upload-wrap, .loan-upload-wrap{
+    width: calc(100% - 10px);
+    box-sizing: border-box;
+    /* padding: 0px 5px; */
+    margin: 0px auto;
+    border: 1px solid #cad0e5;
+}
+
+.payment-upload-title, .collection-upload-title, .loan-upload-title {
+    height: 30px;
+    background: #ededed;
+}
+div.show-upload-file {
+    max-height: 148px;
+    overflow-y: auto;
+}
+.text-capital {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 20px;
+    color: #0288d1;
+    font-size: 15px;
+}
+div.upload-file-btn, div.upload-coll-btn, div.upload-loan-btn {
+    float: left;
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 20px;
+    color: #333;
+    font-size: 15px;
+    border: 0px;
+    padding: 0px;
+    /* border-radius: 15px; */
+    background: url(../../../images/fujian-icons.png) no-repeat 64px 3px;
+    background-size: 23px;
+}
+div.upload-file-btn:hover, div.upload-coll-btn:hover, div.upload-loan-btn:hover {
+    color: #0288d1;
+    background: url(../../../images/fujian-icon.png) no-repeat 67px 6px;
+    background-size: 18px;
+    cursor: pointer;
+}
+div.show-upload-file ul{
+    padding: 0px 10px;
+}
+div.show-upload-file ul, div.show-upload-file li {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: 0px;
+}
+div.show-upload-file ul:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+ul li.upload-file-list-li{
+    border: 0px;
+    /* height: 110px; */
+    height: 138px;
+    border: 0px;
+    float: left;
+    margin: 10px 10px 0px 10px;
+    position: relative;
+    cursor: pointer;
+}
+ul li.upload-file-list-li img {
+    width: 110px;
+    height: 110px;
+}
+ul li.upload-file-list-li p {
+    width: 110px;
+    height: 18px;
+    margin: 5px 0px;
+    color: #d67934;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    background: url(../../../images/fujian-icons.png) no-repeat;
+    background-size: 15px;
+    padding-left: 15px;
+    white-space: nowrap;
+}
+ul li.upload-file-list-li a.closeTag{
+    /* background: url("../../../../images/upload/editCancel-ico.gif") no-repeat 0 -64px;
+    width: 10px;
+    height: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+    display: inline-block;
+    zoom: 1;
+    padding-top: 3px;
+    cursor: pointer; */
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    z-index: 1000;
+    background: url(../../../images/btn-icon-small.png) no-repeat -20px 0;
+    cursor: pointer;
+}
+ul li.upload-file-list-li a.closeTag:hover {
+    background-position: -20px 0;
+}
+ul li.upload-file-list-li a {
+    color: #d67934;
+    text-decoration: none;
+}
+ul li.upload-file-list-li a.download-tag {
+	  position: absolute;
+	  top: 0px;
+	  right: 23px;
+	  width: 20px;
+	  height: 20px;
+	  z-index: 1000;
+	  background: url(../../../images/crewPicture/download-hover.png) no-repeat;
+	  cursor: pointer;
+	  background-size: 20px;
+}

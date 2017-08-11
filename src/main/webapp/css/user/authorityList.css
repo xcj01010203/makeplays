@@ -1,0 +1,261 @@
+@charset "utf-8";
+
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: '微软雅黑';
+	font-size: 13px;
+}
+
+.jqx-fill-state-normal-ui-lightness {
+    background: #1c94c4;
+    border-color: #1c94c4;
+}
+
+.addroot {
+	background-image: url("../finance/image/genjiedian.png");
+	background-repeat: no-repeat;
+	width: 24px;
+	height: 24px;
+	margin-left: 20px;
+	cursor: pointer;
+	margin-bottom: 10px;
+}
+
+.addroot:hover {
+	background-image: url("../finance/image/genjiedian1.png");
+}
+
+.tabdiv {
+	width: 100%;
+	display: inline-block;
+	padding: 30px 0 20px 0;
+}
+
+.mobileImg {
+	background: url("../../images/mobile.png") no-repeat;
+	width: 100px;
+	height: 40px;
+	background-size: 100px 40px;
+}
+
+.mobileImg1 {
+	background: url("../../images/mobile1.png") no-repeat;
+	width: 100px;
+	height: 40px;
+	background-size: 100px 40px;
+}
+
+.pcImg {
+	background: url("../../images/PC.png") no-repeat;
+	width: 100px;
+	height: 40px;
+	background-size: 100px 40px;
+}
+
+.pcImg1 {
+	background: url("/images/PC1.png") no-repeat;
+	width: 100px;
+	height: 40px;
+	background-size: 100px 40px;
+}
+.treediv {
+	width: 100%;
+	overflow: auto;
+	padding-left: 30px;
+	height: calc(100% - 130px);
+}
+/* 修改treegrid样式 */
+.subjectClass {
+	float: right;
+}
+.subjectClass span {
+	margin-left: 15px;
+	cursor: pointer;
+}
+.datagrid-row:hover .subjectClass {
+	display: block !important;
+}
+.icon-parent {
+	background: url("../../images/menu_1.png") no-repeat center center;
+}
+.icon-child {
+	background: url("../../images/menu_2.png") no-repeat center center;
+}
+.icon-final {
+	background: url("../../images/menu_3.png") no-repeat center center;
+}
+.datagrid-row-over{
+	background: #e8e8e8;
+}
+.datagrid-row-selected{
+	background: #d1d1d1;
+}
+.datagrid-header{
+	display: none;
+}
+.datagrid-body td{
+	border-right: 1px dotted rgba(255,255,255,0);
+	border-bottom: 1px dotted rgba(255,255,255,0);
+}
+.panel-body{
+	border: 0px solid #99BBE8;
+	background-color: #f8f8f8;
+}
+.panel{
+	overflow: auto;
+}
+/* 修改treegrid样式 */
+
+.addTable_td1 {
+	text-align: right;
+}
+.text-input1 {
+	width: 240px;
+	height: 30px;
+	border-bottom: 1px solid rgba(204, 204, 204, 1);
+}
+.con_right_title {
+    background-color: #f8f8f8;
+}
+.title_div {
+	margin: 30px 50px 0 50px;
+	background-color: #f7fcff;
+}
+.con_right_title tr {
+    height: 40px;
+}
+.authModify {
+	display:none;
+    width: 30px;
+    height: 30px;
+    background-image: url(../../images/change_1.png);
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+    background-color: #64B5F6;
+    border-radius: 3px;
+}
+.authModify:hover {
+    background-image: url(../../images/change_2.png);
+}
+.authSave{
+	width:30px;
+	height:30px;
+	background-image:url(../../images/save_1.png);
+	background-repeat:no-repeat;
+	float:right;
+	margin-left:20px;
+	margin-right:20px;
+	cursor:pointer;
+	background-color: #64B5F6;
+	border-radius: 3px;
+}	
+.authSave:hover{
+	background-image:url(../../images/save_2.png);
+}
+.cur_1 {
+    border: 1px solid #409DFE !important;
+    box-shadow: 0 0 3px #409DFE;
+}
+.authority_box {
+    font-size: 14px;
+    line-height: 28px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    overflow: auto;
+    height: calc(100% - 85px);
+}
+.authority_box dl {
+	overflow: hidden;
+}
+.authority_box dt {
+    clear: left;
+}
+.authority_box input {
+    padding-top: 2px;
+    margin-right: 10px;
+}
+.authority_box dd {
+    float: left;
+    width: 150px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.blackColor {
+    color: black;
+}
+.grayColor {
+    color: gray;
+}
+.update_table1 {
+	float: left;
+	margin-left: 50px;
+}
+.update_table2 {
+	float: right;
+	margin-right: 50px;
+}
+.con_right_bottom {
+	height: 100%;
+	overflow: auto;
+	background-color:#f7fcff;
+	border-radius:5px;
+	margin: 0 50px 0 50px;
+}
+.con_right_bottom_title {
+	height: 30px;
+	font-size: 14px;
+	font-weight:bold;
+	margin-left:26px;
+	margin-top:18px;
+}
+
+/*tab样式*/
+.tab_wrap {
+	width: 100%;
+	float: none;
+}
+.tab_wrap ul {
+    overflow: hidden;
+    border-bottom: 2px solid rgba(255,102,0,1);
+}
+.tab_wrap li {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: block;
+    width: 180px;
+    line-height: 28px;
+    float: left;
+    line-height: 30px;
+    border-top-left-radius: 20px;
+    background-color: rgba(4,84,133,1);
+    border: 2px solid rgba(4,84,133,1);
+    border-bottom: none;
+    color: rgba(255,255,255,1);
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+/*tab样式*/
+
+.line-cutoff {
+	width: 100%;
+	border-bottom: 1px #999 dashed;
+	margin: 10px 0;
+}
+.div-top, .div-bottom {
+	overflow: hidden;
+}
+.span-title {
+	color: rgba(4,84,133,1);
+	font-size: 14px;
+}

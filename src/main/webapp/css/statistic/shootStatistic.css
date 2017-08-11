@@ -1,0 +1,228 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	outline: none;
+	font-family: '微软雅黑';
+}
+.bd_wrap {
+	height: 100%
+}
+.btn_tab_wrap {
+	display: inline-block;
+	width: 100%;
+}
+.radio_wrap {
+	margin-top: 5px;
+	margin-left: 20px;
+}
+.radio_wrap label {
+	cursor: pointer;
+	margin-right: 10px;
+}
+.radio_wrap label input{
+	cursor: pointer;
+}
+.tab_wrap li {
+	width: 25%;
+}
+.total_title {	
+	display: inline-block;
+	width: 100%;
+	font-size: 16px;
+	line-height: 35px;
+	padding: 25px 0;	
+}
+.border-left {
+    display: inline-block;
+    width: 7px;
+    height: 24px;
+    border: 1px solid #0277bd;
+    border-radius: 3px;
+    background: #0277bd;
+    float: left;
+    margin-top: 5px;
+}
+.label-tips {
+    float: left;
+    margin: 0px;
+    margin: 7px 0px 0px 6px;
+    font-size: 17px;
+    font-weight: bold;
+}
+.total_group {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+.show_text {
+	padding: 10px 30px;
+    border-radius: 4px;
+    background-color: hsla(0, 0%, 90%, 1);
+    line-height: 30px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #f49d25;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.chart_div {
+	height: 400px;
+}
+.contentdiv .chartdiv {
+	height: calc(100% - 40px);
+	overflow-y: auto;
+	overflow-x: auto;
+}
+.contentdiv.chart{
+	padding:0 50px;
+}
+.totalouter {
+	width:1150px;
+	margin: 0 auto; 
+}
+.contentdiv {
+	overflow-y: auto;
+	height: calc(100% - 55px);
+}
+.checkbox span {
+    float: left;
+    margin-right: 7px;
+    line-height: 23px;
+}
+.checkbox span.font-color {
+    color: #b3b3b3;
+}
+.checkbox input[type=checkbox] {
+    margin-left: 72px;
+}
+.checkbox label {
+    float: left;
+}
+.ui.checkbox {
+	font-size: 15px;
+}
+.ui.toggle.checkbox label {
+    color: #ccc !important;
+}
+.total_ul {
+	width:470px;
+	float: left;
+}
+.total_rightimg {
+	float: left;
+	margin-top: 17px;
+	margin-right: 50px;
+	margin-left: 20px;
+}
+.total_ul .figure {
+	display: inline-block;
+	text-align: center;
+	font-weight: bold;
+	font-size: 24px;
+	width: 80px;
+}
+.total_ul .plan {
+	color:#2ba2d9;
+}
+.total_ul .real {
+	color:#7cb342;
+}
+.total_ul .result_word {
+	font-size: 16px;
+	width: 160px;
+	color:#f57c00;
+}
+.total_ul .result_figure {
+	width:130px;
+	color:#f57c00;
+	font-size: 24px;
+}
+.total_progress {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.div_sel {
+	line-height: 40px;
+	font-size: 15px;
+}
+.div_sel label {
+	margin-right: 15px;
+	cursor: pointer;
+}
+.div_sel label input {
+	cursor: pointer;
+}
+/*进度条*/
+.progress-con-div {
+    width: 100%;
+    height: 35px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+.progress-con-div p,.progress-con-div ul {
+    width: 185px;
+    float: left;
+    height: 15px;
+    line-height: 15px;
+    padding-left: 3px;
+}
+.progress-div {
+    float: left;
+    width: 720px;
+    margin-right: 50px;
+    height: 35px;
+}
+.progress-div div {
+    float: left;
+    height: 17px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    position: relative;
+    padding: 0px;
+    margin: 0px;
+}
+.progress-div div:nth-child(1) {
+    background: #f0a132;
+    width: 100%;
+}
+.progress-div div:nth-child(2) {
+    background: #f98a66;
+    width: 0px;
+}
+.progress-div div span {
+    position: absolute;
+    left: -7px;
+    top: 0px;
+    text-align: left;
+}
+.jindu_kuang {
+    float: left;
+    width: 720px;
+    height: 17px;
+    background-color: #cccccc;
+    border-radius: 15px;
+    border-top: 1px solid #ebebeb;
+}
+.jindu_tiao {
+    height: 17px;
+    width: 0%;
+    border-radius: 15px;
+    background-color: #0084c4;
+}
+.progress-con-div ul li {
+	font-size: 15px;
+	margin-top: 5px;
+	padding-left: 13px;
+}
+
+/*修改checkbox样式*/
+.ui.toggle.checkbox .box:before, .ui.toggle.checkbox label:before {
+	background-color: #2185D0!important;
+}
+
+.ui.toggle.checkbox .box:hover::before, .ui.toggle.checkbox input:focus~.box:before, 
+.ui.toggle.checkbox input:focus~label:before, .ui.toggle.checkbox label:hover::before {
+	background: #0d71bb!important;
+}

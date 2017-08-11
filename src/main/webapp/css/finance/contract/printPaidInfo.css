@@ -1,0 +1,211 @@
+*{
+	  font-size: 14px;
+	  color: #000;
+	  font-family: '微软雅黑';
+	  margin: 0px;
+	  padding: 0px;
+}
+
+@media print {
+	  .detail-info-table-one tr td:nth-child(1), .detail-info-table-one tr td:nth-child(2) {
+	     min-width: 80px;
+	  }
+	  .detail-info-table-one tr td:nth-child(4) {
+	     min-width: 100px;
+	  }
+	  .readonly-explain tr td:nth-child(2) {
+	     min-width: 245px;
+	  }
+	  .pageNext {
+     page-break-after: always;
+    }
+}
+
+
+
+.my-container {
+	  width: 100%;
+	  height: 100%;
+	  overflow: auto;
+}
+div.my-reimbursement-content {
+    padding: 10px;
+    height: 100%;
+    box-sizing: border-box;
+}
+div.right-div-modular {
+    width: 100%px;
+    /* border: 1px solid #000; */ 
+    background: #fff;
+}
+dl.make-content-dl {
+    width: 100%;
+    height: 100%;
+    background: none;
+    position: relative;
+}
+dl.make-content-dl dt {
+    height: 105px;
+    border-bottom: 1px solid #000;
+    padding-top: 5px;
+}
+dl.make-content-dl h2 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: '微软雅黑';
+    margin: 0px;
+    padding: 0px;
+}
+div.description-info {
+    margin-top: 12px;
+    height: 46px;
+    padding-bottom: 6px;
+}
+table.basic-info-table {
+    width: 100%;
+    border: none;
+}
+table.basic-info-table tr {
+    width: 100%;
+    height: 20px;
+}
+table.basic-info-table td {
+    border: none;
+    width: 50%;
+    padding-left: 10px;
+}
+table.basic-info-table td:nth-child(2){
+    padding-left: 100px;
+}
+table.basic-info-table td:nth-child(2) p{
+    width: 38%;
+}
+table.basic-info-table td:nth-child(1):after {
+    content: '';
+    display: block;
+    clear: both;
+}
+table.basic-info-table td:nth-child(2) input[type=text] {
+    width: 60%;
+    float: left;
+    height: 20px;
+}
+table.basic-info-table td p {
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    width: 25%;
+    font-weight: normal;
+}
+table.basic-info-table td input[type=text] {
+    width: 60%;
+    margin-left: 0px;
+    border: none;
+}
+table.basic-info-table td input[type=text]:focus, table.detail-info-table-one tr input[type=text]:focus {
+    box-shadow: none;
+    border-shadow: none;
+}
+dl.make-content-dl dd {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
+table.detail-info-table-one {
+    width: 100%;
+    border-collapse:collapse;
+}
+/* table.detail-info-table-one thead tr {
+    height: 40px;
+    width: 100%;
+} */
+table.detail-info-table-one tr.thead-tr {
+    height: 40px;
+    width: 100%;
+}
+table.detail-info-table-one tr {
+    height: 30px;
+}
+table.detail-info-table-one tr td:last-child {
+    border-right: none;
+}
+table.detail-info-table-one tr td {
+    padding-left: 5px;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+table.detail-info-table-one tr input[type=text] {
+    border: none;
+}
+table.detail-info-table-one tr.money-tr p {
+    width: 100px;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+}
+table.detail-info-table-one tr.money-tr div {
+    float: left;
+    margin-left: 5px;
+    width: 60%;
+    height: 20px;
+}
+
+table.readonly-explain {
+    width: 100%;
+    border-collapse:collapse;
+}
+table.readonly-explain tr {
+    width: 100%;
+    height: 40px;
+}
+table.readonly-explain tr td {
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    padding-left: 5px;
+}
+table.readonly-explain tr td:last-child {
+    border-right: none;
+    vertical-align: top;
+}
+table.readonly-explain tr:not(first-child) td:nth-child(2) {
+	  border-right: 1px solid #000;
+}
+table.readonly-explain tr p {
+    float: left;
+}
+ table.readonly-explain tr span {
+    margin-left: 5px;
+    font-weight: bold;
+} 
+dl.make-content-dl dd.last-dd-pack {
+    height: 93px;
+   /*  width: 100%; */
+   border-bottom: 1px solid #000;
+}
+dl.make-content-dl dd.last-dd-pack div.last-tips {
+    height: 93px; 
+    width: 100%;
+    padding-left: 5px;
+    position: relative;
+}
+p.pack-count {
+    position: absolute;
+    bottom: 3px; 
+    right: 12px;
+}
+p.pack-count input[type=text] {
+    border: none;
+    width: 30px;
+}
+p.pack-count input[type=text]:focus {
+    box-shadow: none;
+    border-shadow: none;
+}
+
+.pro-crew-name {
+    width: 60%;
+    float: left;
+    margin-left: 5px;
+    height: 20px;
+    font-weight: normal;
+}

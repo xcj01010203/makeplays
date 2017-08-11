@@ -1,0 +1,187 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	outline: none;
+}
+.my-container {
+	width: 100%;
+	height: 100%;
+}
+.maindiv {
+	width: calc(100% - 2px);
+	height: calc(100% - 2px);
+}
+.jqxgrid-column, .jqxTreeGrid-column {
+	display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333;
+    padding-left: 5px;
+    padding-right: 5px;
+    box-sizing: border-box;
+}
+.jqxgrid-column {
+    line-height: 35px;
+}
+.jqxTreeGrid-column {
+    line-height: 25px;
+}
+.text-align-center {
+	text-align: center;
+}
+.text-align-right {
+	text-align: right;
+}
+.text-align-left {
+	text-align: left;
+}
+.red-color {
+	  color: #f00;
+}
+.right-popup-win {
+    display: none;
+    position: absolute;
+    width: 70%;
+    height: calc(100% - 2px);
+    right: -70%;
+    top: 0px;
+    border: 1px solid #ccc;
+    z-index: 500;
+    background: #f2f2f2;
+}
+.right-popup-body {
+    width: 100%;
+    height: 100%;
+}
+/*头部按钮*/
+.header-btn-list {
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background: #e1ebfa;
+}
+.oper-button {
+	border: 0px;
+    outline: none;
+    width: 100px;
+    height: 25px;
+    letter-spacing: 5px;
+    color: #fff;
+    margin-right: 50px;
+    background: rgba(255,102,0,1);
+    border-radius: 5px;
+    margin-top: 7px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    cursor: pointer;
+}
+.oper-button:hover {
+  background: rgba(230,93,1,1);
+}
+/*tab样式*/
+.btn_tab_wrap {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.tab_wrap li {
+    width: 50%;
+}
+/*tab样式*/
+.main-content {
+	height: calc(100% - 95px);
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+.budgetPayed {
+	height: 100%;
+	width: 100%;
+}
+.totaldiv {
+	height: 35px;
+}
+table.settle-account-table {
+    width: calc(100% - 18px);
+    border: 1px solid #ccc;
+}
+table.settle-account-table tr {
+    width: 100%;
+    height: 30px;
+}
+table.settle-account-table tr th {
+    border: 1px solid #ccc;
+    border-left: none;
+    border-top: none;
+    text-align: right;
+    text-align: center;
+}
+table.settle-account-table tr:last-child td {
+    border-bottom: none;
+}
+table.settle-account-table tr td {
+    border: 1px solid #ccc;
+    border-left: none;
+    border-top: none;
+    text-align: right;
+}
+table.settle-account-table tr td div {
+    min-width: 60px;
+    text-align: center;
+}
+table.settle-account-table tr td div.text-align-right {
+    padding-right: 2px;
+    text-align: right;
+}
+table.settle-account-table tr td div {
+    min-width: 60px;
+    text-align: center;
+}
+.red-color {
+	  color: #f00;
+}
+table.schedule-table {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+table.schedule-table tr {
+    width: 100%;
+    height: 30px;
+}
+table.schedule-table tr th {
+    border: 1px solid #ccc;
+    border-left: none;
+    border-top: none;
+    text-align: right;
+    text-align: center;
+}
+table.schedule-table tr:last-child td {
+    border-bottom: none;
+}
+table.schedule-table tr td {
+    border: 1px solid #ccc;
+    border-left: none;
+    border-top: none;
+    text-align: right;
+    padding: 0 5px;
+}
+table.schedule-table tr td.text-align-left {
+    text-align: left;
+}
+
+.export-btn {
+	float:left;
+	width: 24px;
+	height: 24px;
+	background: url("../../images/export.png") no-repeat;
+	background-size: 24px 24px;
+	margin-left: 20px;
+	margin-top: 4px;
+	cursor: pointer;
+}
+.export-btn:HOVER {
+	background: url("../../images/export_hover.png") no-repeat;
+  	background-size: 24px 24px;
+}

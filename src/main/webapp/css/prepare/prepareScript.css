@@ -1,0 +1,360 @@
+/**
+ * 剧本进度
+ */
+ 
+   *{font-family: "微软雅黑";}
+   html,body {width: 100%; height: 100%; margin: 0px; padding:0px; color: #333;}
+   div,p,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,dl,dt,dd {margin: 0px; padding: 0px;}
+   ul,li {list-style-type: none;}
+	 .script-container {
+	   width: calc(100% - 20px);
+	   height: calc(100% - 20px);
+	   padding:20px 10px 0px 10px;
+	   overflow: auto;
+	 }
+	 .script-type-div {
+	   /* height: 40px;
+	   font-size: 14px;
+	   padding-left:30px;
+	   margin-top:20px; */
+	   padding-left: 30px;
+	 }
+	 .script-type-div:after {
+	   content: '';
+	   display: block;
+	   clear: both;
+	 }
+	 label {
+	   margin-right:20px;
+	 }
+	 .review-weight-div {
+	   padding-left: 30px;
+	 }
+	 .review-weight-div:after {
+	   content: '';
+	   display: block;
+	   clear: both;
+	 }
+	 .review-weight {
+	   float: left;
+	   font-size: 15px;
+	 }
+	 .script-type {
+	   float: left;
+	   font-size: 15px;
+	 }
+	 .review-people-div {
+	   float: left;
+	   margin-left: 10px;
+	   width: 47%;
+	 }
+	 .script-type-list {
+	   float: left;
+	   margin-left: 10px;
+	   width: calc(100% - 80px);
+	   min-height: 30px;
+	 }
+	 .reivew-people-list,.reivew-people-ul {
+	   width: 100%;
+	 }
+	 .reivew-people-list:after, .reivew-people-ul:after {
+	   content: '';
+	   display: block;
+	   clear: both;
+	 }
+	 .reivew-people-ul li {
+	     height: 18px;
+	     font-size: 15px;
+	     float: left;
+	     margin-right: 10px;
+	     margin-bottom: 10px;
+	 }
+	 .reivew-people-list li {
+	   float: left;
+	   height: 18px;
+	   font-size:15px;
+	   margin-right: 10px;
+	   border: 1px solid #ff9800;
+	   border-bottom-left-radius: 3px;
+	   border-bottom-right-radius: 20px;
+	   border-top-left-radius: 3px;
+	   border-top-right-radius: 20px; 
+	   margin-bottom: 5px;
+	 }
+	 .reivew-people-list li:last-child {
+	   float: left;
+	   height: 18px;
+	   font-size:14px;
+	   margin-right: 10px;
+	   border: 0px;
+	 }
+	 .reivew-people-list li input[type=text]:first-child {
+	   width: 50px;
+	   border: 0px;
+	   height:15px;
+	   padding-left:3px;
+	   background: transparent;
+	   box-sizing: border-box;
+	 }
+	 .reivew-people-list li input[type=text]:nth-child(2) {
+	   width: 40px;
+	   border: 0px;
+	   height: 15px;
+	   text-align: right;
+	   padding-right:3px;
+	   background:transparent;
+	   box-sizing: border-box;
+	 }
+.reivew-people-list li input[type=text]:hover, .reivew-people-list li input[type=text]:focus {
+  border:1px solid #409DFE;
+  outline:none;
+  border-bottom:1px solid #409DFE;
+  box-shadow:0 0 3px #409DFE;
+}
+	 .close-tag {
+	   display: inline-block;
+	   width:10px;
+	   height:10px;
+	   background: url("../../images/upload/editCancel-ico.gif") no-repeat 0 -65px;
+	   margin-left: 5px;
+	   margin-right:5px;
+	 }
+	 .close-tag:hover {
+	   background: url("../../images/upload/editCancel-ico.gif") no-repeat 0 -93px;
+	 }
+	 .add-review-btn {
+	   width: 18px;
+	   height: 18px;
+	   border: 0px;
+	   background: url("../../images/add-yellow.png") no-repeat;
+	   outline: none;
+	   cursor: pointer;
+	 }
+	 .btn-list-div {
+	   float: left;
+	   margin-left: 20px; 
+	 }
+	 .btn-list-div input[type=button]{
+	   width: 80px;
+	   height: 25px;
+	   outline: none;
+	   border-radius: 6px;
+	   background: rgba(255,102,0,1);
+	   border-color: rgba(255,102,0,1);
+	   color: #fff;
+	   box-shadow: none;
+	   cursor: pointer;
+	 }
+	 .btn-list-div input[type=button]:hover {
+	   background: rgba(230,93,1,1);
+	 }
+	 .border-line {
+        height: 0px;
+        border: 1px dotted #ccc;
+        margin-top: 10px;
+        margin-bottom: 10px;
+   }
+   
+   .tree-container-div {
+        height: calc(100% - 110px);
+        overflow-x: auto;
+   }
+   .tree-grid-container {
+       height: 100%;
+   }
+   .tree-grid-header {
+      height: 30px;
+      width: 100%;
+      overflow: hidden;
+   }
+   .tree-header-ul{
+      height: 30px;
+     
+   }
+   .tree-header-ul:after{
+      content: '';
+      display: block;
+      clear: both;
+   }
+   .tree-header-ul li {
+      width: 150px;
+      float: left;
+      height: 30px;
+      line-height: 30px;
+      background: #ddd;
+      text-align: center;
+   }
+   
+   .tree-grid-content {
+      width: 100%;
+      overflow: auto;
+      height: calc(100% - 30px);
+      font-size: 14px;
+   }
+   .tree-grid-content dt {
+      height: 30px;
+      line-height: 30px;
+      padding-left: 30px;
+      box-sizing: border-box;
+      /* border-top: 1px solid #ccc; */
+      border-bottom: 1px solid #ccc;
+     border-left: 1px solid #ccc;
+     border-right: 1px solid #ccc;
+     background: #e6e6e6;
+   }
+   .tree-grid-content dd {
+      display: block;
+      height: 30px;
+   }
+   .tree-content-ul {
+      height: 30px;
+   }
+   /* .tree-content-ul:after {
+      content: '';
+      display: block;
+      clear: both;
+   } */
+   .tree-content-ul li {
+      width: 150px;
+      float: left;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      /* border-top: 1px solid #ccc; */
+      border-bottom: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+      overflow: hidden;
+      text-overflow: ellipsis; 
+      box-sizing: border-box; 
+   }
+   .tree-content-ul li:last-child {
+      border-right: 1px solid #ccc;
+   }
+   .tree-content-ul li:nth-child(2){
+      text-align: left;
+      /* padding-left: 30px; */
+      width: 150px;
+   }
+   .tree-content-ul li input[type=text] {
+          display: block;
+			    width: 96%;
+			    height: 25px;
+			    margin-top: 2px;
+			    margin-left: 3px;
+			    box-sizing: border-box;  
+   }
+.tree-content-ul li input[type=text]:hover, .tree-content-ul li input[type=text]:focus {
+  border:1px solid #409DFE;
+  outline:none;
+  border-bottom:1px solid #409DFE;
+  box-shadow:0 0 3px #409DFE;
+}
+   /* span.dt-content, span.dd-content {
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      width: 140px;
+      overflow: hidden;
+   }
+   span.opera-btn-list {
+	    display: none;
+	    margin-left: 10px;
+	    vertical-align: middle;
+   } */
+   span.dt-content, span.dd-content {
+      /* display: inline-block; */
+      float: left;
+      margin-left: 3px;
+      height: 30px;
+      line-height: 30px;
+      width: 110px;
+      height: 100%;
+      overflow: hidden;
+   }
+span.dt-content .dt-span {
+    width: 90px;
+    height: 100%;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align: middle;
+    
+}
+span.dd-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+span.opera-btn-list {
+      display: none;
+      float: left; 
+      margin-left: 10px;
+      margin-top: 6px;
+      /* vertical-align: middle; */
+      /* height:30px; 
+      line-height: 30px;
+      
+       */
+   }
+   
+   span.opera-btn-list a{
+      display: inline-block;
+	    width: 16px;
+	    height: 16px;
+	    float: none;
+   }
+   span.opera-btn-list a.add-row-btn {
+      background: url(../../images/add.png) no-repeat;
+      background-size: 16px 16px;
+      margin-right: 3px;
+   }
+   span.opera-btn-list a.add-row-btn:hover {
+      background: url(../../images/add_hover.png) no-repeat;
+      background-size: 16px 16px;
+      margin-right: 3px;
+   }
+   span.opera-btn-list a.delete-row-btn {
+      background: url(../../images/delete.png) no-repeat;
+      background-size: 16px 16px;
+   }
+   span.opera-btn-list a.delete-row-btn:hover {
+      background: url(../../images/delete1.png) no-repeat;
+      background-size: 16px 16px;
+   }
+   span.dt-content input[type=button].zhaikai {
+      width: 14px;
+      height: 14px; 
+      background: url(../../images/icon-down.png) no-repeat;
+      margin-right: 3px;
+   }
+   span.dt-content input[type=button].shouqi{
+      width: 14px;
+      height: 14px; 
+      background: url(../../images/icon-right.png) no-repeat;
+      margin-right: 3px;
+   }
+   .tree-grid-content input[type=text] {
+      border: 0px;
+   }
+   
+  /* .operate-btn-list {
+    display: none;
+    float: right;
+    width:16px;
+    height:16px;
+}
+.operate-btn-list a{
+	  display: block;
+    width: 16px;
+    height: 16px;
+    float: none;
+}
+.operate-btn-list a:hover {
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px;
+} 
+   
+  .operate-btn-list a.add-row-btn {
+      background: url(../../images/add.png) no-repeat;
+      background-size: 16px 16px;
+  } */

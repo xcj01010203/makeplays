@@ -1,0 +1,99 @@
+@charset "utf-8";
+
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: '微软雅黑';
+	font-size: 13px;
+}
+.addBtn {
+	width: 24px;
+	height: 24px;
+	margin-left: 15px;
+	background: url("../../images/tianjiachengyuan.png") no-repeat;
+	background-size: 24px 24px;
+	cursor: pointer;
+}
+
+.addBtn:hover {
+	background: url(../../images/tianjiachengyuan1.png) no-repeat;
+	background-size: 24px 24px;
+}
+
+.btnParent {
+	width: 24px;
+	height: 24px;
+	margin-left: 15px;
+	background: url(../../css/finance/image/genjiedian.png) no-repeat;
+	background-size: 24px 24px;
+	cursor: pointer;
+}
+
+.btnParent:hover {
+	background: url(../../css/finance/image/genjiedian1.png) no-repeat;
+	background-size: 24px 24px;
+}
+
+.orderButton {
+	width: 24px;
+	height: 24px;
+	margin-left: 15px;
+	background: url(../../css/finance/image/iconfont-paixu.png) no-repeat;
+	background-size: 24px 24px;
+	cursor: pointer;
+}
+
+.orderButton:HOVER {
+	background: url(../../css/finance/image/iconfont-paixu1.png) no-repeat;
+	background-size: 24px 24px;
+}
+.sort-win-div-tips {
+  padding-bottom: 10px;
+  padding-top: 5px;
+  padding-left: 10px;
+}
+.sort-win-span-point {
+  font-weight: bold;
+}
+.sort-win-span-content {
+  color: red;
+}
+.close-sort-win {
+  width: 100%;
+  text-align: center;
+  margin-top: 17px;
+}
+.deltelumns {
+	width: 16px;
+	height: 16px;
+	background: url("../../images/delete_ioc.png") no-repeat;
+	float: right;
+	margin-right: 22px;
+	background-size: 16px 16px;
+}
+
+.deltelumns:hover {
+	background: url(../../images/delete1_ioc.png) no-repeat;
+	background-size: 16px 16px;
+}
+
+.addBtns {
+	width: 16px;
+	height: 16px;
+	background: url("../finance/image/tianjia.png") no-repeat;
+	float: right;
+	margin-right: 20px;
+	background-size: 16px 16px;
+}
+
+.addBtns:hover {
+	background: url(../finance/image/tianjia1.png) no-repeat;
+	background-size: 16px 16px;
+}
+
+#roleListgrid .jqx-cell:hover .deltelumns{
+	display: block !important;
+}
+#roleListgrid .jqx-cell:hover .addBtns{
+	display: block !important;
+}

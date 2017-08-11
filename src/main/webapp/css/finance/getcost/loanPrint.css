@@ -1,0 +1,187 @@
+@media print {   
+   body {   
+      color: #000;   
+      background: #fff;   
+   }   
+} 
+
+body{
+    margin: 0px;
+    padding: 0px;
+    font-size: 13px;
+    font-family: '微软雅黑',arial,sans-serif;
+    bakcground-color: #fff;
+    width: 99%;
+    overflow: hidden;
+}
+ul,li {
+    margin: 0px;
+    padding:0px;
+    list-style-type: none;
+}
+dl,dt,dd {
+    margin: 0px;
+    padding: 0px;
+    background: #fff;
+}
+.loan-order-box {
+    width: 100%;
+    height: 90%;
+    color: #000;
+    position: relative;
+    overflow: hidden;
+    padding: 6px;
+    font-size: 16px;
+}
+dl.loan-box-dl {
+    font-size: 13px;
+    border: 2px solid #000;
+}
+dt {
+    line-height: 38px;
+    border-bottom: 1px solid #000;
+}
+dl.loan-box-dl .loan-header {
+    margin: 9px 0px;
+    position: relative;
+}
+
+.bills-num {
+    font-size: 16px;
+    font-family: '微软雅黑';
+    color: #000;
+    position: absolute;
+    top: 0px;
+    padding-left: 10px;
+}
+input[type=text] {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #000;
+    box-shadow: none;
+    font-size: 16px;
+    color: #000;
+    outline: none;
+    font-family: '微软雅黑';
+}
+
+input[type=text].header-input {
+    border: none;
+    border-bottom: 1px solid #000;
+    width: 150px;
+    height: 30px;
+    outline: none;
+    background: transparent;
+}
+.header-title {
+    text-align: center;
+    font-size: 26px;
+}
+.bills-date {
+	  font-size: 16px;
+	  font-family: '微软雅黑';
+	  color: #000;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+div.div-clear {
+    clear: both;
+}
+
+.loan-order-box table {
+    table-layout: fixed;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    color: #000;
+}
+.loan-order-box table td {
+    border: none;
+    height: 50px;
+}
+.loan-order-box table td.jiekuan-td,.loan-order-box table td.zhaiyao,.loan-order-box table td.finance-subject,
+.loan-order-box table td.payMethod, .loan-order-box table td.money-td {
+    width: 95px;
+    text-align: right;
+    padding-right: 10px;
+    font-size: 14px;
+}
+input[type=text].jiekuan-person {
+    width: 100%;
+    height: 30px;
+    outline: none;
+    float: left;
+    
+    margin-right: 30px;
+    background: transparent;
+}
+.loan-order-box table td.finance-td {
+	  width: 100%;
+}
+div.money-div {
+    width: 60%;
+    float: right;
+}
+input[type=text].finance-subject-name {
+    height: 30px;
+    width: 100%;
+    float:left;
+}
+span.money-tips {
+	  width: 95px;
+	  display: inline-block;
+	  text-align: right;
+}
+input.select-currency {
+    width: 20%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+}
+input[type=text].money-count {
+    width: 50%;
+    height: 30px;
+    margin-left: 24px;
+}
+/* .loan-order-box table tr.last-tr td.payMethod {
+    position: relative;
+} */
+.loan-order-box table tr.last-tr td.last-td {
+    position: relative;
+}
+input.select-pay-method {
+    height: 30px;
+    width: 12%;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+}
+div.capital-money-div {
+    /* line-height: 30px; */
+    position:absolute;
+    bottom: 10px;
+    left: 174px;
+}
+
+div.agent-div {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+}
+input[type=text].agent-person {
+    height: 30px;
+}
+
+input.arrows-low {
+    width: 130px;
+    height: 30px;
+    border: 0px;
+    border-bottom: 1px solid #000;
+    outline: none;
+}
+
+
+
+

@@ -1,0 +1,371 @@
+html,body{
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+html,body,div,ul,li,p,dl,dt,dd,h1,h2,h3,h4,h5,h6 {
+	margin: 0px;
+	padding: 0px;
+}
+ul,li {
+	list-style-type: none;
+}
+.detail-container {
+	height: 100%;
+	overflow: auto;
+	padding: 0px 15px;
+}
+.approval-detail-one, .approval-detail-two {
+	display: none;
+	width: 100%;
+	position: relative;
+}
+
+.header-btn-list {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+  height: 40px;
+  text-align: center;
+  background: #e1ebfa;
+  z-index: 600;
+}
+.header-btn-list input[type=button] {
+	border: 0px;
+  outline: none;
+  width: 100px;
+  height: 25px;
+  /* letter-spacing: 10px; */
+  /* line-height: 25px; */
+  color: #fff;
+  margin-right: 30px; 
+  background: rgba(255,102,0,1);
+  border-radius: 5px;
+  margin-top: 7px;
+  font-size: 14px;
+  font-family: '微软雅黑';
+  cursor: pointer;
+}
+.header-btn-list input[type=button].close-btn {
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	float: right;
+	margin-top:2px;
+	margin-right: 15px;
+	background:  url(../../images/close-flag.png) no-repeat 9px 0px;
+	background-size: 15px;
+	color: #666;
+	letter-spacing: 0px;
+	line-height: 3.5;
+  text-align: center;
+  font-size: 12px;
+}
+.content-list {
+	height: calc(100% - 40px);
+  width: 100%;
+  margin-top: 40px;
+  overflow: auto;
+}
+.content-tips {
+   height: 30px;
+   line-height: 30px;
+   font-weight: bold;
+   font-size: 15px;
+   margin: 10px 0px;
+}
+.timer-view-container {
+	border: 1px solid #ccc;
+	padding-top: 10px;
+	border-radius: 3px;
+	padding-bottom: 10px;
+}
+.approval-info {
+  width: 100%;
+}
+.approval-info li {
+  min-height: 30px;
+  clear: both;
+  font-size: 14px;
+  overflow: h
+}
+.approval-info {
+  width: 100%;
+}
+.approval-info li p{
+  float: left;
+  width: 80px;
+  height: 30px;
+  line-height: 30px;
+  color: #333;
+  font-size: 14px;
+}
+.approval-info li p label {
+	display: inline-block;
+	width: 60px;
+	text-align: justify;
+}
+.approval-info li p label > span {
+	 display: inline-block;
+   width: 100%;
+   float: none;
+   height: 0px; 
+}
+.approval-info li input{
+	float: left;
+	height: 30px;
+	padding-left: 3px;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+.approval-info li textarea, .approval-info li input {
+	width: calc(100% - 80px);
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+.approval-info li textarea {
+	float: left;
+	height: 80px;
+	resize: none;
+	padding-left: 3px;
+	box-sizing: border-box;
+	background: transparent;
+}
+.approval-info li div.approval-person {
+	float: left;
+	width: calc(100% - 80px);
+	height: 30px;
+	margin-bottom: 10px;
+	padding-left: 3px;
+	box-sizing: border-box;
+	background: transparent;
+	border-bottom: 1px solid #ccc;
+}
+.approval-info li table {
+	width: 100%;
+	table-layout: fixed;
+}
+.approval-info li table tr {
+	height: 30px;
+}
+.approval-info li table tr input, .approval-info li table tr select {
+  float: left;
+  width: calc(85% - 80px);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height: 30px;
+  padding-left: 3px;
+  box-sizing: border-box;
+  background: transparent;
+  margin-bottom: 10px;
+}
+.select-image-btn {
+	  float: left;
+	  width: 80px;
+    height: 30px;
+    border: 1px solid #ffcc80;
+    background-color: #fffaf2;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 10px;
+    line-height: 30px;
+}
+input[type=text].approval-person {
+	  background: url(../../images/icon-down.png) no-repeat right;
+}
+
+/*申请人下拉列表*/
+div.drop-down-list {
+	display: none;
+	position: absolute;
+	width: 400px;
+	height: 250px;
+	z-index: 500;
+	border: 1px solid #ccc;
+	background: #fff;
+	border-radius: 5px;
+	background: #fff;
+	overflow: auto;
+}
+div.search-div {
+	text-align: center;
+	height: 30px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+input[type=text].search-input {
+	height: 30px;
+	width: calc(100% - 10px);
+	float: none;
+}
+ul.drop-person-list {
+	clear: both;
+  height: calc(100% - 52px);
+  overflow: auto;
+}
+ul.drop-person-list li {
+	height: 30px;
+	/* line-height: 30px; */
+	/* padding-left: 5px; */
+	box-sizing: border-box;
+	padding-right: 28px;
+	margin: 0px 10px;
+}
+
+ul.drop-person-list li.select {
+	background: url(../../images/true_black.png) no-repeat right center;
+	background-size: 20px;
+	color: #333;
+}
+ul.drop-person-list li:hover {
+  background-color: #428bca;
+  color: #fff;
+  cursor: pointer;
+  background-size: 20px;
+}
+ul.drop-person-list li span.user-name {
+	width: 85px;
+	box-sizing: border-box;
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 5px;
+}
+ul.drop-person-list li span.job-name {
+	display: inline-block;
+	width: calc(100% - 85px);
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+input[type=text]:focus,.approval-info li textarea:focus,.approval-info li table tr select:focus {
+	outline: none;
+	box-shadow: 0px 0px 5px #409DFE;
+  border: 1px solid #409DFE; 
+}
+
+/*隐藏所有操作按钮*/
+.header-btn-list input[type=button] {
+	display: none;
+}
+
+.approval-info span {
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+}
+.approval-info div.expense-capition {
+	float: left;
+	line-height: 20px;
+	font-size: 14px;
+	width: calc(100% - 80px);
+	padding: 5px 0;
+}
+.order-num {
+	margin-right: 20px;
+}
+.expense-money {
+	margin-right: 5px;
+}
+
+
+/*上传文件列表*/
+/*显示上传文件列表*/
+ul.upload-file-list {
+	  clear: both;
+    margin-left: 80px;
+    width: calc(100% - 80px);
+}
+ul li.upload-file-list-li{
+    border: 0px;
+    height: 138px;
+    border: 0px;
+    cursor: pointer;
+    position: relative;
+    float: left;
+    margin-right: 10px;
+    clear: none;
+}
+ul li.upload-file-list-li a.closeTag{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    z-index: 400;
+    background: url(../../images/btn-icon-small.png) no-repeat;
+    cursor: pointer;
+}
+ul li.upload-file-list-li a.closeTag:hover {
+    background-position: -20px 0;
+}
+
+ul li.upload-file-list-li img, ul li.upload-file-list-li div.no-img {
+    width: 110px;
+    height: 110px;
+}
+ul li.upload-file-list-li div.no-img {
+	  border: 1px solid #ccc;
+	  background: url(../../images/img_format.png) no-repeat;
+	  background-size: 100%;
+}
+ul li.upload-file-list-li p {
+	  float: none;
+    width: 110px;
+    height: 18px;
+    line-height: 18px;
+    margin: 5px 0px;
+    color: #d67934;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 13px;
+}
+ul li.upload-file-list-li p.img-format {
+    position: absolute;
+    height: 30px;
+    top: 50%;
+    left: 0px;
+    margin-top: -16px;
+    margin-bottom: 0px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 18px;
+    color: #fff;
+    font-weight: bold;
+}
+.approval-info li div span.drag-span {
+	  /* background: #aadbf9; */
+	  background: rgba(169,218,248,0.5);
+	  margin-right: 5px;
+	  padding: 0px 5px;
+}
+.approval-info li div span.drag-span:hover {
+	  background: #78a6cd;
+}
+.approval-info li div span.no-drag {
+    background: #e6e6e6;
+    margin-right: 5px;
+    padding: 0px 5px;
+}
+.approval-info li div span.no-drag:hover {
+    background: #ccc;
+}
+/* ul.drag-ul {
+	  float: left;
+	  height: 30px;
+	  margin: 0px;
+	  padding: 0px;
+	  list-style-type: none;
+} */
+blockquote {
+	margin: 0px;
+}

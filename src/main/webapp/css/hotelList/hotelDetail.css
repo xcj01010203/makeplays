@@ -1,0 +1,604 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+html, body, div, p, ul, li, dl, dt, dd {
+  margin: 0px;
+  padding: 0px;
+  font-family: '微软雅黑';
+}
+ul,li {
+  list-style-type: none;
+}
+.container {
+  width: 100% !important;
+  height: 100%;
+  overflow: hidden;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  background-color: #f2f2f2;
+  color: #222222;
+}
+.win-header-btn {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    min-width: 880px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #e1ebfa;
+    z-index: 600;
+}
+.win-header-btn input[type=button] {
+    border: 0px;
+    outline: none;
+    width: 100px;
+    height: 25px;
+    line-height: 25px;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-right: 50px;
+    background: rgba(255,102,0,1);
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: '微软雅黑';
+}
+.win-header-btn input[type=button]:hover {
+  background: rgba(230,93,1,1);
+}
+.hotel-detail-info {
+  box-sizing: border-box;
+  height: calc(100% - 40px);
+  margin-top: 40px;
+  overflow: hidden;
+  padding: 20px 20px 0px 20px;
+}
+.hotel-basic-info {
+  border-bottom: 1px dotted #ccc;
+}
+.basic-info-ul {
+  width: 100%;
+}
+.basic-info-ul:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.basic-info-ul li {
+  float: left;
+  min-height: 30px;
+  /* margin-bottom: 10px; */
+  position: relative;
+}
+.basic-info-ul:not(:last-child) li {
+  width: 33.3%;
+}
+.basic-info-ul li p, .basic-info-ul:last-child li p {
+  float: left;
+  width: 95px;
+  height: 30px;
+  line-height: 30px;
+  font-family: '微软雅黑';
+  text-align: right;
+  font-size: 15px;
+}
+.basic-info-ul li input[type=text]{
+  box-sizing: border-box;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 10px;
+  width: calc(90% - 105px);
+  min-width: 170px;
+  padding: 0px 5px;
+}
+.basic-info-ul:last-child li {
+  width: 100%;
+}
+.basic-info-ul:last-child li textarea {
+  box-sizing: border-box;
+  height: 60px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 10px;
+  width: calc(96% - 105px);
+  min-width: 170px;
+  padding: 0px 5px;
+  resize: none;
+}
+.basic-info-ul:last-child li textarea:focus, .basic-info-ul li input[type=text]:focus {
+  /* border-radius: 5px;
+  box-shadow: 0px 0px 5px #409DFE;
+  border: 1px solid #409DFE; */
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+    outline: none;
+}
+
+div .repeat-of-set label{
+	display: inline-block;
+}
+
+.location-span {
+	position: absolute;
+	right: 12%;
+  top: 5px;
+	width: 20px;
+	height: 20px;
+	background: url(../../images/location.png) no-repeat;
+	background-size: 20px;
+}
+.location-span:hover {
+	background: url(../../images/location1.png) no-repeat;
+	background-size: 20px;
+}
+
+.hotel-people-detial {
+  box-sizing: border-box;
+      margin-top: 2px;
+    height: calc(100% - 161px);
+  padding: 0px 23px;
+}
+.detail-people-header {
+  width: 100%;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 5px 0px;
+  position: relative;
+}
+.detail-people-header span {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "微软雅黑";
+}
+.detail-people-header input[type=button]{
+    width: 24px;
+    height: 24px;
+    outline: none;
+    margin-left: 20px;
+    cursor: pointer;
+    border: 0px;
+    vertical-align: sub;
+}
+.detail-people-header input[type=button].add-hotel-people{
+    background: url(../../images/add.png) no-repeat;
+    background-size: 24px;
+}
+.detail-people-header input[type=button].add-hotel-people:hover {
+	  background: url(../../images/add_hover.png) no-repeat;
+    background-size: 24px;
+}
+input[type=button].repeat-set-btn {
+	  background: url(../../images/set.png) no-repeat;
+	  background-size: 24px;
+}
+input[type=button].repeat-set-btn:hover {
+	  background: url(../../images/set-hover.png) no-repeat;
+    background-size: 24px;
+}
+/* .detail-people-header input[type=button].set-start-date {
+    background: url(../../images/indate.png) no-repeat;
+    background-size: 24px;
+}
+.detail-people-header input[type=button].set-start-date:hover {
+	  background: url(../../images/indate-hover.png) no-repeat;
+    background-size: 24px;
+}
+.detail-people-header input[type=button].set-end-date {
+	  background: url(../../images/outdate.png) no-repeat;
+    background-size: 24px;
+}
+.detail-people-header input[type=button].set-end-date:hover {
+	  background: url(../../images/outdate-hover.png) no-repeat;
+    background-size: 24px;
+} */
+.detail-people-div {
+  height: calc(95% - 40px);
+}
+.hotel-people-header {
+	height: 35px;
+}
+.hotel-people-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.hotel-people-table tr {
+	height: 35px;
+	background: #e6e6e6;
+}
+.hotel-people-table td {
+	border: 0px;
+	text-align: center;
+	font-size: 14px;
+}
+td input[type=checkbox] {
+	width: 15px;
+	height: 15px;
+}
+.hotel-people-body {
+	height: calc(100% - 60px);
+	overflow-y: auto;
+}
+.hotel-people-data {
+	width: 100%;
+	border-collapse: collapse;
+	border-bottom: 1px solid #ccc;
+}
+.hotel-people-data tr {
+	height: 30px;
+}
+.hotel-people-data td {
+	border: 1px solid #ccc;
+	text-align: center;
+	border-bottom: 0px;
+}
+.hotel-people-data td input[type=text]{
+	display: block;
+	width: calc(100% - 4px);
+  height: 25px;
+  box-sizing: border-box;
+  padding-left: 5px;
+  padding-right: 5px;
+  border: none;
+  background: transparent;
+  margin-top: 2px;
+  margin-left: 2px;
+  box-shadow: none;
+	    
+}
+.hotel-people-data td input[type=text]:hover {
+	box-shadow: 0px 0px 5px #409DFE;
+  border: 1px solid #409DFE;
+}
+.hotel-people-data td input[type=text]:focus {
+	box-shadow: 0px 0px 5px #409DFE;
+  border: 1px solid #409DFE;
+  outline: none;
+  
+}
+.hotel-people-data td span.td-span {
+  display: block;
+  width: 100%;
+  height: 30px;
+  text-align: left;
+  margin-left: 5px;
+}
+.hotel-people-data td span.td-span input[type=text]{
+	  display: inline-block;
+    width: 80%;
+}
+/* .hotel-people-data td span.td-span input[type=text]:hover {
+	box-shadow: 0px 0px 1px #409DFE;
+  border: 1px solid #409DFE;
+}
+.hotel-people-data td span.td-span input[type=text]:focus {
+	box-shadow: 0px 0px 1px #409DFE;
+  border: 1px solid #409DFE;
+} */
+/* .hotel-people-data td span.td-span input[type=text]:hover{
+  box-shadow: 0px 0px 5px #409DFE;
+  border: 1px solid #409DFE;
+} */
+.hotel-people-data td span.operate-btn {
+	float: right;
+	width: 15%;
+	height: 30px;
+	text-align: left;
+}
+.hotel-people-data td span.operate-btn input[type=button] {
+	width: 17px;
+	height: 17px;
+	border: 0px;
+  margin-top: 7px;
+	background: url(../../images/delete.png) no-repeat;
+	background-size: 17px;
+}
+.hotel-people-data td span.operate-btn input[type=button]:hover {
+	background: url(../../images/delete1.png) no-repeat;
+  background-size: 17px;
+  cursor:pointer;
+}
+div.map-con-div {
+   /*  width: 100%; */
+    height: calc(100% - 5px);
+    padding: 0px 10px;
+    position: relative;
+}
+.search-address-div {
+    /* width: 100%; */
+    height: 30px;
+    padding-left: 10px;
+}
+.search-address-div input[type=button] {
+    float: right;
+    width:85px;
+    height: 25px;
+    line-height: 25px;
+    margin-right: 20px;
+    background: rgba(255,102,0,1);
+    border-radius: 5px;
+    border: 0px;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 2px;
+}
+.search-address-div p {
+    float: left;
+    /* height: 30px; */
+    line-height: 20px;
+    margin-top: 3px;
+    color: navy;
+}
+input[type=text].map-search-input {
+    box-shadow: 1px 2px 1px rgba(0,0,0,.15);
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    background: #fff;
+    height: 30px;
+}
+.tangram-suggestion-main {
+    z-index: 20000;
+}
+/*弹窗样式*/
+div.jqx-widget-header{
+    background-color: rgb(4, 84, 133);
+    color: #fff;
+    border-radius: 0px;
+}
+div.jqx-icon-close {
+    cursor: pointer;
+    background-image: url(../../images/btn_close_w.png);
+    background-repeat: no-repeat;
+    background-size: 16px;
+}
+div.jqx-icon-close:hover {
+    background: url(../../images/btn_close_hover.png);
+    background-repeat: no-repeat;
+    background-size: 16px;
+}
+.search-person-ul {
+	  position: absolute;
+	  display: none;
+	  width: 9%;
+	  height: 150px;
+	  background: #fff;
+	  border: 1px solid #3399ff;
+	  overflow-y: auto;
+}
+.search-person-ul li {
+	  height: 25px;
+	  color: #333;
+	  line-height: 25px;
+	  text-align: left;
+	  padding-left: 3px;
+	  font-family: '微软雅黑';
+	  font-size: 14px;
+}
+.search-person-ul li:hover {
+	  color: #fff;
+	  background: #3399ff;
+}
+
+/*统一设置列表*/
+.repeat-set-list {
+	 display: none;
+   position: absolute;
+   border: 1px solid #3399ff;
+   width: 300px;
+   height: 170px;
+   background: #fff;
+   z-index: 400;
+   margin: 0px;
+   padding: 10px;
+}
+.repeat-of-set {
+	 height: 30px;
+	 margin-bottom: 10px; 
+	 text-align: center;
+}
+.repeat-of-set input[type=checkbox]{
+	 vertical-align: middle;
+	 margin-top: -4px;
+    margin-right: 2px;
+}
+.repeat-of-set input[type=text] {
+	 border: 1px solid #ccc;
+	 border-radius: 5px;
+	 height: 30px;
+	 width: 180px;
+	 box-sizing: border-box;
+	 padding-left: 5px;
+	 text-align: left;
+}
+.list-btn {
+	 width: 100%;
+	 text-align: center;
+	 margin-top: 15px;
+}
+.list-btn input[type=button]{
+	  border: 0px;
+    outline: none;
+    width: 65px;
+    height: 25px;
+    line-height: 25px;
+    letter-spacing: 1px;
+    color: #fff;
+    background: rgba(255,102,0,1);
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: '微软雅黑';
+}
+.win-header-btn input[type=button]:hover {
+  background: rgba(230,93,1,1);
+}
+
+.select-option {
+	margin: 0 auto;
+	text-align: center;
+	font-size: 14px;
+	line-height: 27px;
+	letter-spacing: 12px;
+}
+.select-option:hover {
+	background: #3399ff;
+	border-radius: 3px;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+
+.right-select-wrap {
+	width: 262px;
+	background: #FFF;
+	border: 1px solid #3399ff;
+	border-radius: 3px;
+	/* box-shadow: 0 0 10px #B7B7B7; */
+	position: absolute;
+	top: 32px;
+	left: 3px;
+	display: none;
+	z-index: 99;
+}
+
+/*重写下拉样式*/
+table.hotel-people-table div.hotel-date-select {
+    width: 8px;
+    border: none;
+}
+table.hotel-people-table div.dropdown-menu {
+    width: auto;
+}
+table.hotel-people-table div.dropdown-menu div.bootstrap-select-searchbox {
+    width: 100%;
+}
+/*覆盖原有样式*/
+div.bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]) {
+    width: 8px;
+}
+div.bootstrap-select.btn-group, .bootstrap-select.btn-group[class*="span"] {
+    margin-bottom: 0px;
+}
+.bootstrap-select.btn-group .btn span.caret {
+    right: 9px;
+}
+.btn-group > button.btn {
+    height: 18px;
+}
+
+.btn-group > .btn:first-child{
+    margin-left: 0;
+    -webkit-border-bottom-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    -webkit-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    -moz-border-radius-topleft: 4px;
+}
+.btn-group > .btn:last-child, .btn-group > .dropdown-toggle {
+    -webkit-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    -moz-border-radius-topright: 4px;
+    -moz-border-radius-bottomright: 4px;
+}
+
+/*选择日期面板*/
+span.select-hotel-date {
+	 display: inline-block;
+	 width: 27px;
+	 height: 20px;
+	 background: url("../../images/select-picture.png") no-repeat;
+	 vertical-align: text-top;
+}
+
+span.select-hotel-reamrk {
+	 display: inline-block;
+	 width: 27px;
+	 height: 20px;
+	 background: url("../../images/select-picture.png") no-repeat;
+	 vertical-align: text-top;
+}
+.hotel-date-panel {
+	 display: none;
+	 position: absolute;
+	 width: 300px;
+	 height: 150px;
+	 background: #f8f8f8;
+	 z-index: 200;
+	 border: 1px solid #ccc;
+}
+
+.hotel-remark-panel {
+	 display: none;
+	 position: absolute;
+	 width: 200px;
+    height: 120px;
+    background: #f8f8f8;
+    z-index: 200;
+    border: 1px solid #ccc;
+    padding-top: 15px;
+}
+span.open{
+	 background: url("../../images/up-select.png") no-repeat;
+}
+p.date-panel-title {
+	 height: 30px;
+	 line-height: 30px;
+	 margin: 0px;
+	 margin-bottom: 10px;
+	 color: #adadad;
+	 text-align: left;
+	 padding-left: 15px;
+	 font-size: 14px;
+}
+input[type=text].start-date, input[type=text].end-date {
+	 width: 130px;
+	 height: 30px;
+	 border: 1px solid #ccc;
+	 border-radius: 5px;
+	 background: #fff;
+}
+
+input[type=text].remark-text {
+	 width: 175px;
+	 height: 30px;
+	 border: 1px solid #ccc;
+	 border-radius: 5px;
+	 background: #fff;
+}
+
+.btn-list input[type=button] {
+    border: 0px;
+    outline: none;
+    width: 100px;
+    height: 25px;
+    letter-spacing: 10px;
+    /* line-height: 25px; */
+    color: #fff;
+    /* margin-right: 50px; */
+    background: rgba(255,102,0,1); 
+    border-radius: 5px;
+    /* margin-top: 7px; */
+    font-size: 14px;
+    font-family: '微软雅黑'; 
+}
+div.btn-list {
+	  margin-top: 15px;
+}
+div.btn-list input[type=button] {
+	  width: 80px;
+}
+
+.up-arrow {
+    border-bottom: 4px solid #FF6600;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    right: 9px;
+    position: absolute;
+    top: 50%;
+    margin-top: -2px;
+    vertical-align: middle;
+    border-top-color: #333;

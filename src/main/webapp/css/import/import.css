@@ -1,0 +1,220 @@
+* {
+	 box-sizing: border-box;
+	 font-size: 14px;
+   font-family: '微软雅黑';
+   color: #414142;
+}
+body, div, p, table {
+	 margin: 0px;
+	 padding: 0px;
+	 font-size: 14px;
+	 font-family: '微软雅黑';
+}
+.upload-container {
+	  width: 440px;
+	  overflow: hidden;
+	  margin: 0px auto;
+}
+span.upload-title {
+	  display: block;
+	  width: 100%;
+	  font-size: 12px;
+	  /* margin-left: 30px; */
+	  margin-bottom: 5px;
+}
+div.table-upload-div {
+	  height: 120px;
+	  overflow: auto;
+	  border: 1px solid #ccc;
+	 /*  margin-left: 30px; */
+}
+table {
+	  border-collapse: collapse;
+    border-spacing: 0;
+}
+table.upload-table {
+	  border: none;
+	  width: 100%;
+	  color:　#575757;
+	  letter-spacing: 2px;
+}
+
+table.upload-table thead th:first-child, table.upload-table tbody td:first-child {
+	  border-right: 1px solid #c4c4c4;
+}
+table.upload-table thead th:nth-child(2), table.upload-table tbody td:nth-child(2) {
+	  border-right: 1px solid #c4c4c4; 
+}
+table.upload-table tbody td:nth-child(1), table.upload-table tbody td:nth-child(2) {
+	  padding-left: 15px;
+}
+table.upload-table tbody td:nth-child(3) {
+	  padding-left: 3px;
+}
+table.upload-table thead th {
+	  font-weight: normal;
+	  line-height: 30px;
+	  font-size: 14px;
+	  background-color: #e5e5e5;
+}
+table.upload-table tbody tr {
+	  line-height: 26px;
+	  background-color: #fff;
+	  border-bottom: 1px solid #e5e5e5;
+}
+table.upload-table tbody tr:nth-child(even) {
+	  background-color: #f3f3f3;
+}
+p.file-title {
+	  width: 273px;
+	  margin: 0px;
+}
+p.file-upload-proc {
+	  width: 98px;
+}
+p.operation-p {
+	  width: 35px;
+}
+table.upload-table tbody tr.file-item-tr p {
+	  width: 235px;
+	  height: 26px;
+	  overflow: hidden;
+}
+span.delete-btn {
+	  cursor: pointer;
+	  text-decoration: underline;
+	  color: #df7c4e;
+	  font-size: 12px;
+}
+span.delete-btn:hover {
+	  color: #ff4f87;
+}
+p.null-label {
+	  height: 10px;
+}
+div.upload-win-btn {
+	  /* margin-left: 30px; */
+	  text-align: left;
+}
+div.close-upload-win-btn {
+	  text-align: center;
+}
+div.webuploader-pick {
+	  font-size: 12px;
+	  color: #fff;
+}
+button {
+	  cursor: pointer;
+	  text-transform: none;
+	  overflow: visible;
+	  font: inherit;
+	  margin: 0px;
+}
+.btn {
+	  height: 25px;
+	  line-height: 25px;
+	  background-color: #eb6100;
+    color: #ededed;
+    border: none;
+    border-radius: 4px;
+    padding: 0px 6px;
+    margin-right: 20px;
+    font-size: 12px;
+    font-family: '微软雅黑';
+}
+.select-file-btn {
+	  position: relative;
+}
+.import-file-btn, .close-import-win {
+	 letter-spacing: 10px;
+	 padding-left: 16px;
+}
+
+div.optional-div {
+	  /* margin-left: 30px; */
+	  margin-bottom: 5px;
+	  display: none;
+	  font-size: 12px;
+	  letter-spacing: 2px;
+	  font-family: '微软雅黑';
+}
+
+p.upload-title {
+	  width: 100%;
+    font-size: 12px;
+    /* margin-left: 30px; */
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+
+div.analytical-information {
+	  height: 190px;
+	  background: #f5f5f8;
+	  overflow: auto;
+	  box-shadow: inset 1px 1px 1px rgba(0,0,0,.3);
+    border: 0;
+    resize: none;
+    outline: none;
+    /* margin-left: 30px; */
+}
+div.analytical-information span {
+	  /* display: inline-block; */
+    line-height: 26px;
+}
+
+
+/*进度条*/
+.spinner {
+  width: 68px;
+  height: 17px;
+  text-align: center;
+  font-size: 10px;
+}
+.spinner>div {
+  background-color:#64b5f6;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  margin-right: 6px;
+  
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+
+input[type=radio] {
+	  vertical-align: text-top;
+}

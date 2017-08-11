@@ -1,0 +1,78 @@
+{
+  "_args": [
+    [
+      "semantic-ui-dimmer",
+      "E:\\front\\microblog"
+    ]
+  ],
+  "_cnpm_publish_time": 1471837295863,
+  "_from": "semantic-ui-dimmer@*",
+  "_id": "semantic-ui-dimmer@2.2.3",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/semantic-ui-dimmer",
+  "_nodeVersion": "6.3.0",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/semantic-ui-dimmer-2.2.3.tgz_1471837294350_0.5874505173414946"
+  },
+  "_npmUser": {
+    "email": "bot@semantic-ui.com",
+    "name": "semantic-bot"
+  },
+  "_npmVersion": "3.10.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "semantic-ui-dimmer",
+    "raw": "semantic-ui-dimmer",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "*",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "http://r.cnpmjs.org/semantic-ui-dimmer/download/semantic-ui-dimmer-2.2.3.tgz",
+  "_shasum": "a038dfce488cfb732aecce0598ea253de340a875",
+  "_shrinkwrap": null,
+  "_spec": "semantic-ui-dimmer",
+  "_where": "E:\\front\\microblog",
+  "author": {
+    "email": "jack@semantic-ui.com",
+    "name": "Jack Lukic"
+  },
+  "bugs": {
+    "url": "https://github.com/Semantic-Org/Semantic-UI/issues"
+  },
+  "dependencies": {},
+  "description": "Single component release of dimmer",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "noattachment": false,
+    "shasum": "a038dfce488cfb732aecce0598ea253de340a875",
+    "size": 11333,
+    "tarball": "http://r.cnpmjs.org/semantic-ui-dimmer/download/semantic-ui-dimmer-2.2.3.tgz"
+  },
+  "gitHead": "cbe60360ab54b9d3082ecfa2ac653090150f6b6d",
+  "homepage": "http://www.semantic-ui.com",
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "semantic-bot",
+      "email": "bot@semantic-ui.com"
+    }
+  ],
+  "name": "semantic-ui-dimmer",
+  "optionalDependencies": {},
+  "publish_time": 1471837295863,
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Semantic-Org/UI-Dimmer.git"
+  },
+  "scripts": {},
+  "title": "Semantic UI - Dimmer",
+  "version": "2.2.3"
+}

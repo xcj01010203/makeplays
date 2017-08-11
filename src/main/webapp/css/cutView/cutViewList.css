@@ -1,0 +1,205 @@
+html, body {
+	font-family: '微软雅黑';
+}
+.my-container {
+	 width: 100%;
+	 height: 100%;
+	 overflow: auto;
+}
+.toolbar {
+	 width: 100%;
+	 height: 40px;
+}
+
+input[type=button].search-btn {
+	 width: 24px;
+	 height: 24px;
+	 background: url("../../images/find.png") no-repeat;
+	 background-size: 24px;
+	 margin-top: 7px;
+	 margin-left: 20px;
+}
+input[type=button].search-btn:hover {
+	 background: url(../../images/find_hover.png) no-repeat;
+	 background-size: 24px;
+}
+.toolbar div.hide-already {
+   float: right;
+   margin-right: 20px;
+   margin-top: 7px;
+}
+.toolbar div.hide-already span {
+	 float: left;
+	 height: 26px;
+	 line-height: 26px;
+	 font-size: 13px;
+	 margin-right: 5px;
+}
+.main-content {
+	 width: 100%;
+	 height: calc(100% - 80px);
+	 overflow: hidden;
+}
+.main-grid {
+	 height: 100%;
+}
+.grid-header {
+	 height: 40px;
+	 background: #dddddd;
+}
+table.table-header {
+	 width: 100%;
+	 table-layout: fixed;
+	 border-collapse: collapse;
+}
+.table-header tr {
+	 height: 40px;
+}
+.table-header tr td {
+	 border: 1px solid #ccc;
+	 text-align: center;
+	 font-size: 14px;
+}
+.table-header tr td.split-line {
+	 border-right: 2px solid #408dba;
+}
+.table-header tr td span.sort-desc {
+	 display: inline-block;
+	 width: 20px;
+	 height: 20px;
+	 background: url(../../images/sort-desc.png) no-repeat;
+	 background-size: 20px;
+	 vertical-align: bottom; 
+	 cursor:pointer;
+}
+.table-header tr td span.sort-order {
+	 display: inline-block;
+   width: 20px;
+   height: 20px;
+   background: url(../../images/sort-order.png) no-repeat;
+   background-size: 20px; 
+   vertical-align: bottom;
+   cursor:pointer;
+}
+input[type=text] {
+	 background: #fff;
+	 border: 0px;
+	 border-radius: 5px;
+	 height: 30px;
+	 padding-left: 5px;
+	 box-sizing: border-box;
+}
+input[type=text]:focus {
+	 box-shadow: 0px 0px 5px #409DFE;
+   border: 1px solid #409DFE !important;
+}
+input[type=text].query-series-view {
+	 width: 40%;
+}
+.grid-body {
+	 width: 100%;
+	 height: calc(100% - 40px);
+	 overflow-y: auto;
+}
+table.table-body {
+	 width: 100%;
+	 table-layout: fixed;
+	 border-collapse: collapse;
+}
+.table-body tr {
+	 height: 30px;
+}
+.table-body tr:hover {
+	 background: #e3e3e4;
+}
+.table-body tr td {
+	 border: 1px solid #ccc;
+	 font-size: 14px;
+	 box-sizing: border-box;
+	 padding-left: 3px;
+}
+.table-body tr td.split-line {
+	  border-right: 2px solid #408dba;
+}
+.table-body tr td input[type=text].date-input {
+	  /* background: #fff; */
+	  width: 50px;
+	  text-align: center;
+}
+.table-body tr td input[type=text]{
+	  background: transparent;
+	  display: inline-block;
+	  width: 100%;
+	  height: 30px;
+}
+.table-body tr td input[type=text]:hover {
+	  box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE !important;
+}
+
+.grid-footer {
+	  height: 40px;
+	  background: #dddddd;
+}
+.grid-footer p {
+	  float: left;
+	  height: 40px;
+	  line-height: 40px;
+	  margin-right: 60px;
+	  margin-left: 20px;
+	  letter-spacing: 2px;
+	  font-size: 14px;
+}
+.jqx-window {
+	  display: none;
+}
+.jqx-content {
+	  padding: 10px;
+}
+.query-content {
+	  margin: 0px;
+	  padding: 0px;
+	  list-style-type: none;
+}
+.query-content li {
+	  height: 30px;
+	  margin: 15px 0px;
+	  text-align: center;
+}
+.query-content li span {
+	  display: inline-block;
+	  width: 80px;
+	  font-size: 14px;
+	  height: 30px; 
+	  line-height: 30px;
+	  text-align: left;
+}
+.query-content li input[type=text] {
+	  border: 1px solid #ccc;
+	  width: 159px;
+}
+.query-content li input[type=text].half-input {
+	  width: 77px;
+}
+.win-btn-list {
+	  margin-top: 30px;
+	  text-align: center;
+}
+.win-btn-list input[type=button] {
+	  border: 0px;
+    outline: none;
+    width: 65px;
+    height: 25px;
+    line-height: 25px;
+    color: #fff;
+    margin-right: 20px; 
+    background: rgba(255,102,0,1);
+    border-radius: 5px;
+    margin-top: 7px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    cursor: pointer; 
+}
+.win-btn-list input[type=button]:hover {
+	  background: rgba(230,93,1,1);
+}

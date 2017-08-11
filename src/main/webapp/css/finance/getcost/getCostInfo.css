@@ -1,0 +1,558 @@
+body{
+	  margin: 0px;
+	  padding: 0px;
+	  font-size: 12px;
+	  font-family: '微软雅黑', arial, sans-serif;
+}
+ul,li {
+	  margin: 0px;
+	  padding: 0px;
+	  list-style: none;
+}
+.my-container {
+	  width: 100%;
+	  height: 100%;
+	  overflow: auto;
+}
+/*tab键的设置样式*/
+
+.tab-body-wrap {/*******修改了******************/
+    margin: 20px 40px 0px 40px;
+    height: calc(100%-55px);
+}
+.btn-wrap {
+	  width: 60%;
+    float: left;
+    height: 32px;
+    border-bottom: 2px solid rgba(255,102,0,1);
+}
+.tab-wrap {
+	  width: 40%;
+	  float: right;
+}
+/* .tab-wrap ul {
+	  overflow: hidden;
+	  border-bottom: 2px solid rgba(255,102,0,1);
+}
+.tab-wrap ul li {
+	  display: block;
+    width: 33%;
+    float: left;
+    line-height: 30px;
+    border-top-left-radius: 20px;
+    background-color: rgba(4,84,133,1);
+    border: 2px solid rgba(4,84,133,1);
+    border-bottom: none;
+    color: rgba(255,255,255,1);
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+.tab-li-current {
+	  color: rgba(255,255,255,1);
+    background-color: rgba(255,102,0,1);
+    border: none;
+    padding-bottom: 2px;
+} */
+.budget-public {
+	  width: 100%;
+	  /* height: 735px; */ 
+	  height: 100%;
+	  clear: both;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+
+/*付款单*/
+.collection-order-div {
+	  display: none;
+}
+
+.loan-order-div {
+	  display: none;
+}
+
+.btn-list {
+	  width: 100%;
+	  padding-top: 20px;
+	  text-align: center;
+}
+input[type=button].settle-btn {
+	  width: 60px;
+	  height: 25px;
+	 /*  box-sizing: border-box !important;
+	  border-radius: 7px;
+    background: rgba(255,102,0,1);
+    border-color: rgba(255,102,0,1);
+    color: rgba(255,255,255,1);
+    cursor: pointer; */
+    
+}
+input[type=button]{
+	  box-sizing: border-box !important;
+    border-radius: 7px;
+    background: rgba(255,102,0,1);
+    border-color: rgba(255,102,0,1);
+    color: rgba(255,255,255,1);
+    cursor: pointer;
+}
+input[type=button].save-btn {
+	  width: 60px;
+    height: 25px;
+   /*  box-sizing: border-box !important;
+    border-radius: 7px;
+    background: rgba(255,102,0,1);
+    border-color: rgba(255,102,0,1);
+    color: rgba(255,255,255,1);
+    cursor: pointer; */
+    margin-left: 50px;
+    
+}
+input[type=button].double-function-button {
+	  width: 100px;
+	  height: 25px;
+	  box-sizing: border-box !important;
+    border-radius: 7px;
+    background: rgba(255,102,0,1);
+    border-color: rgba(255,102,0,1);
+    color: rgba(255,255,255,1);
+    margin-left: 10px; 
+      
+}
+input[type=button].double-function-button:hover,input[type=button].save-btn:hover {
+    background: rgba(230,93,1,1);
+}
+/*付款单*/
+div.payment-iframe-div {
+	  /* overflow: hidden; */
+	  width: 90%;
+	  height: 90%;
+	  margin: 0px auto;
+	  
+}
+div.payment-load-div {
+	  min-height: 351px;
+}
+div.collection-load-div {
+	  min-height: 257px;
+}
+div.loan-load-div {
+	  min-height: 257px;
+}
+
+/*收款单*/
+div.collection-iframe-div {
+	  width: 90%;
+	  /* height: 45%; */
+	  height: 90%;
+	  margin: 0px auto;
+}
+
+/*借款单*/
+div.loan-iframe-div {
+	  width: 90%;
+	  /* height: 60%; */
+	  height: 90%;
+	  margin: 0px auto;
+}
+
+iframe {
+	  overflow: hidden;
+	  border: none;
+}
+
+
+
+
+
+
+/*2017/7/11修改*/
+iframe.full-receipt-div {
+	  height: 460px;
+}
+iframe.collection-iframe{
+    /* height: 350px; */
+    height: 275px;
+}
+iframe.loan-iframe{
+	  /* height: 400px; */
+	  height: 460px;
+}
+/*2017/1/11修改-还借款部分*/
+div.query-loan-list-header {
+    color: #333;
+    overflow: hidden;
+    height: 30px;
+    font-size: 14px;
+    padding: 5px 0px 0px 0px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 4px;
+}
+div.query-loan-list-body {
+    height: 302px;
+    width: 100%;
+   
+}
+span.loan-person-name {
+    float: left;
+    display: inline-block;  
+    height:20px;  
+    color: #333;
+    font-family: '微软雅黑';
+    font-size: 16px;
+}
+span.account-money-tips {
+    float: right;
+    display: inline-block; 
+    height: 20px; 
+    color: #333;
+    font-family: '微软雅黑';
+    font-size: 16px;
+}
+span.money-count-color {
+    color: #ff6d10;
+}
+div.balance-tips-div {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #ccc;    
+}
+.win-btn-list-div {
+    width:  100%;
+    height: 10%;
+    text-align: center;
+    margin-top: 15px;
+}
+input[type=checkbox].jqx-column-checkbox {
+    height: 25px;
+}
+
+.jqx-column {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 25px;
+    height: 25px;
+    color: #333;
+}
+.jqx-column.disable-color {
+      color: #999;
+}
+.align-center {
+    text-align: center;
+}
+.align-right {
+    text-align: right;
+    padding-right: 5px;
+}
+.align-left {
+    text-align: left;
+    /* padding-left: 5px; */
+}
+
+
+/*2017/1/11-付合同款部分*/
+div.contract-window-header {
+    padding: 10px;
+    font-family: '微软雅黑';
+}
+span.contract-pay-way {
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+span.by-month-tips {
+    display: none;
+    color: #d0d0d0;
+    font-size: 13px;
+}
+div.contract-window-bankInfo {
+    padding: 10px;
+    font-family: '微软雅黑';
+    text-align: center;
+}
+div.contract-window-table {
+    padding: 10px;
+    font-family: '微软雅黑';
+    text-align: center;
+    height: 300px;
+    overflow-y: auto;
+    
+}
+
+div.contract-money-info table.pay-info-table {
+    width: 100%;
+    font-size: 12px;
+    color: #333;
+}
+div.contract-money-info table.pay-info-table thead {
+    background: #e6e6e6;
+    font-size: 14px;
+    font-family: '微软雅黑';
+}
+div.contract-money-info table.pay-info-table tr {
+    width: 100%;
+    height: 30px;
+}
+div.contract-money-info table.pay-info-table tr:nth-child(even){
+    background: #f2f2f2;
+}
+div.contract-money-info table.pay-info-table tr td {
+    text-align: center;
+    vertical-align: middle;
+    border: none;
+}
+div.contract-money-info table.pay-info-table tr td input[type=checkbox] {
+    width: 15px;
+    height: 15px;
+}
+div.pay-image {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: url(../../../images/pay_1.png) no-repeat 0px 0px;
+    background-size: 25px 25px;
+    cursor: pointer;
+}
+div.contract-window-footer {
+    padding: 10px;
+    color: #333;
+    text-align: right;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    padding-right: 30px;
+}
+.win-btn-list {
+    height: 30px;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+.win-btn-list-div input[type=button], .win-btn-list input[type=button] {
+    width: 65px;
+    height: 25px;
+    line-heihgt: 25px;
+    letter-spacing: 0px;
+    border-radius: 7px;
+    background: rgba(255,102,0,1);
+    color: #fff;
+    cursor: pointer;
+    margin: 0px 10px;
+    outline: none;
+}
+.win-btn-list-div input[type=button]:hover, .win-btn-list input[type=button]:hover {
+    background: rgba(230,93,1,1);
+}
+
+/*付款单附件上传的样式*/
+.payment-upload-wrap, .collection-upload-wrap, .loan-upload-wrap{
+	  width: calc(100% - 10px);
+    box-sizing: border-box;
+    /* padding: 0px 5px; */
+    margin: 0px auto;
+    border: 1px solid #cad0e5;
+}
+.payment-upload-title, .collection-upload-title, .loan-upload-title {
+	  height: 30px;
+	  background: #ededed;
+}
+.text-capital {
+	  float: left;
+	  height: 30px;
+	  line-height: 30px;
+	  margin-left: 20px;
+	  color: #0288d1;
+	  font-size: 15px;
+}
+div.upload-file-btn, div.upload-coll-btn, div.upload-loan-btn {
+	  float: left;
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 20px;
+    color: #333;
+    font-size: 15px;
+    border: 0px;
+    padding: 0px;
+    /* border-radius: 15px; */
+    background: url(../../../images/fujian-icons.png) no-repeat 64px 3px;
+    background-size: 23px;
+}
+div.upload-file-btn:hover, div.upload-coll-btn:hover, div.upload-loan-btn:hover {
+	  color: #0288d1;
+    background: url(../../../images/fujian-icon.png) no-repeat 67px 6px;
+    background-size: 18px;
+    cursor: pointer;
+}
+div.show-upload-file ul{
+	  padding: 0px 10px;
+}
+div.show-upload-file ul, div.show-upload-file li {
+	  margin: 0px;
+	  padding: 0px;
+	  list-style-type: 0px;
+}
+div.show-upload-file ul:after {
+	  display: block;
+	  clear: both;
+	  content: '';
+}
+ul li.upload-file-list-li{
+    border: 0px;
+    /* height: 110px; */
+    height: 138px;
+    border: 0px;
+    float: left;
+    margin: 10px 10px 0px 10px;
+    position: relative;
+}
+ul li.upload-file-list-li img {
+    width: 110px;
+    height: 110px;
+}
+ul li.upload-file-list-li p {
+    width: 110px;
+    height: 18px;
+    margin: 5px 0px;
+    color: #d67934;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    background: url(../../../images/fujian-icons.png) no-repeat;
+    background-size: 15px;
+    padding-left: 15px;
+    white-space: nowrap;
+}
+ul li.upload-file-list-li a.closeTag{
+    /* background: url("../../../../images/upload/editCancel-ico.gif") no-repeat 0 -64px;
+    width: 10px;
+    height: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+    display: inline-block;
+    zoom: 1;
+    padding-top: 3px;
+    cursor: pointer; */
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    z-index: 1000;
+    background: url(../../../images/btn-icon-small.png) no-repeat;
+    cursor: pointer;
+}
+ul li.upload-file-list-li a.closeTag:hover {
+    background-position: -20px 0;
+}
+ul li.upload-file-list-li a {
+    color: #d67934;
+    text-decoration: none;
+}
+
+
+/*缴税信息窗口*/
+.set-tax-window {
+	
+}
+.set-tax-window .set-tax-tips-fieldset {
+	height: 60px;
+    color: #ff6900;
+    line-height: 20px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    padding: 5px;
+    resize: none;
+    overflow: auto;
+    border: 1px solid #ff9800;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+.set-tax-window .set-tax-tips-fieldset .set-tax-tips {
+	color: #999999;
+    font-size: 16px;
+}
+.set-tax-window .form-info {
+	margin-top: 20px;
+}
+.set-tax-window .form-info ul li {
+	line-height: 40px;
+}
+.set-tax-window .form-info ul li p{
+    width: 96px;
+    height: 30px;
+    line-height: 30px;
+    letter-spacing: 2px;
+    font-size: 14px;
+    display: inline-block;
+}
+.set-tax-window .form-info ul li input[type=text] {
+    width: calc(100% - 134px);
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+.set-tax-window .form-info ul li input[type=text]:focus {
+	box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+
+/*财务科目下拉框*/
+.fin_subj {
+    display: none; 
+    position: fixed;
+}
+.filter-con {
+       height: 20px;
+       width: 220px;
+       overflow: hidden;
+       background-color: #fff;
+       padding: 3px 0px;
+       border: 1px solid #ccc;
+       border-radius: 2px;
+}
+.filter-input {
+       width: 184px;
+       height: 18px;
+       border: 1px solid #ccc;
+       border-radius: 3px;
+       background-color: #fff;
+       border-bottom-right-radius: 0 !important;
+       border-top-right-radius: 0 !important; 
+}
+.filter-input:focus {
+	box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.filter-btn {
+       width: 22px;
+       height: 17px;
+       cursor: pointer;
+       border: 1px solid #ccc;
+       float: right;
+       margin-right: 5px; 
+}
+.filter-btn img {
+       width: 16px;
+       height: 16px;
+       margin-left: 3px;
+       
+}
+a.clear-finance {
+      /* float: right; */
+      display: none;
+      color: #eb6100;
+    text-decoration: none;
+    margin-left: 5px;
+} 
+a.clear-finance:hover {
+      text-decoration: underline;
+}

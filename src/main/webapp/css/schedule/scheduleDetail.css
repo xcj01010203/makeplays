@@ -1,0 +1,206 @@
+@charset "utf-8";
+body,html {
+  width: 100%;
+  /* height: 100%; */
+  margin: 0px;
+  padding: 0px;
+  font-size: 14px;
+}
+div,p,ul,li {
+  margin: 0px; 
+  padding: 0px;
+  list-style-type: none;
+}
+input[type=button] {
+  border: 0px;
+  background: transparent;
+  outline: none;
+}
+input[type=text] {
+  box-sizing: border-box;
+}
+/*tab键*/
+.tab-wrap {
+  width: 100%;
+  height: 30px;
+  border-bottom: 2px solid rgba(255,102,0,1);
+  box-sizing: border-box;
+  margin-top: 5px;
+  background: #fff;
+}
+ul.tab-btn {
+  margin: 0px;
+  padding: 0px;
+}
+.tab-wrap li {
+  width: 12%;
+  height: 30px;
+  float: right;
+  background: rgba(4,84,133,1);
+  border-top-left-radius: 20px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer; 
+  color: #fff;
+  box-sizing: border-box;
+  border-bottom: 2px solid rgba(255,102,0,1);
+}
+/* .tab-wrap li.lenged-li {
+	float: left;
+	width: 288px;
+	background: transparent;
+} */
+.tab-wrap li.tab_li_current {
+  color: rgba(255,255,255,1);
+  background-color: rgba(255,102,0,1);
+  border: none;
+}
+.toolbar {
+	height: 35px;
+}
+input[type=button].lenged-btn {
+	width: 288px;
+  height: 28px;
+  float: right;
+  margin-right: 10px;
+  background: url(../../images/colorExample3.png) no-repeat;
+  margin-top: 5px;
+}
+input[type=button].export-btn {
+	width: 24px;
+	height: 24px;
+	background: url(../../images/export.png) no-repeat;
+	background-size: 24px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+input[type=button].export-btn:hover {
+	background: url(../../images/export_hover.png) no-repeat;
+	background-size: 24px;
+}
+.plan-detail-grid {
+	width: 100%;
+	height: calc(100% - 82px);
+	overflow: hidden;
+  margin-top: 10px; 
+}
+.grid-header {
+	width: 100%;
+	min-height: 30px;
+	overflow: hidden;
+}
+.header-table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	background: #e6e6e6;
+	/* width: 100%; */
+}
+.header-table tr {
+  height: 30px;
+}
+.header-table td {
+	border: 1px solid #ccc;
+	font-size: 13px;
+	text-align: center;
+	box-sizing: border-box;
+}
+.grid-body {
+	overflow: auto;
+}
+.body-table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	/* width: 100%; */
+}
+.body-table tr  {
+	height: 15px;
+}
+.body-table tr td {
+	/* border: 1px solid #ccc; */
+	font-size: 13px;
+  box-sizing: border-box;
+}
+.body-table tr td {
+	border: 1px solid #ccc;
+	height: 30px;
+	box-sizing: border-box;
+}
+.body-table tr td>p {
+	height: 30px;
+	line-height: 30px;
+	margin: 0px;
+	padding: 0px;
+	width: 98%;
+	box-sizing: border-box;
+	padding-left: 2px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.body-table tr td>p span {
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.body-table tr td>p.summary-info {
+	background: rgba(170, 170, 170, 0.75);
+	color: #fff;
+	width: 100%;
+}
+div.grid-body-content .body-table tr td:first-child {
+	border-left: 0px;
+}
+div.grid-body-content .body-table tr:first-child td {
+	border-top: 0px;
+}
+div.grid-body-content .body-table tr td:last-child {
+	border-right: 0px;
+}
+div.grid-body-content .body-table tr td {
+	 padding-left: 3px;
+	 box-sizing: border-box;
+}
+.body-table tr td>div {
+	width: 200px;
+	padding: 0px;
+	margin: 0px;
+}
+.body-table tr td>div.grid-body-content {
+	width:100%;
+}
+
+.body-table tr td p.plan-calendar-title{
+	font-size: 20px;
+	color: #999;
+	text-align: center;
+	font-weight: bold;
+}
+.body-table tr td p.plan-date-group {
+	color: #aaa;
+	text-align: center;
+}
+.hidden-tbody {
+	display: none;
+}
+
+
+/*回到顶部*/
+.back-container {
+	display: none;
+	width: 58px;
+	height: 58px;
+	background: #ccc;
+	position: fixed;
+	bottom: 40px;
+	right: 20px;
+	cursor: pointer;
+}

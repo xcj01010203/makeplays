@@ -1,0 +1,158 @@
+@CHARSET "UTF-8";
+*{margin:0; padding:0; list-style:none; outline:none;font-family:微软雅黑;font-size: 14px;}
+body,ul {
+    margin: 0px;
+	padding: 0px;
+	font-family: "微软雅黑";
+}
+input[type=button] {
+    color: #fff;
+    border-radius: 3px;
+    border: 0px;
+    cursor: pointer;
+    background-color: #eb6100;
+}
+input[type=button]:hover {
+     background-color: #E66205;
+}
+input[type=button]:focus {
+     outline-offset: -2px;
+     background-color: #E66205;
+}
+input[type=button].disabled{
+    background: grey;
+}
+input[type=button].disabled:hover {
+    cursor: default;
+}
+input[type=button].disabled:focus {
+    outline: none;
+}
+input[type=text], input[type=password] {
+     padding-left: 10px;
+     box-sizing: border-box;
+     border-radius: 3px;
+     border: 1px solid #CCC;
+}
+input[type=text]:focus, input[type=password]:focus {
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+
+.my-container {
+     width: 100%;
+     height: 100%;
+     overflow: auto;
+}
+div.person-detail-info {
+    width: 100%;
+    height: 100%;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    min-width: 740px;
+    position: relative;
+    margin-bottom: 10px;
+}
+div.person-detail-info ul {
+     width: 100%;
+}
+div.person-detail-info li {
+     width: 100%;
+     height: 40px;
+     margin-bottom: 10px;
+}
+div.person-detail-info li p {
+     float: left;
+     width: 10%;
+     padding: 0px;
+     margin: 0px;
+     line-height: 40px;
+     height: 40px;
+     color: #333;
+     text-align: center;
+}
+div.person-detail-info li input[type=text], div.person-detail-info li input[type=password] {
+     width: 80%;
+     height: 35px;
+}
+div.person-detail-info li input[type=radio] {
+     margin-top: 9px;
+     margin-left: 25px;
+} 
+div.phone-number, div.password {
+     padding-left: 10px;
+     float: left;
+     width: 80%;
+     height: 35px;
+     box-sizing: border-box;
+     border-radius: 3px;
+     border: 1px solid #CCC;
+     line-height: 35px; 
+}
+.modify-baseinfo-btn-div {
+	width: 100%;
+    height: 30px;
+    margin-top: 30px;
+    text-align: center;
+}
+.modify-baseinfo-btn {
+    width: 241px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+}
+
+div.win-btn-list {
+     width: 100%;
+     height: 30px;
+     margin-top: 30px;
+     text-align: center;
+}
+div.win-btn-list input[type=button] {
+	width: 65px;
+	height: 25px;
+	line-height: 25px;
+	margin: 0 10px;
+}
+span.modify-phone-number, span.modify-password {
+     float: left;
+     margin-left: 5px;
+     display: block;
+     color: #2cabe9;
+     line-height: 40px;
+     box-sizing: border-box;
+     cursor: pointer;
+}
+/*修改手机号码窗口*/
+.jqx-window {
+	   display: none;
+}
+.jqx-window  div.modify-phone-detail, .jqx-window div.modify-password {
+	   padding: 20px 10px 10px 10px;
+}
+div.modify-phone-detail li, div.modify-password li {
+	   height: 45px;
+	   padding-left: 5px;
+}
+div.modify-phone-detail li p, div.modify-password li p {
+	   float: left;
+	   width: 15%;
+	   height: 35px;
+	   line-height: 35px;
+	   margin: 0px;
+	   box-sizing: border-box;
+	   font-family: '微软雅黑';
+	   color: #333;
+}
+div.modify-phone-detail li input[type=text], div.modify-phone-detail li input[type=password], div.modify-password li input[type=password] {
+	   width: 80%;
+	   height: 35px;
+}
+div.modify-phone-detail li input[type=text].verification-code-text {
+	   width: 290px;
+}
+input[type=button].verification-code-btn {
+    width: 125px;
+    height: 30px;
+}
+

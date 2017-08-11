@@ -1,0 +1,179 @@
+body {width: 100%;margin: 0;}
+a,img {display: block;text-decoration: none;border: 0;vertical-align: top;}
+ul,li {list-style: none;}
+a,p,h1,p,h2,table,th,tr,td,ul,div,li,dl,dd,dt{margin: 0;padding: 0;font-family: "微软雅黑";}	
+th {font-weight: normal;}
+
+/*工具代码*/
+.fl{float: left;}
+.fr{float: right;}
+.clearfix:after{content: '';display: block;clear: both;}
+
+.finance-mode-head{
+	height: 30px;
+	font-size: 14px;
+	line-height: 30px;
+	color: #FFFFFF;
+	padding-left: 20px;
+	background: #045485;
+}
+.finance-mode-cont{
+	height: 540px;
+	margin: 30px 45px;
+}
+.finance-gray-bg{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: #7A7A7A;
+	width: 100%;/*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+	height: 700px;
+	filter: alpha(opacity=60);/*设置透明度为60%*/
+	opacity: 0.6;/*非IE浏览器下设置透明度为60%*/
+	display: none;
+	z-Index: 2;
+}
+.finance-wrap{
+	position: absolute;
+	width: 1000px;
+	height: 680px;
+	top: 50%;
+	left: 50%;
+	margin-top: -340px;
+	margin-left: -500px;
+	background-color: #fff;
+	display: none;
+	/*cursor: pointer;*/
+	z-Index: 3;
+}
+.finance-department{
+	width: 240px;
+	height: 480px;
+	background: #d9d9d9;
+	cursor: pointer;
+}
+.finance-department-wrap{
+	width: 240px;
+}
+.finance-period{
+	width: 240px;
+	height: 480px;
+	background: #d9d9d9;
+	cursor: pointer;
+}
+.finance-period-wrap{
+	width:240px;
+	margin: 0 90px;
+}
+.finance-history-wrap{
+	position: relative;
+	width: 240px;
+}
+.finance-history{
+	width: 240px;
+	height: 480px;
+	background: #f2f2f2;
+	cursor: pointer;
+}
+.down-icon{
+	width: 8px;
+	height: 4px;
+	display: block;
+	background: url(../../images/downIcon.png) no-repeat;
+	position:absolute;
+	top: 12px;
+	right: 56px;
+}
+.finance-select-title input[type=text].from-history-select{
+	width: 155px;
+	height: 26px;
+	text-indent: 12px;
+	border: none;
+	cursor: pointer;
+}
+.finance-select-title input[type=text].from-history-select:focus{	
+	box-shadow: 0px 0px 8px #409DFE;
+	border: 1px solid #039be5;
+	box-sizing: border-box;
+}
+.finance-history-wrap .finance-select-title{
+	font-size: 14px;
+	text-align: center;
+	margin-bottom: 11px;
+}
+.finance-select-title{
+	font-size: 14px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.finance-select-radio{
+	width: 16px;
+	height: 16px;
+	text-align: center;
+	margin: 15px 0;
+	cursor: pointer;
+}
+.finance-radio-wrap{
+	text-align: center;
+}
+#financePopupContent{
+	text-align: center;
+	/*cursor: pointer;*/
+	z-Index: 1;
+}
+/*按钮的样式*/
+.finance-mode-foot{
+	text-align: center;
+}
+.finance-mode-foot input[type=button] {
+	  width: 90px;
+	  height: 30px;
+	  font-size: 13px;
+	  font-family: "微软雅黑";
+	  border: 0;
+	  border-radius: 3px;
+	  margin-right: 100px;
+	  background: rgba(255,102,0,1);
+    border-color: rgba(255,102,0,1);
+    color: rgba(255,255,255,1);
+    cursor: pointer;
+}
+.history-temp-wrap{
+	max-height: 300px;
+	overflow: auto;
+	width: 155px;
+    border: 1px solid #e6e6e6;
+    position: absolute;
+    left: 50%;
+    top: 29px;
+    margin-left: -78px;
+    background: #ffffff;
+    line-height: 30px;
+    text-align: center;
+    box-shadow: 0 0 10px #6B6B6B;
+    display: none;
+    z-index: 10000;
+}
+.history-temp-wrap div:hover{
+	background: #1e90ff;
+}
+.hide-deparment-div{
+    width: 242px;
+    height: 480px;
+    position: absolute;
+    background: #E4E4E4;
+    top: 97px;
+    opacity: 0.6;
+    display: none;
+    cursor: pointer;
+}
+.hide-history-div{
+    width: 240px;
+    height: 480px;
+    position: absolute;
+    background: #E4E4E4;
+    top:38px;
+    opacity: 0.6;
+    display: none;
+    cursor: pointer;
+}

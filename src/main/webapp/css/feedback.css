@@ -1,0 +1,4 @@
+.item.btn{padding-top:60px; text-align:center;}
+.item.btn a.btn{ display:inline-block; width:80px; height:30px; background: #F60; opacity:1; -webkit-opacity:1; border:1px solid #F60; color:#fff; font-size:14px; text-align:center; line-height:30px; border-radius:4px; -webkit-border-radius:4px; transition:all .3s ease; -webkit-transition:all .3s ease; text-decoration:none;}
+div {margin-bottom: 10px;text-align: center;}
+input.dt{width:100%; height:40px; border:1px solid #d9d9d9; border-radius:2px; -webkit-border-radius:2px; outline:none; box-sizing:border-box; padding:0 12px;}

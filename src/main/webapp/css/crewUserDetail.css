@@ -1,0 +1,289 @@
+@charset "utf-8";
+*{margin:0; padding:0; list-style:none; outline:none; font-family:"微软雅黑"; font-size: 14px;}
+
+input[type=button] {
+    color: #fff;
+    background-color: #FF6900;
+    border-radius: 3px;
+    border: 0px;
+}
+input[type=button]:hover{
+    cursor: pointer;
+    background-color: #eb6100;
+}
+input[type=button]:focus{
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    background-color: #E66205;
+}
+input[type=button].disabled{
+    background: grey;
+}
+input[type=button].disabled:hover {
+    cursor: default;
+    background-color: #FF6900;
+}
+input[type=button].disabled:focus {
+    outline: none;
+}
+
+/*滚动条样式*/
+::-webkit-scrollbar {
+    width: 3px;
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 5px;
+    background: #bcbcbc; 
+}
+
+
+.crew-user-detail {
+	width: 932px;
+	margin: 0px auto;
+}
+.crew-user-detail .main-div {
+	height: 650px;
+}
+.crew-user-detail .user-role-info {
+	float: left;
+	width: 420px;
+}
+.crew-user-detail .user-role-info .user-info {
+	border: 1px solid #D0D0D0;
+	padding: 10px 20px;
+	height: 100px;
+	line-height: 30px;
+}
+.crew-user-detail .user-role-info .user-info .user-status {
+	float: right;
+}
+.crew-user-detail .user-role-info .user-info img {
+	vertical-align: text-top;
+	width: 20px;
+	height: 20px;
+}
+.crew-user-detail .user-role-info .user-info .selected-roles-div img {
+	float: left;
+}
+.crew-user-detail .user-role-info .user-info .selected-roles {
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 20px;
+    padding-left: 5px;
+}
+
+.crew-user-detail .user-role-info .role-info {
+    border: 1px solid #D0D0D0;
+    margin-top: 10px;
+    height: 500px;
+}
+.crew-user-detail .user-role-info .role-info .title {
+	font-size: 17px;
+	padding: 5px 15px;
+	padding-top: 10px;
+}
+.crew-user-detail .user-role-info .role-info .content {
+	padding: 0px 20px;
+    overflow: auto;
+    height: 455px;
+}
+.crew-user-detail .user-role-info .role-info .content .single-group {
+	border-bottom: 1px solid #D0D0D0;
+    padding-bottom: 11px;
+    margin: 10 0px;
+    float: left;
+}
+.crew-user-detail .user-role-info .role-info .content .single-group .group-name {
+	font-size: 15px;
+	float: left;
+	line-height: 30px;
+	width: 100px;
+}
+.crew-user-detail .user-role-info .role-info .content .single-group .group-roles {
+	float: left;
+	width: 270px;
+}
+.crew-user-detail .user-role-info .role-info .content .single-group .group-role {
+    padding: 0 10px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 20px;
+    color: #D0D0D0;
+    border: 1px solid #D0D0D0;
+    margin-right: 5px;
+    height: 18px;
+    line-height: 18px;
+    white-space: nowrap;
+    cursor: pointer;
+    float: left;
+    margin-top: 6px;
+}
+.crew-user-detail .user-role-info .role-info .content .single-group .group-role:hover {
+	color: #969696;
+    border: 1px solid #969696;
+}
+.crew-user-detail .user-role-info .role-info .content .single-group .group-role.selected {
+    color: #333333;
+    border: 1px solid #ff9800;
+}
+.crew-user-detail .user-role-info .role-info .content .single-group .group-role.selected:hover {
+    color: #676767;
+    border: 1px solid #E29421;
+}
+.crew-user-detail .user-role-info .role-info .content .relate-roles {
+	
+}
+.crew-user-detail .user-role-info .role-info .content .relate-roles p{
+    color: #B7B7B7;
+    font-size: 13px;
+    line-height: 35px;
+}
+
+
+
+
+.crew-user-detail .user-auth-info {
+	float: left;
+	width: 500px;
+	border: 1px solid #D0D0D0;
+	height: 632px;
+	margin-left: 10px;
+}
+.crew-user-detail .user-auth-info .title-tab {
+	height: 30px;
+	padding-top: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.crew-user-detail .user-auth-info .title-tab p {
+	float: left;
+	width: 100px;
+    font-size: 17px;
+    color: #D0D0D0;
+    cursor: pointer;
+    text-align: center;
+}
+.crew-user-detail .user-auth-info .title-tab p.selected {
+	border-bottom: 3px solid #2185D0;
+	color: #2185D0;
+}
+.crew-user-detail .user-auth-info .auth-info {
+	height: 575px;
+    overflow: auto;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.crew-user-detail .user-auth-info .auth-info .single-auth:not(.group-auth) {
+	padding: 0 10px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 20px;
+    color: #D0D0D0;
+    border: 1px solid #D0D0D0;
+    margin-right: 5px;
+    height: 18px;
+    line-height: 30px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.crew-user-detail .user-auth-info .auth-info .first-level-auth .group-auth {
+    color: black;
+    font-size: 15px;
+    line-height: 30px;
+}
+.crew-user-detail .user-auth-info .auth-info .single-auth:not(.group-auth):hover {
+    color: #969696;
+    border: 1px solid #969696;
+}
+.crew-user-detail .user-auth-info .auth-info .single-auth.selected:not(.group-auth) {
+	color: #333333;
+    border: 1px solid #ff9800;
+}
+.crew-user-detail .user-auth-info .auth-info .single-auth.selected:not(.group-auth):hover {
+    color: #676767;
+    border: 1px solid #E29421;
+}
+.crew-user-detail .user-auth-info .auth-info .allow-modify-tag {
+	padding: 0 10px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 20px;
+    color: #D0D0D0;
+    border: 1px solid #D0D0D0;
+    margin-right: 5px;
+    height: 18px;
+    line-height: 30px;
+    white-space: nowrap;
+    cursor: pointer;
+    border-left: none;
+    margin-left: -13px;
+}
+.crew-user-detail .user-auth-info .auth-info .allow-modify-tag:hover {
+	color: #969696;
+    border: 1px solid #969696;
+    border-left: none;
+    margin-left: -13px;
+}
+.crew-user-detail .user-auth-info .auth-info .allow-modify-tag.selected {
+	color: #333333;
+    border: 1px solid #ff9800;
+    border-left: none;
+    margin-left: -13px;
+}
+.crew-user-detail .user-auth-info .auth-info .allow-modify-tag.selected:hover {
+	color: #676767;
+    border: 1px solid #E29421;
+    border-left: none;
+    margin-left: -13px;
+}
+
+
+
+.crew-user-detail .user-auth-info .auth-info .pc-auth-list .first-level-auth {
+	border-bottom: 1px solid #D0D0D0;
+}
+.crew-user-detail .user-auth-info .auth-info .second-level-auth {
+	margin-left: 50px;
+}
+.crew-user-detail .user-auth-info .auth-info .third-level-auth {
+    margin-left: 50px;
+}
+.crew-user-detail .user-auth-info .auth-info .app-auth-list {
+	display: none;
+}
+
+
+
+
+
+
+
+
+
+.crew-user-detail .btn-div {
+	width: 70px;
+	margin: 0px auto;
+	letter-spacing: 200px;
+}
+.crew-user-detail .btn-div input[type=button] {
+	width: 70px;
+    height: 30px;
+    line-height: 30px;
+    letter-spacing: 5px;
+}
+
+
+
+

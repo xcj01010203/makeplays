@@ -1,0 +1,245 @@
+.tree-icon {
+    display: none;
+}
+.datagrid-row-selected {
+	background: #a0c8ff;
+    color: black;
+}
+
+.necessory {
+    color:red;
+    vertical-align: middle;
+}
+.error-message {
+    color: red;
+    font-size: 12px;
+}
+
+.my-containter {
+	width: calc(100% - 80px); 
+	height: 100%; 
+	overflow: auto; 
+	
+	margin:0; 
+	padding:0; 
+	list-style:none; 
+	outline:none; 
+	font-family:"微软雅黑"; 
+	font-size: 14px;
+	padding: 0px 40px;
+}
+
+.account-list {
+	float: left;
+	width: 52%;
+    height: 100%;
+}
+
+.account-list .tool-bar {
+	height: 34px;
+	line-height: 34px;
+}
+
+.account-list table {
+	border-collapse: collapse;
+    width: 100%;
+    font-size: 12px;
+}
+
+.account-list table tr {
+	height: 34px;
+}
+.account-list table tr.selected {
+	background: #c9e0ff;
+}
+
+.account-list table td {
+	border: 1px solid #DCDCDC;
+    padding: 0px 13px;
+}
+.account-list table.account-table-head td {
+	border-bottom: none;
+	background: #e8e8e8;
+}
+.account-list table.account-table-body {
+    
+}
+
+.account-list table.account-table-body tr {
+	cursor: pointer;
+}
+
+.account-list table.account-table-body tr:hover {
+	background: #e1eeff;
+}
+.account-list table.account-table-body tr.selected:hover {
+	background: #c9e0ff;
+}
+
+.account-list table.account-table-body tr.foucs {
+	background: #ECECEC;
+}
+
+.account-list table .col-operate-btn {
+	float: right;
+	display: none;
+}
+
+.col-operate-btn.delete, .col-operate-btn.delete:hover {
+    background: url(../../images/delete.png) no-repeat;
+    background-size: 18px 18px;
+    width: 18px;
+    height: 18px;
+    margin-left: 5px;
+}
+.col-operate-btn.delete:hover {
+	  background: url(../../images/delete1.png) no-repeat;
+    background-size: 18px 18px;
+}
+.col-operate-btn.modify, .col-operate-btn.modify:hover {
+    background: url(../../images/modify.png) no-repeat;
+    background-size: 18px 18px;
+    width: 18px;
+    height: 18px;
+}
+.col-operate-btn.modify:hover {
+	  background: url(../../images/modify_hover.png) no-repeat;
+	  background-size: 18px 18px;
+}
+
+.btn-back,.btn-back:hover {
+		width: 24px;
+	  height: 24px;
+	  float: left;
+		background: url("../../images/return.png") no-repeat;
+		background-size: 24px 24px;
+		margin-top: 8px;
+		cursor: pointer;
+}
+.btn-back:hover {
+	  background: url("../../images/return1.png") no-repeat;
+    background-size: 24px 24px;
+}
+.btn-add,.btn-add:hover {
+	  background: url("../../images/add.png") no-repeat;
+	  background-size: 24px 24px;
+    width: 24px;
+    height: 24px;
+    float: left;
+    margin-left: 8px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+.btn-add:hover {
+	  background: url("../../images/add_hover.png") no-repeat;
+    background-size: 24px 24px;
+}
+
+.account-list table .acc-name-td p {
+    width: 138px;
+}
+
+.account-list table .acc-num-td p {
+    width: 130px;
+    height: 20px;
+    padding-top: 3px;
+}
+
+.account-list table .budget-names-td p {
+    width: 280px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.direction {
+	float: left;
+	background: url(../../images/link.png);
+    height: 20px;
+    width: 25px;
+    margin-top: 109px;
+    margin-left: 5px;
+    display: none;
+}
+
+.budget-list {
+	float: right;
+    width: 45%;
+    height: calc(100% - 50px);
+    margin-top: 34px;
+}
+
+.account-list .empty-div {
+	text-align: center;
+    height: 100px;
+    line-height: 100px;
+    color: #c5c5c5;
+    width: calc(100% - 3px);
+}
+
+.account-detail {
+	display: none;
+}
+.account-detail input[type=text] {
+	width:350px;
+    height:35px;
+    border-radius: 3px;
+    border: 1px solid #CCC;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+.account-detail input[type=text].has-error {
+	border-color: red;
+}
+.account-detail input[type=text]:focus {
+	box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.account-detail input[type=button] {
+	color: #fff;
+    background-color: #0277BD;
+    border-radius: 3px;
+    border: 0px;
+    width: 100px;
+    height: 30px;
+}
+.account-detail input[type=button]:hover {
+	cursor: pointer;
+    background-color: #1A8CD0;
+}
+.account-detail input[type=button]:focus {
+	outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    background-color: #0265A0;
+}
+.account-detail ul li {
+	margin: 15px;
+}
+.account-detail ul li.error-li {
+	margin: 10px 15px;
+}
+.account-detail ul li p {
+	width: 60px;
+    text-align: right;
+    display: inline-block;
+}
+.account-detail .operate-btn {
+	text-align: center;
+}
+
+.account-table-div {
+	height: calc(100% - 52px);
+    border: 1px solid #95b8e7;
+}
+
+.account-table-body {
+	max-height: calc(100% - 34px);
+    overflow: auto;
+}
+
+.static-info {
+	color: red;
+	margin-left: 40px;
+}

@@ -1,0 +1,1 @@
+ALTER TABLE tab_view_role MODIFY column `viewRoleType` smallint(6) DEFAULT '0' COMMENT '场景角色类型。1：主要演员；2：特约演员；3：群众演员  4：待定演员；';

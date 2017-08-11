@@ -1,0 +1,214 @@
+@charset "utf-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	outline: none;
+	font-family: "微软雅黑";
+	font-size: 13px;
+}
+
+.Popups_box h4 {
+	width: 80px;
+	float: left;
+	text-align: right;
+}
+
+.clear {
+	clear: both;
+	white-space: nowrap;
+}
+
+.Popups_box {
+	margin-top: 15px;
+	line-height: 25px;
+}
+.Popups_box li{
+	padding-left: 6px;
+}
+
+.Popups_box textarea {
+	width: 220px;
+	height: 70px;
+	border: 1px solid #cad0e5;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	resize: none;
+}
+
+.searchWindow ul label:first-child {
+	width: 80px;
+	font-weight: normal;
+	float: left;
+	text-align: right;
+}
+.searchWindow ul label:not(:first-child) {
+	font-weight: normal;
+}
+.searchWindow .Popups_box>ul:not(:last-child) {
+	height: 45px;
+	margin: 0 auto;
+	padding: 0px 0px;
+	width: 100%;
+}
+
+.tianjia ul {
+	width: 350px;
+	height: 25px;
+	padding: 10px;
+	float: left;
+	margin: 0 auto;
+	border-bottom: 1px dashed #CCC;
+	line-height: 25px;
+}
+
+.button_search {
+	width: 24px;
+	height: 24px;
+	background: url("../../images/roleform/search.png") no-repeat;
+	background-size: 24px 24px;
+}
+
+.button_search:hover {
+	background: url("../../images/roleform/search1.png") no-repeat;
+	background-size: 24px 24px;
+}
+
+.dropdown-box {
+	width: 355px;
+	height:auto;
+	background-color: #E4E4E4;
+	max-height: 200px;
+	min-width: 70px;
+	overflow-y: scroll;
+	padding-bottom: 10px;
+	display: none;
+	position: absolute;
+	z-index: 99999;
+}
+
+.dropdown-box li {
+	padding-right: 10px;
+}
+
+.dropdown-box li:hover {
+	background-color: #0277BD;
+}
+
+.user-dropdown tbody tr:hover {
+	background-color: #0277BD;
+}
+
+.user-dropdown table {
+	border-collapse: collapse;
+	margin-bottom: 10px;
+}
+
+.user-dropdown table td {
+	border: 1px solid #ccc;
+	text-align: center;
+}
+.oper_ul {
+	display: block;
+	height: 30px;
+	width:100%;
+}
+.font_v_ms {
+	text-align:center;
+	height: 100%;
+	line-height: 30px;
+}
+.font_v_ms.pc {
+	background: url(../../images/pc_icon.png) no-repeat center center;
+    background-size: 18px 18px;
+}
+.font_v_ms.ios {
+	background: url(../../images/ios.png) no-repeat center center;
+    background-size: 18px 18px;
+}
+.font_v_ms.android {
+	background: url(../../images/android.png) no-repeat center center;
+    background-size: 18px 18px;
+}
+.link_div {
+	cursor: pointer;
+	color: #D67934;
+}
+.link_div:HOVER {
+	font-weight: bold;
+}
+.propTips_div {
+	display: none;
+	position: absolute;
+	z-index: 99999;
+	width:110px;
+	height:auto;
+	border:1px solid #ccc;
+	background-color: #fff;
+	padding:5px;
+	text-align: center;
+}
+.logDesc_div {
+	display: none;
+	position: absolute;
+	z-index: 99999;
+	width:auto;
+	height:auto;
+	border:1px solid #999;
+	background-color: #fff;
+	padding:5px;
+	text-align: center;
+	word-wrap: break-word;
+    word-break: break-all;
+}
+#centerDIV {
+	width:690px;
+}
+.pagediv {
+	text-align: center;
+	height: 36px;
+	line-height: 36px;
+}
+.pagediv a {
+	margin-right: 25px;
+	cursor: pointer;
+}
+.searchWindow .btn-default {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #cad0e5;
+    height: 35px;
+    cursor: default;
+}
+.searchWindow .bootstrap-select .btn:focus {
+    outline: 0px auto -webkit-focus-ring-color !important;
+}
+.searchWindow .btn:active,.btn.active{
+    background-image:none;
+    outline:0;
+    -webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,0.0);
+    box-shadow:inset 0 3px 5px rgba(0,0,0,0.0);
+}
+.searchWindow .btn-group.open .dropdown-toggle{
+    -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0.0);
+    box-shadow: inset 0 3px 5px rgba(0,0,0,0.0);
+}
+.searchWindow .btn-default {background:none ; border: none;border-bottom: 1px solid #cad0e5;height: 35px;cursor:default;}
+.searchWindow .btn-default:hover, .searchWindow .btn-default:focus, .searchWindow .btn-default:active, .searchWindow .btn-default.active, .searchWindow .open .dropdown-toggle.btn-default {
+    background: none;
+}
+.topdiv {
+	height: calc(100% - 36px);
+	overflow-y:auto;
+	word-break:break-all;
+	padding: 10px;
+	box-sizing:border-box;
+}
+.bottomdiv {
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	padding-top:8px;
+}

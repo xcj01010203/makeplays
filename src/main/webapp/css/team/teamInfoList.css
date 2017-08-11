@@ -1,0 +1,446 @@
+@CHARSET "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    outline: none;
+    font-family: "微软雅黑";
+    font-size: 13px;
+}
+.my-container {
+	 width: 100%;
+	 height: 100%;
+	 overflow: hidden;
+	 position: relative;
+	 padding: 20px 30px;
+	 box-sizing: border-box;
+}
+/*tab键*/
+.btn_tab_wrap {
+    overflow: hidden;
+}
+div.btn_wrap {
+    background: #fff;
+}
+div.tab_wrap ul {
+   margin: 0px;
+   padding: 0px;
+   height: 32px;
+}
+div.tab_wrap li {
+    width: 50%;
+}
+/*tab键*/
+.toolbar {
+    height: 32px;
+    background: #fff;
+}
+.toolbar input[type=button], .toolbar input[type=button]:hover {
+    margin: 0 8px;
+    margin-top: 4px;
+    width: 24px;
+    height: 24px;
+    float: left;
+    background-size: 100%;
+    cursor: pointer;
+}
+.toolbar .advance-search-btn {
+    background: url(../../images/roleform/search.png) no-repeat;
+    background-size: 24px 24px;
+}
+.toolbar .advance-search-btn:hover {
+  background: url("../../images/roleform/search1.png") no-repeat;
+  background-size: 24px 24px;
+}
+.toolbar .add-btn {
+    background: url(../../images/tianjia.png) no-repeat;
+    background-size: 24px 24px;
+    margin-left: 55px;
+}
+.toolbar .add-btn:hover {
+    background: url(../../images/tianjia1.png) no-repeat;
+    background-size: 24px 24px;
+}
+.toolbar .delete-btn {
+	background: url(../../images/delete.png) no-repeat;
+    background-size: 24px 24px;
+    margin-left: 55px;
+}
+.toolbar .delete-btn:HOVER {
+	background: url(../../images/delete1.png) no-repeat;
+    background-size: 24px 24px;
+}
+.community-public {
+	height: calc(100% - 30px);
+}
+.title-table {
+    width: 100%;
+    table-layout: fixed;
+    overflow: hidden;
+    background-color: transparent;
+}
+.title-table tr {
+    line-height: 30px;
+    background-color: #DDDDDD;
+}
+.title-table td {
+    text-align: center;
+    font-family: 微软雅黑;
+    font-size: 13px;
+    padding: 0 5px;
+}
+.title-table input[type='checkbox'],.team-info-list-table input[type='checkbox'] {
+    height: 16px;
+    width: 16px;
+}
+.team-info-div {
+    height: calc(100% - 102px);
+    width: 100%;
+    overflow: auto;
+    border-bottom: 1px solid #c5c5c5;
+}
+.team-info-list-table {
+    width: 100%;
+    table-layout: fixed;
+    background-color: white;
+    border-collapse: collapse;
+}
+.team-info-list-table tr {
+    line-height: 30px;
+}
+.team-info-list-table td {
+    border: 1px solid #DDDDDD;
+    text-align: center;
+    font-family: 微软雅黑;
+    font-size: 12px;
+    padding: 0 5px;
+    overflow: hidden;
+	text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.link {
+	cursor: pointer;
+}
+/*分页*/
+.table-page-div {
+    text-align: right;
+    width: 100%;
+    margin-top: 2px;
+    padding-right: 20px;
+    overflow: hidden;
+}
+
+/*右侧滑出框*/
+.right-popup-win {
+    display: none;
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    right: -80%;
+    top: 0px;
+    border: 1px solid #ccc;
+    z-index: 500;
+    background: #f2f2f2;
+}
+.right-popup-body {
+    width: 100%;
+    height: 100%;
+}
+.header-btn-list {
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background: #e1ebfa;
+    z-index: 600;
+}
+.header-btn-list input[type=button], .save-btn {
+    border: 0px;
+    outline: none;
+    width: 100px;
+    height: 25px;
+    letter-spacing: 10px;
+    color: #fff;
+    margin-right: 50px;
+    background: rgba(255,102,0,1);
+    border-radius: 5px;
+    margin-top: 7px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    cursor: pointer;
+}
+.header-btn-list input[type=button]:hover,.save-btn:hover {
+	background: rgba(230,93,1,1);
+}
+.main-content {
+    height: calc(100% - 105px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 15px;
+}
+.form-list {
+    padding: 0px 0px 5px 0px;
+    border-bottom: 1px dotted #ccc;
+}
+.form-list p.form-title, .store-list>p{
+	height: 30px;
+	font-size: 14px;
+	font-weight: bold;
+}
+.form-list ul {
+    padding-left: 53px;
+    margin-bottom: 8px;
+    overflow: hidden;
+}
+.form-list ul li:not(.upload-file-list-li) {
+    float: left;
+    width: 33.3%;
+}
+.form-list ul li.cross {
+	width: 100%;
+}
+.form-list ul li p {
+    float: left;
+    width: 15%;
+    line-height: 33px;
+    min-width: 73px;
+}
+.form-list ul li.cross p{
+	width: 5%;
+}
+.form-list ul li input[type=text], .form-list ul li select {
+    float: left;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    height: 33px;
+    background-color: #fff;
+    padding: 0 3px;
+}
+.form-list ul li textarea {
+    float: left;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    background-color: #fff;
+	width: 86%;
+	line-height: 20px;
+    padding: 0 3px;
+}
+.form-list ul li.cross input[type=text]{
+	width: 86%;
+}
+.form-list ul li input[type=text]:focus,.form-list ul li select:focus,.form-list ul li textarea:focus {
+	border:1px solid #409DFE;
+	outline:none;
+	border-bottom:1px solid #409DFE;
+	box-shadow:0 0 3px #409DFE;
+}
+.necessory {
+    color: red;
+    font-size: 16px;
+    margin-left: 5px;
+    padding-top: 9px;
+    display: inline-block;
+}
+div.select-file-btn {
+    width: 80px;
+    height: 27px;
+    line-height: 27px;
+    color: #000;
+    border: 1px solid #ffcc80;
+    background-color: #fffaf2;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+.upload-container {
+	float: left;
+}
+.store-list {
+	margin-top: 20px;
+}
+/*图片缩略图*/
+.upload-file-list {
+	margin-top: 5px;
+	padding-left: 0px !important;
+}
+.upload-file-list li {
+    float: left;
+    position: relative;
+}
+.upload-file-list li img {
+    width: 100px;
+    height: 100px;
+}
+.closeTag {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    z-index: 1000;
+    background: url(../../images/btn-icon-small.png) no-repeat;
+    cursor: pointer;
+}
+.closeTag:hover {
+    background-position: -20px 0;
+}
+/*收藏*/
+.store-div {
+    padding: 0 53px;
+}
+.store-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.store-table tr {
+    height: 30px;
+}
+.store-table tr th {
+    border: 0px;   
+    background: #e3e3e3;
+    text-align: left;
+    font-weight: normal;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+.store-table tr td {
+    border: 1px solid #ccc;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+/*职位*/
+.position-body {
+	width: 100%;
+    height: calc(100% - 95px);
+    padding-left: 53px;
+    padding-right: 53px;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+.position-header-div {
+    height: 30px;
+    background: #e3e3e3;
+}
+.position-header-table {
+    width: 100%;
+}
+.position-header-table tr {
+    height: 30px;
+}
+.position-header-table td {
+    border: 0px;
+}
+.position-body-div {
+    height: calc(100% - 30px);
+    overflow-y: auto;
+}
+.position-body-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.position-body-table tr {
+    height: 30px;
+}
+.position-body-table tr td {
+    border: 1px solid #ccc;
+}
+.position-body-table tr td span.td-content {
+    display: block;
+    width: 99%;
+}
+.position-body-table tr td span.td-content select {
+    width: calc(100% - 30px);
+    height: 28px;
+    border: none;
+    padding-left: 5px;
+}
+.position-body-table tr td span.td-content select:HOVER,.position-body-table tr td span.td-content select:FOCUS{
+	outline: none;
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.position-body-table tr td input[type=text] {
+    box-sizing: border-box;
+    width: 99%;
+    height: 28px;
+    border: none;
+    padding-left: 5px;
+}
+.position-body-table tr td input[type=text]:hover, .position-body-table tr td input[type=text]:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.position-body-table tr td input[type=button].delete-position {
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin-top: 4px;
+    margin-right: 5px;
+    background: url(../../images/delete.png) no-repeat;
+    background-size: 20px;
+    cursor: pointer;
+}
+.position-body-table tr td input[type=button].delete-position:hover {
+    background: url(../../images/delete1.png) no-repeat;
+    background-size: 20px;
+}
+.position-body-table tr td textarea {
+    width: 100%;
+    line-height: 20px;
+    border: 1px solid rgba(204,204,204,0);
+    background-color: rgba(204,204,204,0);
+}
+.position-body-table tr td textarea:hover,.position-body-table tr td textarea:FOCUS {
+	border:1px solid #409DFE;
+	outline:none;
+	box-shadow:0 0 3px #409DFE;
+}
+.btn-list {
+    text-align: center;
+}
+.td-username-div {
+	padding:0 5px;
+	word-break: break-all;
+	overflow-y:auto;
+	height:62px;
+	line-height:20px;
+	box-sizing:border-box;
+}
+.searchWindow ul label:first-child {
+	width: 80px;
+	font-weight: normal;
+	float: left;
+	text-align: right;
+	margin-right: 10px;
+}
+.searchWindow ul label:not(:first-child) {
+	font-weight: normal;
+	display: inline-block;
+}
+.searchWindow .Popups_box>ul:not(:last-child) {
+	margin: 10px auto;
+	padding: 0px 0px;
+	width: 100%;
+	line-height: 25px;
+}
+.searchWindow li.search-subject {
+	overflow: hidden;
+}
+.searchWindow li.search-subject div {
+	float: left;
+	width: calc(100% - 90px);
+}
+.searchWindow li.search-subject label:not(:first-child) {
+	width: 80px;
+	margin-right: 10px;
+}
+.searchWindow .oper_ul {
+	text-align: center;
+	line-height: 30px;
+}
+.searchWindow input[type=text] {
+	line-height: 25px;
+}

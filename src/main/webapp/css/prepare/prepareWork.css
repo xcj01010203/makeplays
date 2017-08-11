@@ -1,0 +1,214 @@
+/**
+ * 办公筹备
+ */
+/**
+ * 剧组人员
+ */
+*{
+  font-size: 15px;
+  font-family:'微软雅黑';
+}
+body, html {
+   width: 100%;
+   height: 100%;
+}
+body, html,div,p,ul,li,dl,dt,dd {
+   margin: 0px; 
+   padding: 0px;
+}
+ul,li {
+   list-style-type: none;
+}
+.worker-container {
+   width: calc(100% - 20px);
+   height: calc(100% - 20px);
+   padding: 20px 10px 0px 10px;
+}
+.worker-grid-div {
+   width: 100%;
+   height: 100%;
+}
+.worker-grid-head {
+   height: 35px;
+   width: 100%;
+}
+.worker-head-ul {
+   width: 100%;
+   height: 35px;
+   background: #ddd;
+}
+.worker-head-ul:after {
+   display: block;
+   content: '';
+   clear: both;
+}
+.worker-head-ul li {
+    float: left;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 16px;
+    font-family: '微软雅黑';
+}
+.worker-grid-content {
+    width: 100%;
+    height: calc(100% - 35px);
+    overflow-y: auto;
+}
+.worker-grid-content dl {
+   /* width: calc(100% - 20px); */
+}
+.worker-grid-content dt {
+   height: 30px;
+   border-bottom: 1px solid #ccc;
+   font-size: 15px;
+   border-left: 1px solid #ccc;
+   border-right: 1px solid #ccc;
+   background: #e6e6e6;
+}
+.worker-grid-content dt input[type=text]{
+   display: inline-block;
+   height: 25px;
+   width: 99%;
+   margin-top: 2px;
+   margin-left: 2px;
+   box-sizing: border-box;
+   background: transparent;
+   border: 0px;
+}
+.worker-grid-content dt input[type=text]:hover, .worker-grid-content dt input[type=text]:focus {
+	border:1px solid #409DFE;
+  outline:none;
+  border-bottom:1px solid #409DFE;
+  box-shadow:0 0 3px #409DFE;
+}
+/* .worker-grid-content dt:after {
+   content: '';
+   display: block;
+   clear: both;
+} */
+.add-role-btn {
+    background: url(../../images/add.png) no-repeat;
+    width: 17px;
+    height: 17px;
+    background-size: 17px;
+    vertical-align: middle;
+    border: none;
+}
+.add-role-btn:hover {
+	  background: url(../../images/add_hover.png) no-repeat;
+	  background-size: 17px;
+}
+.tree-content-ul {
+    height: 30px;
+    list-style-type: none;
+}
+.tree-content-ul li {
+    float: left;
+    height: 30px; 
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+   /*  border-top: 1px solid #ccc; */
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-left: 1px solid #ccc;
+    box-sizing: border-box;
+}
+.tree-content-ul li:last-child {
+	  border-right: 1px solid #ccc;
+}
+.tree-content-ul li input[type=text] {
+    display: inline-block;
+    width: 99%;
+    height: 25px;
+    margin-top:2px;
+    margin-left: 2px;
+    box-sizing: border-box;
+   background: transparent;
+   border: 0px;
+}
+.tree-content-ul li input[type=text]:focus, .tree-content-ul li input[type=text]:hover {
+	border:1px solid #409DFE;
+  outline:none;
+  border-bottom:1px solid #409DFE;
+  box-shadow:0 0 3px #409DFE;
+}
+
+span.dt-content, span.dd-content {
+      /* display: inline-block; */
+      float: left;
+      margin-left: 3px;
+      height: 30px;
+      line-height: 30px;
+      width: 110px;
+      height: 100%;
+      overflow: hidden;
+}
+span.dt-content {
+	   width: calc(25% - 3px);
+}
+span.dt-content .dt-span {
+    width: calc(100% - 17px);
+    height: 100%;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align: middle;
+    
+}
+span.dd-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    width: calc(100% - 24px);
+}
+span.opera-btn-list {
+      display: none;
+      float: right; 
+      margin-left: 5px;
+      margin-top: 6px;
+   }
+   span.opera-btn-list a{
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      float: none;
+   }
+   span.opera-btn-list a.add-row-btn {
+      background: url(../../images/add.png) no-repeat;
+      background-size: 16px 16px;
+      margin-right: 8px;
+   }
+   span.opera-btn-list a.add-row-btn:hover {
+      background: url(../../images/add_hover.png) no-repeat;
+      background-size: 16px 16px;
+      margin-right: 8px;
+   }
+   span.opera-btn-list a.delete-row-btn {
+      background: url(../../images/delete.png) no-repeat;
+      background-size: 16px 16px;
+   } 
+   span.opera-btn-list a.delete-row-btn:hover {
+      background: url(../../images/delete1.png) no-repeat;
+      background-size: 16px 16px;
+   }
+   span.dt-content input[type=button].zhaikai {
+      width: 14px;
+      height: 14px; 
+      background: url(../../images/icon-down.png) no-repeat;
+      margin-right: 3px;
+   }
+   span.dt-content input[type=button].shouqi{
+      width: 14px;
+      height: 14px; 
+      background: url(../../images/icon-right.png) no-repeat;
+      margin-right: 3px;
+   }
+ input[type=text]:hover {
+  border:1px solid #409DFE;
+  outline:none;
+  border-bottom:1px solid #409DFE;
+  box-shadow:0 0 3px #409DFE;
+}

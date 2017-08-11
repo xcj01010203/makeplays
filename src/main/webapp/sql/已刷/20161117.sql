@@ -1,0 +1,1 @@
+ALTER TABLE tab_team_info MODIFY COLUMN contactAddress VARCHAR (500);

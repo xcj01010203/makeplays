@@ -1,0 +1,1 @@
+ALTER TABLE tab_notice_time ADD COLUMN noticeContact VARCHAR(1000) DEFAULT '' COMMENT '通告单中联系人信息';

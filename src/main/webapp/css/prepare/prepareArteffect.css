@@ -1,0 +1,127 @@
+/**
+ * 美术视觉
+ */
+ 
+ .tab-body-wrap {
+    width: 100%;
+    height: 100%;
+}
+.btn_tab_wrap {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+div.tab_wrap ul {
+    height: 32px;
+}
+div.tab_wrap li {
+    width: 49%;
+}
+.affect-container {
+	  padding: 20px 10px 0px 10px;
+	  width: calc(100% - 20px);
+	  height: calc(100% - 20px);
+}
+.public-arteffect {
+	  /* width: 100%; */
+    overflow: auto;
+    height: calc(100% - 52px);
+    padding: 0px 20px 0px 20px;
+}
+.view-grid-div {
+	  display: none;
+	  height: calc(100% - 35)
+}
+.role-grid, .view-grid {
+	  height: 100%;
+}
+.role-grid-header, .view-grid-header {
+	  height: 35px;
+}
+.role-grid-content, .view-grid-content {
+	  width: 100%;
+	  overflow-y: auto;
+	  height: calc(100% - 35px);
+}
+table.role-header-table, table.role-content-table, table.view-header-table, table.view-content-table {
+	  width: 100%;
+	  border-collapse: collapse;
+}
+
+table.role-header-table tr, table.view-header-table tr {
+	  background: #ddd;
+	  height: 35px;
+}
+table.role-header-table td, table.view-header-table td {
+	  text-align: center;
+	  font-size: 15px;
+	  font-family: '微软雅黑';
+	  
+}
+input[type=button].add-row-btn {
+	  width: 17px;
+	  height: 17px;
+	  background: url(../../images/add.png) no-repeat;
+	  background-size: 17px;
+	  display: inline-block;
+	  vertical-align: middle;
+    margin-left: 10px;
+    cursor: pointer;
+}
+input[type=button].add-row-btn:hover {
+	  background: url(../../images/add_hover.png) no-repeat;
+	  background-size: 17px;
+}
+
+table.role-content-table tr, table.view-content-table tr {
+	  height: 30px;
+}
+table.role-content-table td, table.view-content-table td {
+	  text-align: center;
+	  border: 1px solid #ccc;
+}
+table.role-content-table td input[type=text], table.view-content-table td input[type=text]{
+	  display: block;
+	  width: 99%;
+	  height: 25px;
+	  text-align: center;
+	  border: 0px;
+	  
+}
+table.role-content-table td input[type=text]:hover, table.view-content-table td input[type=text]:hover,
+table.role-content-table td input[type=text]:focus, table.view-content-table td input[type=text]:focus {
+  border:1px solid #409DFE;
+  outline:none;
+  border-bottom:1px solid #409DFE;
+  box-shadow:0 0 3px #409DFE;
+}
+table.role-content-table td input[type=text].role-name, table.view-content-table td input[type=text].view-name {
+	  float: left;
+	  display: inline-block;
+	  width: calc(100% - 20px);
+	  text-align: center;
+	  margin-left: 2px;
+	  box-sizing: border-box;
+}
+td .delete-row-span {
+	  display: none;
+	 /*  width: 20%;
+	  text-align: center; */
+    margin-top: 3px;
+	  float: right;
+}
+td input[type=button].delete-row-btn {
+	  width: 17px;
+	  height: 17px;
+	  background: url(../../images/delete.png) no-repeat;
+	  background-size: 17px;
+}
+td input[type=button].delete-row-btn:hover {
+	  background: url(../../images/delete1.png) no-repeat;
+	  background-size: 17px;
+}
+input[type=text]:hover {
+  border:1px solid #409DFE;
+  outline:none;
+  border-bottom:1px solid #409DFE;
+  box-shadow:0 0 3px #409DFE;
+}

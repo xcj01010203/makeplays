@@ -1,0 +1,302 @@
+@CHARSET "UTF-8";
+/* CSS Document */
+/*重定义*/
+*{
+	margin:0;
+	padding:0;
+	list-style:none;
+	font-family:"微软雅黑";
+	}
+a{
+	text-decoration:none;
+	}
+input[type=text], input[type=password]{
+	border:1px solid rgba(204,204,204,0);
+	outline:none;
+	border-bottom:1px solid rgba(204,204,204,1);}
+input[type=text]:hover,, input[type=password]:hover{
+	border:1px solid #409DFE;box-shadow:0 0 3px #409DFE;
+	}
+input[type=button]{border:0px;}
+select{height: 35px;}
+textarea{border: 1px solid #DDDDDD;-moz-border-radius: 6px;-webkit-border-radius: 6px;border-radius:6px;resize: none;}
+th{text-align: right;}
+.fl_l{float: left;}
+.f_l{float:left}
+.f_r{float:right}
+.ft_r{text-align:right;}
+.ft_m{text-align: center;}
+.mar_m{margin: 0 auto;}
+.mar_l_10{margin-left: 10px;}
+.pad_l_5{padding-right: 5px;}
+.font_c_grey{color: #AAA;}
+.must{color: red;font-size: 12px;padding: 0 5px;}
+.clear{clear:both;}
+.input_ input{width: 300px;height: 30px;}
+#staff_main{width: 100%;margin: 0 auto;}
+.staff_table{margin: 0 auto;float: left;}
+.staff_table tr{height: 45px;}
+#staff_total{width: 100%;}
+#staff_total table{width: 100%;border-collapse: collapse;}
+#staff_total table thead td{width: 8%;text-align: center;}
+#staff_total table tr{height: 28px;}
+#staff_total table tbody td{border: 1px solid #ABABAB;text-align: right;padding-right: 5px;}
+.tr_style{background: #ebebeb 50% 50% repeat-x;height: 35px;color: black;font-weight: bold;}
+.td td{border: 0px;}
+.pro_btn{margin-bottom: 10px;margin-top: 10px;}
+
+#budgetTotal{height: 10%;width: 100%;}
+#budgetTotal table{width: 100%;border-collapse: collapse;}
+#budgetTotal table tr{height: 35px;}
+#budgetTotal table td{width: 10%;text-align: center;border: 1px solid #ABABAB;height: 20px;}
+#budgetTable{margin: 0 auto;vertical-align: middle;overflow: auto;}
+.font_st{font-size:13px;color: #8B0000;float: right;margin-left: 5px;vertical-align: middle;}
+.dig_sty{float: right;margin-left: 5px;}
+.font_v_m{height:26px;line-height:26px;overflow:hidden;}
+
+.tb_box{color: #333333;position: relative;overflow: hidden;padding:6px;}
+.tb_box table{table-layout:fixed;}
+
+.width90{width: 80px;padding:0 6px;}
+.bills dl{background: #FFFFFF;}
+.bills dl .dl_box{margin:9px 40px;position: relative;}
+.bills td{border:none;height: 45px;}
+.p_borrow dt , .p_pay dt{line-height:38px;border-bottom:1px solid #cad0e5;}
+.bills_num , .bills_date{position: absolute;top:0;}
+.bills_date{right:0;}
+.bills_arrows{background: url("../images/bills_arrrows.png") no-repeat right 50% ;}
+table.tb_payList td{height: 30px;border: 1px solid #afb5ca;}
+table.tb_payList .td_div{padding: 6px 5px;}
+table.tb_payList .td_div input{ width: 100%;border: none;height: 100%;}
+table.tb_payList .td_div input:focus{border-bottom: none;}
+.right_add_tb td input , .new_input{width: 100%;background:none ; border: none;border-bottom: 1px solid #cad0e5;line-height: 35px\9;height: 35px;}
+.new_input1{background:none ; border: none;border-bottom: 1px solid #cad0e5;line-height: 35px\9;height: 35px;}
+.dropdown_list , .dropdown_box{max-height:200px;overflow-y:scroll;position: absolute;background: #F8f8f8;z-index: 110;top:40px;left: 0;display: none;min-width: 70px;text-align: left;}
+.dropdown_list a , .dropdown_box a{display: block;line-height: 30px;padding:0 10px; color: black;font-size: 12px;text-decoration: none;}
+.dropdown_list a:hover , .dropdown_box a:hover{background: #1E90FF;color: #fff;}
+
+.dropdown_box .arrows_up{top:-7px;}
+.s_hint{color: #fd0001;background: #ffdbdb;padding:5px 20px;margin-left:30px;}
+
+.addition , .subtraction{width:10px;height: 10px;background: url("image/add_minus.png") no-repeat;cursor: pointer;}
+.addition:hover{background-position: 0 -20px;}
+.subtraction {background-position: 0 -10px;margin-top:3px;}
+.subtraction:hover{background-position: 0 -30px;}
+
+/* 无限级分类 弹层 */
+#levelPopup {background-color: #FDE5BF;width: 200px;position: absolute;left:400px;top:100px;z-index: 999999;}
+
+.pactPopup .s_dl_box{overflow-y:auto;max-height: 300px;padding:0px 10px 10px 10px;min-width: 130px;}
+.pactPopup .arrows_up {top:-7px;}
+.pactPopup dt{height: 30px;}
+.pactPopup dt{line-height: 30px;padding-left:20px;color: #000;cursor: pointer;}
+.pactPopup dt{background: url("image/set_num_list.png")no-repeat 10px -30px; }
+.pactPopup dt.open{background-position: 10px  -60px;}
+.pactPopup dt:hover{background-color: #FDC591;}
+.pactPopup dd{display: none;}
+.pactPopup dd table{width: 100%;}
+.pactPopup dd table tr{height: 30px;cursor: pointer;}
+.pactPopup dd table tr:hover{background-color: #FDC591;}
+.pactPopup dd table tr td{padding-left: 25px;}
+
+.contract-window-table{margin-top: 10px;width: 100%;height: 308px;}
+.contract-window-table table{width: 100%;border-collapse: collapse !important;border: 1px solid #F2F2F2;}
+.contract-window-table table thead tr{background-color: #E6E6E6;}
+.tr_back{background-color: #F2F2F2;}
+.contract-window-table td{text-align: center;}
+.contract-window-table tr{height: 35px;}
+.payimage{width: 25px;height: 25px;background: url("../../images/pay_1.png")no-repeat 0px 0px;background-size:25px 25px;cursor: pointer;}
+
+.remind-image{width: 25px;height: 25px;background: url("../../images/timer_1.png")no-repeat 0px 0px;background-size:25px 25px;display: inline-block;margin-bottom: -7px;}
+
+.arrows_low{background: url("image/iconfont-sanjiao-copy.png")no-repeat 0px 0px;background-size:10px 10px;  }
+.arrows_up{background: url("image/arrows_up.gif") no-repeat;position: absolute;display: inline-block;width: 15px;height: 7px;*zoom: 1;left: 50%;top:-8px;margin-left: -9px;}
+
+.balanceTotal table{width: 100%;border-collapse: collapse;text-align: center;}
+.balanceTotal table tr{height: 35px;}
+.balanceTotal table td{min-width:137px;text-align: center;border: 1px solid #ABABAB;height: 20px;text-align: center;}
+ 
+ .balTable{width: 100%;border-collapse: collapse;text-align: center;margin: 0 auto;}
+ .balTable tr{height: 35px;}
+
+.trheight tr{height: 35px;}
+.tablehvoer{width:80px;height:20px;display:none;position: absolute;color: #EB8F00;font-size: 12px;
+-moz-border-radius: 6px;-webkit-border-radius: 6px;background: rgba(190, 190, 190, 0.75);
+text-align: center;padding-top: 5px;}
+
+.printTd{font-size:12px;font-weight:400;font-style:normal;background-color:#FFFFFF;color:#333333;
+border-color:#AAAAAA;text-align:center;border: 1px solid ;}
+.printTable{height: 100%;width: 100%;border-collapse: collapse;}
+.printTable tr{height: 35px;}
+.printTable td{width: auto;text-align: center;border: 1px solid #ABABAB;height: 20px;}
+.printTable thead th{text-align: center;border: 1px solid #ABABAB;}
+
+/* 各种按钮图标 */
+.button_search,.button_add,.button_export,.button_addroot,
+.button_balance,.button_bill,.button_print,.button_choosetime,
+.button_expand,.button_consponll,.button_choose,.button_sort, .button_accSubj{width:20px; height:20px;background-size:20px 20px;}
+.button_search{background: url("image/search.png") no-repeat;}
+.button_search:hover{background: url("image/search1.png") no-repeat;}
+.button_accSubj{background: url("image/kuaijikm.png") no-repeat;background-size: 21px 21px;}
+.button_accSubj:hover{background: url("image/kuaijikm_hover.png") no-repeat;background-size: 21px 21px;}
+.button_add{background: url("image/tianjia.png") no-repeat;}
+.button_add:hover{background: url("image/tianjia1.png") no-repeat;}
+.button_export{background: url("image/daochu.png") no-repeat;}
+.button_export:hover{background: url("image/daochu1.png") no-repeat;}
+.button_balance{background: url("image/jiesuan.png") no-repeat;}
+.button_balance:hover{background: url("image/jiesuan1.png") no-repeat;}
+.button_bill{background: url("image/no_yes.png") no-repeat;}
+.button_bill:hover{background: url("image/no_yes.png") no-repeat;}
+.button_print{background: url("image/dayin.png") no-repeat;}
+.button_print:hover{background: url("image/dayin1.png") no-repeat;}
+.button_expand{background: url("image/open.png") no-repeat;}
+.button_expand:hover{background: url("image/open1.png") no-repeat;}
+.button_consponll{background: url("image/retract.png") no-repeat;}
+.button_consponll:hover{background: url("image/retract1.png") no-repeat;}
+.button_choose{background: url("image/chongxuan.png") no-repeat;}
+.button_choose:hover{background: url("image/chongxuan1.png") no-repeat;}
+.button_choosetime{background: url("image/shijian.png") no-repeat;}
+.button_choosetime:hover{background: url("image/shijian1.png") no-repeat;}
+.button_addroot{background: url("image/genjiedian.png") no-repeat;}
+.button_addroot:hover{background: url("image/genjiedian1.png") no-repeat;}
+.button_sort{background: url("image/iconfont-paixu.png") no-repeat -7px -3px;background-size: 30px 30px;}
+.button_sort:hover{background: url("image/iconfont-paixu1.png") no-repeat -7px -3px;background-size: 30px 30px;}
+.button_control{background: url("image/iconfont-cost-info.png") no-repeat;width:20px; height:20px;background-size:20px 20px;}
+.button_kuaiji{background: url("image/kuaijikm.png") no-repeat;width:20px; height:20px;background-size:22px 22px;}
+.button_kuaiji:hover{background: url("image/kuaijikm_hover.png") no-repeat;width:20px; height:20px;background-size:22px 22px;}
+.button_control:hover{background: url("image/iconfont-cost-info1.png") no-repeat;background-size:20px 20px;}
+.button_return{background: url("../../images/return2.png") no-repeat;width:20px; height:20px;background-size:20px 20px;}
+.button_return:hover{background: url("../../images/return1.png") no-repeat;background-size:20px 20px;}
+
+#loadBody input[type=text]:focus, input[type=password]:focus{
+	border:1px solid rgba(204,204,204,0);
+	outline:none;
+	border-bottom:1px solid rgba(204,204,204,1);
+	background-color: rgba(204,204,204,0);
+	box-shadow:0 0 0px rgba(204,204,204,0);
+}
+#loadBody input[type=text].jqx-input:focus, input[type=password].jqx-input:focus{
+	border:1px solid rgba(204,204,204,0);
+	outline:none;
+	border-bottom:1px solid rgba(204,204,204,1);
+	background-color: rgba(204,204,204,0);
+}
+#iframeloadBody input[type=text]:focus, input[type=password]:focus{
+	border:1px solid rgba(204,204,204,0);
+	outline:none;
+	border-bottom:1px solid rgba(204,204,204,1);
+	background-color: rgba(204,204,204,0);
+	box-shadow:0 0 0px rgba(204,204,204,0);
+}
+.financeSetting tr{height: 30px;}
+
+
+
+.account-subject-search {
+    overflow: inherit;
+}
+.account-subject-search .account-search-content {
+    overflow: inherit;
+}
+.account-subject-search ul.searchUl {
+    margin-top: 30px;
+}
+.account-subject-search ul.searchUl li.searchLi {
+	width: 50%;
+    float: left;
+    height: 40px;
+    margin-bottom: 15px;
+}
+.account-subject-search ul.searchUl li.searchLi label {
+	width: 80px;
+    font-weight: normal;
+    float: left;
+    text-align: right;
+    line-height: 40px;
+}
+
+.account-subject-search ul.searchUl li.searchLi input[type=text] {
+	height: 33px;
+	width: 200px;
+    padding: 0px 8px;
+}
+
+.account-subject-search ul.searchUl li.searchLi input[type=text].moneyValidate {
+	width: 93px;
+}
+
+.accSearchBtnDiv {
+	text-align: center;
+}
+
+.account-subject-search .accSearchBtnDiv input[type=button] {
+	width: 65px;
+    height: 25px;
+    border-radius: 7px;
+    background: rgba(255,102,0,1);
+    border-color: rgba(255,102,0,1);
+    color: rgba(255,255,255,1);
+    margin: 30px 5px;
+}
+.account-subject-search .selectpicker {
+	background: none;
+    border: none;
+    border-bottom: 1px solid #cad0e5;
+    height: 35px;
+}
+
+.account-subject-search .jqx-fill-state-normal-ui-lightness {
+    border-color: #cad0e5;
+    border-bottom-color: 1px solid #cad0e5;
+    border-left-color: rgba(250,250,250,0);
+    border-right-color: rgba(250,250,250,0);
+    border-top-color: rgba(250,250,250,0);
+}
+
+.account-subject-search .jqx-icon-arrow-down-ui-lightness {
+	  background-position: -69px -16px;
+    background-image: url(../../../js/jqwidgets/styles/images/lightness/ui-icons_222222_256x240.png);
+}
+
+.account-subject-search ul.selectpicker {
+	  height: 180px;
+}
+
+.account-subject-search .bootstrap-select.btn-group .btn .filter-option {
+	  font-size: 12px;
+}
+
+
+
+
+
+
+
+
+
+/*tab键的设置样式*/
+.tab-body-wrap {
+	  margin: 20px 40px 0px 40px;
+}
+
+/*模板的公共样式*/
+.budget-public {
+		clear: both;
+	  overflow-y: auto;
+	  overflow-x: hidden;
+	  margin-left: auto;
+	  margin-right: auto;
+	  margin-top: 30px;
+}
+/*模板的margin*/
+.department-margin-left {
+    margin-left: 10px;
+}
+/*确定按钮*/
+.product-cycle-btnDiv {
+		margin-bottom: 10px;
+		margin-top: 10px;
+		margin-left: 10px;
+}
+
+

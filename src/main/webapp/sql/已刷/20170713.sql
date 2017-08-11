@@ -1,0 +1,1 @@
+ALTER TABLE tab_payment_info ADD COLUMN department VARCHAR(50) DEFAULT NULL COMMENT '部门';

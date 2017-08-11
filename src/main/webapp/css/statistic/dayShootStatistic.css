@@ -1,0 +1,75 @@
+html, body {
+	margin: 0px;
+	padding: 0px; 
+	width: 100%;
+	height: 100%;
+}
+html {
+	font-size: 125%;
+  	font-family: '微软雅黑', helvetica, sans-serif;
+}
+.change-btn-list {
+	display: flex;
+	width: 82%;
+	margin: 0px auto;
+	height: 4rem;
+}
+
+label {
+	font-size: 0.8rem;
+}
+.echart-container {
+	height: calc(100% - 4rem);
+}
+.left-btn-group {
+	flex: 1;
+	position: relative;
+	height: 4rem;
+}
+.change-btn-list button {
+	height: 2.1rem;
+	border: 0px;
+	outline: none;
+}
+.left-btn-group button, .right-btn-group button {
+	position:absolute;
+	top: 50%;
+	margin-top: -1rem;
+	border-radius: 0.2rem;	
+	font-size: 0.8rem;
+}
+.right-btn-group {
+	flex: 1;
+	position: relative;
+	height: 4rem;
+}
+button.blue {
+	background: #0288d1;
+	color: #fff;
+	z-index: 1;
+}
+button.gray {
+	background: #d9d9d9;
+	color: #333;
+	z-index: 0;
+}
+.left-btn-group button:nth-child(1) {
+	width: 48%;
+	text-align: center;
+	left: 0px;
+}
+.left-btn-group button:nth-child(2) {
+	width: 44%;
+	text-align: center;
+	left: 44%;
+}
+.right-btn-group button:nth-child(1) {
+	width: 48%;
+	text-align: center;
+	right: 39%;
+}
+.right-btn-group button:nth-child(2) {
+	width: 44%;
+	text-align: center;
+	right: 0px;
+}

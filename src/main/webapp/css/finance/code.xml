@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<country>
+    <codes>
+        <currenyname name="人民币">
+            <currencycode>CNY</currencycode>
+        </currenyname>
+        <currenyname name="台币">
+            <currencycode>TWD</currencycode>
+        </currenyname>
+        <currenyname name="美元">
+            <currencycode>USD</currencycode>
+        </currenyname>
+        <currenyname name="港币">
+            <currencycode>HKD</currencycode>
+        </currenyname>
+        <currenyname name="日元">
+            <currencycode>JPY</currencycode>
+        </currenyname>
+        <currenyname name="欧元">
+            <currencycode>EUR</currencycode>
+        </currenyname>
+        <currenyname name="英镑">
+            <currencycode>GBP</currencycode>
+        </currenyname>
+        <currenyname name="德国马克">
+            <currencycode>DEM</currencycode>
+        </currenyname>
+        <currenyname name="瑞士法郎">
+            <currencycode>CHF</currencycode>
+        </currenyname>
+        <currenyname name="法国法郎">
+            <currencycode>FRF</currencycode>
+        </currenyname>
+        <currenyname name="加拿大元">
+            <currencycode>CAD</currencycode>
+        </currenyname>
+        <currenyname name="澳大利亚元">
+            <currencycode>AUD</currencycode>
+        </currenyname>
+        <currenyname name="马来西亚林吉特">
+            <currencycode>MYR</currencycode>
+        </currenyname>
+        <currenyname name="菲律宾比索">
+            <currencycode>PHP</currencycode>
+        </currenyname>
+        <currenyname name="韩国元">
+            <currencycode>KRW</currencycode>
+        </currenyname>
+        <currenyname name="泰铢">
+            <currencycode>THB</currencycode>
+        </currenyname>
+    </codes>
+</country>

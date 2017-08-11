@@ -1,0 +1,289 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face{
+	/* font-family:"文鼎简体颜体";
+	src:url(font/yanti.ttf); */
+	}
+*{
+	margin:0;
+	padding:0;
+	font-family:"微软雅黑";
+	list-style:none;
+	}
+a{
+	text-decoration:none;
+	}	
+em{
+	color:#eb6100;
+	}
+ul,li{
+	list-style:none;
+	}	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+.wrap{
+	width:80%;
+	margin-left:auto;
+	margin-right:auto;
+	}
+header{
+	width:100%;
+	overflow:hidden;
+	margin-top:50px;
+	}
+.juzu_name,.juzu_index,.biaoyu{
+	float:left;
+	font-family:"文鼎简体颜体","微软雅黑";
+	}	
+.biaoyu {
+	text-align: center;
+}
+.juzu_name{
+	margin-top:6px;
+	font-size:24px;
+	
+	}	
+.juzu_index{
+	font-size:18px;
+	margin-top:-3px;
+	padding-top: 17px;
+    padding-right: 20px;
+	}	
+	
+.biaoyu{
+	width:340px;
+	height:38px;
+	margin-left:24%;
+	}	
+.time_show{
+	clear:both;
+	font-size:14px;
+	margin-left:10px;
+	}	
+	
+	
+.title{
+	font-size:20px;
+	margin-bottom:20px;
+	margin-top:10px;
+	border-bottom:2px solid #045485;
+	line-height:36px;
+	}
+/*  总进度  */
+.zong_wrap{
+	float:left;
+	width:67%;
+	
+	margin-top:20px;
+	/*border:1px solid rgba(0,132,196,0.07);*/
+	overflow:auto;
+	padding:10px;
+	}
+.paishejindu{
+	
+	}
+.zong_bingtu{
+	width:48%;
+	overflow:hidden;
+	float:left;
+	margin-top:20px;
+	}
+.bingtu{
+	width:120px;
+	margin-left:28%;
+	}
+.bingtu img{
+	width:100%;
+	}		
+.tuli{
+	font-size:16px;
+	height:28px;
+	line-height:28px;
+	margin-left:20%;
+	margin-top:4px;
+	}	
+	
+/* 角色进度 */	
+.juese_wrap{
+	float:right;
+	width:44%;
+	margin-top:12px;	
+	overflow:auto;
+	padding:10px;
+	}
+.juese_wrap table{
+	font-size:14px;
+	font-weight:normal;
+	width:100%;
+	text-align:center;
+	border:1px solid #ebebeb;
+	}
+.juese_wrap table th{
+	font-weight:normal;
+	width:30%;
+	}	
+.table_head{
+	background-color:#f5f5f5;
+	}
+.td_border{
+	border:1px solid #ebebeb;
+	font-size:14px;
+	line-height:28px;
+	}	
+.jindu_kuang{
+	overflow:hidden;
+	position:relative;
+	height:22px;
+	width:80%;
+	margin-left:9%;
+	background-color:#a3a3a3;
+	border-radius:8px;
+	border-top:1px solid #ebebeb;
+	}
+.jindu_tiao{
+	position:absolute;
+	height:22px;
+	width:0%;
+	border-radius:8px;
+	background-color:#0084c4;
+	}	
+.jindu_date{
+	font-size:14px;
+	color:#fff;
+	
+	position:absolute;
+	top:0;
+	left:38%;
+	line-height:22px;
+	
+	}			
+
+/* 通联表 */	
+.tonglian_wrap{
+	
+	float:right;
+	width:26%;
+
+	margin-top:20px;
+	
+	overflow:hidden;
+	padding:10px;
+	overflow:auto;
+	}
+.tonglian_wrap table{
+	
+	width:100%;
+	text-align:center;
+	border:1px solid #ebebeb;
+	}	
+	
+/* 通告 */	
+.tonggao_wrap{
+	float:left;
+	width:100%;
+	margin-top:50px;
+	margin-left:1%;
+	overflow:hidden;
+	
+	overflow:auto;
+
+	}
+.zuori_info{
+	line-height:28px;
+	float:left;
+	margin-right:5%;
+	}
+.zuori_title{
+	font-size:16px;
+	float:left;
+	}	
+.zuori_date{
+	font-size:14px;
+	float:left;
+	}	
+.zuixin_info{
+	float:left;
+	line-height:28px;
+	}	
+.tonggao_wrap .zuixin{
+	width:94px;
+	float:left;
+	text-align:center;
+	}
+.zuixin a{
+	font-size:14px;
+	color:#3c8dbc;
+	cursor:pointer;
+	
+	}	
+.zuixin a:hover{
+	color:#eb6100;
+	}		
+/* 费用 */
+.feiyong_wrap{
+	float:left;
+	width:68%;
+	margin-top:30px;
+	overflow:hidden;
+	min-width:782px;
+	overflow:auto;
+	}
+.feiyong_wrap table th{font-weight:normal;}
+.feiyong_info_wrap{
+	width:400px;
+	float:left;
+	font-size:16px;
+	}
+.bingtu_2{
+	width:120px;
+	float:left;
+	}
+.bingtu_2 img{
+	width:100%;
+	}	
+.feiyong_info{
+	float:left;
+	line-height:32px;
+	margin-top:30px;
+	margin-left:10px;
+	}
+.feiyong_info td{text-align: right;}			
+.other_info{
+	width:370px;
+	float:right;
+	font-size:16px;
+	line-height:32px;
+	margin-top:12px;
+	}	
+/*.feiyong_more{
+	float:right;
+	width:60px;
+	font-size:14px;
+	margin-top:5px;
+	margin-right:10%;
+	}
+.feiyong_more a{
+	color:#3c8dbc;
+	cursor:pointer;
+	}	
+.feiyong_more a:hover{
+	color:#eb6100;
+	}		*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

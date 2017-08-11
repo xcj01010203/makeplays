@@ -1,0 +1,584 @@
+/*财务设置样式*/
+.my-container {
+    width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.jqx-window {
+	  display: none;
+}
+/*左边样式*/
+.setting-left {
+	  width: 184px;
+	  float: left;
+	  margin-top: 22px;
+	  background-color: #eee;
+	  padding-top: 25px;
+	  min-height: 500px;
+}
+.setting-left-header {
+    color: #595757;
+    line-height: 33px;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 auto;
+    clear: both;
+    border-bottom: 1px solid #ADACAC;
+    padding-bottom: 12px;
+    width: 110px;
+}
+/* .setting-li-current {
+    border-left: 3px solid #e96c1f;
+    padding-left: 41px !important;
+} */
+
+.setting-li-current {
+  width: 130px;
+  height: 42px;
+  background-color: #e96c1f;
+  position: relative;
+  border: 4px solid #e96c1f;
+  color: #fff;
+}
+
+.setting-li-current:after, .setting-li-current:before {
+  border: solid transparent;
+  content: ' ';
+  height: 0;
+  left: 100%;
+  position: absolute;
+  width: 0;
+}
+
+.setting-li-current:after {
+  border-width: 9px;
+  border-left-color: #e96c1f;
+  top: 15px;
+}
+
+.setting-li-current:before {
+  border-width: 14px;
+  border-left-color: #e96c1f;
+  top: 10px;
+}
+
+
+
+.setting-left ul {
+	  margin-top: 4px;
+}
+.setting-left ul li {
+	  line-height: 42px;
+    font-size: 16px;
+    padding-left: 44px;
+    cursor: pointer;
+}
+/* .setting-left ul li:hover {
+    color: #e96c1f;
+} */
+
+/*右边样式*/
+
+.setting-right {
+	  float: right;
+	  width: 810px;
+	  margin-top: 32px;
+	  min-height: 500px;
+}
+
+
+
+
+
+
+
+
+.finance-pass {
+	  display: none;
+}
+
+   /*币种设置*/
+.current-menu-name{
+    color: #e96c1f;
+    width: 100%;
+    padding-bottom: 19px;
+    margin-top: 4px;
+    display: block;
+    font-size: 16px;
+}
+.finance-show-con {
+	  width: 810px;
+	  height: auto;
+	  min-height: 300px;
+	  border: 1px solid rgba(213,213,213,0.3);
+	  box-shadow: 1px 1px 2px rgba(136,136,136,0.4);
+	  padding: 0px 10;
+}
+
+  /*添加按钮*/
+.add-currency-btn {
+	  margin: 0 8px;
+    margin-top: 7px;
+    width: 24px;
+    height: 24px;
+    float: left;
+    background: url(image/tianjia.png) no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer; 
+}
+.add-currency-btn:hover {
+	  margin: 0 8px;
+    margin-top: 7px;
+    width: 24px;
+    height: 24px;
+    float: left;
+	  background: url(image/tianjia1.png) no-repeat;
+	  background-size: 24px 24px;
+	  cursor: pointer;
+}
+
+  /*添加窗口*/
+.add-currency-con {
+    width: 400px;
+    height: 380px;
+}
+.add-currency-con ul {
+    width: 400px;
+    height: 300px;
+/*    text-align: center; */
+    margin: 25px auto 0px auto;
+
+}
+.add-currency-con ul li {
+    height: 56px;
+}
+.add-currency-con ul li p {
+    float: left;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    text-align: right;
+    font-size: 12px;
+    font-weight: bold;
+}
+input[type=text],input[type=password] {
+    margin-left: 5px;
+    width: 300px;
+    height: 30px;
+    
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(204,204,204,1);
+    padding: 0px;
+}
+input[type=text]:hover {
+    border:1px solid #409DFE;
+    outline:none;
+    border-bottom:1px solid #409DFE;
+    box-shadow:0 0 3px #409DFE;
+}
+input[type=text]:focus {
+    border:1px solid #409DFE;
+    outline:none;
+    border-bottom:1px solid #409DFE;
+    box-shadow:0 0 3px #409DFE;
+}
+
+select {
+	  width: 50px;
+	  height: 30px;
+	  margin-left: 5px;
+	  float: left;
+}
+.win-btn-list-div {
+    width:  100%;
+    height: 40px;
+    text-align: center;
+}
+.win-btn-list-div input[type=button] {
+    width: 60px;
+    height: 25px;
+    border-radius: 7px;
+    background: rgba(255,102,0,1);
+    color: #fff;
+    cursor: pointer;
+}
+.win-btn-list-div input[type=button]:hover {
+    background: rgba(230,93,1,1);
+}
+.currency-name-error-tips {
+	  clear: both;
+    height: 10px;
+    margin-left: 70px;
+    color: #f00;
+    display: none;
+}
+.currency-code-error-tips {
+    clear: both;
+    height: 10px;
+    margin-left: 70px;
+    color: #f00;
+    display: none;
+}
+.currency-rate-error-tips {
+    clear: both;
+    height: 10px;
+    margin-left: 70px;
+    color: #f00;
+    display: none;
+}
+/*错误提示样式*/
+input[type=text].error-currency-tips {
+    border: 1px solid #f00 !important;
+}
+
+/*下拉框*/
+.add-currency-con ul.dropdown_box {
+	  width: 120px;
+	  height: 220px;
+	  max-height: 220px;
+	  overflow-y: scroll;
+	  position: absolute;
+	  background: #F8f8f8;
+	  z-index: 110;
+	  top: 45px;
+	  left: 125px;
+	  display: none;
+	  min-width: 70px;
+	  text-align: left;
+	  overflow-x: hidden;
+}
+.add-currency-con ul li.drop-down-li {
+	  height: 30px;
+	  pointer: cursor;
+}
+/* .add-currency-con ul li.drop-down-li:hover {
+	  background: #00f;
+} */
+ul li.drop-down-li a {
+	  padding: 0px 5px;
+	  color: #000; 
+	  text-decoration: none;
+	  display: inline-block;
+	  width: 100%;
+	  height: 30px;
+	  line-height: 30px;  
+}
+
+ul li.drop-down-li a:hover {
+	  text-decoration: none;
+	  color: #fff;
+	  background: #2e75ea;
+}
+
+
+
+
+
+
+
+
+
+/*币种设置列表*/
+
+  /*操作列*/
+.modify-col {
+	  text-align: center;
+}
+.modify-col a {
+	  width: 100%;
+	  height: 25px;
+	  line-height: 25px;
+}
+.modify-col a:link, .modify-col a:visited {
+	  color: #eb8f00;
+	  text-decoration: none;
+}
+.modify-col a:hover {
+	  color: #eb8f00;
+	  text-decoration: none;
+}
+.standard-col {
+	  text-align: center;
+}
+.standard-col span {
+	  height: 25px;
+	  line-height: 25px;
+}
+.enable-col {
+	  text-align: center;
+}
+.enable-col span {
+	  height: 25px;
+	  line-height: 25px;
+}
+
+
+
+
+/*单据设置*/
+
+.finance-set-content {
+    display: none;
+    width: 810px;
+    height: 158px;
+    border: 1px solid rgba(213,213,213,0.3);
+    box-shadow: 1px 1px 2px rgba(136,136,136,0.4);
+    padding:15px 0px 0px 30px;
+}
+.finance-set-content ul {
+	  margin-left: 30px;
+	  width: 250px;
+	  height: 100px;
+}
+.finance-set-content ul li {
+	  height: 30px;
+}
+.finance-set-content ul li p {
+	  float: left;
+	  width: 160px;
+	  height: 30px;
+	  line-height: 30px;
+	  font-weight: bold;
+	  text-align: right;
+}
+ input[type=radio] {
+	  /* float: left;
+	  width: 90px;
+	  height: 30px;
+	  line-height: 30px; */
+	  margin: 8px 0px 0px 12px;
+}
+.finance-set-content .win-btn-list-div {
+	  text-align: left;
+	  padding-left: 120px;
+}
+
+
+
+
+/*财务密码*/
+.finance-pass {
+    width: 810px;
+    height: auto;
+    border: 1px solid rgba(213,213,213,0.3);
+    box-shadow: 1px 1px 2px rgba(136,136,136,0.4);
+    padding:15px 0px 0px 30px;
+    display: none;
+    margin: 10px 0;
+    box-sizing: border-box;
+}
+.finance-pass ul {
+	  width: auto;
+	  margin-left: 30px;
+	  height: auto;
+	  color: #666;
+	  font-size: 14px;
+}
+.finance-pass ul li {
+	  height: 40px;  
+}
+.finance-pass ul li p {
+	  float: left;
+	  width: 260px;
+	  height: 40px;
+	  line-height: 40px;
+	  text-align: right;
+}
+.finance-pass ul li p span {
+	  color: #f00;
+}
+
+
+
+/*财务密码设置*/
+.set-new-pass-info {
+	 
+}
+.set-new-pass-info ul {
+	  /* display: none; */
+	  margin-left: 30px;
+	  height: 130px;
+}
+.set-new-pass-info input[type=password] {
+	  width: 180px;
+	  
+}
+
+.set-old-pass-info input[type=password] {
+	  width: 180px;
+}
+.set-old-pass-info {
+	  display: none;
+}
+
+.set-old-pass-info-chec {
+	  /* display: none; */
+}
+.finance-pass input[type=password] {
+	  border-top: none;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+    border-bottom: 1px solid rgba(204,204,204,1);
+    padding: 0px;
+}
+.finance-pass input[type=password]:hover {
+	  border-top: none;
+	  border-left: none;
+	  border-right: none;
+	  box-shadow: none;
+    border-bottom: 1px solid rgba(204,204,204,1);
+    padding: 0px;
+}
+.finance-pass h2 {
+	font-family: '微软雅黑';
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+
+/*其他设置*/
+.other-setting-div {
+    width: 810px;
+    height: 158px;
+    border: 1px solid rgba(213,213,213,0.3);
+    box-shadow: 1px 1px 2px rgba(136,136,136,0.4);
+    padding: 15px 0px 0px 30px;
+}
+.other-setting-div input[type=text] {
+   width: 250px;
+}
+.other-setting-div>div {
+	margin: 10px;
+	width: 400px;
+}
+
+/*缴税设置*/
+.tax-set-content {
+	display: none;
+    width: 810px;
+    height: 158px;
+    border: 1px solid rgba(213,213,213,0.3);
+    box-shadow: 1px 1px 2px rgba(136,136,136,0.4);
+    padding: 15px 0px 0px 30px;
+}
+.tax-set-content>div {
+	margin: 10px;
+    width: 400px;
+}
+.tax-set-content ul li {
+    line-height: 40px;
+}
+.tax-set-content ul li p{
+    width: 96px;
+    height: 30px;
+    line-height: 30px;
+    letter-spacing: 2px;
+    font-size: 14px;
+    display: inline-block;
+}
+.tax-set-content ul li input[type=text] {
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+.tax-set-content ul li input[type=text]:hover {
+	box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.tax-set-content ul li input[type=text]:focus {
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+
+/*财务科目下拉框*/
+.fin_subj {
+    display: none; 
+    position: fixed;
+}
+.filter-con {
+       height: 20px;
+       width: 220px;
+       overflow: hidden;
+       background-color: #fff;
+       padding: 3px 0px;
+       border: 1px solid #ccc;
+       border-radius: 2px;
+}
+input[type=text].filter-input {
+       width: 184px;
+       height: 18px;
+       border: 1px solid #ccc;
+       border-radius: 3px;
+       background-color: #fff;
+       border-bottom-right-radius: 0 !important;
+       border-top-right-radius: 0 !important; 
+}
+input[type=text].filter-input:hover{
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+input[type=text].filter-input:focus{
+	box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.filter-btn {
+       width: 22px;
+       height: 17px;
+       cursor: pointer;
+       border: 1px solid #ccc;
+       float: right;
+       margin-right: 5px; 
+}
+.filter-btn img {
+       width: 16px;
+       height: 16px;
+       margin-left: 3px;
+       
+}
+a.clear-finance {
+      /* float: right; */
+      display: none;
+      color: #eb6100;
+    text-decoration: none;
+    margin-left: 5px;
+} 
+a.clear-finance:hover {
+      text-decoration: underline;
+}
+
+
+
+
+/*错误提示*/
+.set-new-pass-info span.finance-new-pass-tips {
+    height: 15px;
+    margin-left: 162px;
+    color: #f00;
+    font-size: 11px;
+    visibility: hidden;
+}
+.set-new-pass-info span.finance-repeat-pass-tips {
+    height: 15px;
+    margin-left: 162px;
+    color: #f00;
+    font-size: 11px;
+    visibility: hidden;
+}
+.set-old-pass-info span.finance-old-pass-tips,
+.set-old-pass-info span.finance-modify-pass-tips,.set-old-pass-info span.modify-repeat-pass-tips {
+    height: 15px;
+    margin-left: 162px;
+    color: #f00;
+    font-size: 11px;
+    visibility: hidden;
+}
+.finance-pass .set-new-pass-info input[type=password].text-error-show {
+	  border: 1px solid #f00;
+}
+.label-disabled{
+	color:#a7a7a7;
+}

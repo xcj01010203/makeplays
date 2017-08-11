@@ -1,0 +1,1 @@
+ALTER TABLE tab_car_work DROP COLUMN workNo;

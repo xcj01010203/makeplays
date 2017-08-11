@@ -1,0 +1,354 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	outline: none;
+}
+.operate_box {
+	overflow: hidden;
+}
+.box_wrap {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 95%;
+	margin-top: 10px;
+}
+.icon_jia {
+	width: 24px;
+	height: 24px;
+	/*background-color:rgba(204,204,204,1);*/
+	background-image: url(../../images/jia.png);
+	background-size: 24px 24px;
+	float: left;
+	margin-right: 20px;
+	cursor: pointer;
+}
+
+.icon_jia:hover {
+	background-image: url(../../images/jia1.png);
+	background-size: 24px 24px;
+}
+
+div.table-div{
+	height: 90%;
+	overflow: auto;
+	margin-top:10px;
+	padding-bottom: 20px;
+	/* box-shadow: 0 0 1em #ccc;
+  	border-radius: 5px; */
+}
+
+/*清空链接*/
+.clearSelection {
+	display:none; 
+	float: right; 
+	line-height: 18px; 
+	margin-right: 0px; 
+	cursor:pointer; 
+	font-size:12px; 
+	font-family:'微软雅黑';
+}
+
+/*重写下拉样式*/
+table.crew-table div.crewtype-select{
+	  width: 8px;
+	  border: none;
+}
+table.crew-table div.dropdown-menu {
+	  width: auto;
+}
+
+table.crew-table div.dropdown-menu div.bootstrap-select-searchbox {
+	  width: 100%;
+}
+/*通告场景表*/
+
+table.crew-table, table.break-secent-table {
+	  width: 100%;
+	  border: 0px;
+}
+table.break-secent-table tr:nth-child(even) {
+    background-color: #F2F2F2;
+}
+table.crew-table td.select-all-td {
+	  padding-left: 18px;
+	  text-align: left;
+}
+
+table.crew-table, table.break-secent-table {
+    width: 100%;
+    border: 0px;
+}
+table.crew-table tr:not(:first-child) {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+
+table.crew-table tr.crew-table-th{
+	height: 40px;
+}
+table.crew-table tr.outofdate-tr{
+	color: #B3B3B3;
+}
+table.crew-table th, table.break-secent-table th {
+    border: none;
+    background: #e6e6e6;
+    text-align: center;
+    font-size: 14px;
+}
+table.crew-table th.th-crewtype, table.crew-table th.th-crewname, 
+table.crew-table th.th-date, 
+table.crew-table th.th-shootdate, 
+table.crew-table th.th-company, table.crew-table th.th-director,
+table.crew-table th.th-projecttype,
+table.crew-table th.th-shootprogress, 
+table.crew-table th.th-costprogress{
+	  text-align: left;
+	  padding-left: 6px;
+}
+table.crew-table td, table.break-secent-table td {
+	padding-left:6px;
+    text-align: left;
+}
+.color-view-tr {
+	background-color: #F2F2F2;
+}
+.th-crewtype{
+	width:8%;
+}
+.th-crewname{
+	width:*;
+}
+.th-date{
+	width:12%;
+}
+.th-shootdate{
+	width:12%;
+}
+.th-company{
+	width:10%;
+}
+.th-director{
+	width:10%;
+}
+.th-projecttype{
+	width:9%;
+}
+.th-shootprogress{
+	width:9%;
+}
+.th-costprogress{
+	width:13%;
+}
+.th-outofdate{
+	width:60px;
+}
+.select-picture-div {
+	background: url("../../images/select-picture.png") no-repeat;
+	cursor: pointer; 
+	display: inline-block;
+	height: 19px;
+	width: 28px !important;
+	margin-bottom: -4px;
+}
+/*覆盖原有样式*/
+div.bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]) {
+  width: 8px;
+}
+div.bootstrap-select.btn-group, .bootstrap-select.btn-group[class*="span"] {
+	  margin-bottom: 0px;
+}
+.bootstrap-select.btn-group .btn span.caret {
+	  right: 9px;
+}
+.btn-group > button.btn {
+	  height: 18px;
+}
+.select-main-div{
+	display: inline-block;
+}
+.dropdown_box {
+  display: none;
+  width: 200px;
+  height: 90px;
+  max-height: 220px;
+  border: 1px solid #ccc;
+  position: absolute;
+  background: #F8f8f8;
+  z-index: 110;
+  min-width: 70px;
+  text-align: left;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 9px;
+  margin: 2px 0;
+}
+.box_date{
+	width:253px;
+}
+.dropdown_box li.coll-first-li {
+  height: 60%;
+  font-family: 微软雅黑;
+  font-size: 12px;
+}
+.dropdown_box li.coll-last-li {
+  height: 20%;
+}
+table.crew-table div.select-btn-list {
+  width: 92%;
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+}
+table.crew-table input.search-text{
+	width:180px;
+	height:30px;
+}
+a.link-a{
+	cursor: pointer;
+	color: #FF6900;
+	text-decoration: none;
+}
+a.link-a:HOVER{
+	font-weight: bold;
+}
+div.btn-div{
+	display: inline-block;
+	cursor:pointer;
+	height: 18px;
+  	line-height: 18px;
+	width: 26px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    background-image: -moz-linear-gradient(top, #fff, #e6e6e6);
+    background: -o-linear-gradient(top, #fff 0%,#e6e6e6 100%);
+    /* background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1,#e6e6e6)); */
+}
+div.btn-div:hover{
+    background-color: #ebebeb;
+    border: 1px solid #adadad;
+    background-image:none;
+}
+div.btn-click-div{
+	display: inline-block;
+	cursor:pointer;
+	height: 18px;
+	line-height: 18px;
+	width: 26px;
+    background-color: #f5f5f5;
+    border: 1px solid #adadad;
+    background-image: -moz-linear-gradient(top, #ccc, #f7f7f7);
+    background: -o-linear-gradient(top, #ccc 0%,#f7f7f7 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.1, #ccc), color-stop(1,#f7f7f7));
+}
+.caret{
+	margin-left: 3px;
+	margin-top: -2px;
+}
+.delfloatspan{
+	width: 30px;
+  	height: 30px;
+  	background: url(../../images/delete_ioc.png) no-repeat center center;
+  	background-size: 16px 16px;
+  	float: right;
+  	margin-top: 5px;
+  	display: none;
+}
+.delfloatspan:HOVER {
+	background: url(../../images/delete1_ioc.png) no-repeat center center;
+  	background-size: 16px 16px;
+  	cursor: pointer;
+}
+.icon_sort{
+	background: url(../finance/image/iconfont-paixu.png) no-repeat;
+	cursor: pointer;
+	width: 24px;
+	height: 24px;
+	background-size: 24px 24px;
+	float: left;
+}
+.icon_sort:HOVER{
+	background: url(../finance/image/iconfont-paixu1.png) no-repeat;
+	cursor: pointer;
+	width: 24px;
+	height: 24px;
+	background-size: 24px 24px;
+}
+.panel-body{
+	padding: 0px;
+}
+.surebutton {
+	float: right;
+	margin: 5px 10px;
+}
+/* 修改easyUI表格样式 */
+.datagrid-header td{
+	background: #E6E6E6;
+	border-right: 1px solid #e6e6e6;
+    border-left: 1px solid #e6e6e6;
+}
+.datagrid-body td{
+	border-right: 1px solid rgba(0,0,0,0);
+	border-bottom: 1px solid rgba(0,0,0,0);
+}
+.datagrid-row-alt{
+	background: #F2F2F2;
+}
+.datagrid-row-selected {
+    background: #FBEC88;
+}
+.datagrid-row-over{
+	background: #d0e5f5;
+}
+.datagrid-header{
+	background: #E6E6E6;
+}
+.sel{
+	background-color: #FFF;
+	font-size: 13px;
+}
+
+
+
+
+
+/*滑动窗口*/
+/*右边窗口*/
+.right-popup-win {
+    display: none;
+    position: absolute;
+    right: -1000px;
+    top: 0px;
+    width: 80%;
+    height: calc(100% - 2px);
+    background: #f2f2f0;
+    z-index: 1000;
+    border: 1px solid #f2f2f0;
+    box-shadow: 0 0 1em #cec9c9;
+    overflow: hidden;
+}
+.win-btn-list {
+	  position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 40px;
+    width: 100%;
+    background-color: #e7effa;
+    z-index: 1000;
+    text-align: center;
+    line-height: 40px;
+}
+.win-btn-list input[type=button] {
+    letter-spacing: 3px;
+    font-size: 14px;
+    margin-top: 7px;
+}
+.crew-content {
+	  overflow-y:auto;
+	  margin-top: 40px;
+	  height: calc(100% - 40px);
+}

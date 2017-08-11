@@ -1,0 +1,1180 @@
+@media screen and (max-width: 1680px) {
+  /*echar表格的大小*/
+div.echar-play-count {
+      height: 450px; 
+      overflow-y: auto;
+    }
+}
+@media screen and (max-width: 1600px) {
+  /*echar表格的大小*/
+    div.echar-play-count {
+       height: 380px;
+       overflow-y: auto;
+    }
+}
+@media screen and (min-width:1400px) and (max-width: 1599px){
+   .viewrole-name-column a.viewrole-name {
+     font-size: smaller;
+     /* width: 170px; */
+   }
+   .viewrole-name-column span.operate-btn-list a {
+    width: 17px;
+    height: 17px;
+    background-size: 17px 17px;
+    margin: 5px 4px;
+   }
+    .viewrole-name-column span.operate-attention-a a {
+    width: 17px;
+    height: 17px;
+    background-size: 17px 17px;
+    margin: 5px 4px;
+   }
+   /*echar表格的大小*/
+   div.echar-play-count {
+       height: 450px;
+       overflow-y: auto;
+    }
+}
+@media screen and (min-width: 1366px) and (max-width: 1399px) {
+   div, ul, li, p, span, label {
+      font-size: xx-small;
+   }
+   
+   .viewrole-name-column a.viewrole-name {
+      font-size: smaller;
+      /* width: 160px; */
+   }
+   .viewrole-name-column span.operate-btn-list a {/*列按钮*/
+      width: 16px;
+      height: 16px;
+      background-size: 16px 16px;
+      margin: 6px 8px 0px 0px;
+   }
+    .viewrole-name-column span.operate-attention-a a {/*列按钮*/
+      width: 16px;
+      height: 16px;
+      background-size: 16px 16px;
+      margin: 6px 8px 0px 0px;
+   }
+   
+   div.toolbar input[type=button], div.toolbar input[type=button]:hover {/*工具栏图标按钮*/
+      width: 20px;
+      height: 20px;
+   }
+   /*设置角色类型*/
+   .toolbar div.set-roletype-div, .toolbar div.set-roletype-div:hover {
+      background-size: 20px 20px;
+   }
+   div.play-count-general {//场、页单选按钮
+      line-height: 20px;
+   }
+  
+}
+
+@CHARSET "UTF-8";
+*{margin:0; padding:0; list-style:none; outline:none;}
+.jqx-window {
+  display: none;
+}
+.my-container {
+  width: 100%;
+  height: 100%;
+}
+.toolbar {
+	  height: 30px;
+	  background: #fff;
+}
+.view-role-div {
+  height: calc(100% - 92px);
+  width: 100%;
+  overflow:auto;
+  border-bottom: 1px solid #c5c5c5;
+}
+.view-role-list-table{
+	/* width:100%; 
+	height: 100%; */
+	width: 100%;
+/* 	overflow: auto; */
+	background-color: white;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.title-table{
+	width:100%; 
+	overflow: hidden;
+	background-color: transparent;
+}
+
+.title-table tr{
+	line-height: 30px;
+	background-color: #DDDDDD;
+}
+
+.title-table input[type='checkbox']{
+	height: 16px;
+	width: 16px;
+}
+
+.title-table td{
+	/* border: 1px solid #DDDDDD; */
+	text-align: center;
+	font-family: 微软雅黑;
+	font-size: 13px;
+}
+
+.view-role-list-table tr{
+	line-height: 30px;
+}
+
+.view-role-list-table tr:HOVER{
+	background-color: #e3e3e4;
+}
+
+.view-role-list-table input[type='checkbox']{
+	height: 16px;
+	width: 16px;
+}
+
+.view-role-list-table td{
+	border: 1px solid #DDDDDD;
+	text-align: center;
+	font-family: 微软雅黑;
+	font-size: 12px;
+}
+tr td div.view-td-div {
+	width: 0px;
+	background-size: 100%;
+	height: 30px;
+	box-sizing: border-box;
+	border: 0px;
+}
+tr td div.left-half {
+	background-color: #D0E5F5;
+}
+tr td div.equal-half {
+	background: #fee9fa;
+}
+tr td div.over-half {
+	background: #ffbaba;
+}
+.view-role-list-table tr td.position-td {
+	position: relative;
+}
+.td-view-title {
+	 position: absolute;
+	 top: 0px;
+	 left: 0px;
+	 width: 100%;
+	 height: 30px;
+	 line-height: 30px;
+	 background: transparent;
+}
+
+.jqx-column {
+  line-height: 30px;
+}
+.align-center {
+  text-align: center;
+}
+.align-left {
+  text-align: left;
+  padding-left: 5px;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.viewrole-name-column .operate-btn-list {
+  display: none;
+}
+.viewrole-name-column .operate-btn-list a {
+  width: 14px;
+  height: 14px;
+  background-size: 14px 14px;
+  margin: 8px 8px 6px 0px;
+}
+
+.viewrole-name-column .operate-attention-a a {
+  width: 14px;
+  height: 14px;
+  background-size: 14px 14px;
+  margin: 8px 8px 6px 0px;
+}
+.delete-view-list {
+  background: url("../images/roleform/delete_ioc.png") no-repeat;
+}
+.delete-view-list:hover {
+  background: url("../images/roleform/delete1_ioc.png") no-repeat;
+}
+.role-view-list {
+    background: url("../images/roleform/js_cjb.png") no-repeat;
+}
+.role-view-list:hover {
+    background: url("../images/roleform/js_cjb1.png") no-repeat;
+}
+.role-view-stat {
+    background: url("../images/roleform/xitong.png") no-repeat;
+}
+.role-view-stat:hover {
+    background: url("../images/roleform/xitong1.png") no-repeat;
+}
+.leave-record {
+    background: url("../images/roleform/shezhi.png") no-repeat;
+}
+.leave-record:hover {
+    background: url("../images/roleform/shezhi1.png") no-repeat;
+}
+.attention-role{
+	 background: url("../images/roleform/attention-role.png") no-repeat;
+}
+.empty-attention-role{
+	 background: url("../images/roleform/empty-attention.png") no-repeat;
+}
+.viewrole-name-column .operate-btn-list a.viewRole-evaluation {
+  margin: 0px;
+  /* padding-bottom: 25px; */
+}
+a.viewRole-evaluation:link, a.viewRole-evaluation:visited {
+  color: #FF6900;
+}
+.viewrole-name-column .viewrole-name {
+    padding-left: 8px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: calc(100% - 55px);
+    text-align: left;
+}
+/*解决超链接按下问题*/
+.viewrole-name-column .viewrole-name:link,.viewrole-name-column .viewrole-name:visited{
+  color: #FF6900;
+}
+.toolbar input[type=button], .toolbar input[type=button]:hover {
+    margin: 0 8px;
+    margin-top: 4px;
+    width: 24px;
+    height: 24px;
+    float:left;
+    background-size: 100%;
+}
+.toolbar .advance-search-btn {
+    margin-left: 30px;
+    background: url("../images/roleform/search.png") no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer;
+}
+.toolbar .advance-search-btn:hover {
+  background: url("../images/roleform/search1.png") no-repeat;
+  background-size: 24px 24px;
+}
+.toolbar .create-role-btn {
+    background: url("../images/add.png") no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer;
+}
+.toolbar .create-role-btn:hover {
+    background: url("../images/add_hover.png") no-repeat;
+    background-size: 24px 24px;
+}
+.toolbar .make-role-toone-btn {
+    background: url("../images/roleform/tongyi_jsm.png") no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer;
+}
+.toolbar .make-role-toone-btn:hover {
+  background: url("../images/roleform/tongyi_jsm1.png") no-repeat;
+  background-size: 24px 24px;
+}
+.toolbar .set-roletype-btn {
+    cursor: pointer;
+}
+.toolbar .set-roletype-div {
+  background: url("../images/roleform/js_lx.png") no-repeat;
+  background-size: 24px 24px;
+  border: 0px;
+  display: block; 
+  top: 27px;
+  width: 24px;
+  height: 24px;
+  float: left; 
+  margin-top: 4px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.toolbar .set-roletype-btn:hover {
+  background: url("../images/roleform/js_lx1.png") no-repeat;
+   background-size: 24px 24px;
+}
+
+.toolbar .set-attention-btn {
+    cursor: pointer;
+}
+.toolbar .set-attention-role-div {
+  background: url("../images/roleform/set-attention.png") no-repeat;
+  background-size: 24px 24px;
+  border: 0px;
+  display: block; 
+  top: 27px;
+  width: 24px;
+  height: 24px;
+  float: left; 
+  margin-top: 4px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.toolbar .set-attention-btn:hover {
+  background: url("../images/roleform/set-attention-hover.png") no-repeat;
+   background-size: 24px 24px;
+}
+
+.toolbar .export-btn {
+  background: url("../images/export.png") no-repeat;
+  background-size: 24px 24px;
+    cursor: pointer;
+}
+.toolbar .export-btn:hover {
+    background: url("../images/export_hover.png") no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer;
+}
+.toolbar .export-view-btn {
+    background: url(../images/export_view_role.png) no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer;
+}
+
+ .toolbar .export-view-btn:hover {
+    background: url("../images/export_view_role_hover.png") no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer;
+}  
+.my-window ul{
+  margin-top: 20px;
+}
+.my-window li{
+  width: 100%;
+  text-align: center;
+  height: 38px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+.my-window p {
+  width: 150px;
+  height: 32px;
+  line-height: 32px;
+  text-align: right;
+  float: left;
+  font-size: 14px;
+  font-family: '微软雅黑';
+}
+.jqx-window input[type=text] {
+    width:270px;
+    height: 30px;
+    float: left;
+    border-radius: 3px;
+    border: 1px solid rgba(204,204,204,0);
+    border-bottom: 1px solid rgba(204,204,204,1);
+    background-color: #rgba(204,204,204,0);
+    margin-left: 20px;
+    margin-right: 10px;
+}
+.jqx-window select {
+   float: left;
+   width: 270px;
+   height: 30px;
+   border: 1px solid rgba(204,204,204,0);
+   border-bottom: 1px solid rgba(204,204,204,1);
+   background-color:#rgba(204,204,204,0);
+   border-radius: 3px;
+   margin-left: 20px;
+}
+.jqx-window input[type=text].field {
+  width: 105px;
+}
+.jqx-window input[type=text].last-field {
+  width: 105px;
+  margin-left: 10px;
+}
+.jqx-window input[type=text].field-percent {
+  width: 105px;
+  margin-right: 0px;
+}
+.jqx-window input[type=text].last-field-percent {
+  width: 105px;
+  margin-left: 10px;
+  margin-right: 0px;
+}
+span.percent {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 10px;
+}
+span.to {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+}
+.jqx-window p span {
+  display: inline;
+  color: #f00;
+  float: none;
+}
+.my-window li.view-role-name, li.view-role-name {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.my-window li.view-role-tips, li.view-role-tips {
+  height: 12px;
+  line-height: 12px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  /* padding-left: 30px; */
+  text-align: left;
+}
+.my-window li.view-role-type, li.view-role-type {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.my-window  span.tips1,.my-window span.tips2,.my-window li.tips3 {
+  color: #f00;
+  /* height: 10px; */
+  display: none;
+  padding-left: 170px; 
+/*  margin-top: -4px; */
+}
+.jqx-window input[type=text]:hover,.jqx-window select:hover {
+  border:1px solid #409DFE;
+  outline:none;
+  border-bottom:1px solid #409DFE;
+  box-shadow:0 0 3px #409DFE;
+}
+.jqx-window input[type=text]:focus,.jqx-window select:focus {
+  box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.win-btn-list-div{
+  clear: both;
+  text-align: center;
+  line-height: 35px;
+}
+.win-btn-list-div input[type=button], .save-btn-list-div input[type=button] {
+    color: #fff;
+    background-color: #FF6900;
+    border-radius: 7px;
+    border: 1px solid transform;
+    width: 65px;
+    height: 25px;
+    line-height: 25px;
+    letter-spacing: 0px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.win-btn-list-div input[type=button]:hover, .save-btn-list-div input[type=button]:hover {
+    cursor: pointer;
+    background-color: #E66205;
+}
+.win-btn-list-div input[type=button]:focus, .save-btn-list-div input[type=button]:focus {
+    outline-offset: -2px;
+    background-color: #E66205;
+}
+/*创建角色*/
+.jqx-window input[type=text].roleNameEmpty,.jqx-window input[type=text].roleTypeEmpty {
+  border:1px solid #f00;
+}
+/*请假设置*/
+ h4.add-leave-explain {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  margin: 0px;
+  margin-left: 20px;
+  padding: 0px;
+  font-size: 12px;
+  font-weight: bold;
+}
+input[type=text].add-leave-start {
+  width: 160px;
+  float: left;
+  height: 30px;
+  padding-left:5px;
+  margin-right: 10px;
+  text-align: center;
+}
+ input[type=text].add-leave-end {
+  width:160px;
+  float: left;
+  height: 30px;
+  padding-left: 5px;
+  margin-left: 10px;
+  text-align: center;
+}
+div.btn-list-div-leave {
+  /* float: left; */
+  margin-top: 10px;
+}
+ div.jqx-leave-date {
+  /* margin-left: 15px; */
+  margin: 0 auto;
+}
+.jqx-leave-date .del-leave-div{
+  height: 25px;
+  line-height: 25px;
+  overflow: hidden;
+  text-align: center;
+}
+.jqx-leave-date div.del-leave-div a{
+  width: 50%; 
+  height: 99%;
+  text-decoration: none;
+}
+.jqx-leave-date div.del-leave-div a:link,.jqx-leave-date div.del-leave-div a:visited {
+  color:#eb6100;
+  text-decoration: none;
+}
+.jqx-leave-date div.del-leave-div a:hover {
+  text-decoration: underline;
+}
+/*请假记录超链接*/
+.jqx-grid-cell a.leave-record-link {
+  cursor: pointer;
+  text-decoration: none;
+}
+.jqx-grid-cell a.leave-record-link:link, .jqx-grid-cell a.leave-record-link:link {
+  color: navy;
+}
+/*戏量统计-样式*/
+.tab-wrap ul {
+	 margin: 0px;
+}
+.my-window .tab-body-wrap {
+  width: 960px;
+  height: 780px;
+  margin: 10px 20px;
+}
+/*单据一*/
+.my-window .tab-body-wrap ul {
+  margin: 0px;
+}
+.my-window .tab-body-wrap li {
+  width: 45%;
+  height: 30px;
+  line-height: 30px;
+  margin: 0px;
+}
+.my-window table.play-count-title {
+  width: 930px;
+  margin-top: 20px;
+  margin-left: 20px;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: rgba(235,235,235,1);
+  text-align: center;
+  vertical-align: middle;
+}
+ td.play-count-td {
+  width: 20%;
+  display: table-cell;
+  vertical-align: inherit;
+}
+.play-count-title div.play-td-div {
+  padding: 6px 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tab-body-wrap {
+  height: calc(100% - 40px);
+}
+.tab-body-wrap .play-count-list{
+  overflow-y: auto;
+  height: calc(100% - 234px); 
+  /*margin-right: 20px;*/
+  margin-left: 20px;  
+}
+/*js加载表格*/
+.table-play-count {
+  width: 100%;
+}
+.table-play-count tr{
+  height: 30px;
+}
+.table-play-count td {
+  width: 20%;
+  display: table-cell;
+  vertical-align: inherit;
+  border: 1px solid #ccc;
+  padding:5px 10px;
+}
+.table-play-count tr.table-left-tr {
+  height: 60px;
+}
+.table-play-count td.table-left-td {
+  border-left: none;
+}
+.table-play-count td.table-right-td {
+  border-right: none;
+}
+/*演员戏量通用信息*/
+.play-count-general {
+  display: none;
+  clear:both;
+  line-height: 30px;
+  margin-top: 10px;
+  margin-left: 20px;
+  font-size: 13px;
+}
+/*单据2*/
+.tab-body-wrap .danju2, .tab-body-wrap .danju3 {
+  display: none;
+}
+.play-count-tips {
+  font-size: 18px;
+  line-height: 33px;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+.play-count-radio {
+  display: inline-block;
+  float: right;
+  font-size: 13px;
+  margin-right: 20px;
+}
+.play-count-radio input[type=radio] {
+  cursor: pointer;
+}
+.echar-show-data {
+  /* width: 930px; */
+  /* height: 550px; */
+  height: calc(100% - 50px);
+  overflow-x: auto;
+  overflow-y: auto;
+  margin: 0 auto;
+}
+.echar-play-count {
+  /* width: 930px; */
+  height: 650px;
+  margin-top: 0px;
+/*  margin-left: 20px; */
+  margin-right: 20px;
+  overflow-x: auto;
+}
+.echar-play-page {
+  display: none;
+}
+/*演员评价*/
+.series-viewno {
+  padding-right: 8px;
+  text-align: right;
+}
+.actor-name-padd {
+  padding-left: 8px;
+}
+.actor-evaluate {
+  width: 760px;
+  height: 460px;
+  overflow: hidden;
+}
+.actor-evaluate ul {
+  list-style: none;
+  padding-left: 0px;
+  margin: 0px;
+}
+.actor-evaluate ul li {
+  display: inline-block;
+}
+.actor-evaluate .content {
+  padding: 20px;
+  margin: 0;
+}
+.actor-evaluate .content label {
+  width: 70px;
+  display: inline-block;
+  overflow: hidden;
+  clear: left;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.actor-evaluate .content>li {
+  display: block;
+}
+.actor-evaluate .content>li + li {
+  margin-top: 30px;
+}
+.actor-evaluate .content .grade-star {
+  display: inline-block;
+  width: 450px;
+  height: 45px;
+}
+.content label {
+  font-size: 14px;
+  letter-spacing: 10px;
+}
+.content .grade-star>li {
+  height: 45px;
+  width: 45px;
+  background: url(../../../images/xing0.png) no-repeat center;
+  position: relative;
+  transition: background .2s ease-in;
+}
+.content .grade-star>li.full-star {
+  background-image: url(../../../images/xing1.png);
+}
+.content .grade-star>li.half-star {
+  background-image: url(../../../images/xing2.png);
+}
+.content .grade-star>li .star-left, .content .grade-star>li .star-right {
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+}
+.content .grade-star>li .star-info {
+  position: absolute;
+  padding: 2px 5px;
+  border: 1px solid #ddd;
+  background-color: #f7f3ea;
+  white-space: nowrap;
+  top: 100%;
+  margin-top: 5px;
+  display: none;
+}
+.content .grade-star>li + li {
+  margin-left: 30px;
+}
+.content .grade-df {
+  font-family: Grade;
+  color: #f6af39;
+  font-size: 70px;
+  line-height: 1;
+}
+.content>.py, .content>.yx {
+  position: relative;
+  padding-left: 70px;
+}
+.content>.py>label, .content>.yx>label {
+  position: absolute;
+  left: 0;
+}
+.content>.yx>label{
+  line-height: 60px;
+}
+.content .grade-impression li + li {
+  position: relative;
+  margin-left: 15px;
+}
+.content .grade-impression li>span {
+  display: inline-block;
+  padding: 5px;
+  background-color: #ede7e9;
+  color: #6D6D6D;
+  letter-spacing: 1px;
+  transition: background-color ease-in .2s;
+}
+.content .grade-impression li>input {
+  position: absolute;
+  cursor: pointer;
+  z-index: 1;
+  opacity: 0;
+  filter:alpha(opacity=0);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+.content .grade-impression li:hover > span {
+  background-color: #dedadb;
+}
+.content .grade-impression li>input:checked + span {
+  color: #fff;
+}
+.content .grade-impression.best li>input:checked + span {
+  background-color: #cd3333;
+}
+.content .grade-impression.bad li>input:checked + span {
+  background-color: #5e5e5e;
+}
+.content .grade-impression li:first-child {
+  height: 16px;
+  width: 16px;
+  margin-right: -10px;
+}
+.content .grade-impression.best li:first-child {
+  background-image: url(../../../images/hong.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 16px;
+}
+.content .grade-impression.bad li:first-child {
+  background: url(../../../images/hei.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 16px;
+}
+.content .hr {
+  width: 615;
+  background-color: #d8d8d8;
+  background-origin:content-box;
+  border:none;
+  height: 1px;
+  margin: 5px;
+  padding: 0 20px;
+}
+.content .grade-py {
+  height: 100px;
+  resize: none;
+  width: 98%;
+  padding: 6px;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.content .grade-py:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+.text-input:hover {
+  border:1px solid #409DFE;
+  box-shadow:0 0 3px #409DFE;
+}
+select {
+  border-bottom:1px solid #cccccc;
+}
+.actor-evaluate .actor-evaluate-btn {
+      margin-top: 12px;
+}
+.rightdiv {
+  display: none;
+  position: absolute;
+  right: -800px;
+  top: 0px;
+  /* width: 78.6%; */
+  width: 76.6%;
+ /*  height: calc(100% - 34px); */
+   height: 100%;
+   
+  border: 1px solid #ccc;
+  min-width: 400px;
+  overflow: hidden;
+  z-index: 1000;
+  background-color: #f8f8f8;
+  box-shadow: 0 0 1em #cec9c9;
+}
+.rightdiv .right-popup-header {
+  height: 40px;
+  width: 100%;
+  background-color: #e7effa;
+}
+.right-popup-header table {
+  width: 100%;
+  max-width: 100%;  
+    background-color: transparent;
+}
+.right-popup-header table td.popup-title {
+  width: 120px;
+}
+.right-popup-header table td.popup-btn-con {
+  text-align: center;
+  padding-top: 8px;
+}
+.rightdiv .right-popup-title {
+  display: inline-block;
+  line-height: 30px;
+  border-bottom: 4px solid #ec8e0c;
+  margin-left: 20px;
+  font-family: '黑体';
+  font-size: 16px;
+  font-weight: normal;
+}
+.popup-btn-con input[type=button]:hover {
+  background: rgba(230,93,1,1);
+}
+.popup-btn-con input[type=button] {
+  box-sizing: border-box !important;
+  outline: none;
+  width: 100px;
+  height: 25px;
+  border-radius: 7px;
+  background: rgba(255,102,0,1);
+  color: rgba(255,255,255,1);
+  border: 1px solid rgba(255,102,0,1);
+  font-family: '微软雅黑';
+  cursor: pointer;
+}
+.btn_wrap {
+  height:34px;
+}
+.tab_wrap li {
+  /* width: 33.3%; */
+  width: 25%;
+}
+table.play-count-title {
+  width:calc(100% - 20px);
+  margin-top: 10px;
+  margin-left: 20px;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: rgba(235,235,235,1);
+  text-align: center;
+  vertical-align: middle;
+}
+.danju {
+  height: calc(100% - 76px); 
+  margin-top: 0px;
+  overflow-x: auto;
+}
+.my-progress-container {
+    margin-top: 20px;
+    width: 100%;
+    padding-left: 15px;
+}
+.progress-con-div {
+    width: 100%;
+    height: 35px;
+}
+.progress-con-div:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.progress-con-div p{
+    width: 113px;
+    float: left;
+    height: 15px;
+    line-height: 15px;
+    padding-left: 3px;
+}
+.progress-div {
+    float: left;
+    width: 500px;
+    margin-right: 50px;
+    height: 35px;
+}
+.progress-div div {
+    float: left;
+    height: 15px;
+    border-radius: 15px;
+    box-sizing: border-box;
+    position: relative;
+    padding: 0px;
+    margin: 0px;
+}
+.progress-div div:nth-child(1) {
+    background: #9fdabf;
+    width: 100%;
+}
+.progress-div div:nth-child(2) {
+    
+    background: #7fae90;
+    width: 0px;
+}
+.progress-div div span {
+    position: absolute;
+    left: -5.5px;
+    top: 0px;
+    text-align: left;
+}
+tr.datagrid-row-selected {
+	 background: #fff;
+}
+div.panel-body {
+	  padding: 0px;
+}
+
+
+
+
+span.tips1, span.tips2, .li.tips3 {
+	  color: #f00;
+	  display: none;
+	  float: right;
+    text-align: left;
+    width: 70%;
+    margin-right: 5%;
+}
+.viewrole-info-div {
+	  /* width: 100%; */
+	  padding-top: 10px;
+	  padding-left: 50px;
+	  padding-right: 50px;
+	  margin-bottom: 20px;
+}
+.view-info-table {
+	  width: 100%;
+}
+.view-info-table tr {
+	  height: 55px;
+}
+.view-info-table tr p {
+	  width: 22%;
+	  float: left;
+	  text-align: right;
+	  height: 32px;
+    line-height: 32px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+}
+.view-info-table tr input{
+	  width: 70%;
+    float: left;
+    margin-left: 5%;
+    height: 30px;
+    border: 1px solid rgba(204,204,204,0);
+    border-bottom: 1px solid rgba(204,204,204,1);
+    background-color: #rgba(204,204,204,0);
+}
+.view-info-table tr input.date1,.view-info-table tr input.date2{
+	width: 31.5%;
+    float: none;
+    height: 30px;
+    border: 1px solid rgba(204,204,204,0);
+    border-bottom: 1px solid rgba(204,204,204,1);
+    background-color: #rgba(204,204,204,0);
+}
+.view-info-table tr input.date1{	
+    margin-left: 5%;
+}
+.view-info-table tr input.date2 {
+	margin-left: 0;
+}
+.view-info-table tr select {
+	  float: left;
+	  width: 70%;
+	  margin-left: 5%;
+	  height: 30px;
+    border: 1px solid rgba(204,204,204,0);
+    border-bottom: 1px solid rgba(204,204,204,1);
+    background-color:#rgba(204,204,204,0);
+}
+.save-btn-list-div {
+	  width: 100%;
+	  margin-top: 40px;
+	  text-align: center;
+}
+.danju-title {
+	  width: 150px;
+	  height: 30px;
+    font-size: 15px;
+    font-family: '微软雅黑';
+    color: #000;
+    line-height: 30px;
+    /* padding-left: 20px; */
+    margin: 0px;
+    margin-left: 5px;
+    display:inline-block;
+    font-weight: bold;
+}
+.leave-record-div {
+	  display: none;
+    /* padding-left: 50px; */
+    padding-left: 65px;
+    padding-right: 50px;
+    margin-top:20px;
+}
+.leave-record-tips {
+	  padding-left: 50px;
+	  padding-right: 50px;
+}
+p.leave-tips-p {
+	  height: 30px;
+    font-size: 14px;
+    color: #717171;
+    padding-left: 36px;
+    line-height: 30px;
+}
+.leave-record-ul {
+	  width: 460px;
+	  margin: 0px auto;
+}
+.leave-record-ul li {
+	  height: 40px;
+	  
+}
+input[type=button].add-record-btn {
+	  float: right;
+	  color: #fff;
+    background-color: #FF6900;
+    border-radius: 7px;
+    border: none;
+    width: 65px;
+    height: 25px;
+    line-height: 25px;
+    letter-spacing: 0px;
+    /* margin-left: 30px;
+    margin-right: 30px; */
+}
+input[type=button].add-record-btn:hover {
+	  cursor: pointer;
+    background-color: #E66205;
+}
+input[type=button].enabled-button {
+	  background-color: #a2a2a2;
+}
+
+div.div-line {
+	  margin: 5px 0px;
+	  padding: 0px;
+	  height: 1px;
+	  border: 1px dotted #ccc;
+	  width: 100%;
+}
+div.title-div {
+	  padding-left: 20px;
+}
+div.border-left {
+	  display: inline-block;
+    width: 7px;
+    height: 29px;
+    border: 1px solid #ec8e0c;
+    border-radius: 3px;
+    background: #ec8e0c;
+    float: left;
+    /* margin-top: 6px; */
+    vertical-align: middle;
+}
+
+.view-role-count {
+	  height: 30px;
+	  width: 99%;
+	  margin: 0px auto;
+	  font-size: 13px;
+    /* font-weight: bold; */
+        font-family: 微软雅黑;
+    font-size: 12px;
+     position: fixed;
+    bottom: 1px;
+    left: 0px;
+}
+
+.view-role-count table {
+	  width: 100%;
+	  border-collapse: collapse;
+	  border: 1px solid #ccc;
+	  border-top: 0px;
+}
+.view-role-count table tr {
+	  height: 30px;
+	  box-sizing: border-box;
+}
+.view-role-count table td {
+	 border: 0px;
+}
+.view-role-count table td div {
+	  height: 28px;
+	  line-height: 28px;
+	  text-align: left;
+      padding-left: 10px;
+}

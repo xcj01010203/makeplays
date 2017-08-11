@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<decorators defaultdir="/decorators">
+    
+    <!-- Any urls that are excluded will never be decorated by Sitemesh -->
+    <excludes>
+        <pattern>*/toLoginPage*</pattern>
+        <pattern>*/toRegisterPage*</pattern>
+        <pattern>*/toForgetPassWordPage*</pattern>
+        <pattern>*/toCrewUserDetailPage*</pattern>
+        <pattern>*/toCrewDetailPage*</pattern>
+        <pattern>*/toRoleAuthDetailPage*</pattern>
+        <pattern>*/toSelectUserPage*</pattern>
+        <pattern>*/*Json.*</pattern>
+        <pattern>*/iframe*</pattern>
+        <pattern>*/viewManager/toScenarioComparePage*</pattern>
+        <pattern>*/viewManager/toViewDetailInfo*</pattern>
+        <pattern>*/viewManager/toBatchUpdateViewPage*</pattern>
+        <pattern>**notice/toGenerateNotice*</pattern>
+        <pattern>**notice/printView*</pattern>
+        <pattern>**scenarioManager/touploadScePage*</pattern>
+        <pattern>*/interface/*</pattern>
+        <pattern>*/html/*</pattern>
+        <pattern>*/budget/toAccountSubjectPage*</pattern>
+        <pattern>*/userManager/userCenter*</pattern>
+        <!-- 跳转到通告单场景列表页面 -->
+        <pattern>**notice/toNoticeViewListPage*</pattern>
+         <!-- 跳转到角色场景表页面 -->
+        <pattern>*/viewRole/toRoleViewListPage*</pattern>
+        
+        <!-- 跳转到合同详细信息页面 -->
+        <pattern>*/contractActor/toContractActorDetailPage*</pattern>
+        <pattern>*/contractProduce/toContractProduceDetailPage*</pattern>
+        <pattern>*/contractWorker/toContractWorkerDetailPage*</pattern>
+        
+        <!-- 跳转到付款单、收款单、借款单详细信息页面 -->
+        <pattern>*/paymentManager/toPaymentDetailPage*</pattern>
+        <pattern>*/collectionManager/toCollectionDetailInfo*</pattern>
+        <pattern>*/loanInfoManager/toLoanDetailInfoPage*</pattern>
+        
+        <!-- 跳转到付款单、收款单、借款单打印页面 -->
+        <pattern>*/paymentManager/toPrintPaymentInfoPage*</pattern>
+        <pattern>*/collectionManager/toPrintCollectionInfoPage*</pattern>
+        <pattern>*/loanInfoManager/toPrintLoanInfoPage*</pattern>
+        
+        <!-- 跳转到给移动端使用的页面 -->
+        <pattern>*/appIndex/*</pattern>
+        
+        <!-- 跳转到附件预览页面 -->
+        <pattern>*/attachmentManager/toPreviewPage*</pattern>
+        
+        <!-- 跳转到个人中心各个页面 -->
+        <pattern>*/crewManager/toUserCrewListPage*</pattern>
+        <pattern>*/userManager/toAboutUsPage*</pattern>
+        <pattern>*/userManager/toUserDetailInfoPage*</pattern>
+        <pattern>*/userManager/toAgreementPage*</pattern>
+        <pattern>*/messageInfoManager/toMessagePage*</pattern>
+        <pattern>*/feedbackManager/toFeedbackPage*</pattern>
+        <pattern>*/crewManager/toJoinCrewPage*</pattern>
+        <pattern>*/crewManager/toSelectCrewPage*</pattern>
+        <pattern>*/crewManager/toCreateCrewPage*</pattern>
+        <pattern>*/crewManager/toCrewSetPage*</pattern>
+        <!-- 合同待付单打印 -->
+        <pattern>*/contractToPaidController/toContractToPaidPrintPage*</pattern>
+        <!-- 跳转到导入页面 -->
+        <pattern>*/importManager/toImportPage*</pattern>
+        
+        <!-- 跳转到实景配置页面 -->
+        <pattern>*/sceneViewInfoController/toSceneViewDetailPage*</pattern>
+        <!-- 跳转到车辆明细页面 -->
+        <pattern>*/carManager/toCarDetailListPage*</pattern>
+        
+        <!-- 跳转到车辆明细页面 -->
+        <pattern>*/contact/toContactDetailPage*</pattern>
+        
+        <!-- 跳转到入住详细信息页面 -->
+        <pattern>*/hotelManager/toCheckInHotelPage*</pattern>
+        
+        <!-- 筹备期-->
+        <pattern>*/prepareController/toPreparePage*</pattern>
+        
+        <!-- 跳转到审批明细页面 -->
+        <pattern>*/receiptInfoManager/toApprovalDetailPage*</pattern>
+        
+        <!-- 跳转到场景表打印预览页面 -->
+        <pattern>*/viewManager/toViewPrintPreviewPage*</pattern>
+        
+        <!-- 跳转到计划分组页面 -->
+        <pattern>*/scheduleManager/toScheduleGroupListPage*</pattern>
+        <!-- 跳转到查看计划页面 -->
+        <pattern>*/scheduleManager/toScheduleCalendarPage*</pattern>
+        <!-- 跳转到计划详情页面 -->
+        <pattern>*/scheduleManager/toScheduleDetailPage*</pattern>
+    </excludes>
+
+    <decorator name="main" page="main.jsp">
+    <!-- <pattern>/*</pattern> -->
+        <pattern>/*</pattern>
+    </decorator>
+    
+</decorators>

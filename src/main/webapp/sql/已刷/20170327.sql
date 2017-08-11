@@ -1,0 +1,1 @@
+update tab_sys_authority set authUrl='/clipManager/toShootLogListPage' where authUrl='/shootLogManager/toShootLogList';

@@ -1,0 +1,201 @@
+@charset "utf-8";
+
+#rightAddDiv {
+	position: relative;
+}
+
+.view-no-td {
+	width: 90;
+}
+
+.mark-grey {
+	color: grey;
+}
+
+.hidden-element {
+	display: none;
+}
+/*********场景信息文本框中的样式*******/
+#filmSeriesNo {
+	width: 40px; 
+	color: grey; 
+	display: none;
+}
+
+#filmViewNo {
+	width: 85px; 
+	color: grey;
+}
+
+#filmPageCount {
+	width: 87px; 
+	text-align: center; 
+	color: grey;
+}
+
+#tvbSeriesNo {
+	width: 40px; 
+	color: grey;
+}
+
+#tvbViewNo{
+	width: 55px; 
+	color: grey;
+}
+
+#tvbPageCount {
+	width: 60px;
+	text-align: center; 
+	color: grey;
+}
+
+.make-width-104 {
+	width: 104px;
+}
+.film-view-no-td {
+	width: 90px;
+	min-width: 90px;
+}
+
+.hidden-span {
+	visibility: hidden;
+}
+
+#noFinishFilmPageCount {
+	width: 87px; 
+	text-align: center;
+}
+
+#noFinishTvbPageCount {
+	width: 60px; 
+	text-align: center;
+}
+
+#noFinishViewSeason {
+	width: 100%; 
+	height: 35px; 
+	border-bottom: 1px solid #cad0e5;
+	 margin-top: 1px;
+}
+
+.advert-table {
+	margin-left: -13px;
+}
+
+.advert-name-td {
+	width: 100px;
+}
+
+.advert-type-tr {
+	height: 45px;
+}
+
+.icon {
+	width: 24px;
+	height: 24px;
+	margin-top: 3px;
+	background-size: 24px 24px;
+}
+
+.icon_batdel {
+	width: 24px;
+	height: 24px;
+	background: url(../images/delete_ioc.png) no-repeat;
+	background-size: 24px 24px;
+	cursor: pointer;
+}
+
+.icon_batdel:hover {
+	background-image: url(../images/delete1_ioc.png);
+}
+
+.advert-button-lable {
+	font-family: 微软雅黑;
+	font-size: 12px;
+	display: inline-block;
+	color: #00982e;
+}
+
+.advert-name-input{
+	border-bottom: none !important;
+}
+
+.major-os-button{
+	z-index:999; 
+	position:absolute; 
+	width: 50px;
+	height:20px; 
+	line-height:30px \0; 
+	text-align: center;
+	background-color: #CCCCCC;
+}
+
+.major-os-button-hover{
+	z-index:999; 
+	position:absolute; 
+	width: 50px;
+	height:20px; 
+	line-height:30px \0; 
+	text-align: center;
+	background-color: #3276B1;
+}
+table#completeShootTable tr td:first-child {
+    white-space: nowrap;
+}
+table#otherShootTables tr td:first-child {
+	  white-space: nowrap;
+}
+
+
+::-webkit-input-placeholder {
+  color: rgba(202,202,202,0.7);
+}
+/* td.scene_vertical_top+td {
+	position: relative;
+}
+td input[type=text].special-remind {
+	position:absolute;
+	left: 0px;
+	top: 0px;
+	height: 35px;
+	width: 100%;
+	z-index: 10;
+	background: transparent;
+}
+.special-modole {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 35px;
+	width: 100%;
+	z-index: 9;
+	text-align: left;
+  line-height: 35px;
+  padding-left: 2px;
+  box-sizing: border-box;
+  color: rgb(202,202,202);
+} */
+
+
+.right_add_tb td input[type=text].shoot_location {
+	/* width: 60%; */
+}
+.right_add_tb td input[type=button].set-shootRegin {
+	    width: 50px;
+    height: 17px;
+    border-radius: 4px;
+    background: rgba(255,102,0,1);
+    border-color: rgba(255,102,0,1);
+    color: rgba(255,255,255,1);
+    box-sizing: border-box;
+    /* margin-left: 5%; */
+    margin-top: 0px;
+    margin-right: 5px;
+}
+
+
+
+.shoot-regin-info {
+	text-align: left;
+	color:#999;
+}

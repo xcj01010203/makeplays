@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+/*显示加载中*/
+.show-loading-container {
+	width: 240px;
+	height: 52px;
+	display: none;
+	position:absolute;
+	left:0;	
+	top:0;
+	background:#ebebeb;
+	filter:alpha(opacity=80);
+	z-index:100000;	
+	padding-top: 15px;
+	padding-left: 20px;
+	cursor: wait;
+	box-sizing: border-box;
+}
+.show-loading-div {
+	position: relative; 
+	width: auto; 
+	height: 22px;
+	line-height:22px; 
+	padding-left: 30px; 
+	padding-right: 5px; 
+	color: black;
+	background: rgba(0,0,0,0) url(../images/loading.gif) no-repeat;   
+	background-size:20px 20px;
+	font-size: 13px;
+  cursor: wait;
+}

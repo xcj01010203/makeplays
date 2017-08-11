@@ -1,0 +1,447 @@
+@charset "utf-8";
+.contact-header{height: 35px;background: #fff;}
+.add-contact{width:24px;  height:24px;background: url(../../images/tianjiachengyuan.png) no-repeat; background-size: 24px 24px; float:left;margin-top: 6px;}
+.import-contact {width:24px; height:24px;background: url("../../images/leading-in.png"); background-size: 24px 24px; no-repeat; margin-top:6px;float:left;}
+.import-contact:hover {background: url("../../images/leading-in_hover.png") no-repeat; background-size: 24px 24px;}
+.export-contact {width:24px; height:24px;background: url("../../images/export.png") no-repeat;background-size: 24px 24px; margin-top:6px;float:left;}
+.export-contact:hover {background: url("../../images/export_hover.png") no-repeat; background-size: 24px 24px;}
+.add-contact:hover{background:url(../../images/tianjiachengyuan1.png) no-repeat; background-size: 24px 24px;}
+._table{width: 100%;margin-left: inherit;}
+._table tr{height: 45px;}	
+._table th{text-align: right;}  
+.must{color: red;font-size: 12px;padding: 0 5px;}
+.search_box{float:left;height:30px;}	
+input.search_kuang{border-radius:3px;border:1px solid #086999;float:left;height:24px;width:200px;padding-left:5px;padding-right:30px;}
+.icon_cha1{
+		float:left;
+		width:21px;
+		height:25px;
+		background-color:initial;
+		border-radius:3px;
+		margin-top: 2px;
+		margin-left:-26px;
+}
+.icon_cha1 img{
+	width:100%;
+}
+.contact-body{min-width: 1500px;}
+#main-table{height: 100%;overflow: auto;}
+.panel-body{padding: 0;}
+#addOrUpdateWindow .btn-default{
+    background: none;
+    border: none;
+    border-bottom: 1px solid #cad0e5;
+    height: 35px;
+    cursor: default;
+}
+
+/* 修改easyUI表格样式 */
+.datagrid-header td{
+	background: #E6E6E6;
+	border-right: 1px solid #e6e6e6;
+    border-left: 1px solid #e6e6e6;
+}
+.datagrid-body td{
+	border-right: 1px solid rgba(0,0,0,0);
+	border-bottom: 1px solid #DDDDDD;
+}
+.datagrid-row-alt{
+	background: white;
+}
+.datagrid-row-selected {
+    background: #E3E3E4 !important;
+}
+.datagrid-row-over{
+	background: #E3E3E4;
+}
+.datagrid-header{
+	background: #E6E6E6;
+}
+
+.contact-header-div {
+	margin: 5px;
+}
+
+.add-contact-a {
+	margin-left: 25px;
+}
+
+.search-contact-div {
+	float: right;
+}
+
+.search-box-div {
+	margin-top: 3px;
+	display: inline-block;
+	margin-right: 15px;
+}
+
+.super-search-div {
+	margin-top: 6px;
+	display: inline-block;
+	margin-right: 60px;
+	font-weight: 500;
+	color: #579EC3;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.hidden-tag {
+	display: none;
+}
+
+.botton-table {
+	/* margin-top: 30px; */
+	  position: absolute;
+    bottom: 1px;
+    height: 45px;
+    width: calc(100% - 40px);
+}
+
+.table-button-style {
+	margin-left: 35px;
+}
+
+.table-td {
+	text-align: center;
+}
+
+.clear-style {
+	display:none; 
+	cursor:pointer; 
+	font-size:13px; 
+	font-family:'微软雅黑';
+}
+
+.table-button {
+	top: 230px;
+	position: absolute;
+}
+
+.close-search-button {
+	margin-left: 20px;
+}
+
+.open-contact-th {
+	width: 77px;
+}
+
+.ifopen-check-div {
+	padding: 0px;
+}
+.ifopen-check-div input[type=checkbox] {
+	margin: 0px;
+}
+
+
+
+/*导入窗口样式*/
+form.import-form {
+    padding: 0px 20px;
+    font-size: 13px;
+    font-family: '微软雅黑';
+}
+.import-form input[type=button], .import-form input[type=submit] {
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    letter-spacing: 0px;
+    border-radius: 7px;
+    background: rgba(255,102,0,1);
+    color: #fff;
+    margin-left: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.import-form input[type=button]:hover, .import-form input[type=submit]:hover {
+    background: rgba(230,93,1,1);
+}
+.radio-label {
+	font-weight: normal;
+}
+
+
+.jqx-column {
+	  height: 100%;
+	  overflow: hidden;
+}
+.hotel-name {
+	  float: right;
+	  /* width: calc(100% - 28px); */
+	  width: 100%;
+	  /* max-width: calc(100% - 28px); */
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+    white-space: nowrap;
+	  
+}
+.opera-btn-list {
+    float: left;
+    width: 20px;
+}
+.opera-btn-list a{
+    width: 18px;
+    height: 18px;
+    background-size: 18px 18px;
+    margin-left: 10px;
+}
+.opera-btn-list a:hover {
+    width: 18px;
+    height: 18px;
+}
+.float-right {
+	  float: right;
+}
+.opera-btn-list a.add-btn {
+	margin-left: 0px;
+    background: url(../../images/add.png) no-repeat;
+    background-size: 18px 18px;
+    margin-right:10px;
+}
+.opera-btn-list a.add-btn:hover {
+	  margin-left: 0px;
+	  background: url(../../images/add_hover.png) no-repeat;
+	  background-size: 18px 18px;
+}
+.opera-btn-list a.edit-btn {
+	  margin-left: 0px;
+    background: url(../../images/icon-edit.png) no-repeat;
+    background-size: 18px 18px;
+}
+.opera-btn-list a.edit-btn:hover {
+	  margin-left: 0px;
+	  background: url(../../images/icon-edit1.png) no-repeat;
+	  background-size: 18px 18px;
+}
+.opera-btn-list a.hotel-detail-btn {
+	  background: url(../../images/home.png) no-repeat;
+	  background-size: 18px 18px;
+}
+.opera-btn-list a.hotel-detail-btn:hover {
+	  background: url(../../images/home1.png) no-repeat;
+	  background-size: 18px 18px;
+}
+
+
+
+
+/*联系人入住详细信息*/
+.grid-btn-list {
+	 width: 100%;
+	 height: 30px;
+	 text-align: center;
+	 padding: 0px 10px 0px 10px;
+	 margin-top: 10px;
+	 position: absolute;
+   bottom: 6px;
+}
+.grid-btn-list input[type=button]{
+	  width: 100px;
+	  height: 25px;
+	  border-radius: 7px;
+	  color: #fff;
+	  background-color: rgba(255,102,0,1);
+	  outline: none;
+	  border: none;
+	  /* margin-right: 20px; */
+	  margin-right: 35px;
+}
+.grid-btn-list input[type=button]:hover {
+	  background: rgba(230,93,1,1);
+}
+.grid-btn-list input[type=button].add-row-hotel {
+	  /* float: right; */
+	  width: 100px;
+	  height: 25px;
+    border-radius: 7px;
+    color: #fff;
+    background: rgba(255,102,0,1);
+    outline: none;
+    border: none;
+    margin: 0px;
+    /* margin-right: 18px; */
+    margin-right: 35px;
+}
+
+.hotel-detail-div {
+	  /* width: 100%;
+	  height: 300px;
+	  padding: 10px; */
+	  width: 85%;
+    height: 85%;
+    padding: 10px;
+    margin: 0px auto;
+}
+
+.jqx-column input[type=text] {
+	  border: 0px;
+	  height: 25px;
+	  outline: none;
+}
+.jqx-column input[type=text]:focus {
+	  box-shadow: none;
+	  border: 0px;
+}
+.hotel-detail-div-header {
+	  width: 100%;
+	  height: 30px;
+}
+.hotel-header-table, .hotel-body-table {
+	  width: 100%;
+	  border-collapse: collapse;
+}
+.hotel-header-table tr {
+	  height: 30px;
+	  background: #e2e2e2;
+}
+.hotel-header-table td {
+	  border: 1px solid #e2e2e2;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+
+.hotel-detail-div-body {
+	  width: 100%;
+	  height: calc(100% - 30px);
+	  overflow-y: auto;
+}
+.hotel-body-table tr {
+	  height: 30px;
+	  
+}
+.hotel-body-table tr:nth-child(:even) {
+	  background: #f2f2f2;
+}
+.hotel-body-table td {
+	  border: 1px solid #ccc;
+}
+.hotel-body-table td input[type=text] {
+	  border: 0px;
+	  outline: none;
+	  display: block;
+	  height: 25px;
+	  line-height: 30px;
+	  padding-left: 5px;
+	  padding-right: 5px;
+	  width: 100%;
+}
+.hotel-body-table td input[type=text]:focus{
+	  box-shadow: none;
+	  border: 0px;
+}
+
+/*宾馆名称下拉框*/
+.drop-down-box {
+	  display: none;
+	  list-style-type: none;
+	  margin: 0px;
+	  padding: 0px;
+	  position: absolute;
+	  width: 150px;
+	  height: 150px;
+	  z-index: 1000;
+	  overflow: auto;
+	  background: #e2e2e2;
+}
+.drop-down-box li {
+	  height: 30px;
+	  overflow: hidden;
+}
+.drop-down-box li a{
+	  font-size: 12px;
+    padding: 0px 5px;
+    color: #000;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    line-height: 30px;
+}
+.drop-down-box li a:hover {
+	  text-decoration: none;
+	  color: #fff;
+}
+.drop-down-box li:hover {
+	  background: #2e75ea;
+}
+
+
+
+/*滑动窗口*/
+.right-popup-win {
+	  display: none;
+	  position: absolute;
+	  top: 0px;
+	  right: -800px;
+	  width: 60%;
+	  height: calc(100% - 2px);
+	  background: #f2f2f0;
+    z-index: 1000;
+    border: 1px solid #ccc;
+    /* box-shadow-top: -2px 0px 2px #e1ebfa;
+    box-shadow-left: -2px 0px 2px #ccc; */
+    box-shadow: 0 0 1em #cec9c9;
+    overflow: hidden;
+}
+
+
+.popup-win-btn {
+	  position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    min-width: 880px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background: #e1ebfa;
+    z-index: 600; 
+}
+.right-content-div {
+    padding: 20px;
+    overflow: hidden; 
+    height: calc(100% - 40px);
+    margin-top: 40px; 
+}
+
+/* .tab-body-wrap {
+    width: 100%;
+    height: 100%;
+}
+.btn_tab_wrap {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+div.tab_wrap ul {
+	  height: 32px;
+	  box-sizing: border-box;
+}
+div.tab_wrap li {
+    width: 50%;
+}
+ */
+.public-contact {
+	  width: 100%;
+	  overflow: auto;
+	  height: calc(100% - 52px);
+}
+.btn-group>.btn, .btn-group-vertical>.btn {
+	  border: 0px;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+}
+
+
+.contact-hotel-div {
+	  display: none;
+}
+.contact-hotel-con {
+	  height: 100%;
+}
+.hotel-body-table td input[type=text]:focus {
+	border:1px solid #409DFE;
+  outline:none;
+  border-bottom:1px solid #409DFE;
+  box-shadow:0 0 3px #409DFE;
+}

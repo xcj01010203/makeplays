@@ -1,0 +1,59 @@
+.rowStatusColor{ font-size:12px; line-height:20px;height:100%;width:100%;overflow: hidden; 
+    text-overflow: ellipsis;  text-align: left; padding-left: 4px; padding-top: 4px;}
+    
+h3{margin:0;padding:0;font-size:15px;}
+
+/* 子计划列表和计划下场景列表样式 */
+#subPlanListHead{top:1px}
+#subPlanListHead[class=open], #planViewListHead[class=open]{background: url("../images/plan_tip.jpg") 0 -11px no-repeat;color: #0d9648;}
+#subPlanListHead[class=close], #planViewListHead[class=close]{background: url("../images/plan_tip.jpg") 0 -22px no-repeat;color: #68676c; float:none;opacity:1;font-weight:normal;}
+
+#subPlanListHead, #planViewListHead{font-size: 13px;cursor: pointer;padding-left:12px;line-height: 11px;margin-bottom:15px;}
+
+
+/*表单样式 */
+/* #pplanNameInput, #noticeNameInput, #s_planNameInput{background:none ; border: none;border-bottom: 1px solid #cad0e5;} */
+#s_planDivForm table tr, #setShootInfoWindow table tr, #noticeDivForm table tr, #pplanForm table tr{height:55px; text-align:right;}
+tr .nameLabel{width: 136px;font-family:'微软雅黑'; font-size: 13px;}
+tr .nameLabel p{width: 105px;font-family:'微软雅黑'; font-size: 13px;}
+
+/* 图标样式 */
+.add{width:24px; height:24px; background: url("../images/add.png") no-repeat; background-size: 24px 24px;}
+.add:hover{background: url("../images/add_hover.png") no-repeat; background-size: 24px 24px;}
+.add-sub-plan {width: 20px; height: 20px;background: url("../images/add.png") no-repeat; background-size: 20px 20px;}
+.add-sub-plan:hover {background: url("../images/add_hover.png") no-repeat; background-size: 20px 20px;}
+
+.addToNotice{width:20px; height:20px; background: url("../images/newspaper_add.png") no-repeat; background-size: 20px 20px; margin-right:15px; margin-left:15px;}
+.addToNotice:hover{background: url("../images/newspaper_add_hover.png") no-repeat; background-size: 20px 20px;}
+
+.setShootInfo{width:20px; height:20px; background: url("../images/roleform/shezhi.png") no-repeat;background-size: 20px 20px; margin-right:15px;}
+.setShootInfo:hover{background: url("../images/roleform/shezhi1.png") no-repeat;background-size: 20px 20px;}
+
+.removeView{width:20px; height:20px;background: url("../images/removeView.png") no-repeat; margin-right:15px;}
+.removeView:hover{background: url("../images/removeView_hover.png") no-repeat;}
+
+.addToSubPlan{width:20px; height:20px;background: url("../images/addToSubPlan.png") no-repeat; margin-right:15px;}
+.addToSubPlan:hover{background: url("../images/addToSubPlan_hover.png") no-repeat;background-size: 20px 20px;}
+
+.export{width:20px; height:20px;background: url("../images/export.png") no-repeat; background-size: 20px 20px; margin-right:15px;}
+.export:hover{background: url("../images/export_hover.png") no-repeat; background-size: 20px 20px;}
+
+.modify{width:20px; height:20px;background: url("../images/modify.png") no-repeat;  background-size: 20px 20px; margin-right:15px;}
+.modify:hover{background: url("../images/modify_hover.png") no-repeat; background-size: 20px 20px;}
+
+.delete{width:20px; height:20px;background: url("../images/delete_ioc.png") no-repeat; background-size: 20px 20px; margin-right:15px;}
+.delete:hover{background: url("../images/delete1_ioc.png") no-repeat; background-size: 20px 20px;}
+
+.advanceSearch{width:20px; height:20px;background: url("../images/find.png") no-repeat; background-size: 20px 20px; margin-right:15px; margin-top:6px; cursor: pointer;}
+.advanceSearch:hover{background: url("../images/find_hover.png") no-repeat; background-size: 20px 20px;}
+
+.addToPlan{width:20px; height:20px;background: url("../images/camera_add.png") no-repeat; margin-right:21px;margin-top:6px;}
+.addToPlan:hover{background: url("../images/camera_add_hover.png") no-repeat;}
+
+.close{width:20px; height:20px;background: url("../images/close.png") no-repeat; margin-right:16px; margin-top:6px; float:right; opacity:1;}
+.close:hover{background: url("../images/close_hover.png") no-repeat;}
+
+.refresh{width:20px; height:20px;background: url("../images/refresh.png") no-repeat; margin-right:16px; opacity:1;}
+.refresh:hover{background: url("../images/refresh_hover.png") no-repeat;}
+
+.planViewToolbar{margin-top: 5px; float:left; cursor: pointer;}

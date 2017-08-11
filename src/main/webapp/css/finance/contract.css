@@ -1,0 +1,118 @@
+@CHARSET "UTF-8";
+
+*{ padding:0; margin:0; list-style:none; outline:none;}
+.Popups_box label{ width:80px; float:left; text-align:right;}
+/* .Popups_box{ width:740px; height:600px; font-size: 14px;  line-height: 25px; }
+
+.Popups_box .xiala select{ width:100px; height:30px; border:1px solid #C60;}
+.Popups_box ul label {width:80px;font-weight:normal;float:left;text-align:right;} */
+.Popups_box{ font-size: 14px;  line-height: 25px; overflow: inherit;}
+.Popups_box .classify{font-size:12px;color:grey;padding-left:5px;}
+.Popups_box ul{padding:10px; float:left; margin:0 auto;width: 100%;}
+.Popups_box>ul>li{padding-left:15px; }
+.Popups_box{overflow: inherit;}
+.form-control{height:30px;}
+.dropdown-menu a:focus{outline: none;}
+.dropdown-menu{overflow-x:hidden;}
+.searchUl {height: 42px;}
+.dropdown-menu>li>a{padding-left: 30px;}
+.bootstrap-select.btn-group.show-tick .dropdown-menu li.selected a i.check-mark{left:8px;}
+.Popups_box ul label {width:80px;font-weight:normal;float:left;text-align:right;}
+.Popups_box textarea{ width:480px; height:70px; border: 1px solid #DDDDDD;-moz-border-radius: 6px;-webkit-border-radius: 6px;border-radius:6px;resize: none;}
+/* .jqx-fill-state-hover-ui-lightness{ background: #fdf5ce; border-color:#fbcb09; color: #c77405; } */
+.clear{clear:both;white-space:nowrap;}
+.tianjia ul{width:350px; height:25px; padding:10px; float:left; margin:0 auto; border-bottom:1px dashed #CCC; line-height:25px;}
+
+.danju{width: 100%}
+
+/* 高级查询中下拉框上的按钮样式 start */
+.Popups_box .btn-default {background:none ; border: none;border-bottom: 1px solid #cad0e5;height: 35px;cursor:default;}
+.Popups_box .btn-default:hover, #searchWindow .btn-default:focus, #searchWindow .btn-default:active, #searchWindow .btn-default.active, #searchWindow .open .dropdown-toggle.btn-default{
+    background:none ; 
+}
+.Popups_box .btn-group.open .dropdown-toggle{
+    -webkit-box-shadow: inset 0 3px 5px rgba(0,0,0,0.0);
+    box-shadow: inset 0 3px 5px rgba(0,0,0,0.0);
+}
+.Popups_box .bootstrap-select .btn:focus{
+    outline: 0px auto -webkit-focus-ring-color !important;
+}
+.Popups_box .btn:active,.btn.active{
+    background-image:none;
+    outline:0;
+    -webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,0.0);
+    box-shadow:inset 0 3px 5px rgba(0,0,0,0.0);
+}
+.tab_wrap li{line-height: 28px;}
+
+/* 合同右侧弹出窗   */
+.left-popup{
+	display: none;
+	border: 1px solid #ccc;
+	min-width: 400px;
+	overflow: hidden;
+	position: absolute;
+	z-index: 300;
+	top: 62px;
+	right: 0px;
+	background-color: #f8f8f8;
+}
+.left-popup-header{
+	position: relative;
+	height: 40px;
+	width: 100%;
+	background-color: #e7effa;
+}
+.left-popup-header table{
+	width: 100%;
+}
+.left-popup-title{
+	display: inline-block;
+    line-height: 30px;
+    border-bottom: 4px solid #ec8e0c;
+    margin-left: 20px;
+    font-family: '黑体';
+    font-size: 16px;
+    font-weight: normal;
+}
+.left-popup-body{
+	width: 100%;
+	height: 98%;
+	background-color: #f7f6f1;
+	overflow: auto;
+	padding-bottom: 40px;
+}
+.left-popup-body ._th{width: 106px;text-align: right;}
+.contract-detail-table{width: 100%;border-collapse: collapse !important;border: 1px solid #F2F2F2;}
+.contract-detail-table thead tr{background-color: #E6E6E6;}
+.contract-detail-table td{text-align: center;}
+.contract-detail-table tr{height: 35px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

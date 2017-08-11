@@ -1,0 +1,70 @@
+@media print{
+	table.view-grid tr td, table.view-grid tr td p {
+	   font-size: 13px;
+	}
+	div.title {
+	   margin: 0px auto;
+	   position: relative;
+	}
+	table.view-grid tr td {
+	   border: 1px solid #000;
+	}
+}
+body,html {
+		margin: 0px;
+		padding: 0px;
+}
+div.btn-list {
+	  /* text-align: center; */
+}
+input[type=button].print-btn{
+	  background-color: #fffaf2;
+    border: 1px solid #ffcc80 !important;
+    border-radius: 6px;
+    padding: 0 6px;
+    margin: 10px;
+    height: 25px;
+    width: 65px;
+    font-family: "微软雅黑";
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+input[type=button].print-btn:hover {
+	  background: rgba(255,102,0,1) !important;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+h3 {
+	  text-align: center;
+	  margin: 0px;
+	  margin-bottom: 10px;
+}
+table.view-grid {
+	  table-layout: fixed;
+	  border-collapse: collapse;
+	  min-width: 1320px;
+	  margin: 0px auto;
+}
+table.view-grid tr{
+	  height: 28px;
+}
+.view-grid tr td {
+	  border: 1px solid #ccc;
+	  font-size: 13px;
+	  box-sizing: border-box;
+	  padding-left: 2px;
+	  color: #000;
+}
+.view-grid tr td p {
+	  margin: 0px;
+	  padding: 0px;
+	  font-size: 13px;
+	  color: #000;
+}
+.view-grid tr:first-child {
+	  background: #ebebeb;
+}
+.view-grid tr:first-child td {
+	  text-align: center;
+	  font-weight: bold;
+}

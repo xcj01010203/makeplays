@@ -1,0 +1,622 @@
+@media screen and (max-width: 1440px){
+    ul.basic-info li input[type=text], ul.detail-info li input[type=text]{
+       width: 80%;
+    }
+    ul.detail-info li p.idle-p input[type=text] {
+       width: 38.6%;
+    }
+    ul.detail-info li select {
+        width: 80%;
+    }
+    ul.detail-info li textarea {
+        width: 90.5%;
+    }
+    ul.upload-file-show-pic {
+       width: 80%;
+    }
+}
+
+@media screen and (max-width: 1366px){
+    ul.basic-info li input[type=text], ul.detail-info li input[type=text]{
+       width: 73%;
+    }
+    ul.detail-info li p.idle-p input[type=text] {
+       width: 34%;
+    }
+    ul.detail-info li select {
+       width: 73%;
+    }
+    ul.detail-info li textarea {
+       width: 86.5%;
+    }
+    ul.upload-file-show-pic {
+       width: 80%;
+    }
+}
+@media screen and (min-width: 1110px) and (max-width: 1196px) {
+	  ul.basic-info li p span.show-baidu-map {
+       right: 40px;
+    }
+}
+
+@media screen and (max-width: 869px) {
+	  ul.basic-info li input[type=text], ul.detail-info li input[type=text]{
+       width: 70%;
+    }
+    ul.detail-info li p.idle-p input[type=text] {
+       width: 32.6%;
+    }
+    ul.detail-info li select {
+       width: 70%;
+    }
+    ul.detail-info li textarea {
+       width: 86.3%;
+    }
+    ul.upload-file-show-pic {
+       width: 80%;
+    }
+    ul.basic-info li p span.show-baidu-map {
+       right: 12px;
+    }
+}
+
+
+body,html,div,ul,li,p,h1,h2,h3,h4,h5,h6,dl,dt,dd,span {
+	  margin: 0px;
+	  padding: 0px;
+	  font-family: '微软雅黑';
+	  color: #333;
+}
+html,body {
+	  height: 100%;
+	  overflow: hidden;
+}
+ul, li {
+	  list-style-type: none;
+}
+.jqx-window {
+	  display: none;
+}
+.container {
+	  width: 100%;
+	  height: 100%;
+	  position: relative;
+}
+.form-list-container {
+	  width: 100%;
+	  height: calc(100% - 140px);
+	  overflow: auto;
+	  /* padding-top: 25px; */
+	  box-sizing: border-box;
+	  margin-top: -15px;
+}
+.form-list-container input[type=text]:focus {
+	  outline: none;
+	  box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.win-btn-list {
+	 /*  position: fixed; */
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    /* background: #e1ebfa; */
+    z-index: 600;
+}
+div.top-btn-list {
+	  background: #e1ebfa;
+}
+div.top-btn-list input[type=button] {
+	  margin-top: 4px;
+}
+.win-btn-list input[type=button]{
+	  border: 0px;
+	  outline: none;
+    width: 100px;
+    height: 25px;
+    letter-spacing: 10px;
+    /* line-height: 25px; */
+    color: #fff;
+    margin-right: 50px;
+    background: rgba(255,102,0,1); 
+    border-radius: 5px;
+    margin-top: 7px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+}
+.win-btn-list input[type=button]:hover {
+    background: rgba(230,93,1,1);
+}
+
+
+.scence-content {
+    /* overflow-y: auto;
+    height: calc(100% - 40px); */
+    padding-top: 40px;
+    min-height: 0px;
+    width: 100%;
+    margin: 0px auto;
+    margin-left: 16px;
+}
+h5 {
+	 
+	  padding-left: 20px;
+	  font-size: 16px;
+	  margin-top: 10px;
+}
+/*基本信息*/
+.basic-info, .detail-info {
+	  width: 85%;
+	  margin: 10px auto;
+	  border-bottom: 1px dotted #ccc;
+}
+.detail-info {
+	  border: none;
+}
+.basic-info li, .detail-info li {
+	  width: 100%;
+	  margin-bottom: 10px;
+}
+.detail-info li.space-li {
+	  height: 10px;
+}
+.basic-info li:after, .detail-info li:after {
+	  content: '';
+	  display: block;
+	  clear: both;
+}
+.basic-info li p:nth-child(1),.detail-info li p:nth-child(1) {
+	  float: left;
+	  width: 45%;
+}
+.basic-info li p.map-p:nth-child(1) {
+	  position: relative;
+}
+.basic-info li p:nth-child(2), .detail-info li p:nth-child(2) {
+	  float: right;
+	  width: 45%;
+}
+.basic-info li p span, .detail-info li p span {
+	  display: inline-block;
+	  width: 15%;
+	  font-size: 14px;
+	  min-width: 82px;
+}
+.need-flag {
+	  font-style: normal;
+	  color: #f00;
+}
+.detail-info li p.idle-p input[type=text] {
+	  width: 38.6%;
+}
+.basic-info li input[type=text], .detail-info li input[type=text] {
+	  /* float: left; */
+	  width: 80%;
+	  border-radius: 5px;
+	  height: 30px;
+	  border: 1px solid #ccc;
+	  /* margin-left: 10px; */
+	  outline: none;
+	  background-color: white !important;
+}
+.basic-info li div.address-detail {
+	  width: 80%;
+	  border-radius: 5px;
+	  height: 30px;
+	  border: 1px solid #ccc;
+}
+.detail-info li select {
+	  width: 80%;
+	  border-radius: 5px;
+	  height: 30px;
+	  border: 1px solid #ccc;
+	  outline: none;
+}
+.detail-info li textarea {
+	  width: 90.5%;
+	  height: 80px;
+	  border: 1px solid #ccc;
+	  border-radius: 5px;
+	  resize: none;
+	  outline: none;
+	  /* margin-left: 10px; */
+}
+.detail-info li button {
+	  width: 80px;
+    height: 30px;
+    border: 1px solid #ffcc80;
+    background-color: #fffaf2;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+.upload-file-btn {
+	  width: 80px;
+    height: 30px;
+    border: 1px solid #ffcc80;
+    background-color: #fffaf2;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    cursor: pointer;
+}
+.upload-file-show-pic {
+	  width: 85%;
+	  margin: 10px auto;
+	  padding-left: 167px;
+}
+.upload-file-show-pic:after {
+	  display: block;
+	  content: '';
+	  clear: both;
+}
+.upload-file-show-pic li {
+	  float: left;
+	  position: relative;
+	  margin-right: 10px;
+	  cursor: pointer;
+}
+.upload-file-show-pic li img {
+	  width: 100px;
+	  height: 100px;
+}
+.upload-file-show-pic li:after{
+	  display: block;
+	  content: '';
+	  clear: both;
+}
+ul li.upload-file-list-li p {
+    width: 100px;
+    height: 18px;
+    margin: 5px 0px;
+    color: #d67934;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
+.closeTag {
+	  position: absolute;
+	  top: 0px;
+	  right: 0px;
+	  width: 20px;
+	  height: 20px;
+	  z-index: 1000;
+	  background: url(../../images/btn-icon-small.png) no-repeat;
+	  cursor: pointer;
+}
+.closeTag:hover {
+	  background-position: -20px 0;
+}
+
+
+/*地图按钮*/
+.basic-info li p span.show-baidu-map {
+	  display: inline;
+	  width: 25px;
+	  min-width: 25px;
+	  height: 25px;
+	  position: absolute;
+	  top: 5px;
+	  right: 26px;
+	  background: url(../../images/location.png) no-repeat;
+	  background-size: 25px 25px;
+}
+.basic-info li p span.show-baidu-map:hover {
+	  background: url(../../images/location1.png) no-repeat;
+	  background-size: 25px 25px;
+}
+
+
+div.map-con-div {
+	 /*  width: 100%; */
+	  height: calc(100% - 5px);
+	  padding: 0px 10px;
+	  position: relative;
+}
+.search-address-div {
+	  /* width: 100%; */
+	  height: 30px;
+	  padding-left: 10px;
+}
+.search-address-div input[type=button] {
+	  float: right;
+	  width:85px;
+	  height: 25px;
+	  line-height: 25px;
+	  margin-right: 20px;
+	  background: rgba(255,102,0,1);
+	  border-radius: 5px;
+	  border: 0px;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 2px;
+}
+.search-address-div p {
+	  float: left;
+	  /* height: 30px; */
+	  line-height: 20px;
+	  margin-top: 3px;
+	  color: navy;
+}
+input[type=text].map-search-input {
+	  box-shadow: 1px 2px 1px rgba(0,0,0,.15);
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    height: 30px;
+    background-color: white !important;
+}
+input[type=text].map-search-input:focus {
+	  border: 0px;
+    border: 1px solid #409DFE;
+    outline: none;
+    box-shadow: 0 0 3px #409DFE;
+}
+.map-modal-zindex {
+	  display: none;
+	  position:absolute;
+	  top: 0px;
+	  left: 0px;
+	  width: 100%;
+	  height: 100%;
+	  z-index: 800;
+	  background: rgba(0,0,0,0.5);
+	  
+}
+.map-container-div {
+	  padding-top: 5px;
+	  display: none;
+	  position: absolute;
+	  width: 96%;
+	  height: 96%;
+	  top: 2%;
+	  left: 2%;
+	 /*  margin-left: -50%;
+	  margin-top: -50%; */
+	  background: #fff;
+	  z-index: 1000;
+}
+
+div.tangram-suggestion-main{
+	z-index:99999;
+}
+
+
+.tab_wrap li {
+  /* width: 33.3%; */
+  width: 25%;
+}
+
+.tab-body-wrap {
+  width: 94%;
+  height: 780px;
+  margin: 10px 20px;
+}
+
+.tab-body-wrap ul {
+  margin: 0px;
+}
+
+.tab-body-wrap li {
+  width: 45%;
+  height: 35px;
+  line-height: 35px;
+  margin: 0px;
+}
+
+.tab-body-wrap {
+  height: calc(100% - 40px);
+}
+
+.tab-body-wrap{
+  overflow-y: auto;
+  height: 75px; 
+  margin-top: -20px;
+  /*margin-right: 20px;*/
+ /*  margin-left: 20px;   */
+}
+
+ .tab_li_current{
+	color:rgba(255,255,255,1);
+	background-color:rgba(255,102,0,1);
+	border:none;
+	padding-bottom:2px;
+	
+	}		
+	
+div.tab_wrap li {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    display: block;
+    width: 50%;
+    float: left;
+    line-height: 30px;
+    border-top-left-radius: 20px;
+    background-color: rgba(4,84,133,1);
+    border: 2px solid rgba(4,84,133,1);
+    border-bottom: none;
+    color: rgba(255,255,255,1);
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+ .btn_wrap {
+    width: 60%;
+    float: left;
+    height: 30px;
+    margin-top:28px;
+    border-bottom: 2px solid rgba(255,102,0,1);
+}
+
+.tab_wrap {
+    width: 40%;
+    float: right;
+    margin-top: 25px;
+}
+
+.tab_wrap .tab_li_current {
+    color: rgba(255,255,255,1);
+    background-color: rgba(255,102,0,1);
+    border: none;
+    padding-bottom: 2px;
+}
+
+.main-container-div{
+	overflow: auto;
+	width: 100%;
+	height: 83%;
+}
+
+.set-scence-win{
+	  width: 100%;
+    height: calc(100% - 95px);
+    box-sizing: border-box;
+    margin-top: -15px;
+    overflow: auto;
+}
+
+.hidden-tag{
+	display: none;
+}
+
+
+/**************配置场景列表***********************/
+div.configured-container {
+	height: 100%;
+	background: transparent url('../../images/switch.png') no-repeat 50% 50%;
+}
+div.already-configured-con {
+		    /* height: 310px !important; */
+		}
+		
+/*已配置*/
+.already-configured-con {
+	  float: left;
+    width: calc(50% - 5px);
+    height: calc(100% - 2px);
+    box-sizing: border-box;
+    padding: 0px 15px;
+}
+
+div.already-configured {
+	  height: 100%;
+	  margin: 0px auto;
+}
+
+.line-div {
+	  height: 1px;
+	  width: 100%;
+	  border-top: 1px dotted #ccc;
+	  margin: 10px auto;
+}
+.none-configured-con {
+	  height: calc(100% - 2px);
+	  width: calc(50% - 5px);
+	  float: right;
+	  box-sizing: border-box;
+    padding:0px 15px; 
+}
+/* .none-configured-con h5 {
+	  font-size: 16px;
+    color: #f27900;
+    text-align: center;
+    background-color: #fffbf5;
+    height: 80px;
+    line-height: 80px;
+    cursor: pointer;
+    width: 80%;
+    height: 100px;
+    line-height: 100px;
+    margin: 20px auto 0px auto;
+    padding: 0px;
+} */
+
+/*未配置场景列表-默认隐藏*/
+
+div.none-configured {
+	  margin: 0px; 
+}
+
+.toolbar {
+	  height: 40px;
+	  background: #fff;
+}
+.toolbar input[type=button] {
+	  width: 65px;
+	  height: 30px;
+	  border: 1px solid #ffcc80;
+	  background-color: #fffaf2;
+	  border-radius: 5px;
+	  margin-left: 20px;
+	  margin-top: 5px;
+	  letter-spacing: 0px;
+	  cursor: pointer;
+}
+
+.left-border-top {
+    float: left;
+    height: 23px;
+    line-height: 23px;
+    margin-top: 8px;
+    margin-left: 20px;
+}
+
+.border-left {
+    float: left;
+    width: 6px;
+    height: 20px;
+    border: 1px solid #0277bd;
+    border-radius: 3px;
+    background: #0277bd;
+}
+
+.header-title {
+    margin-left: 10px;
+    float: left;
+    font-size: 16px;
+}	
+
+.toolbar input[type=text].search-input {
+	  float: left;
+	  height: 30px;
+	  box-sizing: border-box;
+	  width: 250px;
+	  border: 1px solid #ccc;
+	  border-radius: 3px;
+	  outline: none;
+	  background-color: #fff;
+	  margin-left: 20px;
+	  margin-top: 5px;
+}	
+.toolbar input[type=text].search-input:focus {
+	  outline: none;
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+
+div.toolbar input[type=text].search-input {
+		    height: 26px;
+	}
+
+.toolbar input[type=button].add-scence-to-btn {
+    width: 110px;
+    height: 30px;
+    float: left;
+    letter-spacing: 1px;
+} 
+
+.toolbar input[type=button].add-scence-to-btn {
+    width: 65px;
+    height: 30px;
+    float: left;
+    letter-spacing: 1px;
+}
+
+.search-btn-div {
+    width: 25px;
+    height: 25px;
+    float: left;
+    margin-top: 6px;
+    margin-left: -25px;
+}

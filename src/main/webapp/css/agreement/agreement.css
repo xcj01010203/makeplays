@@ -1,0 +1,68 @@
+@charset "utf-8";
+*{ margin: 0;
+    border: 0;
+    font-family: "Microsoft Yahei",Arial,Georgia,"Hiragino Sans GB","Lucida Grande",serif,sans-serif;
+    vertical-align: baseline;
+    background: 0 0;
+    font-style: normal;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+    font-size: 14px;
+ }
+ input[type=button] {
+    color: #fff;
+    background-color: #eb6100;
+    border-radius: 3px;
+    border: 0px;
+}
+input[type=button]:hover{
+    cursor: pointer;
+    background-color: #FF6900;
+}
+input[type=button]:focus{
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    background-color: #E66205;
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.container {
+	padding: 0px;
+}
+
+.title h2 {
+	padding-top: 0;
+    padding-bottom: 12px;
+    color: #525252;
+    font-size: 19px;
+    font-weight: 400;
+    text-align: center;
+    font-family: "Microsoft Yahei";
+    border-bottom: 1px solid #e3e3e3;
+}
+.content {
+	margin: 15px 0;
+    text-align: left;
+    color: #525252;
+}
+.content h4 {
+    font-size: 18px;
+    font-weight: 400;
+    font-family: "Microsoft Yahei";
+    padding: 2px 0px;
+}
+.content p {
+	margin-right: 10px;
+    font-size: 16px;
+    line-height: 29px;
+    letter-spacing: 1px;
+}
+.bottom {
+	text-align: center;
+}
+.bottom input[type=button]{
+	width: 241px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+}

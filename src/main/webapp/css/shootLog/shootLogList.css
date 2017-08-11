@@ -1,0 +1,871 @@
+.add{width:20px; height:20px; background: url("images/add.png") no-repeat;}
+.add:hover{background: url("images/add_hover.png") no-repeat;}
+
+
+.linkText{text-decoration:none;}
+.linkText:hover{text-decoration:underline; cursor:pointer}
+.main-class {height: 100%;overflow: auto;width: 100%;}
+.main-class table{width: 100%;border-collapse: collapse;border-spacing: 0px; table-layout: fixed;}
+.main-class table td{border: 1px solid #aaa;height: 100%;height: 35px;text-align: center;}
+/* .main-class table tbody tr:hover{background-color: #d1d1d1;} */
+.main-class table thead tr{background-color: #ebebeb;}
+.table-column {overflow: hidden;text-overflow: ellipsis;text-align: left;height: 35px;line-height: 35px;white-space: nowrap;padding-left: 3px;}
+
+
+.main-class table tr.select td.back-ground-td {
+	 background: #e3e3e4;
+}
+.right-popup-win {
+	  display: none;
+    position: absolute;
+    right: -1000px;
+    top: 0px;
+   /*  width: calc(100% - 478px); */
+    width: 70%;
+    height: calc(100% - 2px);
+    background: #f2f2f0;
+    z-index: 200;
+    border: 1px solid #ccc;
+    /* box-shadow-top: -2px 0px 2px #e1ebfa;
+    box-shadow-left: -2px 0px 2px #ccc; */
+    box-shadow: 0 0 1em #cec9c9;
+    overflow: hidden;
+}
+.win-btn-list {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background: #e1ebfa;
+    z-index: 600; 
+}
+.win-btn-list input[type=button] {
+    border: 0px;
+    outline: none;
+    width: 100px;
+    height: 25px;
+    letter-spacing: 10px;
+    /* line-height: 25px; */
+    color: #fff;
+    /* margin-right: 50px; */
+    background: rgba(255,102,0,1); 
+    border-radius: 5px;
+    margin-top: 7px; 
+    font-size: 14px;
+    font-family: '微软雅黑'; 
+}
+.scence-content {
+    overflow-y: auto;
+   /*  height: calc(100% - 40px); */
+    height: calc(100% - 30px);
+    margin-top: 30px;
+    max-height: 100%;
+    padding: 10px 20px 10px 20px;
+    
+}
+
+.tab-body-wrap {
+	  width: 100%;
+	  height: 100%;
+}
+.btn_tab_wrap {
+	  overflow: hidden;
+    margin-bottom: 10px;
+}
+div.tab_wrap li {
+	  width: 20%;
+}
+.shootlog-public {
+	  width: 100%;
+    height: calc(100% - 60px);
+    clear: both;
+    overflow: auto;
+}
+
+
+
+/*基本信息*/
+div.site-information-tips {
+	  height: 100%;
+}
+.shootlog-basic-title {
+	  width: 100%;
+	  height: 30px;
+	  font-size: 15px;
+	  line-height: 30px;
+	  color: #000;
+	  font-weight: bold;
+	  letter-spacing: 1px;
+	  font-family: '微软雅黑';
+}
+.shootlog-basic-title span {
+	  display: inline-block;
+	  height: 28px;
+	  line-height: 28px;
+	  font-size: 15px;
+	  font-weight: bold;
+	  vertical-align: top;
+}
+input[type=button].add-transition-site {
+	  width: 24px;
+	  height: 24px;
+	  background: url(../../images/add.png) no-repeat;
+	  background-size: 24px;
+	  cursor: pointer;
+}
+input[type=button].add-transition-site:hover {
+	  background: url(../../images/add_hover.png) no-repeat;
+    background-size: 24px;
+}
+.transition-site-title{
+	  margin-top: 20px;
+}
+.shootlog-basic-info {
+	  margin: 0px;
+	  padding: 0px;
+	  list-style-type: none;
+	  width: 100%;
+	  overflow: hidden;
+}
+.shootlog-basic-info li {
+	  float: left;
+	  width: 50%;
+	  height: 30px;
+	  font-size: 14px;
+	  margin-bottom: 5px;
+}
+.shootlog-basic-info li p {
+	  float: left;
+	  height: 30px;
+	  line-height: 30px;
+}
+.shootlog-basic-info li p.title-p {
+	  width: 100px;
+	  padding-left: 40px;
+	  box-sizing: border-box;
+	  color: #000;
+}
+.shootlog-basic-info li input[type=text].content-input {
+	  width: calc(80% - 125px);
+	  margin-left: 5px;
+	  padding-left: 10px;
+	  box-sizing: border-box;
+	  overflow: hidden;
+	  white-space: nowrap;
+	  text-overflow: ellipsis;
+	  color: #333;
+	  border: 1px solid #ccc;
+	  height: 30px;
+	  border-radius: 5px;
+}
+.shootlog-basic-info li input[type=text]:hover, .shootlog-basic-info li input[type=text]:focus {
+	  outline: none;
+	  box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+/*转场信息*/
+.transition-site-info {
+	  width:100%;
+	  padding-left: 40px;
+	  padding-right: 40px;
+	  box-sizing: border-box;
+	  margin-top: 5px;
+	  /* height: calc(100% - 230px); */
+	  height: calc(100% - 280px);
+}
+.transition-table-header {
+	  height: 30px;
+	  overflow: hidden;
+}
+.transition-table {
+	  border-collapse: collapse;
+	  width: 100%;
+}
+.transition-table tr {
+	  height: 30px;
+}
+.transition-table-header tr {
+	  background: #e3e3e3;
+}
+.transition-table-body {
+	  height: calc(100% - 30px);
+	  overflow-y: auto;
+}
+.transition-table-body tr td {
+	  border: 1px solid #ccc;
+	  text-align: center;
+	  vertical-align: middle;
+}
+
+.transition-table-body tr td input[type=text]{
+	  box-sizing: border-box;
+	  width: 99%;
+	  height: 28px;
+	  border: none;
+	  padding-left: 5px;
+}
+.transition-table-body tr td span.td-content {
+	  display: block;
+	  width: 99%;
+}
+.transition-table-body tr td span.td-content input[type=text]{
+	  width: calc(100% - 30px);
+}
+.transition-table-body tr td input[type=button].delete-site {
+	  width: 20px;
+	  height: 20px;
+	  float: right;
+	  margin-right: 5px;
+	  margin-top: 5px;
+	  background: url(../../images/delete.png) no-repeat;
+	  background-size: 20px;
+	  cursor: pointer;
+}
+.transition-table-body tr td input[type=button].delete-site:hover {
+	  background: url(../../images/delete1.png) no-repeat;
+    background-size: 20px;
+}
+.transition-table-body tr td input[type=text]:hover, .transition-table-body tr td input[type=text]:focus {
+	  outline: none;
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.btn-list {
+	  text-align: center;
+}
+.btn-list input[type=button] {
+	  border: 0px;
+    outline: none;
+    width: 100px;
+    height: 25px;
+    letter-spacing: 10px;
+    /* line-height: 25px; */
+    color: #fff;
+    /* margin-right: 50px; */
+    background: rgba(255,102,0,1); 
+    border-radius: 5px;
+    margin-top: 7px; 
+    font-size: 14px;
+    font-family: '微软雅黑'; 
+    cursor: pointer;
+}
+.btn-list input[type=button]:hover {
+	  background: rgba(230,93,1,1);
+}
+
+/*演员出勤*/
+.actor-information-tips {
+	  height: calc(100% - 55px);
+}
+p.gate-card-title {
+	  height: 20px;
+}
+p.gate-card-title label {
+	  margin-right: 20px;
+	  font-size: 14px;
+	  color: #000;
+}
+p.gate-card-title input[type=radio] {
+	  vertical-align: sub;
+}
+.actor-information-body {
+	  height: calc(100% - 40px);
+    width: 93%;
+    margin: 0px auto;
+    margin-top: 20px;
+}
+.special-info-body, .mass-info-body {
+	  display: none;
+}
+.main-actor-div, .special-actor-div, .mass-actor-div {
+	  height: 100%;
+}
+.add-row-title {
+	  height: 30px;
+}
+.add-row-title input[type=button].add-actor {
+	  width: 24px;
+	  height: 24px;
+	  background: url(../../images/add.png) no-repeat;
+	  background-size: 24px;
+	  cursor: pointer;
+	  outline: none;
+}
+.add-row-title input[type=button].add-actor:hover {
+	  background: url(../../images/add_hover.png) no-repeat;
+	  background-size: 24px;
+}
+.main-actor-header, .special-actor-header, .mass-actor-header {
+	  height: 30px;
+	  background: #e3e3e3;
+}
+.main-actor-table, .special-actor-table, .mass-actor-table {
+	  border-collapse: collapse;
+	  width: 100%;
+}
+.main-actor-table tr, .special-actor-table tr, .mass-actor-table tr {
+	  height: 30px;
+}
+.main-actor-table tr td, .special-actor table tr td, .mass-actor-table tr td {
+	  border: 0px;
+}
+.main-actor-body, .mass-actor-body {
+	  height: calc(100% - 60px);
+	  overflow-y: auto;
+}
+.main-actor-grid, .special-actor-grid, .mass-actor-grid {
+	  border-collapse: collapse;
+	  width: 100%;
+}
+.main-actor-grid tr, .special-actor-grid tr, .mass-actor-grid tr {
+	  height: 30px;
+}
+.main-actor-grid tr td, .special-actor-grid tr td, .mass-actor-grid tr td {
+	  border: 1px solid #ccc;
+	  box-sizing: border-box;
+}
+.main-actor-grid tr td input[type=text],.mass-actor-grid tr td input[type=text] {
+	  box-sizing: border-box;
+    width: 99%;
+    height: 28px;
+    border: none;
+    padding-left: 5px;
+}
+.main-actor-grid tr td select {
+	  box-sizing: border-box;
+    width: 99%;
+    height: 28px;
+    border: none;
+    text-align: center;
+}
+.main-actor-grid tr td input[type=text]:hover, .main-actor-grid tr td input[type=text]:focus, .main-actor-grid tr td select:hover, .main-actor-grid tr td select:focus {
+	  outline: none;
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.main-actor-grid tr td span.td-content,.mass-actor-grid tr td span.td-content {
+	  display: block;
+    width: 99%;
+}
+
+.main-actor-grid tr td span.td-content input[type=text], .mass-actor-grid tr td span.td-content input[type=text] {
+	  width: calc(100% - 30px);
+}
+.main-actor-grid tr td input[type=button].delete-actor, .mass-actor-grid tr td input[type=button].delete-actor {
+	  width: 20px;
+    height: 20px;
+    float: right;
+    margin-right: 5px;
+    margin-top: 5px;
+    background: url(../../images/delete.png) no-repeat;
+    background-size: 20px;
+    cursor: pointer;
+}
+.main-actor-grid tr td input[type=button].delete-actor:hover, .mass-actor-grid tr td input[type=button].delete-actor:hover {
+	  background: url(../../images/delete1.png) no-repeat;
+    background-size: 20px;
+}
+.main-actor-grid tr td input[type=checkbox]{
+	  vertical-align: sub;
+}
+.main-actor-grid tr td label {
+	  margin-right: 20px;
+}
+
+.mass-actor-grid tr td input[type=text]:hover, .mass-actor-grid tr td input[type=text]:focus {
+	  outline: none;
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+
+
+
+
+
+
+
+
+
+/* .actor-attendance-div,.special-item-div,.important-remark-div, .depart-performance-div {
+	  display: none;
+}
+.actor-attendance-talbe {
+	  width:100%;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+p.attendance-title {
+	  margin: 20px 0px 20px 0px;
+}
+.main-actor-table, .special-mass-table, .special-item-table {
+	  border-collapse: collapse;
+    width: 100%;
+}
+.main-actor-table tr, .special-mass-table tr, .special-item-table tr {
+	  height: 30px;
+}
+.main-actor-table thead tr, .special-mass-table thead tr, .special-item-table thead tr {
+	  background: #ebebeb;
+}
+ .special-mass-table tr td, .special-item-table tr td {
+    border: 1px solid #ccc;
+    text-align: center;
+    vertical-align: middle;
+} */
+
+/*部门表现*/
+.department-grade-div {
+	  height: calc(100% - 55px);
+	  overflow-y: auto;
+}
+.pingjia-p {
+	  height: 20px;
+	  margin-bottom: 10px;
+	  font-size: 14px;
+	  color: #333;
+	  text-align: center;
+}
+.department-grade-container {
+	  width: 585px;
+	  padding: 10px;
+	  margin: 0px auto;
+	  border: 1px solid #ccc;
+}
+.department-grade-div ul li {
+	  display: inline-block;
+}
+.department-div {
+	  height: 45px;
+	  padding-left: 20px;
+}
+.department-div p {
+	  float: left;
+	  width: 100px;
+	  height: 45px;
+	  line-height: 45px;
+	  font-size: 15px;
+	  color: #000;
+	  text-overflow: ellipsis;
+	  overflow: hidden;
+	  white-space: nowrap;
+}
+
+.grade-star {
+  /* display: inline-block; */
+  float: left;
+  /* width: 70%; */
+  height: 45px;
+}
+.grade-star>li {
+    height: 30px;
+    width: 30px;
+    margin-top: 5px;
+    background: url(../../images/xing0.png) no-repeat center;
+    position: relative;
+    transition: background .2s ease-in;
+    background-size: 30px;
+}
+.grade-star li.grade-tips {
+	 position: relative;
+	 background: none;
+	 width: auto;
+}
+.grade-star li.grade-tips span.star-info {
+	/*  display: none; */
+	  float: left;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #333;
+}
+.grade-star>li.full-star {
+  background-image: url(../../images/xing1.png);
+}
+.grade-star>li.half-star {
+  background-image: url(../../images/xing2.png);
+}
+.grade-star>li .star-left,  .grade-star>li .star-right {
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+}
+/* .grade-star>li .star-info {
+  position: absolute;
+  padding: 2px 5px;
+  border: 1px solid #ddd;
+  background-color: #f7f3ea;
+  white-space: nowrap;
+  top: 100%;
+  margin-top: 5px;
+  display: none;
+} */
+.grade-star>li + li {
+  margin-left: 50px;
+}
+.grade-df {
+	display: none;
+  /* font-family: Grade;
+  color: #f6af39;
+  font-size: 70px;
+  line-height: 1; */
+}
+
+
+
+
+
+/*特殊道具*/
+.add-special-p {
+	  height: 30px;
+	  padding-left: 40px;
+}
+input[type=button].add-special-prop {
+	  width: 24px;
+	  height: 24px;
+	  background: url(../../images/add.png) no-repeat;
+	  background-size: 24px;
+	  cursor: pointer;
+}
+input[type=button].add-special-prop:hover {
+	  background: url(../../images/add_hover.png) no-repeat;
+    background-size: 24px;
+}
+.special-information-tips {
+	  width: 100%;
+	  height: calc(100% - 95px);
+	  margin-top: 10px;
+	  padding-left: 40px;
+	  padding-right: 40px;
+	  box-sizing: border-box;
+}
+.special-prop-header {
+	  height: 30px;
+	  background: #e3e3e3;
+}
+.special-item-table {
+	  width: 100%;
+}
+.special-item-table tr {
+	  height: 30px;
+}
+.special-item-table tr td {
+	  border: 0px;
+}
+.special-prop-body {
+	  height: calc(100% - 30px);
+	  overflow-y: auto;
+}
+.special-prop-grid {
+	  width: 100%;
+	  border-collapse: collapse;
+}
+.special-prop-grid tr {
+	  height: 30px;
+}
+.special-prop-grid tr td {
+	  border: 1px solid #ccc;
+}
+.special-prop-grid tr td input[type=text]{
+	box-sizing: border-box;
+    width: 99%;
+    height: 28px;
+    border: none;
+    padding-left: 5px;
+}
+.special-prop-grid tr td span.td-content {
+    display: block;
+    width: 99%;
+}
+.special-prop-grid tr td span.td-content input[type=text]{
+    width: calc(100% - 30px);
+}
+.special-prop-grid tr td input[type=button].delete-prop {
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin-right: 5px;
+    margin-top: 5px;
+    background: url(../../images/delete.png) no-repeat;
+    background-size: 20px;
+    cursor: pointer;
+}
+.special-prop-grid tr td input[type=button].delete-prop:hover {
+    background: url(../../images/delete1.png) no-repeat;
+    background-size: 20px;
+}
+.special-prop-grid tr td input[type=text]:hover, .special-prop-grid tr td input[type=text]:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+input[type=button].appack-tag {
+	  width: 20px;
+    height: 20px;
+    background: url(../../../images/fujian-icon.png) no-repeat;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+
+.jqx-window {
+	  display: none;
+}
+.jqx-content {
+	  padding: 10px;
+	  position: relative;
+}
+div.upload-btn-container {
+	  height: 30px;
+}
+.upload-title {
+	  height: 20px;
+	  margin-top: 10px;
+	  line-height: 20px;
+	  font-size: 14px;
+	  font-weight: bold;
+}
+.file-list {
+	  margin-top: 10px;
+	  max-height: 280px;
+	  overflow-y: auto;
+	  min-height: 128px;
+}
+.vedio-file-list {
+	  max-height: 150px;
+	  margin-top: 10px;
+	  overflow-y: auto;
+}
+div.upload-win-btn{
+	  height: 30px;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+    width: calc(100% - 20px);
+}
+div.upload-win-btn input[type=button] {
+	  width: 60px;
+	  letter-spacing: 2px;
+	  text-align: center;
+	  margin-right: 20px;
+}
+/*上传图片*/
+div.select-file-btn {
+    width: 80px;
+    height: 27px;
+    line-height: 27px;
+    color: #000;
+    border: 1px solid #ffcc80;
+    background-color: #fffaf2;
+    border-radius: 5px;
+    float: left;
+    box-sizing: border-box;
+    /* margin-left: 20px; */
+    text-align: center;
+    letter-spacing: 1px;
+}
+.upload-file-list:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+.upload-file-list li {
+    float: left;
+    position: relative;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.upload-file-list li img {
+    width: 100px;
+    height: 100px;
+}
+.upload-file-list li:after{
+    display: block;
+    content: '';
+    clear: both;
+}
+ul li.upload-file-list-li p {
+    width: 100px;
+    height: 18px;
+    margin: 5px 0px;
+    color: #d67934;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
+ul  p.blank-p {
+	  color: #ccc;
+    font-size: 13px;
+}
+.closeTag {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    z-index: 1000;
+    background: url(../../images/btn-icon-small.png) no-repeat;
+    cursor: pointer;
+}
+.closeTag:hover {
+    background-position: -20px 0;
+}
+ul.upload-file-vedio li {
+	  position: relative;
+	  height: 40px;
+}
+ul.upload-file-vedio li p {
+	  float: left;
+	  width: 100px;
+    height: 40px;
+    line-height: 40px;
+    color: #d67934;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    margin: 0px;
+}
+ul.upload-file-vedio li audio {
+	  width: calc(90% - 140px);
+	  height: 40px;
+	  float: left;
+}
+ul.upload-file-vedio li a.music {
+	  float: left;
+    margin-left: 20px;
+    margin-top: 8px;
+    width: 20px;
+    height: 20px;
+    z-index: 1000;
+    background: url(../../images/detail.png) no-repeat;
+    background-size: 20px;
+    cursor: pointer;
+}
+ul.upload-file-vedio li a.stop {
+	  background: url(../../images/play.png) no-repeat;
+	  
+    background-size: 20px;
+}
+ul.upload-file-vedio li a.play {
+	  background: url(../../images/pause.png) no-repeat;
+    background-size: 20px;
+}
+ul.upload-file-vedio  p.blank-p {
+	  color: #ccc;
+	  font-size: 13px;
+	  height: 20px;
+}
+ul.upload-file-vedio li .deleteTag {
+	  /* position: absolute;
+	  top: 10px;
+    right: 15px; */
+    float: left;
+    margin-left: 20px;
+    margin-top: 8px;
+    width: 20px;
+    height: 20px;
+    z-index: 1000;
+    background: url(../../images/delete.png) no-repeat;
+    background-size: 20px;
+    cursor: pointer;
+}
+ul.upload-file-vedio li .closeTag:hover {
+	  background: url(../../images/delete.png) no-repeat;
+	  background-size: 20px;
+}
+.play-video {
+	  display: none;
+}
+
+
+
+
+
+
+/*重要备注*/
+.add-remark-container {
+	  height: 30px;
+	  padding-left: 40px;
+}
+input[type=button].add-remark-btn {
+	  width: 24px;
+	  height: 24px;
+	  background: url(../../images/add.png) no-repeat;
+	  background-size: 24px;
+}
+input[type=button].add-remark-btn:hover {
+	  background: url(../../images/add_hover.png) no-repeat;
+    background-size: 24px;
+}
+
+.important-remark-tips {
+	  width: 100%;
+	  height: calc(100% - 95px);
+	  padding-left: 40px;
+	  padding-right: 40px;
+	  margin-top: 10px;
+	  box-sizing: border-box;
+}
+.remark-header-div {
+	  height: 30px;
+	  background: #e3e3e3;
+}
+.remark-header-table {
+	  width: 100%;
+}
+.remark-header-table tr  {
+	  height: 30px;
+}
+.remark-header-table td {
+	  border: 0px;
+}
+.remark-body-div {
+	  height: calc(100% - 30px);
+	  overflow-y: auto;
+}
+.remark-body-table {
+	  width: 100%;
+	  border-collapse: collapse;
+}
+.remark-body-table tr {
+	  height: 30px;
+}
+.remark-body-table tr td {
+	  border: 1px solid #ccc;
+}
+.remark-body-table tr td input[type=text]{
+	  box-sizing: border-box;
+    width: 99%;
+    height: 28px;
+    border: none;
+    padding-left: 5px;
+}
+.remark-body-table tr td span.td-content {
+    display: block;
+    width: 99%;
+}
+.remark-body-table tr td span.td-content input[type=text]{
+    width: calc(100% - 30px);
+}
+.remark-body-table tr td input[type=button].delete-remark {
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin-right: 5px;
+    margin-top: 5px;
+    background: url(../../images/delete.png) no-repeat;
+    background-size: 20px;
+    cursor: pointer;
+}
+.remark-body-table tr td input[type=button].delete-remark:hover {
+    background: url(../../images/delete1.png) no-repeat;
+    background-size: 20px;
+}
+.remark-body-table tr td input[type=text]:hover, .remark-body-table tr td input[type=text]:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}

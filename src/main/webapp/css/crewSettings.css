@@ -1,0 +1,683 @@
+@charset "utf-8";
+.crewSettings-rootdiv .crewSettings{margin:0; padding:0; list-style:none; outline:none; font-family:"微软雅黑"; font-size: 14px;}
+* {
+	  margin: 0px;
+	  padding: 0px;
+	  font-family: '微软雅黑';
+}
+ul, li {
+	  list-style-type: none;
+}
+input[type=button] {
+    color: #fff;
+    background-color: #eb6100;
+    border-radius: 3px;
+    border: 0px;
+}
+input[type=button]:hover{
+    cursor: pointer;
+    background-color: #FF6900;
+}
+input[type=button]:focus{
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    background-color: #E66205;
+}
+input[type=button].disabled{
+    background: grey;
+}
+input[type=button].disabled:hover {
+    cursor: default;
+}
+input[type=button].disabled:focus {
+    outline: none;
+}
+
+.crewSettings-rootdiv .crewSettings {
+	padding:0px 40px;
+	padding-bottom: 20px;
+}
+.crewSettings-rootdiv .crewSettings .sub-settings {
+    margin-top: 20px;
+}
+.crewSettings-rootdiv .crewSettings .title {
+    border-bottom: 2px solid #0277BD;
+}
+.crewSettings-rootdiv .crewSettings .title label {
+	font-size: 22px;
+    font-family: 黑体;
+    line-height: 35px;
+    padding-left: 6px;
+    font-weight: normal;
+}
+.crewSettings-rootdiv .crewSettings .add-user-btn {
+    background: white;
+    color: black;
+    box-shadow: 0px 0px 1px 1px orange;
+    width: 100px;
+    height: 25px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+input[type=button]:focus {
+	  box-shadow: none;
+	  outline: none;
+}
+.crewSettings-rootdiv .crewSettings .title input[type=button].modify-crew-img {
+	width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: 1px solid #FEB839;
+    border-radius: 3px;
+    vertical-align: text-bottom;
+    background-size: 20px 20px;
+    background-color: transparent;
+    margin-right: 10px;
+    background: url(../images/modify.png) no-repeat;
+    background-size: 20px 20px;
+}
+.crewSettings-rootdiv .crewSettings .title input[type=button].delete-crew-img {
+	  width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: 1px solid #FEB839;
+    border-radius: 3px;
+    vertical-align: text-bottom;
+    background-size: 20px 20px;
+    background-color: transparent;
+    background: url(../images/delete_ioc.png) no-repeat;
+    background-size: 20px 20px;
+}
+.crewSettings-rootdiv .crewSettings .title input[type=button].modify-crew-img:hover {
+	  background: url(../images/modify_hover.png) no-repeat;
+	  background-size: 20px 20px;
+}
+.crewSettings-rootdiv .crewSettings .title input[type=button].delete-crew-img:hover {
+	  background: url(../images/delete1_ioc.png) no-repeat;
+	  background-size: 20px 20px;
+}
+.crewSettings-rootdiv .crewSettings .add-user-btn:hover {
+    background-color: #F5F5F5;
+}
+.crewSettings-rootdiv .crewSettings .add-user-btn:focus {
+    background-color: #EFEFEF;
+    outline: none;
+}
+.crewSettings-rootdiv .crewSettings .content {
+	padding-top: 10px;
+}
+.crewSettings-rootdiv .crewSettings table {
+	border-collapse: collapse;
+	width: 100%;
+}
+.crewSettings-rootdiv .crewSettings table tr {
+	height: 34px;
+	text-align: center;
+}
+.crewSettings-rootdiv .crewSettings table tr td {
+	
+}
+.crewSettings-rootdiv .crewSettings table tr td p {
+	max-width: 300px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+    margin: 0px auto;
+    line-height: 34px;
+}
+
+.crewSettings-rootdiv .crewSettings table tr td span{
+  width: 30px;
+  height: 30px;
+  background: url(../images/delete_ioc.png) no-repeat center center;
+  background-size: 16px 16px;
+  float: right;  
+  margin-top: -32px;
+  display: none;
+}
+.crewSettings-rootdiv .crewSettings table tr td span:HOVER{
+	background: url(../images/delete1_ioc.png) no-repeat center center;
+  background-size: 16px 16px;
+}
+
+/*剧组信息*/
+.crewSettings-rootdiv .crewSettings table.crew-info-table tr td img {
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+}
+/* .crewSettings table.crew-info-table tr.more-info-tr {
+	display: none;
+} */
+.crewSettings-rootdiv .crewSettings table.crew-info-table tr td {
+	text-align: left;
+}
+.crewSettings-rootdiv .crewSettings table.crew-info-table tr td .crew-single-info {
+	float: left;
+}
+
+
+/*进组申请*/
+.crewSettings-rootdiv .crewSettings table.enter-apply-table {
+	
+}
+.crewSettings-rootdiv .crewSettings table.enter-apply-table tr td {
+    border: 1px solid #DCDCDC;
+}
+.crewSettings-rootdiv .crewSettings table.enter-apply-table tr:nth-child(odd) {
+    background: #ECECEC;
+}
+.crewSettings-rootdiv .crewSettings table.enter-apply-table tr.table-head {
+    background: #e6e6e6;
+}
+.crewSettings-rootdiv .crewSettings table.enter-apply-table tr td input[type=button] {
+    height: 28px;
+    line-height: 28px;
+    padding-left: 9px;
+    padding-right: 9px
+}
+.crewSettings-rootdiv .crewSettings table.enter-apply-table tr td input[type=button].reject {
+	background: grey;
+}
+.crewSettings-rootdiv .crewSettings table.enter-apply-table tr td input[type=button].reject:hover {
+	cursor: pointer;
+    background-color: #909090;
+}
+.crewSettings-rootdiv .crewSettings table.enter-apply-table tr td input[type=button].reject:focus{
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    background-color: #717171;
+}
+ 
+/*成员管理*/
+.crewSettings-rootdiv .crewSettings .group-name-div {
+	font-size: 17px;
+    line-height: 40px;
+    padding-left: 6px;
+    font-family: 黑体;
+    margin-top: 24px;
+}
+.crewSettings-rootdiv .crewSettings .group-user-div {
+    padding: 0px 40px;
+}
+ 
+.crewSettings-rootdiv .crewSettings table.group-user-table {
+    
+}
+.crewSettings-rootdiv .crewSettings table.group-user-table tr td {
+    border: 1px solid #DCDCDC;
+}
+.crewSettings-rootdiv .crewSettings table.group-user-table tr:not(.role-name-tr):hover {
+	background: #ECECEC;
+	cursor: pointer;
+}
+.crewSettings-rootdiv .crewSettings table.group-user-table .role-name-tr {
+    text-align: left;
+    background: #e6e6e6;
+}
+.crewSettings-rootdiv .crewSettings table.group-user-table .role-name-tr td {
+	padding-left: 100px;
+}
+div.return-img{
+	width: 24px;
+	height: 24px;
+	background-image: url(../../images/return2.png);
+	background-size: 24px 24px;
+	background-repeat: no-repeat;
+	margin-top:10px;
+	cursor: pointer;
+}
+div.return-img:HOVER {
+	background-image: url(../../images/return21.png);
+	background-size: 24px 24px;
+}
+
+
+/*清除剧组记录弹窗*/
+.delete-crew-content ul {
+	  /* width: 530px; */
+    margin: 10px 10px 0px 10px;
+    border: 1px solid #ccc;
+    padding-top: 15px;
+}
+.delete-crew-content ul li {
+	  width: 100%;
+	  height: 32px;
+	  font-size: 13px;
+}
+.delete-crew-content ul li:not(:last-child) {
+	  border-bottom: none;
+}
+.delete-crew-content ul li:not(:first-child) {
+	  border-top: none;
+}
+.delete-crew-content ul li label {
+	  width: 110px;
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 5px;
+}
+.delete-crew-content ul li input[type=checkbox] {
+	  vertical-align: text-bottom;
+}
+.delete-crew-content ul li span {
+	  width: 410px;
+	  display: inline-block;
+	  word-break: break-all; 
+	  word-wrap:break-word;
+}
+.delete-crew-content ul li span i {
+	  font-style: normal;
+	  color: #3399ff;
+}
+.win-btn-list-del {
+	  width: 100%;
+	  height: 25px;
+	  margin-top: 15px;
+	  text-align: center;
+}
+.win-btn-list-del input[type=button] {
+	  width: 65px;
+    height: 25px;
+    line-height: 25px;
+    letter-spacing: 3px;
+    border-radius: 7px;
+    background: rgba(255,102,0,1);
+    color: #fff;
+    cursor: pointer;
+}
+.win-btn-list-del input[type=button]:hover {
+	  background: rgba(230,93,1,1);
+}
+
+/*tab页*/
+.crewSettings-rootdiv .tab_div {
+	border-bottom: 2px solid rgba(255,102,0,1);
+	display: inline-block;
+	width: 100%;
+}
+.crewSettings-rootdiv .tab_div li {
+    width: 150px;
+    line-height: 30px;
+    height: 30px;
+    float:left;
+    border-top-left-radius: 20px;
+    background-color: rgba(4,84,133,1);
+    border: 2px solid rgba(4,84,133,1);
+    border-bottom: none;
+    color: rgba(255,255,255,1);
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+.crewSettings-rootdiv .tab_div .tab_li_current {
+	color: rgba(255,255,255,1);
+    background-color: rgba(255,102,0,1);
+    border: none;
+    padding-bottom: 2px;
+}
+/*权限查看*/
+.crewSettings-rootdiv .authWatch_div {
+	display: inline-block;
+    height: 730px;
+    width: 100%;
+}
+.crewSettings-rootdiv .left_div {
+	float: left;
+	width: 350px;
+	height: 100%;
+	border-right: solid 2px #1c94c4;
+}
+.crewSettings-rootdiv .right_div {
+	float: left;
+	width: calc(100% - 355px);
+	height: 100%;
+	overflow: auto;
+	padding: 15px 0 15px 15px;
+    box-sizing: border-box;
+}
+.crewSettings-rootdiv .tabdiv {
+	width: 100%;
+	display: inline-block;
+	padding: 20px 0 20px 0;
+}
+.crewSettings-rootdiv .treediv {
+	width: 100%;
+	overflow: auto;
+	height: calc(100% - 75px);
+	font-size: 13px;
+	padding-left: 30px;
+	box-sizing:border-box;
+}
+.crewSettings-rootdiv .mobileImg {
+	background: url("../../images/mobile.png") no-repeat;
+	width: 100px;
+	height: 40px;
+	background-size: 100px 40px;
+	cursor: pointer;
+}
+
+.crewSettings-rootdiv .mobileImg1 {
+	background: url("../../images/mobile1.png") no-repeat;
+	width: 100px;
+	height: 40px;
+	background-size: 100px 40px;
+	cursor: pointer;
+}
+
+.crewSettings-rootdiv .pcImg {
+	background: url("../../images/PC.png") no-repeat;
+	width: 100px;
+	height: 40px;
+	background-size: 100px 40px;
+	cursor: pointer;
+}
+
+.crewSettings-rootdiv .pcImg1 {
+	background: url("/images/PC1.png") no-repeat;
+	width: 100px;
+	height: 40px;
+	background-size: 100px 40px;
+	cursor: pointer;
+}
+.crewSettings-rootdiv .jqx-widget-content-ui-lightness {
+	border-color: #f2f2f0;
+	background-color: #f2f2f0;
+	font-size: 14px;
+}
+.crewSettings-rootdiv .right_div .authtitle label {
+	font-size: 17px;
+	font-weight: normal;
+}
+.crewSettings-rootdiv .crewAuthSet_div .title-tab {
+    height: 30px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.crewSettings-rootdiv .crewAuthSet_div .title-tab p {
+    float: left;
+    width: 100px;
+    font-size: 17px;
+    color: #D0D0D0;
+    cursor: pointer;
+    text-align: center;
+}
+.crewSettings-rootdiv .crewAuthSet_div .title-tab p.selected {
+    border-bottom: 3px solid #2185D0;
+    color: #2185D0;
+}
+.crewSettings-rootdiv .crewAuthSet_div .auth-info {
+    height: calc(100% - 30px);
+    overflow: auto;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    clear: both;
+}
+.crewSettings-rootdiv .crewAuthSet_div .auth-info .app-auth-list {
+    display: none;
+}
+.crewSettings-rootdiv .crewAuthSet_div .auth-info .pc-auth-list .first-level-auth {
+    border-bottom: 1px solid #D0D0D0;
+}
+.crewSettings-rootdiv .crewAuthSet_div .auth-info .first-level-auth .group-auth {
+    color: black;
+    font-size: 15px;
+    line-height: 30px;
+    font-style: normal;
+    font-weight: normal;
+}
+.crewSettings-rootdiv .crewAuthSet_div .auth-info .second-level-auth {
+    margin-left: 50px;
+}
+.crewSettings-rootdiv .crewAuthSet_div .auth-info .single-auth:not(.group-auth) {
+    padding: 0 10px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 20px;
+    color: #D0D0D0;
+    border: 1px solid #D0D0D0;
+    margin-right: 5px;
+    height: 18px;
+    line-height: 30px;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: normal;
+    display: inline;
+}
+.crewSettings-rootdiv .crewAuthSet_div .auth-info .single-auth.selected:not(.group-auth) {
+    color: #333333;
+    border: 1px solid #ff9800;
+}
+.crewSettings-rootdiv .crewAuthSet_div .auth-info .third-level-auth {
+    margin-left: 50px;
+}
+.crewSettings-rootdiv .crewAuthSet_div .auth-info .allow-modify-tag.selected {
+    color: #333333;
+    border: 1px solid #ff9800;
+    border-left: none;
+    margin-left: -13px;
+}
+.crewSettings-rootdiv .crewAuthSet_div .auth-info .allow-modify-tag {
+    padding: 0 10px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 20px;
+    color: #D0D0D0;
+    border: 1px solid #D0D0D0;
+    margin-right: 5px;
+    height: 18px;
+    line-height: 30px;
+    white-space: nowrap;
+    cursor: pointer;
+    border-left: none;
+    margin-left: -13px;
+    font-weight: normal;
+    display: inline;
+}
+.crewSettings-rootdiv .crewAuthSet_div {
+	height: 690px;
+	width:100%;
+}
+.crewSettings-rootdiv .checkbox-auth {
+	margin-right: 5px;
+}
+/*剧组基本信息*/
+.crewInfoSet-div {
+	overflow: hidden;
+	padding: 10px 30px;
+}
+.crewInfoSet-div ul:not(:last-child) {
+	overflow: hidden;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px #ddd dotted;
+}
+.crewInfoSet-div ul:last-child {
+	overflow: hidden;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+.crewInfoSet-div li:not(.all-li) {
+	overflow: hidden;
+	margin-bottom: 10px;
+	float: left;
+	width: 43%;
+	margin-left: 20px;
+	position: relative;
+}
+.create-btn-li {
+	text-align: center;
+	margin-top: 93px;
+	float: left;
+}
+/* .crewInfoSet-div li div {
+	float: left;
+	width: 50%;
+} */
+.crewInfoSet-div li p {
+    width: 100px;
+    text-align: right;
+    display: inline-block;
+    float: left;
+    margin-top: 6px;
+}
+.crewInfoSet-div li input[type=text] {
+    width:calc(100% - 220px);
+    max-width:345px;
+    height:35px;
+    border-radius: 3px;
+    border: 1px solid #CCC;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 6px;
+    box-sizing: border-box;
+}
+.crewInfoSet-div li select {
+    width:calc(100% - 220px);
+    max-width:345px;
+    height:35px;
+    border-radius: 3px;
+    border: 1px solid #CCC;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 6px;
+}
+.crewInfoSet-div li input[type=text]:focus, .crewInfoSet-div li select:focus {
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.crewInfoSet-div li textarea {
+	width: 70%;
+	box-sizing: border-box;
+    border-radius: 3px;
+    border: 1px solid #CCC;
+    padding: 8px;
+    vertical-align: top;
+    background-color: rgba(204,204,204,0);
+}
+.crewInfoSet-div li :focus {
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.crewInfoSet-div .create-btn-li {
+    text-align: center;
+}
+.descrip {
+    color: #B7B7B7;
+    font-size: 13px;
+    padding-left: 110px;
+    margin-top: 3px;
+}
+.crewInfoSet-div .create-btn {
+    width: 160px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+    background-color: #eb6100;
+}
+.crewInfoSet-div .create-btn:hover {
+    background-color: #FF6900;
+}
+.crewInfoSet-div .create-btn:focus {
+    background-color: #E66205;
+}
+.necessory {
+    color:red;
+    font-size: 16px;
+    vertical-align: middle;
+}
+.error-message {
+    color: red;
+    font-size: 13px;
+}
+.check-div span.font-color {
+    color: #bbb;
+}
+.check-div span {
+    margin-right: 10px;
+    line-height: 23px;
+}
+.ui.checkbox {
+	padding-left: 0px;
+}
+.check-div {
+    float: right;
+    box-sizing: border-box;
+    width: 120px;
+    margin-right: 20px;
+}
+.checkbox input[type=checkbox] {
+    margin-left: 0px;
+    margin-top: 0px;
+}
+.ui.toggle.checkbox label {
+    font-size: 14px;
+    line-height: 16px;
+    font-family: '微软雅黑';
+}
+.ui.toggle.checkbox label.font-color {
+    color: #bbb;
+}
+
+.crewInfoSet-div li div.upload-container {
+	float: left;
+	width: 80px;
+	height: 27px;
+    line-height: 27px;
+    color: #000;
+    border: 1px solid #ffcc80;
+    background-color: #fffaf2;
+    border-radius: 5px;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-align: center;
+    margin-left: 10px;
+}
+
+/* div.select-file-btn {
+    width: 80px !important;
+    height: 27px;
+    line-height: 27px;
+    color: #000;
+    border: 1px solid #ffcc80;
+    background-color: #fffaf2;
+    border-radius: 5px;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    cursor: pointer;
+} */
+
+.upload-file-list {
+	margin-top: 5px;
+	padding-left: 0px !important;
+	width: 245px;
+	height:100px;
+}
+.upload-file-list-li {
+    width: 100px;
+    height:100px;
+}
+.upload-file-list li img {
+    width: 110px;
+    height: 100px;
+}
+.closeTag {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    z-index: 1000;
+    background: url(../../images/btn-icon-small.png) no-repeat;
+    cursor: pointer;
+}
+.closeTag:hover {
+    background-position: -20px 0;
+}

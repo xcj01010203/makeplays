@@ -1,0 +1,476 @@
+@media screen and (min-width: 1366px) and (max-width: 1399px){
+	  div.toolbar input[type=button], div.toolbar input[type=button]:hover {
+	     width: 22px;
+	     height: 22px;
+	     background-size: 22px 22px;
+	  }
+	  
+}
+.my-container {
+	  width: 100%;
+	  height: 100%;
+	  overflow: auto;
+}
+div.jqx-grid-toolbar {
+	  background: #fff;
+}
+
+.my-jqx-window {
+	  display: none;
+	  overflow: inherit;
+}
+.my-jqx-window .my-window-content {
+	overflow: inherit;
+}
+
+.tab-body-wrap-worker {
+	  margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+    height: calc(100% - 20px);
+    width: calc(100% - 80px);
+}
+.tab-body-wrap-actor {
+	  margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+    height: calc(100% - 20px);
+    width: calc(100% - 80px);
+}
+.tab-body-wrap-produce {
+	  margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+    height: calc(100% - 20px);
+    width: calc(100% - 80px);
+}
+.tab-body-wrap-paid {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+.tab-body-wrap-maker {
+	  margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+ .btn_wrap {
+	  width: 60%;
+	  float: left;
+	  height: 32px;
+	  box-sizing: content-box;
+	  border-bottom: 2px solid rgba(255,102,0,1);
+}
+.tab_wrap {
+	  width: 40%;
+	  float: right;
+}
+.tab_wrap ul {
+	  overflow: hidden;
+	  border-bottom: 2px solid rgba(255,102,0,1);
+}    
+.tab_wrap li {
+		 box-sizing:border-box;
+		-moz-box-sizing:border-box; /*Firefox*/
+		-webkit-box-sizing:border-box; /*Safari*/
+		display:block; 
+		width:25%;
+		 line-height: 28px;
+		float:left;
+		line-height:30px;
+		border-top-left-radius:20px;
+		background-color:rgba(4,84,133,1);
+		border:2px solid rgba(4,84,133,1);
+		border-bottom:none;
+		color:rgba(255,255,255,1);
+		text-align:center;
+		font-size: 16px;
+		cursor: pointer; 
+}
+ .tab_wrap .tab_li_current{
+	  color:rgba(255,255,255,1);
+	  background-color:rgba(255,102,0,1);
+	  border:none;
+	  padding-bottom:2px; 
+  
+} 
+ul,li {
+	  margin: 0px;
+	  padding: 0px;
+}
+.contract-public {
+	  /* width: 100%; */
+	  clear: both;
+	  /* overflow-y: auto; */
+	  overflow: hidden;
+	  margin-left: auto;
+	  margin-right: 0px; 
+ 	  /* margin-top: 10px; */ 
+}
+.worker-contract-page, .actor-contract-page, .produce-contract-page {
+	  padding-top: 20px;
+	  height: calc(100% - 34px);
+}
+
+/*职员姓名、合同编码列*/
+.worker-name-column, .contract-number-column, .actor-name-column, .produce-name-column {
+    text-align: center;
+    width: 100%;
+    height: 30px;
+    line-height: 30px; 
+}
+
+/*职员合同列表*/
+.toolbar input[type=button], .toolbar input[type=button]:hover {
+	  margin: 0 8px;
+	  margin-top: 5px;
+	  width: 24px;
+    height: 24px;
+    float:left;
+    cursor: pointer;
+}
+/*工具条*/
+
+.advance-search-btn {
+	  background: url(../image/search.png) no-repeat;
+	  background-size: 24px 24px;
+}
+.advance-search-btn:hover {
+	  background: url(../image/search1.png) no-repeat;
+	  background-size: 24px 24px;
+}
+.add-contract-btn {
+	  background: url(../image/tianjia.png) no-repeat;
+	  background-size: 24px 24px;
+}
+.add-contract-btn:hover {
+	  background: url(../image/tianjia1.png) no-repeat;
+	  background-size: 24px 24px;
+}
+
+/*总薪酬、已付薪酬、未付薪酬*/
+.total-money-column, .pay-money-column, .left-money-column {
+	  padding-right: 5px;
+    text-align: right;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+}
+.total-money-column span, .pay-money-column span, .left-money-column span {
+	  color: #1C94C4;
+}
+/*总的统计信息列表*/
+.worker-contract-total {
+	  width: 100%;
+	  height: 113px;
+}
+.worker-contract-total table, .actor-contract-total table , .produce-contract-total table{
+	  width: 100%;
+	  border-right: 1px solid #ccc; 
+}
+.worker-contract-total table tr, .actor-contract-total table tr, .produce-contract-total table tr {
+	  height: 28px;
+	  
+}
+.worker-contract-total table tr td, .actor-contract-total table tr td, .produce-contract-total table tr td {
+	  border-bottom: 1px solid #ccc;
+	  border-left: 1px solid #ccc;
+	  text-align:center;
+	  vertical-align: middle;
+	  font-size: 13px;
+	  color: #000;
+}
+.worker-contract-total table tr td.align-td, .actor-contract-total table tr td.align-td, .produce-contract-total table tr td.align-td {
+	  text-align: right;
+	  padding-right: 10px;
+}
+.worker-contract-total table tr td span, .actor-contract-total table tr td span, .produce-contract-total table tr td span {
+	  color: #1C94C4;
+}
+
+
+
+/*职员合同--搜索窗口*/
+.advance-search-win ul.info-list {
+	  margin: 0px 15px 0px 15px;
+	  width: 610px;
+	  height: 85%;
+	  font-size: 13px;
+}
+/* .my-window-content .Info-list li select.worker-name-show {
+	  display: none;
+}
+.advance-search-win .my-window-content .Info-list li a {
+	  display:none; 
+	  cursor:pointer; 
+	  font-size:13px; 
+	  font-family:'微软雅黑';
+} */ 
+.advance-search-win ul li {
+	  /* margin-top: 5px; */
+	  padding-left: 3px;
+}
+.advance-search-win ul li.pay-way-li {
+	  height: 45px;
+	  line-height: 45px;
+}
+.advance-search-win ul li.pay-way-li p {
+	  line-height: 45px;
+	  height: 45px;
+	  margin: 0px;
+}
+
+.advance-search-win ul li.general-li-input {
+	  width: 100%;
+	  padding: 5px 0px 5px 0px;
+	  /* margin-bottom: 10px; */
+	  /* height: 35px; */
+	 /*  margin-top: 5px; */
+	  margin: 0px;
+	  height: 35px;
+}
+.advance-search-win ul li.general-li-texta {
+	  width: 100%;
+	  padding: 5px 0px;
+	  height: 75px;
+	  margin-top: 5px;
+}
+/* .advance-search-win ul li.general-li-texta p {
+	  width: 80px;
+	  float: left; 
+} */
+.advance-search-win ul li.select-picker-li {
+	  margin-top: 10px;
+}
+.advance-search-win ul li p {
+	  width: 80px;
+	  float: left;
+	  height: 30px;
+	  line-height: 30px;
+	  text-align: right;
+	  margin: 0px;
+	  letter-spacing: 2px;
+	  font-family: '微软雅黑';
+}
+.advance-search-win ul li select {
+	  width: 480px;
+	  float: left;
+	  margin-left: 3px;
+	  height: 30px;
+	 /*  display: none; */
+}
+.advance-search-win ul li label {
+	  display:table-cell; 
+   vertical-align: middle;
+	  height: 30px;
+	  margin: 0px;
+	  font-weight: normal;
+	  padding-left: 5px;
+}
+.advance-search-win ul li input[type=radio] {
+	  vertical-align: sub;
+}
+.advance-search-win ul li input[type=text] {
+	  float: left;
+	  height: 30px;
+	  margin-left: 3px;
+	  width: 480px;
+}
+.advance-search-win ul li input[type=text]:hover {
+	  border:1px solid #409DFE;
+    outline:none;
+    border-bottom:1px solid #409DFE;
+    box-shadow:0 0 3px #409DFE;
+}
+.advance-search-win ul li textarea {
+	  width: 480px;
+	  height: 70px;
+	  border: 1px solid #ddd;
+	  border-radius: 6px;
+	  resize: none;
+	  margin-left: 3px;
+}
+.win-btn-list-div {
+    width:  100%;
+    height: 10%;
+    text-align: center;
+    margin-top: 10px;
+}
+.win-btn-list-div input[type=button] {
+    width: 60px;
+    height: 25px;
+    border-radius: 7px;
+    background: rgba(255,102,0,1);
+    color: #fff;
+    cursor: pointer;
+    margin: 0px 10px;
+}
+.win-btn-list-div input[type=button]:hover {
+    background: rgba(230,93,1,1);
+}
+
+
+/*下拉框*/
+.my-window-content .btn-default {
+	  background: none;
+	  border: none;
+	  border-bottom: 1px solid #cad0e5;
+	  height: 35px;
+	  cursor :default;
+	  width: 480px;
+}
+.my-window-content .btn-group .dropdown-menu ul.dropdown-menu {
+	  float: left;
+	  margin: 0px auto;
+	  width: 50%;
+	  padding: 0px 10px;
+}
+.bootstrap-select.btn-group .dropdown-menu {
+	  width: 480px;
+}
+
+  /*搜索框*/
+
+.advance-search-win .bootstrap-select-searchbox input[type=text] {
+	  width: 452px;
+} 
+
+
+input[type=file] {
+	  width: 300px;
+	  height: 30px;
+}
+
+
+
+/*iframe容器*/
+
+.right-popup-win {
+	  display: none; 
+	  position: absolute;
+	  right: 0px;
+	  top: 74px;
+	  /* width: 1020px; */
+	  width: 84%;
+	  
+	  height: calc(100% - 74px);
+	  border: 1px solid #ccc;
+	  /* min-width: 400px; */
+	  min-width: 816px;
+	  overflow: hidden;
+	  z-index: 1000;
+	  background-color: #f8f8f8;
+	  box-shadow:  0 0 1em #cec9c9;
+	 
+}
+/* .right-popup-header {
+	  position: relative;
+	  height: 40px;
+	  width: 100%;
+	  background-color: #e7effa;
+}
+.right-popup-header table {
+	  width: 100%;
+	  max-width: 100%;
+	  background-color: transparent;
+}
+.right-popup-header table tr {
+	  width: 100%;
+}
+.right-popup-header table td.popup-title {
+	  width: 120px;
+}
+.right-popup-title {
+	  display: inline-block;
+	  line-height: 30px;
+	  border-bottom: 4px solid #ec8e0c;
+	  margin-left: 20px;
+	  font-family: '黑体';
+	  font-size: 16px;
+	  font-weight: normal;
+} 
+.right-popup-header table td.popup-btn-con {
+	  text-align: center;
+	  padding-top: 8px;
+}
+.popup-btn-con input[type=button] {
+	  width: 100px;
+	  height: 25px;
+	  border-radius: 7px;
+	  background: rgba(255,102,0,1);
+	  color: rgba(255,255,255,1);
+}
+.popup-btn-con input[type=button]:hover {
+	  background: rgba(230,93,1,1);
+} */
+.right-popup-body {
+	  /* width: 98%; */
+	  width: 100%;
+    height: 98%;
+    background-color: #f7f6f1;
+    overflow: auto;
+    padding-bottom: 40px;
+}
+
+.right-popup-close {
+	  margin-left: 50px;
+}
+
+.hiddenWindow {
+	display: none;
+}
+
+.exportTvOption {
+	margin: 10px; 
+	margin-bottom: 32px; 
+	margin-left: 45px;
+	font-family: 微软雅黑;
+	font-size: 15px;
+}
+
+.sxport-radio-input {
+	vertical-align: bottom;
+}
+
+.export-radio-fen {
+	margin-left: 15px !important;
+}
+
+.exportMovieOption {
+	margin: 10px; 
+	margin-bottom: 32px; 
+	margin-left: 50px; 
+	font-size: 14px;
+}
+
+.mybtn {
+	height: 25px;
+	background-color: #eb6100;
+	color: #ededed;
+	border: none;
+	border-radius: 4px;
+	padding: 0 6px;
+	letter-spacing: 10px;
+	padding-left: 16px;
+	line-height: 23px;
+}
+
+.export {
+	margin-right: 5px;
+}
+
+input[type=button].import-btn {
+    width: 24px; 
+    height: 24px;
+    background: url("../../../images/leading-in.png") no-repeat;  
+    background-size: 24px 24px;
+    margin-top: 5px;
+}
+input[type=button].import-btn:hover {
+    background: url("../../../images/leading-in_hover.png") no-repeat;
+    background-size: 24px 24px;
+    margin-top: 5px;
+}
+
+.export-contact {width:24px; height:24px;background: url("../../../images/export.png") no-repeat;background-size: 24px 24px; margin-top:6px;float:left;}
+.export-contact:hover {background: url("../../../images/export_hover.png") no-repeat; background-size: 24px 24px;}

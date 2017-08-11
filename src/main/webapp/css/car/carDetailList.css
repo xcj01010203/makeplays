@@ -1,0 +1,366 @@
+@charset "utf-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	outline: none;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+html {
+	width: 100%;
+	height: 100%;
+}
+.container-coment {
+	  width: 100%;
+	  height: 100%;
+	  overflow: hidden;
+	  background-color: #f2f2f2;
+}
+/*头部按钮*/
+.header-btn-list {
+	  position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background: #e1ebfa;
+    z-index: 600;
+}
+input[type=button]{
+	  outline: none;
+}
+input[type=button]:focus {
+	  border: 0px;
+	  box-shadow: none;
+}
+.header-btn-list input[type=button]{
+	  border: 0px;
+    outline: none;
+    width: 100px;
+    height: 25px;
+    letter-spacing: 10px;
+    /* line-height: 25px; */
+    color: #fff;
+    margin-right: 50px;
+    background: rgba(255,102,0,1);
+    border-radius: 5px;
+    margin-top: 7px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+}
+.header-btn-list input[type=button]:hover {
+	  background: rgba(230,93,1,1);
+}
+input[type=text]:focus {
+	  box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+
+/*中间内容*/
+.main-content {
+	  /* width: 100%; */
+	  margin-top: 40px;
+	  height: calc(100% - 40px);
+	  overflow-y: auto;
+	  overflow-x: hidden;
+	  padding: 15px;
+}
+
+/*复选框*/
+.checkbox span {
+	  float: left;
+    margin-right: 7px;
+    line-height: 23px;
+}
+.checkbox input[type=checkbox] {
+	  margin-left: 40px;
+}
+.checkbox label {
+	  float: left;
+}
+
+.form-list {
+	  padding: 10px 0px 20px 0px; 
+	  border-bottom: 1px dotted #ccc;
+}
+.form-list ul {
+	  /* width: 100%; */
+	  height: 40px;
+	  padding-left: 53px;
+}
+.form-list ul:after {
+	  content: '';
+	  display: block;
+	  clear: both;
+}
+.form-list ul li {
+	  float: left;
+	  width: 33.3%;
+	  height: 35px;
+}
+.form-list ul li p {
+	  float: left;
+	  width: 15%;
+	  line-height: 33px;
+	  min-width:73px;
+}
+.form-list ul li p.is-has-group {
+	  width: 30%;
+}
+.form-list ul li input[type=text] {
+	  float: left;
+	  width: 60%;
+	  border: 1px solid #ccc;
+	  border-radius: 7px;
+	  height: 33px;
+}
+.form-list ul li input[type=text]:focus {
+	  border:1px solid #409DFE;
+	  outline:none;
+	  border-bottom:1px solid #409DFE;
+	  box-shadow:0 0 3px #409DFE;
+}
+.form-list ul li div.check-div {
+	  /* 
+	  width: 52%; */
+	  float: right;
+    box-sizing: border-box;
+    margin-top: 4px;
+    width: 45%;
+}
+
+.add-oil-div {
+	  padding-top: 10px;
+	  padding-left: 53px;
+	  height: calc(100% - 190px);
+    box-sizing: border-box;
+}
+.title {
+	  height: 40px;
+	  line-height: 40px;
+}
+.title h5 {
+	  float: left;
+}
+.title input[type=button]{
+   outline: none;
+   border: none;
+}
+.title input[type=button]:focus {
+   border: 0px;
+   box-shadow: none;
+}
+/* .title input[type=button] {
+    width: 80px;
+    height: 30px;
+    border: 1px solid #ffcc80;
+    background: #fffaf2;
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-top: 5px;
+    letter-spacing: 8px;
+    cursor: pointer;
+} */
+.count-tips {
+	  height: calc(100% - 40px);
+}
+
+/*合计表格*/
+.count-table, .detail-table-header, .detail-table-body {
+	  width: 100%;
+    border-collapse: collapse;
+}
+.count-table {
+	  height: 20px;
+}
+.count-table td span {
+	  display: block;
+	  color: #f2680c;
+	  padding-right: 5px;
+	  text-align: right;
+}
+.detail-table-div {
+	  width: 100%;
+	  overflow: hidden;
+}
+/*表格头*/
+.detail-header-div {
+	  width: 100%;
+	  overflow: hidden;
+}
+.detail-table-header {
+	  width: 100%;
+}
+.detail-table-header tr {
+	  background: #e2e2e2;
+	  height: 40px;
+}
+.detail-table-header td {
+	  border: 0px;
+	  text-align: center;
+}
+/*表格体*/
+.detail-body-div {
+	  overflow-y: auto;
+	  overflow-x: hidden;
+	  height: calc(100% - 80px);
+}
+.detail-table-body tr{
+	  height: 30px;
+}
+.detail-table-body td {
+	  border: 1px solid #ccc;
+	  background-color: white;
+}
+.detail-table-body td input {
+	  display: block;
+	  height: 100%;
+	  width: 100%;
+	  border: 0px;
+	  background: transparent;
+	  padding: 0px 3px;
+	  box-sizing: border-box;
+}
+.detail-table-body td input.date-input {
+	  float: left;
+	  width: 80%;
+	  height: 100%;
+	  /* border: 0px;
+	  background: transparent;
+	  padding: 0px 3px;
+	  box-sizing: border-box; */
+}
+.detail-table-body td span {
+	  float: right;
+	  width: 20%;
+	  height: 100%;
+	  text-align: center;
+	  box-sizing: border-box;
+	  padding-right: 3px;
+}
+.detail-table-body td span input[type=button].delete-car-row {
+	  float: right;
+	  width: 18px;
+	  height: 18px;
+	  background: url(../../images/delete.png) no-repeat;
+	  background-size: 18px;
+}
+.detail-table-body td span input[type=button].delete-car-row:hover {
+	  cursor: pointer;
+	  background: url(../../images/delete1.png) no-repeat;
+    background-size: 18px;
+}
+.checkbox span.font-color{
+	  color: #ccc;
+}
+.ui.toggle.checkbox label {
+	  color: #ccc !important;
+}
+
+/* .kilometer-div {
+	  padding: 0px 5px 0px 0px;
+	  text-align: right;
+} */
+.form-list input[type=text]{
+	  padding: 0px 3px;
+}
+
+.add-car-btn {
+		width:24px;
+		height:24px;
+	  background: url("../../../images/tianjia.png") no-repeat;
+	  background-size: 24px 24px;
+	  margin-left: 30px;
+	  margin-top: 7px;
+}
+.add-car-btn:hover {
+	  background: url("../../../images/tianjia1.png") no-repeat;
+	  background-size: 24px 24px;
+}
+
+.export-car {
+	width:24px;
+	height:24px;
+	background: url("../../../images/export.png") no-repeat;
+	background-size: 24px 24px; 
+	margin-top:6px;
+	margin-left: 20px;
+}
+	
+.export-car:HOVER {
+	background: url("../../../images/export_hover.png") no-repeat; 
+	background-size: 24px 24px;
+}
+
+input[type=button].import-btn {
+    width: 24px; 
+    height: 24px;
+    background: url("../../../images/leading-in.png") no-repeat;  
+    background-size: 24px 24px;
+    margin-top: 7px;
+    margin-left: 20px;
+}
+
+input[type=button].import-btn:hover {
+    background: url("../../../images/leading-in_hover.png") no-repeat;
+    background-size: 24px 24px;
+    margin-top: 7px;
+}
+
+.carNo-text{
+	  width: 30% !important;
+}
+
+ul.dropdown-menu li{
+	float: none;
+	width:90%;
+}
+
+div.bootstrap-select-searchbox input[type=text]{
+	width:90% !important;
+}
+
+ul.dropdown-menu{
+	height: 230px;
+}
+
+div.btn-group button{
+	border-radius: 7px;
+    width: 273px !important;
+}
+
+#isGroup{
+	margin-left: 58px !important;
+}
+
+.department-ul{
+	 position: absolute;
+    display: none;
+    width: 18%;
+    height: 240px;
+    background: #fff;
+    border: 1px solid #3399ff;
+    overflow-y: auto;
+    margin-left: 591px;
+    margin-top: -37px;
+    border-radius: 4px;
+}
+
+.department-ul li{
+	height: 25px;
+    color: #333;
+    line-height: 25px;
+    text-align: left;
+    padding-left: 60px;
+    font-family: '微软雅黑';
+    font-size: 15px;
+    /* margin-left: 30; */
+    letter-spacing: 23px;
+}
+
+.department-ul li:HOVER {
+	background-color: #428BCA;
+}

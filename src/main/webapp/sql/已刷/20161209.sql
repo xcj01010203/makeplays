@@ -1,0 +1,1 @@
+DELETE from tab_currency_info where name='台币';

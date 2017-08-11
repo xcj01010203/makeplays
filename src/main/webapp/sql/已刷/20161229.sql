@@ -1,0 +1,1 @@
+ALTER TABLE tab_view_role ADD sequence int DEFAULT 1 COMMENT '序列号';

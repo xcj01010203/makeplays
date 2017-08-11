@@ -1,0 +1,453 @@
+@charset "utf-8";
+
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: '微软雅黑';
+	font-size: 13px;
+}
+.maindiv {
+	width: 100%;
+	height: 100%;
+}
+.toolbardiv {
+	width: 90%;
+	height: 35px;
+	margin: 0 auto;
+}
+.addBtn {
+	width: 24px;
+	height: 24px;
+	background: url("../../images/tianjiachengyuan.png") no-repeat;
+	background-size: 24px 24px;
+	position: absolute;
+	margin: 6px 0 0 25px;
+}
+.addBtn:HOVER {
+	background: url("../../images/tianjiachengyuan1.png") no-repeat;
+	background-size: 24px 24px;
+}
+.search_div {
+	float: left;
+}
+.search_box{
+	float:left;
+	height:30px;
+	margin-top: 6px;
+	display: inline-block;
+	margin-left: 80px;
+}
+.search_kuang{
+	border-radius:3px;
+	border:1px solid #086999 !important;
+	float:left;
+	height:24px;
+	width:200px;
+	padding-left:5px;
+	padding-right:30px;
+}
+.icon_cha,.icon_cha1{
+	float:left;
+	width:25px;
+	height:25px;
+	background-color:#086999;
+	border-radius:3px;
+	margin-left:-26px;
+}
+.icon_cha img,.icon_cha1 img{
+	width:100%;
+}
+.griddiv {
+	width: 90%;
+	margin: 0 auto;
+	height: calc(100% - 40px);
+}
+.colstyle {
+	margin-top:8px;
+	text-align:center;
+}
+.colstyle a {
+	text-decoration: none;
+}
+.colstyle a:HOVER {
+	font-weight: bold;
+}
+.userdelete_span{
+	width: 30px;
+	height: 30px;
+	background: url(../../images/delete_ioc.png) no-repeat center center;
+	background-size: 16px 16px;
+	float: right;
+	margin-top: -8px;
+	display: none;
+	cursor: pointer;
+}
+.userdelete_span:HOVER {
+	background: url(../../images/delete1_ioc.png) no-repeat center center;
+	background-size: 16px 16px;
+	cursor: pointer;
+}
+.register tr {
+    height: 40px;
+}
+.text-input
+{
+    height: 30px;
+    width: 240px;
+}
+.rightdiv {
+	display: none;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 700px;
+	height: calc(100% - 3px);
+	border: 1px solid #ccc;
+	min-width: 400px;
+	overflow: hidden;
+	z-index: 1000;
+	background-color: #f8f8f8;
+	box-shadow: 0 0 1em #cec9c9;
+}
+.con_right_title {
+	border-bottom: 1px solid #e4e7f2;
+	background-color: #e7effa;
+	height: 40px;
+}
+.con_right_title span {
+	display: inline-block;
+	line-height: 30px;
+	margin-left: 20px;
+	font-family: '黑体';
+	font-size: 16px;
+	*zoom: 1;
+	font-weight: normal;
+	color: #888;
+}
+.con_right_title span.current {
+	border-bottom: 4px solid #ec8e0c;
+	color: #333;
+}
+.con_right_bot_tit span {
+	cursor: pointer;
+}
+.con_right_title .operateBtn {
+	display: inline-block;
+	line-height: 30px;
+	margin-left: 10px;
+	*zoom: 1;
+	padding-top: 5px;
+	float: right;
+	height: 100%;
+	padding-right: 20px;
+}
+.con_right_content {
+	height: calc(100% - 40px);
+}
+.updateUserTable tr{
+	height: 45px;
+}
+.updateUserTable th {
+	text-align: right;
+	font-weight: normal;
+}
+.user_crew_div {
+	height: calc(100% - 300px);
+}
+.con_right_bottom {
+	width: 100%;
+	height: 100%;
+	padding-bottom: 10px;
+	overflow-y: auto;
+}
+.cards_box {
+    background-repeat: no-repeat;
+    background-size: 100px 100px;
+    background-position: -8px -33px;
+    clear: both;
+    width: 80%;
+    margin-top: 20px;
+    overflow: hidden;
+    background-color: #f3f9ff;
+    border-radius: 5px;
+    border: 1px solid rgba(204,204,204,0.2);
+    box-shadow: 2px 2px 2px rgba(153,153,153,0.5);
+    cursor: pointer;
+    padding-left: 65px;
+    padding-right: 5px;
+    line-height: 32px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.cards_box:hover{	
+	box-shadow:0 0 5px #42a5f5;  
+	-webkit-box-shadow:0 0 5px #42a5f5;  
+    -moz-box-shadow:0 0 5px #42a5f5;  
+}
+.card_title {
+    font-size: 15px;
+    color: #d67d09;
+    font-weight: bold;
+    float: left;
+    padding-right: 20px;
+}
+.card_job {
+    float: left;
+    font-size: 12px;
+}
+.card_oper {
+	float: right;
+	width: 30px;
+    height: 30px;
+    background: url(../../images/delete_ioc.png) no-repeat center center;
+    background-size: 16px 16px;
+    display: none;
+    cursor: pointer;
+}
+.card_oper:HOVER {
+	background: url(../../images/delete1_ioc.png) no-repeat center center;
+    background-size: 16px 16px;
+    cursor: pointer;
+}
+.con_right_bottom table {
+    font-family: "微软雅黑";
+    font-size: 13px;
+    padding-left: 10px;
+    background-color: #f3f9ff;
+    border-radius: 5px;
+    border: 1px solid rgba(204,204,204,0.2);
+    box-shadow: 1px 1px 1px rgba(153,153,153,0.2);
+    margin-top: 20px;
+    width: 650px;
+    margin-left: 20px;
+}
+.con_right_bottom tr {
+    height: 27px;
+}
+.customservice {
+    float: left;
+    margin-right: 30px;
+    color: #D67934;
+    cursor: pointer;
+    display: none;
+}
+.customservice:HOVER {
+    font-weight: bold;
+}
+.addCrewdiv {
+    width: 24px;
+    height: 24px;
+    background: url(../../images/add.png) no-repeat;
+    background-size: 24px 24px;
+    cursor: pointer;
+    float: left;
+}
+.addCrewdiv:HOVER {
+    background: url(../../images/add_hover.png) no-repeat;
+    background-size: 24px 24px;
+}
+.crewSel_div {
+	height: 100%;
+}
+.crewSelTitle {
+	height: 30px;
+	font-size: 15px;
+}
+.crewSearch {
+	height: 40px;
+}
+.search_box {
+	float: left;
+}
+.addCrewButton {
+	width:20px;
+	height:20px;
+	background: url(../../images/tonggao_1.png) no-repeat;
+	cursor: pointer;
+	float: left;
+	margin-top: 4px;
+	margin-left: 20px;
+}
+.addCrewButton:hover {
+	background: url(../../images/tonggao_2.png) no-repeat;
+}
+.searchList {
+	height: 30px;
+	line-height: 30px;
+	margin-left: 20px;
+	float: left;
+	width: 370px;
+}
+.searchList dt {
+	float: left;
+}
+.searchList ul li {
+    float: left;
+    width: 60px;
+    text-align: center;
+    cursor: pointer;
+}
+.addCrewToUser_content {
+	height: calc(100% - 75px);
+	overflow-y: auto;
+	line-height: 28px;
+}
+.font_color {
+	color: #F34F1E;
+}
+.roleselDiv {
+	display: none;
+	width:370px;
+	margin: 30px auto;
+}
+.descrip {
+  color: #B7B7B7;
+  font-size: 13px;
+}
+.errormessage {
+	color: red;
+	font-size: 13px;
+	display: none;
+}
+.jqx-menu-item-top-hover {
+	background-color: #004671;
+	color: white;
+	width: 120px;
+	height: 18px;
+	border: 1px solid #004671;
+	border-bottom: 0px;
+}
+.text_green {
+	margin-top: 8px;
+	text-align: center;
+	color: #51a351;
+}
+.text_gray {
+	margin-top: 8px;
+	text-align: center;
+	color: #a5a5a5;
+}
+/*剧组选择列表样式*/
+.addCrewToUser_content dl:not(:last-child) {
+	border-bottom: 1px dashed #cecece;
+}
+.group-dl {
+	overflow: hidden;
+}
+.group-dl dt {
+	margin-top:10px;
+    margin-bottom: 10px;
+}
+.group-dl dt span.span-title {
+	color:rgba(4,84,133,1);
+	font-size: 14px;
+}
+.group-dl dd {
+	float: left;
+    width: 22%;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing:border-box;
+}
+.blackColor {
+	color: black;
+}
+.grayColor {
+	color: gray;
+}
+/*搜索按钮*/
+.div_search {
+	margin-left: 25px;
+	margin-top:6px;
+	background: url(../../images/roleform/search.png) no-repeat;
+    background-size: 24px 24px;
+    width: 24px;
+    height: 24px;
+    float: left;
+    cursor: pointer;
+}
+.div_search:HOVER {
+	background: url(../../images/roleform/search1.png) no-repeat;
+    background-size: 24px 24px;
+}
+.search-condition {
+	padding-top: 30px;
+}
+.search-condition ul:not(:last-child) {
+	height: 45px;
+	line-height: 45px;
+    margin: 0 auto;
+    padding: 0px 0px;
+    width: 100%;
+}
+.search-condition ul li {
+    padding-left: 6px;
+}
+.search-condition ul label:first-child {
+    width: 80px;
+    font-weight: normal;
+    float: left;
+    text-align: right;
+    padding-right: 5px;
+}
+.search-condition ul li input[type='text']{
+	width: 355px;
+	line-height: 25px;
+	height: 27px;
+}
+.search-condition ul.oper_ul {
+    margin-top: 12px;
+}
+.user_work_div {
+	height: calc(100% - 287px);
+	overflow-y: auto;
+	width: 100%;
+	padding: 5px 65px;
+	box-sizing: border-box;
+}
+.user_work_title {
+	overflow: hidden;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+.user_work_title>div {
+	display: inline-block;
+    width: 4px;
+    height: 16px;
+    border: 1px solid #ec8e0c;
+    border-radius: 3px;
+    background: #ec8e0c;
+    float: left;
+    margin-right: 5px;
+}
+.user_work_title label {
+	font-size: 16px; 
+	font-family: '黑体';
+}
+.user_introduction {
+	padding: 5px;
+}
+.ul_user_work {
+	padding: 5px;
+	line-height: 22px;
+	border-top: dashed 1px #ccc;
+	overflow: hidden;
+}
+.del_div {
+	width: 20px;
+    height: 20px;
+    float: right;
+    margin-top: 2px;
+    margin-right: 5px;
+    background: url(../../images/delete.png) no-repeat;
+    background-size: 20px;
+    cursor: pointer;
+}
+.del_div:HOVER {
+	background: url(../../images/delete1.png) no-repeat;
+    background-size: 20px;
+}

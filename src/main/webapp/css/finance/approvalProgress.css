@@ -1,0 +1,90 @@
+/*审批进度*/
+
+.timer-viwer-div{
+  position: relative;
+  padding: 0px 15px;
+}
+div.timer-viwer-div:before {
+  content: '';
+  display:block;
+  position: absolute;
+  top: 0;
+  left: 21px;
+  height: 100%;
+  width: 2px;
+  background: #ccc;
+}
+.timer-content-div {
+  width: 100%;
+  min-height: 50px;
+  position: relative;
+}
+.timer-content-div:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.timer-flag {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  line-height: 100%;
+  box-sizing: border-box;
+}
+.green {
+  background: #f2f2f0 url(../../images/agree.png) no-repeat;
+  background-size: 15px;
+}
+.font-green {
+	color: green;
+}
+.red {
+  background: #f2f2f0 url(../../images/refuse.png) no-repeat;
+  background-size: 15px;
+}
+.font-red {
+	color: red;
+}
+.gray {
+  background: #f2f2f0 url(../../images/tuihui.png) no-repeat;
+  background-size: 15px;
+}
+.font-gray {
+	color: #333;
+}
+.shenpi {
+  background: #f2f2f0 url(../../images/shenpi.png) no-repeat;
+  background-size: 15px;
+}
+.font-return {
+	color: #8c8c8c;
+}
+.timer-content {
+  float: left;
+  margin-left: 25px;
+  width: calc(100% - 25px);
+}
+.timer-title {
+	height: 30px;
+}
+.name-tips {
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	font-size: 13px;
+}
+.date-tips {
+	float: right;
+	height: 30px;
+	line-height: 30px;
+	color: #8c8c8c;
+	font-size: 13px;
+}
+.timer-tips-content {
+	font-size: 13px;
+}
+
+

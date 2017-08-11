@@ -1,0 +1,720 @@
+@media screen and (min-width: 810px) and (max-width: 860px){
+	  td input[type=text] {
+	     width: 240px;
+	  }
+	  table td select.currency-kind, table td select.card-type {
+	     width: 240px;
+	  }
+	  td input[type=text].stage-info {
+	     width: 200px;
+	  }
+	  td input[type=text].stage-money {
+	     width: 85px;
+	  }
+	  table.worker-pay-method td table.stage-or-month-table {
+	  }
+}
+@media screen and (min-width: 1600px) and (max-width: 1680px){
+	   table.worker-pay-method td table.stage-or-month-table {
+	     margin-left: 102px;
+	     width: calc(100% - 102px);
+	  }
+}
+@media screen and (min-width: 1400px) and (max-width: 1599px) {
+	   table.worker-pay-method td table.stage-or-month-table {
+       margin-left: 90px;
+       width: calc(100% - 90px);
+    }
+}
+@media screen and (min-width: 1300px) and (max-width: 1399px) {
+	  table.worker-pay-method td table.stage-or-month-table {
+       margin-left: 84px;
+       width: calc(100% - 84px);
+    }
+}
+
+
+
+body {
+	  color: #333;
+	  margin: 0px;
+	  padding: 0px;
+	  font-size: 12px;
+	  font-family: '微软雅黑',arial,sans-serif;
+}
+ul,li {
+	  margin: 0px;
+	  padding: 0px;
+	  list-style: none;
+	  font-size: 12px;
+    font-family: '微软雅黑',arial,sans-serif;
+}
+.my-container {
+	  width: 100%;
+	  height: 100%;
+	  overflow: auto;
+	  overflow-x: hidden;
+}
+.worker-detail-main {
+	  padding-top: 40px;
+	  min-height: 0px;
+	  /* width: 100%; */
+	  width: calc(100% - 16px);
+	  margin: 0px auto;
+	  margin-left: 16px;
+}
+
+table {
+	  /* width: 100%; */
+	  width: calc(100% - 16px);
+	  /* max-width: 100%; */
+	  background-color: transparent;
+	  border-collapse: collapse;
+	  border-spacing: 0px;
+	  margin-left: 16px;
+	  margin-bottom: 50px;
+}
+table input, table select, table textarea {
+	  font-size: 12px;
+}
+table tr {
+	  width: 100%;
+	  height: 55px;
+	  font-size: 12px;
+}
+table.worker-basic-info th {
+	  height: 30px;
+	  line-height: 30px;
+	  vertical-align: top;
+}
+
+table th.second-th {
+	  width: 23%;
+}
+table.worker-basic-info td input[type=text] {
+	  height: 30px;
+	  overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+table.worker-basic-info td.td-height {
+	  height: 55px;
+	  vertical-align: top;
+}
+table td {
+	 /*  width: 350px; */
+}
+/* table.worker-basic-info tr, table.worker-account-info tr{
+	  height: 45px;
+	  width: 100%;
+} */
+
+
+
+/* .worker-basic-info, .worker-account-info {
+	  width: 100%;
+	  margin-left: 16px;
+} */
+
+table.worker-basic-info tr.info-title td {
+	  font-weight: bold;
+	  font-size: 12px;
+	  width: 35%;
+	  vertical-align: middle;
+}
+tr.info-title td {
+	  width: 35%;
+	  font-size: 12px;
+	  font-weight: bold;
+}
+table th {
+    /* width: 10%; */
+    width: 12%;
+    text-align: right;
+}
+th {
+	  font-size: 12px;
+}
+.must-info {
+	  color: #f00;
+	  font-size: 12px;
+	  padding: 0px 5px;
+}
+input[type=text] {
+	  border: 1px solid rgba(204,204,204,0);
+	  outline: none;
+	  border-bottom: 1px solid rgba(204,204,204,1);
+	  min-height: 16px;
+	  min-width: 16px;
+	  margin: 0px; 
+	  width: 300px;
+	  height: 30px;
+	  margin-left: 2px;
+	  background: transparent;
+}
+input[type=text]:hover {
+	  border:1px solid #409DFE;
+	  box-shadow:0 0 3px #409DFE;
+}
+input[type=text]:focus {
+	  outline: none;
+	  border:1px solid #409DFE;
+    box-shadow:0 0 3px #409DFE;
+}
+input[type=radio] {
+	  width: 15px;
+	  height: 15px;
+	  vertical-align: sub;
+}
+input[type=text].input-long {
+    width: 200px;
+}
+input[type=text].input-middle {
+    width: 80px;
+}
+input[type=text].input-small {
+    width: 50px;
+}
+.align-center {
+    text-align: center;
+}
+.jqx-column {
+    line-height: 30px;
+}
+
+/*下拉框*/
+.dropdown_box {
+	  display: none;
+    width: 300px;
+    height: 150px;
+    max-height: 220px;
+    position: absolute;
+    z-index: 110;
+    /* top: 85px;
+    left: 125px; */
+    min-width: 70px;
+    text-align: left;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #3399ff;
+}
+.drop-down-li {
+	  font-size: 12px;
+    height: 30px;
+    cursor: pointer;
+    
+}
+
+.drop-down-li a {
+	  font-size: 12px;
+    padding: 0px 5px;
+    color: #000;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+    overflow: hidden;
+     
+}
+
+.drop-down-li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: #3399ff;
+}
+
+.name-error-tips, .currency-error-tips, .total-error-tips, .phone-error-tips, .id-error-tips, .el-date-error-tips,
+.contract-date-error-tips, .finance-error-tips {
+	  height: 10px;
+	  color: #f00;
+	  font-size: 12px;
+	  /* visibility: hidden; */
+	  display: none;
+}
+input[type=text].worker-name-tips {
+	  border: 1px solid #f00;
+}
+table select.currency-kind,table select.card-type {
+	  font-size: 12px;
+	  height: 30px;
+	  width: 300px;
+	  border: 0px;
+	  background: transparent;
+	  border: border: 1px solid rgba(204,204,204,0) !important; 
+    border-bottom: 1px solid rgba(204,204,204,1) !important;
+    outline: none;
+}
+table select.currency-kind:hover, table select.card-type:hover {
+	  border:1px solid #409DFE;
+    box-shadow:0 0 3px #409DFE;
+}
+
+input[type=text].enter-date {
+	  /* width: 39%; */
+	  width: 112px;
+}
+input[type=text].leave-date {
+	 /*  width: 39%; */
+	 width: 112px;
+}
+table.worker-pay-method {
+	  font-size: 12px;
+	  margin-left: 16px;
+}
+table.worker-pay-method td.pay-method-title{
+	  font-weight: bold;
+    font-size: 12px;
+    /* width: 10%; */
+    width: 6%;
+    min-width: 65px;
+}
+table.worker-pay-method td.pay-method-radio {
+	  width: 90%;
+}
+td.symbol-td {
+	 /*  width: 2%; */
+	 width: 20px;
+   min-width: 20px;
+   max-width: 20px;
+}
+td.payment-td {
+	  /* width: 700px; */
+	  /* min-width: 690px; */
+}
+.month-pay-detail-tr {
+    display: none;
+}
+
+/*提醒时间*/
+/* table#byMonthOrByStage tr.byStageTr td.date-select {
+  
+} */
+table#byMonthOrByStage tr.byStageTr td.remind-time-td {
+    /* width: 260px; */
+}
+
+table#byMonthOrByStage tr.byStageTr td.remind-time-td input[type=text].remind-input {
+    width: 90px;
+    height: 30px;
+    padding: 0px 10px;
+    border-bottom: 1px solid #ccc;
+    /* border-radius: 5px; */
+    float: left;
+}
+span.remind-tips {
+    /* float: left; */
+    padding: 5px 0px;
+}
+input[type=text].date-select {
+	  width: 100px;
+	  height: 30px;
+}
+
+
+.addition, .subtraction {
+	  width: 10px;
+	  height: 10px;
+	  background: url(../image/add_minus.png) no-repeat;
+	  cursor: pointer;
+}
+.addition:hover {
+	  background: url(../image/add_minus.png) no-repeat 0px -20px;
+}
+.subtraction:hover {
+	  background: url(../image/add_minus.png) no-repeat 0px -30px;
+}
+table.worker-pay-method table{
+    font-size: 12px;
+    margin-left: 74px;
+    width: calc(100% - 90px);
+}
+.subtraction {
+	  background-position: 0 -10px;
+	  margin-top: 3px;
+}
+input[type=text].stage-info {
+	  width: 260px;
+}
+input[type=text].stage-money-part {
+	  width: 35px;
+	  text-align: right;
+	  padding-right: 5px;
+}
+ input[type=text].stage-money {
+    width: 93px;
+ }
+textarea {
+	  width: 68%;
+	  height: 60px;
+	  border: 1px solid #ddd;
+	  border-radius: 6px;
+	  resize: none;
+	  margin-left: 50px;
+	  font-size: 12px;
+}
+/* table.ramark-table tr td.remark-before-td {
+	  width: 20%;
+} */
+table.ramark-table tr td.remark-td {
+	  width: 80%;
+}
+table.sao-miao-table {
+	  margin-top: 10px;
+}
+.saomiao {
+	  font-weight: bold;
+	  width: 150px;
+	  font-size: 12px;
+}
+.upload-file-btn {
+	  width: 50px;
+	  height: 30px;
+	  border: 1px solid #ccc;
+	  padding: 0px;
+	  
+}
+.webuploader-pick-div {
+	  position: absolute;
+	  top: 8px;
+	  left: 0px;
+	  width: 50px;
+	  height: 14px;
+	  overflow: hidden;
+	  bottom: auto;
+	  right: auto;
+}
+label {
+	  opacity: 0px;
+	  width: 100%;
+	  height: 100%;
+	  display: block;
+	  cursor: poiner;
+	  background: rgb(255,255,255);
+}
+label.radio-label {
+	  display: inline-block;
+	  margin-right: 10px;
+	  width: auto;
+	  height: auto;
+	  background: none;
+}
+button {
+	  color: #333;
+	  cursor: pointer;
+	  font-size: 12px;
+}
+
+/*财务科目下拉框*/
+.fin_subj {
+	   /* z-index: -999; */
+	   display: none; 
+	  position: absolute; 
+	  /* visibility: hidden;  */
+}
+div.filter-con {
+	   height: 20px;
+	   width: 220px;
+	   overflow: hidden;
+	   background-color: #fff;
+	   padding: 3px 0px;
+	   border: 1px solid #ccc;
+	   border-radius: 2px;
+}
+table.worker-basic-info td input[type=text].filter-input {
+	   width: 184px;
+	   height: 18px;
+	   border: 1px solid #ccc;
+	   border-radius: 3px;
+	   background-color: #fff;
+	   border-bottom-right-radius: 0 !important;
+	   border-top-right-radius: 0 !important; 
+}
+div.filter-btn {
+	   width: 22px;
+	   height: 17px;
+	   cursor: pointer;
+	   border: 1px solid #ccc;
+	   float: right;
+	   margin-right: 5px; 
+}
+.filter-btn img {
+	   width: 16px;
+	   height: 16px;
+	   margin-left: 3px;
+	   
+}
+table tr.finan-sub-tr {
+	   /* position: relative; */
+	   height: 60px;
+}
+table tr.finan-sub-tr th {
+	  height: 30px;
+	  line-height: 30px;
+	  vertical-align: top;
+}
+table tr.finan-sub-tr td {
+	  vertical-align: top;
+}
+
+
+a.clear-finance {
+	  /* float: right; */
+	  display: none;
+	  color: #eb6100;
+    text-decoration: none;
+    margin-left: 5px;
+} 
+a.clear-finance:hover {
+	  text-decoration: underline;
+}
+
+.time-pic {
+	  vertical-align: middle;
+	  width: 25px;
+	  margin-left: 5px;
+}
+table.remark-table tr.info-title {
+	  height: 24px;
+}
+
+
+/*显示上传文件列表*/
+ul li.upload-file-list-li {
+	  position: relative;
+    float: left;
+    padding: 0 10px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 20px;
+    color: #333333;
+    border: 1px solid #ff9800;
+    margin-right: 5px;
+    height: 21px;
+    line-height: 18px;
+    white-space: nowrap;
+    margin-top: 6px;
+    }
+ul li.upload-file-list-li a.closeTag{
+    /* background: url("../../../../images/upload/editCancel-ico.gif") no-repeat 0 -64px;
+    width: 10px;
+    height: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+    display: inline-block;
+    zoom: 1;
+    padding-top: 3px;
+    cursor: pointer; */
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    z-index: 1000;
+    background: url(../../../images/btn-icon-small.png) no-repeat;
+    cursor: pointer;
+}
+ul li.upload-file-list-li a.closeTag:hover {
+	  background-position: -20px 0;
+}
+ul li.upload-file-list-li a {
+    color: #d67934;
+    text-decoration: none;
+}
+/* 
+#showFileRealNameAndSaveId li a:hover {
+    color: #428bca;
+} */
+
+/*头部*/
+div.right-popup-header {
+	
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    height: 40px;
+    width: 100%;
+    background-color: #e7effa;
+    z-index: 1000;
+}
+.right-popup-header table {
+    width: 100%;
+    max-width: 100%;
+    background-color: transparent;
+}
+.right-popup-header table tr {
+    width: 100%;
+    height: 34px;
+}
+.right-popup-header table td.popup-title {
+    width: 120px;
+}
+.right-popup-title {
+    display: inline-block;
+    line-height: 30px;
+    border-bottom: 4px solid #ec8e0c;
+    margin-left: 20px;
+    font-family: '黑体';
+    font-size: 16px;
+    font-weight: normal;
+} 
+.right-popup-header table td.popup-btn-con {
+    text-align: center;
+    padding-top: 8px;
+}
+.popup-btn-con input[type=button] {
+	  box-sizing: border-box !important;
+	  float: left;
+	  outline: none;
+	  /* border: 0px; */
+    width: 100px;
+    height: 25px;
+    border-radius: 7px;
+    background: rgba(255,102,0,1);
+    color: rgba(255,255,255,1);
+    border: 1px solid rgba(255,102,0,1);
+    /* font-weight: bold; */
+    font-family: '微软雅黑';
+    cursor: pointer;
+    margin-right: 50px;
+    margin-left: 100px;
+}
+.popup-btn-con input[type=button]:hover {
+    background: rgba(230,93,1,1);
+}
+.popup-btn-con input[type=button]:focus {
+	 /*  box-sizing: border-box; */
+    border: 0px;
+    
+}
+.popup-btn-con div.popup-btn-list {
+	  overflow: hidden;
+	  display: inline-block;
+	  
+}
+.right-popup-delete {
+	 display: none;
+	 /*  visibility: hidden; */
+}
+
+
+.right-popup-close {
+   /*  margin-left: 50px; */
+}
+
+
+/*支付明细*/
+.payment-detail-td table.payment-detail-list {
+    margin-left: 60px;
+    width: 730px;
+    height: 100%;
+    text-align: center;
+    vertical-align: center;
+}
+.payment-detail-td table.payment-detail-list thead tr {
+    background: #e6e6e6;
+}
+.payment-detail-td table.payment-detail-list tr {
+    width: 100%;
+    height: 45px;
+}
+.payment-detail-td table.payment-detail-list tr.tr-back {
+    background: #f2f2f2;
+}
+.payment-detail-td table.payment-detail-list tr td　{
+    width: 25%;
+    
+}
+
+
+
+
+
+/*显示正在上传*/
+.show-loading-container {
+  width: 240px;
+  height: 52px;
+  display: none;
+  position:absolute;
+  left:0; 
+  top:0;
+  background:#ebebeb;
+  filter:alpha(opacity=80);
+  z-index:99999;  
+  padding-top: 15px;
+  padding-left: 20px;
+  cursor: wait;
+}
+.show-loading-div {
+  position: relative; 
+  width: auto; 
+  height: 22px;
+  line-height:22px; 
+  padding-left: 30px; 
+  padding-right: 5px; 
+  color: black;
+  background: rgba(0,0,0,0) url(../。。/../../images/loading.gif) no-repeat;   
+  background-size:20px 20px;
+  font-size: 13px;
+  cursor: wait;
+}
+/*上传按钮*/
+ div.upload-file-btn {
+	  width: 50px;
+    height: 22px;
+    border: 1px solid #ccc;
+    padding: 0px;
+    text-align: center;
+    /* border-radius: 15px; */
+    line-height: 22px;
+    background: gainsboro;
+    float: left;
+}
+.upload-file-capilation {
+	  float: left;
+	  padding-left: 5px;
+	  line-height: 22px;
+	  margin: 0px;
+}
+
+
+/*上传缩略图*/
+ul li.upload-file-list-li{
+	  border: 0px;
+	  /* height: 110px; */
+	  height: 138px;
+	  border: 0px;
+	  cursor: pointer;
+}
+ul li.upload-file-list-li img {
+	  width: 110px;
+	  height: 110px;
+}
+ul li.upload-file-list-li p {
+	  width: 110px;
+	  height: 18px;
+	  margin: 5px 0px;
+	  color: #d67934;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+}
+.paydetail-remark {
+	display: none;
+}
+
+a.download-tag {
+    position: absolute;
+    top: 0px;
+    right: 35px;
+    width: 20px;
+    height: 20px;
+    z-index: 1000;
+    background: url(../../../images/crewPicture/download-hover.png) no-repeat;
+    cursor: pointer;
+    background-size: 20px;
+}

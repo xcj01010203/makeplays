@@ -1,0 +1,322 @@
+html {font-family: sans-serif;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;font-size: 12px;color:#828282;}
+body {width: 100%;margin: 0;background-color: #f2f2f2;color:#828282}
+html,body {
+	height: 100%;
+}
+*{font-size: 12px;}
+a,img {display: block;text-decoration: none;border: 0;vertical-align: top;}
+a:hover{text-decoration;none;}
+ul,li {list-style: none;}
+a,p,h1,p,h2,table,th,tr,td,ul,div,li,dl,dd,dt,select{margin: 0;padding: 0;font-size: 12px;font-family: "微软雅黑";}	
+th {font-weight: normal;}
+.my-container {
+	height: 100%;
+}
+/*工具样式*/
+.font14{
+	font-size: 14px;
+}
+.cater-type{
+	position: relative;
+}
+.show-wrap{
+	display: block;
+}
+
+/*表头的宽度*/
+.width223{
+	width: 223px;
+}
+.width238{
+	width: 238px;
+}
+.width269{
+	width: 269px;
+}
+/*添加按钮样式*/
+input[type=button].add-cater-btn {
+	width: 80px;
+	height: 30px;
+	border: 1px solid #ffcc80;
+	background-color: #fffaf2;
+	border-radius: 5px;
+	margin-left: 20px;
+	margin-top: 5px;
+	letter-spacing: 8px;
+	cursor: pointer;
+}
+/*表格内容*/
+div[role="gridcell"] div {
+	text-align: center;
+}
+.jqx-grid-toolbar {
+	background: #FFFFFF;
+}
+/*右侧弹框样式*/
+
+.right-popup-win {
+	width: 76%;
+	height: 100%;
+	background: #f2f2f0;
+	position: absolute;
+	right: -2000px;
+	top: 0;
+	z-index: 997;
+	overflow: auto;
+}
+.right-popup-head {
+	width: 100%;
+	height: 40px;
+	background: #e1ebfa;
+	text-align: center;
+}
+.right-save-btn,
+.right-delete-btn,
+.right-close-btn {
+	width: 100px;
+	height: 26px;
+	background: #ff6600;
+	color: #fff;
+	border-radius: 4px;
+	margin-top: 7px;
+	font-size: 14px;
+	font-family: "微软雅黑";
+	margin-right: 50px;
+	cursor: pointer;
+}
+.right-popup-head input[type=button]:hover {
+	background: rgba(230, 93, 1, 1);
+}
+/*右侧弹框日期*/
+.date-month-budget {
+	padding: 12px 0 15px 0;
+}
+.right-popup-cont-date,
+.right-popup-cont-budget {
+	margin-left: 20px;
+	font-size: 15px;
+}
+input[type=text].right-popup-date-input {
+	border: 0;
+	width: 232px;
+	height: 30px;
+	background: #FFFFFF;
+	border: 1px solid #d9d9d9;
+	border-radius: 5px;
+	margin-right: 30px;
+	text-indent: 10px;
+}
+/*右侧输入框上下箭头*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+input[type=number].right-popup-date-input {
+	border: 0;
+	width: 232px;
+	height: 30px;
+	background: #FFFFFF;
+	border: 1px solid #d9d9d9;
+	border-radius: 5px;
+	margin-right: 30px;
+	text-indent: 10px;
+}
+/*右侧弹框表格*/
+.right-popup-table {
+	margin: 0 auto;
+	border-collapse: collapse;
+	/*合并表格之间的空隙*/
+	background: #ffffff;
+}
+.right-popup-table tr th {
+	background: #e6e6e6;
+}
+.right-popup-table tr th {
+	font-family: "微软雅黑";
+	font-weight: 500;
+	font-size: 14px;
+	border: 1px solid #cbcbcb;
+	margin: 0 20px 20px;
+	line-height: 40px;
+	border-radius: 3px;
+}
+.right-popup-table tr td {
+	font-family: "微软雅黑";
+	font-weight: 500;
+	font-size: 14px;
+	border: 1px solid #cbcbcb;
+	margin: 0 20px 20px;
+	border-radius: 5px;
+}
+.right-popup-table tr:last-child .total-sum-wrap {
+	padding-left: 50px;
+	height: 36px;
+	text-align: left;
+}
+.right-popup-table tr td:nth-child(4) input {
+	height: 32px;
+	text-align: right;
+	padding-right: 5px;
+	box-sizing: border-box;
+}
+.right-popup-table tr td:nth-child(6) input {
+	height: 32px;
+	text-align: left;
+	padding-left: 5px;
+	text-indent: 0;
+	box-sizing: border-box;
+}
+.right-popup-table tr td:nth-child(5) input {
+	height: 32px;
+	text-align: right;
+	padding-right: 5px;
+	box-sizing: border-box;
+}
+.right-popup-table .right-must-write {
+	color: #ff6600;
+	font-size: 16px;
+	margin-left: 4px;
+}
+.right-must-write {
+	color: #ff6600;
+	font-size: 16px;
+	margin-left: 4px;
+}
+/*表格+++图标*/
+.right-add-icon {
+	width: 18px;
+	height: 18px;
+	background: url(../../images/add.png) no-repeat;
+	display: inline-block;
+	background-size: cover;
+	vertical-align: text-top;
+	margin-left: 10px;
+	cursor: pointer;
+}
+.total-sum-wrap span {
+	display: inline-block;
+	margin-right: 25px;
+	color: #f27900;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+/*弹框餐饮类别选择*/
+.right-popup-table tr td:first-child {
+	font-family: "微软雅黑";
+	font-weight: 500;
+	font-size: 14px;
+	border: 1px solid #cbcbcb;
+	padding: 0;
+	margin: 0 20px 20px;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+input[type=text].right-select-cater {
+	width: 222px;
+	height: 32px;
+	border: 0;
+	background: #FFFFFF;
+	margin: 0 auto;
+	display: block;
+	border-radius: 2px;
+	text-indent: 12px;
+	text-align: center;
+	box-sizing: border-box;
+}
+input[type=text].right-select-cater {
+	width: 222px;
+	height: 32px;
+	border: 0;
+	background: #FFFFFF;
+	margin: 0 auto;
+	display: block;
+	border-radius: 2px;
+	text-indent: 12px;
+	text-align: center;
+	box-sizing: border-box;
+}
+/*修改第一列的输入框大小*/
+.right-popup-table tr td:first-child .right-select-cater {
+	width: 268px;
+}
+/*修改第一列的输入框大小*/
+.right-popup-table tr td:nth-child(4) .right-select-cater {
+	width: 235px;
+}
+input[type=text].right-select-cater:hover {
+	box-shadow: 0px 0px 5px #409DFE;
+	border: 1px solid #409DFE;
+}
+input[type=text].right-popup-date-input:focus {
+	box-shadow: 0px 0px 5px #409DFE;
+	border: 1px solid #409DFE;
+}
+input[type=number].right-select-cater:hover {
+	box-shadow: 0px 0px 5px #409DFE;
+	border: 1px solid #409DFE;
+}
+/*右侧选项内容*/
+.right-select-wrap {
+	width: 262px;
+	background: #FFF;
+	border: 1px solid #3399ff;
+	border-radius: 3px;
+	/* box-shadow: 0 0 10px #B7B7B7; */
+	position: absolute;
+	top: 32px;
+	left: 3px;
+	display: none;
+	z-index: 99;
+}
+.select-option {
+	margin: 0 auto;
+	text-align: center;
+	font-size: 14px;
+	line-height: 27px;
+	letter-spacing: 12px;
+}
+.select-option:hover {
+	background: #3399ff;
+	border-radius: 3px;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+.cater-date {
+	width: 70px;
+	line-height: 30px;
+	margin: 0 auto;
+}
+.delete-add-row{
+	width: 18px;
+	height: 18px;
+    position: absolute;
+    line-height: 30px;
+    top: 6px;
+    right: 10px;
+    background: url(../../images/delete.png) no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+}
+.delete-add-row:hover{
+	background: url(../../images/delete1.png) no-repeat;
+	background-size: contain;
+}
+
+.inhotel-info-div{
+	font-family: 微软雅黑;
+	font-size: 15px;
+	display: inline-block;
+	width: 670px;
+	width: 648px;
+    overflow: hidden;
+    line-height: 23px;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    float: right;
+    margin-right: 46px;
+}

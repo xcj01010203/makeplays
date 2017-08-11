@@ -1,0 +1,180 @@
+.my-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	/* overflow: auto; */
+	padding: 20px 30px;
+    box-sizing: border-box;
+}
+div.tab_wrap li {
+    width: 50%;
+}
+.jqx-column-cell {
+	  width: 100%;
+	  box-sizing: border-box;
+	  height: 30px;
+	  line-height: 30px;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	  white-spacing: nowrap;
+}
+.align-left {
+	  text-align: left;
+	  padding-left: 5px;
+}
+.align-right {
+	  text-align: right;
+	  padding-right: 5px;
+}
+input[type=button].add-btn {
+	  width: 24px;
+	  height: 24px;
+	  background: url(../../images/add.png) no-repeat;
+	  background-size: 24px;
+	  margin-top: 4px;
+    margin-left: 20px;
+}
+input[type=button].add-btn:hover {
+	  background: url(../../images/add_hover.png) no-repeat;
+	  background-size: 24px;
+}
+
+/*滑动窗口*/
+.right-popup-win {
+    display: none;
+    position: absolute;
+    right: -75%;
+    top: 0px;
+   /*  width: calc(100% - 478px); */
+    width: 75%;
+    height: calc(100% - 2px);
+    background: #f2f2f0;
+    z-index: 600;
+    border: 1px solid #ccc;
+    /* box-shadow-top: -2px 0px 2px #e1ebfa;
+    box-shadow-left: -2px 0px 2px #ccc; */
+    box-shadow: 0 0 1em #cec9c9;
+    overflow: hidden;
+}
+.win-btn-list {
+    position: absolute;
+    top: 0px; 
+    left: 0px;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background: #e1ebfa;
+    z-index: 600; 
+}
+.win-title {
+	  float: left;
+	  margin-left: 20px;
+	  height: 30px;
+	  font-family: '黑体';
+	  font-size: 16px;
+	  box-sizing: border-box;
+	  line-height: 30px;
+	  border-bottom: 4px solid #ec8e0c;
+}
+.win-btn-list input[type=button] {
+    border: 0px;
+    outline: none;
+    width: 65px;
+    height: 25px;
+    letter-spacing: 2px;
+    line-height: 25px; 
+    color: #fff;
+    margin-right: 20px;
+    background: rgba(255,102,0,1); 
+    border-radius: 5px;
+    margin-top: 7px; 
+    font-size: 14px;
+    font-family: '微软雅黑'; 
+}
+.win-content {
+	  margin-top: 40px;
+	  height: calc(100% - 40px);
+	  overflow: auto;
+}
+.version-info {
+	  padding: 0px;
+	  margin: 0px auto;
+	  width: 80%;
+	  list-style-type: none;
+}
+.version-info li {
+	  height: 30px;
+	  margin-top: 20px;
+}
+.version-info li p {
+	  float: left;
+	  height: 30px;
+	  width: 110px;
+	  line-height: 30px;
+	  font-size: 14px;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 5px;
+    box-sizing: border-box;
+}
+.version-info li p span {
+	  color: #f00;
+	  vertical-align: sub;
+}
+.version-info li input[type=text] {
+	  float: left;
+	  width: calc(100% - 110px);
+    height: 30px;
+    box-sizing: border-box;
+}
+.version-info li div.upload-container {
+	  float: left;
+	  width: calc(100% - 80px);
+    height: 30px;
+    box-sizing: border-box;
+}
+.version-info li textarea {
+	  float: left;
+    width: calc(100% - 110px);
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    height: 129px;
+    background: transparent;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    outline: none;
+    resize: none;
+}
+.version-info li textarea.inner {
+    height: 280px;
+}
+div.select-file-btn {
+    width: 80px;
+    height: 27px;
+    line-height: 27px;
+    color: #000;
+    border: 1px solid #ffcc80;
+    background-color: #fffaf2;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+ul  p.blank-p {
+    color: #ccc;
+    font-size: 13px;
+}
+.closeTag {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    z-index: 1000;
+    background: url(../../images/btn-icon-small.png) no-repeat;
+    cursor: pointer;
+}
+.closeTag:hover {
+    background-position: -20px 0;
+}

@@ -1,0 +1,221 @@
+/**
+ * 商业运营
+ */
+/**
+ * 剧组人员
+ */
+*{
+  font-size: 15px;
+  font-family:'微软雅黑';
+}
+body, html {
+   width: 100%;
+   height: 100%;
+}
+body, html,div,p,ul,li,dl,dt,dd {
+   margin: 0px; 
+   padding: 0px;
+}
+ul,li {
+   list-style-type: none;
+}
+.operate-container {
+   width: calc(100% - 20px);
+   height: calc(100% - 20px);
+   padding: 20px 10px 0px 10px;
+}
+.operate-grid-div {
+   width: 100%;
+   height: 100%;
+}
+.operate-grid-head {
+   height: 35px;
+   width: 100%;
+}
+.operate-head-ul {
+   width: 100%;
+   height: 35px;
+   background: #ddd;
+}
+.operate-head-ul:after {
+   display: block;
+   content: '';
+   clear: both;
+}
+.operate-head-ul li {
+    float: left;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 16px;
+    font-family: '微软雅黑';
+}
+.operate-grid-content {
+    width: 100%;
+    height: calc(100% - 35px);
+    overflow-y: auto;
+}
+.operate-grid-content dl {
+   /* width: calc(100% - 20px); */
+}
+.operate-grid-content dt {
+   height: 30px;
+   border-bottom: 1px solid #ccc;
+   font-size: 15px;
+   border-left: 1px solid #ccc;
+   border-right: 1px solid #ccc;
+   background: #e6e6e6;
+}
+.operate-grid-content dt input[type=text]{
+   display: inline-block;
+   height: 25px;
+   width: 98%;
+   margin-top: 2px;
+   margin-left: 2px;
+   border: 0px;
+   box-sizing: border-box;
+   background: transparent;
+}
+.operate-grid-content dt input[type=text]:hover, .operate-grid-content dt input[type=text]:focus {
+	border:1px solid #409DFE;
+  outline:none;
+  border-bottom:1px solid #409DFE;
+  box-shadow:0 0 3px #409DFE;
+}
+/* .operate-grid-content dt:after {
+   content: '';
+   display: block;
+   clear: both;
+} */
+.add-role-btn {
+    background: url(../../images/add.png) no-repeat;
+    width: 17px;
+    height: 17px;
+    background-size: 17px;
+    vertical-align: middle;
+    border: none;
+}
+.add-role-btn:hover {
+	  background: url(../../images/add_hover.png) no-repeat;
+	  background-size: 17px;
+}
+.tree-content-ul {
+    height: 30px;
+    list-style-type: none;
+}
+.tree-content-ul li {
+    float: left;
+    height: 30px; 
+    line-height: 30px;
+    font-size: 14px;
+    text-align: center;
+    /* border-top: 1px solid #ccc; */
+    border-bottom: 1px solid #ccc;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    border-left: 1px solid #ccc;
+}
+.tree-content-ul li:last-child {
+	  border-right: 1px solid #ccc;
+}
+.tree-content-ul li input[type=text] {
+    display: inline-block;
+    width: 98%;
+    height: 25px;
+    margin-top: 2px;
+    margin-left: 2px;
+    border: 0px;
+    box-sizing: border-box;
+   background: transparent;
+}
+.tree-content-ul li input[type=text]:hover, .tree-content-ul li input[type=text]:focus {
+	border:1px solid #409DFE;
+  outline:none;
+  border-bottom:1px solid #409DFE;
+  box-shadow:0 0 3px #409DFE;
+}
+
+span.dt-content, span.dd-content {
+      /* display: inline-block; */
+      float: left;
+      margin-left: 3px;
+      height: 30px;
+      line-height: 30px;
+      height: 100%;
+      overflow: hidden;
+   }
+span.dt-content .dt-span {
+    height: 100%;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    vertical-align: middle;
+    
+}
+span.dt-content {
+	  /* width: 250px; */
+	  width: calc(17% - 3px);
+}
+span.dt-content span.dt-span {
+	/* width: 200px; */
+	width: calc(100% - 17px);
+}
+span.dd-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: calc(100% - 25px);
+}
+span.opera-btn-list {
+      display: none;
+      float: left; 
+      margin-left: 5px;
+      margin-top: 6px;
+      /* vertical-align: middle; */
+      /* height:30px; 
+      line-height: 30px;
+      
+       */
+   }
+   span.opera-btn-list a{
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      float: none;
+   }
+   span.opera-btn-list a.add-row-btn {
+      background: url(../../images/add.png) no-repeat;
+      background-size: 16px 16px;
+      margin-right: 8px;
+   }
+   span.opera-btn-list a.add-row-btn:hover {
+      background: url(../../images/add_hover.png) no-repeat;
+      background-size: 16px 16px;
+      margin-right: 8px;
+   }
+   span.opera-btn-list a.delete-row-btn {
+      background: url(../../images/delete.png) no-repeat;
+      background-size: 16px 16px;
+   }
+   span.opera-btn-list a.delete-row-btn:hover {
+      background: url(../../images/delete1.png) no-repeat;
+      background-size: 16px 16px;
+   }
+   span.dt-content input[type=button].zhaikai {
+      width: 14px;
+      height: 14px; 
+      background: url(../../images/icon-down.png) no-repeat;
+      margin-right: 3px;
+   }
+   span.dt-content input[type=button].shouqi{
+      width: 14px;
+      height: 14px; 
+      background: url(../../images/icon-right.png) no-repeat;
+      margin-right: 3px;
+   }
+input[type=text]:hover {
+  border:1px solid #409DFE;
+  outline:none;
+  border-bottom:1px solid #409DFE;
+  box-shadow:0 0 3px #409DFE;
+}

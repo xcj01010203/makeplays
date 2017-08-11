@@ -1,0 +1,787 @@
+@charset "utf-8";
+html,body {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  -webkit-user-select:none;
+}
+/*tab键*/
+.tab-wrap {
+	width: 100%;
+	height: 30px;
+	border-bottom: 2px solid rgba(255,102,0,1);
+	box-sizing: border-box;
+	margin-top: 5px;
+	background: #fff;
+}
+ul.tab-btn {
+	margin: 0px;
+	padding: 0px;
+}
+.tab-wrap li {
+	width: 12%;
+	height: 30px;
+	float: right;
+	background: rgba(4,84,133,1);
+	border-top-left-radius: 20px;
+	line-height: 30px;
+	text-align: center;
+	font-size: 16px;
+	cursor: pointer; 
+	color: #fff;
+	box-sizing: border-box;
+  border-bottom: 2px solid rgba(255,102,0,1);
+}
+.tab-wrap li.tab_li_current {
+  color: rgba(255,255,255,1);
+  background-color: rgba(255,102,0,1);
+  border: none;
+}
+
+
+.my-container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  position: relative;
+  background: #fff;
+}
+.hidden-tag {
+  display:none;
+}
+
+.hidden-wrap {
+	display: none;
+	width: 100%;
+  height: 100%;
+  overflow: auto;
+  position: relative;
+  background: #fff;
+}
+.hidden-wrap iframe {
+	width: 100%;
+	height: 100%;
+}
+.view-sction-input {
+    width: 80px;
+    height: 25px;
+}
+.left-panel {
+  float: left;
+  height: calc(100% - 35px);
+  box-sizing: border-box;
+}
+.collapse-left-panel {
+	width: 200px;
+}
+.expend-left-panel {
+	-o-transition-timing-function: linear;
+	-webkit-transition-timing-function: linear;
+	width: 400px; 
+}
+.right-panel {
+  float: left;
+  height: calc(100% - 35px);
+  margin-left: 10px;
+  box-sizing: border-box;
+}
+.collapse-right-panel {
+	width: calc(100% - 210px);
+}
+.expend-right-panel {
+	-o-transition-timing-function: linear;
+	-webkit-transition-timing-function: linear;
+	width: calc(100% - 410px);
+}
+.panel-title {
+  height: 60px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.panel-title p {
+  margin: 0px;
+  padding: 0px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 13px;
+  margin-top: 5px;
+}
+.border-left {
+    display: inline-block;
+    width: 8px;
+    height: 25px;
+    background: #0277bd;
+    border-radius: 3px;
+    vertical-align:bottom;
+}
+.border-left+span {
+   font-size: 16px;
+   height: 25px;
+   line-height: 25px;
+   display: inline-block;
+   margin-left: 10px;
+   font-weight: bold;
+}
+.left-panel-content {
+   height: calc(100% - 90px);
+   box-sizing: border-box;
+   border-top: 1px solid #ccc;
+   border-right: 1px solid #ccc;
+   border-bottom: 1px solid #ccc;
+   border-radius: 3px;
+   box-shadow: 0px -2px 2px rgba(204,204,204,0.5),
+               2px 0px 2px rgba(204,204,204,0.5),
+               0px 2px 2px rgba(204,204,204,0.5);
+   background: #fff;
+}
+.right-panel-content {
+  height: calc(100% - 90px);
+   box-sizing: border-box;
+   border-top: 1px solid #ccc;
+   border-left: 1px solid #ccc;
+   border-bottom: 1px solid #ccc;
+   border-radius: 3px;
+   box-shadow: 0px -2px 2px rgba(204,204,204,0.5),
+               0px 0px 0px rgba(204,204,204,0.5),
+               0px 2px 2px rgba(204,204,204,0.5),
+               -2px 0px 2px rgba(204,204,204,0.5);
+}
+.extend-btn {
+  height: 40px;
+  border-bottom: 1px solid #ccc;
+}
+.extend-btn input[type=button].click-all {
+	float: left;
+	width: 80px;
+  height: 25px;
+  border: 1px solid #ffcc80;
+  background: #fffaf2;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 8px;
+  letter-spacing: 1px;
+  margin-left: 5px;
+}
+.extend-btn input[type=button].extend-coll-btn {
+  float: right;
+  width: 25px;
+  height: 25px;
+  box-sizing: border-box;
+  color: #049be5;
+  font-weight: bold;
+  background: transparent;
+  border: 0px;
+  outline: none;
+  font-size: 22px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+div.extend-btn input[type=button].extend {
+	background: url(../../images/left_icon.png) no-repeat;
+  background-size: 25px;
+  display: inline-block;
+}
+div.extend-btn input[type=button].collapse {
+	background: url(../../images/right_icon.png) no-repeat;
+  background-size: 25px;
+  display: inline-block;
+}
+.detail-info {
+	display: none;
+}
+.group-container {
+  /* margin-top: 10px; */
+  height: calc(100% - 40px);
+  overflow-y: auto;
+}
+.group-container iframe {
+	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+}
+
+.jqx-window {
+	display: none;
+}
+.jqx-content {
+	padding: 15px;
+	position: relative;
+}
+.jqx-content p {
+	height: 25px;
+	line-height: 25px;
+	font-size: 14px;
+}
+.finish-condition {
+	margin: 0px;
+	padding: 0px;
+}
+.finish-condition li {
+	height: 100px;
+}
+.finish-condition li table {
+	border: 0px;
+	width: 100%;
+}
+.finish-condition table p.tips {
+	padding-left: 10px;
+	color: #ccc;
+	font-size: 12px;
+}
+.finish-condition li table tr {
+	height: 50px;
+}
+.finish-condition li table td {
+	border: 0px;
+	width: 50%;
+	font-size: 14px;
+}
+.finish-condition li table td:first-child {
+	border-right: 1px dotted #ccc;
+}
+.finish-condition li input[type=text],.finish-condition li select {
+	display: block;
+	box-sizing: border-box;
+	width: calc(95% - 2px);
+	height: 30px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+.finish-condition li div.role-select {
+	/* display: none; */
+	width: 46%;
+	/* float: left; */
+	border-radius: 5px;
+}
+.finish-condition li div.role-select{
+	margin-left: 5%;
+}
+/*批量设置*/
+.set-condition {
+	/* height: 210px; */
+	margin-bottom: 50px;
+}
+.set-condition li {
+	min-height: 60px;
+	margin-bottom: 10px;
+}
+.set-condition li p {
+	height: 30px;
+	line-height: 30px;
+}
+.set-condition li p label {
+	display: inline-block;
+	width: 100%;
+}
+.set-condition li p label span.show-group {
+	display: inline-block;
+	max-width: 282px;
+	height: 30px;
+	line-height: 30px;
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+.set-condition li p.condition-content {
+	width: 90%;
+	margin: 5px auto;
+}
+.set-condition li div.condition-group {
+	width: 90%;
+	margin: 5px auto;
+}
+.set-condition p.condition-content label {
+	width: 100px;
+	font-size: 14px;
+}
+.set-condition div.condition-group label {
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	width: 100px;
+	font-size: 14px;
+}
+button[class^="date-icon"] {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #fff;
+	background: #ccc;
+	text-align: center;
+	line-height: 22px;
+	cursor: pointer;
+	border: 0px;
+	outline: none;
+}
+.set-condition  button.date-icon2 {
+	background: #0288d1;
+}
+.set-condition p.tips {
+	width: 90%;
+	margin: 0px auto;
+	height: 20px;
+	font-size: 12px;
+	color: #ccc;
+	padding-left: 10px;
+	box-sizing: border-box;
+}
+.set-condition li p input[type=checkbox], .set-condition li p input[type=radio]{
+	vertical-align: text-top;
+	margin-right: 5px;
+}
+
+.set-condition li input[type=text], .set-condition li div.shoot-group {
+	display: inline-block;
+	width: calc(100% - 110px);
+	height: 30px;
+}
+.set-condition li input[type=text].only-num {
+	width: calc(100% - 166px);
+/* 	width: calc(100% - 110px); */
+	height: 30px;
+	border: 0px;
+	border-bottom: 1px solid #ccc;
+	background: transparent;
+	text-align: center;
+}
+input[type=text]:focus {
+	outline: none;
+  box-shadow: 0px 0px 5px #409DFE;
+  border: 1px solid #409DFE !important;
+}
+
+
+
+
+
+.win-btn-list {
+	margin-top: 20px;
+	text-align: center;
+}
+.win-btn-list input[type=button] {
+    border: 0px;
+    outline: none;
+    width: 65px;
+    height: 25px;
+    line-height: 25px;
+    color: #fff;
+    margin-right: 20px; 
+    background: rgba(255,102,0,1);
+    border-radius: 5px;
+    margin-top: 7px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    cursor: pointer; 
+}
+.win-btn-list input[type=button]:hover {
+    background: rgba(230,93,1,1);
+}
+
+
+/*右侧操作*/
+.toolbar {
+  height: 40px;
+  background: #fff;
+}
+.toolbar span, .toolbar button, .toolbar select {
+	 float: left;
+}
+
+span.count-flag {
+  min-width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  line-height: 20px;
+  background: #049BE5;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  margin-left: 15px;
+  margin-top: 10px;
+  padding: 0px 4px;
+}
+button.select-btn {
+  /* display: inline-block; */
+  width: 40px;
+  height: 24px;
+  text-align: center;
+  margin: 7px 15px;
+  line-height: 24px;
+  border: 0px;
+  box-sizing: border-box;
+ /*  border: 1px solid #91c7f2;
+  background: #e3f2fd; */
+}
+.toolbar button.select-btn:hover {
+	border: 1px solid #91c7f2;
+  background: #e3f2fd;
+}
+.toolbar div.status-btn-list {
+	float: right;
+	margin-right: 15px;
+	margin-top: 7px;
+	height: 24px;
+} 
+.toolbar div input[type=button] {
+	width: 80px;
+	height: 24px;
+	background: #ccc;
+	margin: 0px 5px;
+}
+.toolbar input[type=button]{
+	float: left;
+  width: 24px;
+  height: 24px;
+  margin: 7px 15px;
+  background-size: 24px;
+}
+input[type=button].repeat-modify {
+  background: url("../../images/batch-update.png") no-repeat;
+  background-size: 24px;
+}
+input[type=button].repeat-modify:hover {
+  background: url("../../images/batch-update-hover.png") no-repeat;
+  background-size: 24px;
+}
+input[type=button].move-to {
+  background: url("../../images/move.png") no-repeat;
+  background-size: 24px;
+}
+input[type=button].move-to:hover {
+  background: url("../../images/move-hover.png") no-repeat;
+  background-size: 24px;
+}
+input[type=button].add-notice {
+	background: url("../../images/newspaper_add.png") no-repeat;
+	background-size: 24px;
+}
+input[type=button].add-notice:hover {
+  background: url("../../images/newspaper_add_hover.png") no-repeat;
+  background-size: 24px;
+}
+input[type=button].lock-btn {
+  background: url("../../images/lock.png") no-repeat;
+  background-size: 24px;
+}
+input[type=button].lock-btn:hover {
+  background: url("../../images/lock-hover.png") no-repeat;
+  background-size: 24px;
+}
+input[type=button].filter-btn {
+  background: url("../../images/find.png") no-repeat;
+  background-size: 24px;
+}
+input[type=button].filter-btn:hover {
+  background: url("../../images/find_hover.png") no-repeat;
+  background-size: 24px;
+}
+input[type=button].hide-columns {
+	background: url(../../images/dropdown.png) no-repeat;
+	background-size: 24px;
+}
+input[type=button].hide-columns:hover {
+  background: url(../../images/dropdown_hover.png) no-repeat;
+  background-size: 24px;
+}
+.hidden-tr {
+	display: none;
+}
+
+span.loading-flag {
+	display: none;
+	width: 24px;
+	height: 24px;
+	background: url(../../images/loading.gif) no-repeat;
+	background-size: 24px;
+}
+
+.toolbar div input[type=button].click-all {
+	background:rgba(255,102,0,0.3);
+}
+.toolbar div input[type=button].click-finish {
+	background: #ffbaba;
+}
+.toolbar div input[type=button].half-finish {
+	background: #fee9fa;
+}
+.toolbar div input[type=button].delete-view {
+	background: #d3f0ff;
+}
+.toolbar label {
+	float: left;
+	height: 24px;
+	margin: 7px 15px;
+}
+.toolbar input[type=checkbox]{
+	width: 15px;
+	height: 15px;
+	vertical-align: bottom;
+}
+
+
+/*移动到窗口样式*/
+ul.remove-ul {
+	padding: 15px;
+	height: 220px;
+}
+ul.remove-ul li {
+	height: 30px;
+}
+ul.remove-ul li p{
+	float: left;
+	width: 80px;
+}
+div.plan-group-list {
+	float: left;
+	width: calc(100% - 100px);
+}
+
+
+
+
+
+
+/*筛选的样式*/
+.series-view-section {
+    width: 30px;
+    /* height: 25px; */
+    height: 35px;
+}
+.anyone-appear-dd {
+    display: none;
+    float: left;
+}
+.other-appear-dd {
+    display: none;
+    float: left;
+    margin-left: 9px;
+}
+.clear-a-selection {
+    display: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: '微软雅黑';
+}
+
+
+/*添加到通告单*/
+.over-flow-hidden {
+  overflow: hidden;
+}
+tr .nameLabel{
+  width: 110px;
+  font-family:'微软雅黑'; 
+  font-size: 13px;
+}
+tr td input[type=text].notice-name-input,tr td input[type=text].notice-time-input {
+  width:300px;
+  height:30px;
+}
+.add-notice-error-div {
+  text-align:left;
+  padding-left:71px;
+  width:410px;
+  color:red; 
+  line-height:17px;
+}
+.save-notice-div {
+  margin-bottom:10px;
+  text-align:center;
+  margin-top:40px;
+}
+.save-notice-button {
+  margin-bottom: 5px;
+}
+.notice-list-div {
+  margin-top:10px;
+}
+.exist-notice-div {
+  margin-bottom:10px;
+  text-align:center;
+}
+#noticeDivForm table tr, .plan-form-div table tr {
+    height: 55px;
+    text-align: right;
+}
+
+
+
+
+
+/*计划列表的样式*/
+.view-list {
+  height: calc(100% - 40px);
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+.header-div {
+	overflow: hidden;
+	width: 100%;
+}
+.body-div {
+/* 	width: 100%; */
+  width: 100%;
+  overflow: auto;
+}
+.header-div table {
+	background: #e6e6e6;
+}
+.header-div table, .body-div table {
+	table-layout: fixed !important;
+	border-collapse: collapse;
+}
+.header-table tr {
+	min-height: 30px;
+}
+.body-table tr {
+	height: 30px;
+}
+.header-table tr td, .body-table tr td {
+	border: 1px solid #ccc;
+}
+.header-table tr td p  {
+	width: 100%;
+	box-sizing: border-box;
+	text-align: center;
+	font-size: 13px;
+}
+.body-table tr td p {
+	width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  height: 30px;
+  padding-left: 2px;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 28px;
+}
+.body-table td span.lock-icon {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(../../images/lock-hover.png) no-repeat;
+	background-size: 20px;
+	margin-top: 5px;
+}
+.header-table td input[type=text]{
+	display: inline-block;
+	width: 90%;
+	height: 28px;
+	background: #fff;
+	border-radius: 4px;
+	border: 1px solid #fff;
+	box-sizing: border-box;
+	padding-left: 3px;
+}
+.header-table td span.sort-btn {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	background: url(../../images/iconfont-paixu.png) no-repeat;
+	background-size: 20px;
+}
+.heaader-table td span.sort-btn.select {
+	background: url(../../images/iconfont-paixu1.png) no-repeat;
+  background-size: 20px;
+}
+.hidden-tbody {
+	display: none;
+}
+
+
+/*快捷菜单*/
+.short-menu {
+  position: absolute;
+  display: none;
+  width: 100px;
+  height: 90px;
+  box-sizing: border-box;
+  padding: 15px;
+  border: #ccc;
+  background: #fff;
+  box-shadow: 3px 3px 3px;
+}
+.short-menu li {
+  height: 30px;
+  line-height: 30px;
+  box-sizing: border-box;
+  padding-left: 5px;
+}
+.short-menu li:hover {
+  border: 1px solid lightblue;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+/*隐藏列面板*/
+.columns-panel {
+   display: none;
+   width: 150px;
+   height: 300px;
+   border: 1px solid #ccc;
+   background: #fff;
+   position: absolute;
+   z-index: 100;
+   overflow: auto;
+   box-shadow: 0 6px 12px rgba(0,0,0,.175);
+   border-radius: 5px;
+}
+.columns-panel ul {
+   margin: 0px;
+   padding: 0px;
+   list-style-type: none;
+}
+.columns-panel ul li {
+   height: 25px;
+   box-sizing: border-box;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   padding-left: 5px;
+}
+.columns-panel input[type=checkbox] {
+   vertical-align: sub;
+   margin-right: 3px;
+}
+
+
+
+
+.body-div table tr:hover {
+   background: #e8e8e8;
+}
+.body-div table tr.cut-row {/*级别相同看前后顺序*/
+    border: 2px dashed rgba(0,255,255, 0.5);
+}
+.body-div table tr.select {
+  /*  background: rgba(0, 255, 255, 0.5); */
+  background: #d1d1d1 !important;
+}
+
+
+
+
+
+/*滚动条样式*/
+/* ::-webkit-scrollbar {
+    width: 3px;
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 5px;
+    background: #bcbcbc; 
+} */

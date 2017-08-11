@@ -1,0 +1,1 @@
+ALTER TABLE `tab_view_info` MODIFY COLUMN `shotDate`  date NULL DEFAULT NULL COMMENT '拍摄日期';

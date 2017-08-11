@@ -1,0 +1,314 @@
+body{
+	  margin: 0px;
+	  padding: 0px;
+	  font-size: 13px;
+	  font-family: '微软雅黑',arial,sans-serif;
+	  bakcground-color: #fff;
+    width: 100%;
+    overflow: hidden;
+}
+ul,li {
+	  margin: 0px;
+	  padding:0px;
+	  list-style-type: none;
+}
+dl,dt,dd {
+	  margin: 0px;
+	  padding: 0px;
+	  background: #fff;
+}
+.collection-order-box {
+    height: calc(100% - 12px);
+    color: #333333;
+    position: relative;
+    /* overflow: hidden; */
+    overflow-y: auto;
+    padding: 6px;
+    min-height: 257px;
+}
+dl.collection-box-dl {
+	  font-size: 13px;
+    border: 1px solid #cad0e5;
+}
+dt {
+    line-height: 38px;
+    border-bottom: 1px solid #cad0e5;
+}
+dl.collection-box-dl .collection-header {
+	  margin: 9px 30px;
+    position: relative;
+}
+
+.bills-num {
+	
+    position: absolute;
+    top: 0px;
+    padding-left: 16px;
+}
+input[type=text] {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #afb5ca;
+    box-shadow: none;
+    
+    outline: none;
+}
+input[type=text]:focus {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color: #afb5ca;;
+    box-shadow: none;
+    border-shadow: none;
+    padding: 0px;
+    margin: 0px;
+    outline: none;
+    background-color: transparent;
+} 
+input[type=text].header-input {
+    border: none;
+    border-bottom: 1px solid #afb5ca;
+    width: 100px;
+    height: 30px;
+    outline: none;
+    background: transparent;
+}
+.header-title {
+    text-align: center;
+    font-size: 26px;
+}
+.bills-date {
+	  position: absolute;
+	  right: 0px;
+	  top: 0px;
+}
+div.div-clear {
+    clear: both;
+}
+
+.collection-order-box table {
+    table-layout: fixed;
+    font-size: 13px;
+}
+.collection-order-box table td {
+    border: none;
+    height: 45px;
+}
+.collection-order-box table td.fukuan-td,.collection-order-box table td.zhaiyao,.collection-order-box table td.moneyTd,
+.collection-order-box table td.payMethod {
+    width: 95px;
+    text-align: right;
+    padding-right: 10px;
+}
+input[type=text].fukuan-person {
+    width: 100%;
+    height: 30px;
+    outline: none;
+    float: left;
+    
+    margin-right: 30px;
+    background: transparent;
+}
+select.select-currency {
+	  width: 12%;
+	  height: 30px;
+	  border: none;
+	  border-bottom: 1px solid #afb5ca;
+	  outline: none;
+}
+input[type=text].money-count {
+	  width: 85%;
+	  height: 30px;
+	  margin-left: 24px;
+}
+/* .collection-order-box table tr.last-tr td.payMethod {
+	  position: relative;
+} */
+.collection-order-box table tr.last-tr td.last-td {
+    position: relative;
+}
+select.select-pay-method {
+	  height: 30px;
+	  width: 12%;
+	  border: none;
+	  border-bottom: 1px solid #afb5ca;
+	  outline: none;
+}
+div.capital-money-div {
+	  line-height: 30px;
+	  position:absolute;
+	  top: 10px;
+	  left: 174px;
+}
+div.agent-div {
+	  display: inline-block;
+	  position: absolute;
+	  right: 0px;
+}
+input[type=text].agent-person {
+	  height: 30px;
+}
+input[type=text].arrows-low {
+	  width: 130px;
+	  height: 30px;
+    background: url(../image/iconfont-sanjiao-copy.png) no-repeat 112px 15px;
+    background-size: 10px 10px;
+}
+
+.btn-list {
+    width: 100%;
+    padding-top: 20px;
+    text-align: center;
+}
+input[type=button] {
+    border: none;
+    font-family: '微软雅黑';
+    outline: none;
+    box-sizing: border-box !important;
+    border-radius: 7px;
+    background: rgba(255,102,0,1);
+    border-color: rgba(255,102,0,1);
+    color: rgba(255,255,255,1);
+    cursor: pointer;
+}
+input[type=button]:hover {
+    background-color: rgba(230,93,1,1);
+}
+input[type=button].save-btn {
+    width: 65px;
+    height: 25px;
+    line-height: 25px;
+    letter-spacing: 0px;
+    margin-left: 50px;
+}
+input[type=button].double-function-button {
+    width: 100px;
+    height: 25px;
+    
+    margin-left: 10px; 
+      
+}
+
+/*付款方式下拉框*/
+.paymethod-dropdown-box {
+    display: none;
+    width: 130px;
+    box-sizing: border-box;
+    height: 90px;
+    max-height: 120px;
+    overflow-y: scroll;
+    position: absolute;
+    background: #fff;
+    border: 1px solid #3399ff;
+    z-index: 110;
+    min-width: 70px;
+    text-align: left;
+    overflow-x: hidden;
+}
+/*付款人下拉列表*/
+/*下拉框*/
+.dropdown_box {
+    display: none;
+    width: 220px;
+    height: 150px;
+    max-height: 220px;
+    position: absolute;
+    z-index: 110;
+    /* top: 85px;
+    left: 125px; */
+    min-width: 70px;
+    text-align: left;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #3399ff;
+}
+
+.drop-down-li {
+    font-size: 12px;
+    height: 30px;
+    cursor: pointer;
+    
+}
+
+.drop-down-li a {
+    font-size: 12px;
+    padding: 0px 5px;
+    color: #000;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.drop-down-li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: #3399ff;
+}
+
+
+/*附件信息*/
+div.upload-file-container {
+    clear: both;
+    overflow-y: auto;
+}
+.upload-file-container ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+.upload-file-container ul:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+ul li.upload-file-list-li{
+    border: 0px;
+    /* height: 110px; */
+    height: 138px;
+    border: 0px;
+    float: left;
+    margin: 10px 10px 0px 10px;
+    position: relative;
+}
+ul li.upload-file-list-li img {
+    width: 110px;
+    height: 110px;
+}
+ul li.upload-file-list-li p {
+    width: 110px;
+    height: 18px;
+    margin: 5px 0px;
+    color: #d67934;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    background: url(../../../images/fujian-icons.png) no-repeat;
+    background-size: 15px;
+    padding-left: 15px;
+    white-space: nowrap;
+}
+ul li.upload-file-list-li a.closeTag{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 20px;
+    z-index: 1000;
+    background: url(../../../images/btn-icon-small.png) no-repeat;
+    cursor: pointer;
+}
+ul li.upload-file-list-li a.closeTag:hover {
+    background-position: -20px 0;
+}
+ul li.upload-file-list-li a {
+    color: #d67934;
+    text-decoration: none;
+}

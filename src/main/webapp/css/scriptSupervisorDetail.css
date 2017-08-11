@@ -1,0 +1,152 @@
+@charset "utf-8";
+
+.setting-left{min-width: 184px;max-width: 184px;float: left;background-color: #eee;padding-top: 25px;min-height: 500px;}
+
+.setting-left ul{margin-top: 4px;}
+.setting-left ul li{line-height: 42px;
+		font-size: 16px;
+		padding-left: 44px;
+		cursor: pointer;
+}
+.setting-right{float: right;min-width: 810px;margin-top: 32px;min-height: 500px;margin-left: 20px;margin-right:20px;}
+.setting-li-current{
+		border-left: 3px solid #e96c1f;
+    	padding-left: 41px !important;
+}
+.setting-left ul li:hover{
+		color: #e96c1f;
+}
+.setting-li{}
+.setting-left-header{
+		color: #595757;
+		line-height: 33px;
+		font-size: 18px;
+		font-weight: 700;
+		margin: 0 auto;
+		clear: both;
+		border-bottom: 1px solid #ADACAC;
+		padding-bottom: 12px;
+		width: 110px;
+}
+.return-btn {
+	  width: 24px;
+	  height: 24px;
+	  background: url(../images/return.png) no-repeat;
+	  background-size: 100%;
+	  vertical-align: middle;
+}
+.return-btn:hover {
+	  background: url(../images/return1.png) no-repeat;
+	  background-size: 100%;
+}
+.current-menu-name{
+		color: #e96c1f;
+		width: 100%;
+		padding-bottom: 19px;
+		margin-top: 4px;
+		display: block;
+		font-size: 16px;
+}
+.financeSetting{}
+.financeSetting table{width: 100%;border-collapse: collapse;border-spacing: 0px;}
+.financeSetting table td{border: 1px solid #aaa;height: 100%;height: 35px;text-align: center;}
+.financeSetting table thead tr{background-color: #ebebeb;}
+.financeSetting ul li,.financeSetting ul li dt,.financeSetting ul li dd{float: left;}
+.financeSetting ul li{width: 47%;height: 35px;margin-left:2%;}
+.financeSetting ul li dt{}
+.deltelumns{width:16px; height:16px;background: url("../images/delete_ioc.png") no-repeat; background-size: 16px 16px;float:right;cursor: pointer;}
+.deltelumns:hover{background:url(../images/delete1_ioc.png) no-repeat;background-size: 16px 16px;}
+.sma-tips{display: none;position: absolute;width: 230px;height: 330px;border-color: #aaa;background-color: #ebebeb; }
+.arrow-up {
+      position:absolute;
+      top:15px;
+      left:-10px;
+      width:0;
+      height:0;
+      border-top:15px solid transparent;
+      border-bottom:15px solid transparent;
+      border-right:15px solid #ebebeb;
+        }
+.sma-tips table{margin-left: 20px;width:100%;}
+.clip-head-div {
+	height: 500px;
+	overflow: auto;
+}
+
+.clip-info-div {
+	min-width: 810px;
+	height: auto;
+	/* border: 1px solid rgba(213,213,213,0.3);
+	box-shadow: 1px 1px 2px rgba(136,136,136,0.4); */
+	padding:30px;
+}
+
+.scene-head-div {
+	min-width: 810px;
+	height: auto;
+	border: 1px solid rgba(213,213,213,0.3);
+	box-shadow: 1px 1px 2px rgba(136,136,136,0.4);
+	padding:30px;
+}
+
+.scene-info-div {
+	font-size: 14px;
+	padding-bottom: 8px;
+	padding-left: 8px;
+}
+
+.convert-info-div {
+	font-size: 14px;
+	padding-bottom: 8px;
+	padding-top: 30px;
+	padding-left: 8px;
+	clear: both;
+}
+
+.majorrole-head-div {
+	min-width: 810px;
+	height: auto;
+	border: 1px solid rgba(213,213,213,0.3);
+	box-shadow: 1px 1px 2px rgba(136,136,136,0.4);
+	padding:30px;
+	display: none;
+}
+
+.mejorrole-info-div {
+	font-size: 14px;
+	padding-bottom: 15px;
+	padding-left: 8px;
+}
+
+.massrole-info-div {
+	font-size: 14px;
+	padding-bottom: 8px;
+	margin-top: 30px;
+	padding-left: 8px;
+}
+
+.specialprop-head-div {
+	min-width: 810px;
+	height: 158px;
+	/* border: 1px solid rgba(213,213,213,0.3);
+	box-shadow: 1px 1px 2px rgba(136,136,136,0.4); */
+	padding:30px;
+	display: none;
+}
+
+.comment-info-div {
+	min-width: 810px;
+	height: 158px;
+	/* border: 1px solid rgba(213,213,213,0.3);
+	box-shadow: 1px 1px 2px rgba(136,136,136,0.4); */
+	padding:30px;
+	display: none;
+}
+
+.shoot-sence-dd {
+	height: 28px;
+	width: 90%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	outline: none;
+	font-family: "微软雅黑";
+	font-size: 12px;
+}
+div.jqx-grid-toolbar {
+  background: #fff;
+}
+.topDiv {
+	width:100%;
+	height: calc(100% - 35px);
+}
+.totalDiv {
+	height: 35px;
+	line-height: 35px;
+	padding-left: 10px;
+}
+.export-btn {
+	float:left;
+	width: 24px;
+	height: 24px;
+	background: url("../../images/export.png") no-repeat;
+	background-size: 24px 24px;
+	margin-left: 20px;
+	margin-top: 4px;
+	cursor: pointer;
+}
+.export-btn:HOVER {
+	background: url("../../images/export_hover.png") no-repeat;
+  	background-size: 24px 24px;
+}
+.return-btn {
+	float:left;
+	width: 24px;
+	height: 24px;
+	background: url("../../images/return.png") no-repeat;
+	background-size: 24px 24px;
+	margin-left: 20px;
+	margin-top: 4px;
+	cursor: pointer;
+}
+.return-btn:HOVER {
+	background: url("../../images/return1.png") no-repeat;
+  	background-size: 24px 24px;
+}
+.divide_line {
+	border-right: solid 2px #3E8ADA !important;
+}

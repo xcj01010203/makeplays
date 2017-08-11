@@ -1,0 +1,236 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	outline: none;
+}
+.jqx-window {
+	 display: none;
+}
+.main-div {
+	padding: 20px 50px;
+}
+.total-span {
+	font-size: 14px;
+	float: left;
+	margin-top: 17px;
+	color: #5485bb;
+	font-family: "微软雅黑";
+}
+.total-div {
+	height: 50px;
+	margin: 0 auto;
+	margin-left: 86px;
+}
+.statis_fold {
+	border: 1px solid #D7DAE4;
+}
+.statis_fold_head {
+	background-color:#ebebeb;
+	height: 38px;
+  	line-height: 38px;
+	border-bottom: 1px solid #D7DAE4;
+	padding-left: 50px;
+	font-family: '黑体';
+	color: #EA7116;
+	font-size: 14px;
+}
+.head_select {
+	color: #009933;
+	float: left;
+}
+.fold_body {
+	margin: 15px auto;
+}
+.radio_select {
+	cursor: pointer;
+}
+.span_select {
+	cursor: pointer;
+}
+.span_select:HOVER,.selfsubject_add:HOVER {
+	color: #EA7116;
+}
+.self_label {
+	display: none;
+}
+.selfsubject_add {
+	margin-left:15px;
+	font-size: 20px;
+	cursor:pointer;
+  display: none;
+}
+.div_chart{
+	display: none;
+	height: 420px;
+}
+.self_span {
+	margin-left: 15px;
+}
+.my-jqx-content ul li {
+	  padding-top: 5px;
+	  box-sizing: border-box;
+}
+/*添加/修改自定义科目窗口*/
+.my-jqx-content ul.subj-name-ul {
+	  width: calc(100% - 20px);
+	  margin: 10px auto;
+}
+.my-jqx-content ul.subj-name-ul li {
+	  height: 40px;
+	  padding: 0px;
+}
+.my-jqx-content ul.subj-name-ul li p {
+	  float: left;
+	  width: 15%;
+	  height: 35px;
+	  line-height: 35px;
+}
+.my-jqx-content ul.subj-name-ul li input {
+	  float: left;
+	  width: 83%;
+	  height: 35px;
+}
+.need-content {
+	  color: red;
+}
+.subject-tree-list {
+	  margin: 0px auto;
+	  box-sizing: border-box;
+}
+
+/*按钮*/
+.win-btn-list {
+	  margin-top: 30px;
+	  width: 100%;
+	  text-align: center;
+}
+.win-btn-list input[type=button] {
+	  width: 65px;
+	  height: 25px;
+	  line-height: 25px;
+	  border-radius: 7px;
+    background: rgba(255,102,0,1);
+    color: #fff;
+    cursor: pointer; 
+    letter-spacing: 1px;
+    margin-right: 15px;
+}
+.win-btn-list input[type=button]:hover {
+	  background: rgba(230,93,1,1);
+}
+
+/*右侧滑出框*/
+.right-popup-win {
+    display: none;
+    position: absolute;
+    width: 75%;
+    height: calc(100% - 2px);
+    right: -75%;
+    top: 0px;
+    border: 1px solid #ccc;
+    z-index: 500;
+    background: #f2f2f2;
+    box-shadow: 0 0 1em #cec9c9;
+}
+.right-popup-body {
+    width: 100%;
+    height: 100%;
+}
+.jqx-column {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 35px;
+    height: 35px;
+    color: #333;
+}
+.column-align-center,.align-center {
+	  text-align: center;
+}
+.column-align-right, .align-right {
+	  text-align: right;
+	  padding-right: 5px;
+}
+.column-align-left, .align-left {
+	  text-align: left;
+	  padding-left: 5px;
+}
+.header-btn-list {
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    background: #e1ebfa;
+}
+.oper-button {
+	border: 0px;
+    outline: none;
+    width: 100px;
+    height: 25px;
+    letter-spacing: 5px;
+    color: #fff;
+    margin-right: 50px;
+    background: rgba(255,102,0,1);
+    border-radius: 5px;
+    margin-top: 7px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    cursor: pointer;
+}
+.oper-button:hover {
+  background: rgba(230,93,1,1);
+}
+.main-content {
+	height: calc(100% - 165px);
+	padding: 0 10px;
+	box-sizing: border-box;
+}
+.totaldiv {
+	height: 100px;
+}
+/*货币总信息*/
+table.currency-list-table {
+	  border: 0px;
+	  text-align: center;
+	  width: 100%;
+	  border-collapse: separate;
+}
+table.currency-list-table tr {
+	  width: 100%;
+	  height: 30px;
+}
+table.currency-list-table thead tr td{
+	  border: none;
+	  font-family: '微软雅黑';
+	  font-size: 14px;
+	  font-weight: bold;
+}
+table.currency-list-table tbody tr td {
+	  -moz-border: 1px solid #ccc;
+	  border: 1px solid #ccc;
+	  border-right: none;
+}
+table.currency-list-table tr td.red-td {
+	  color: #f00;
+}
+table.currency-list-table tr td.td-border{
+	  border-top: none;
+	  
+}
+.export-button {
+	float:left;
+	width: 24px;
+	height: 24px;
+	background: url("../../images/export.png") no-repeat;
+	background-size: 24px 24px;
+	margin-left: 20px;
+	margin-top: 7px;
+	margin-bottom: 4px;
+	cursor: pointer;
+}
+.export-button:HOVER {
+	background: url("../../images/export_hover.png") no-repeat;
+  	background-size: 24px 24px;
+}

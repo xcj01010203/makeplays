@@ -1,0 +1,306 @@
+.registerOrForget {
+	color: #9E9E9E;
+	padding-left: 20px;
+	font-size: 12px;
+	margin-top: 5px;
+	height: 0px;
+	text-align: center;
+}
+
+.registerOrForget a {
+	color: #9E9E9E;
+	text-decoration: none;
+}
+
+.registerOrForget a:hover {
+	color: white;
+	text-decoration: underline;
+}
+
+.error-message {
+	color: red;
+	padding-left: 20px;
+	font-size: 12px;
+	margin-top: 5px;
+	height: 0px;
+}
+
+.user-name-div {
+	background: url(../images/user.PNG) no-repeat 10px center;
+	background-color: #f7f7f7;
+}
+
+.user-password-div {
+	background: url(../images/password.PNG) no-repeat 10px center;
+	background-color: #f7f7f7;
+}
+
+ul,li {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+ul.login-nav {
+	height: 30px;
+	width: 241px;
+}
+
+ul.login-nav li {
+	display: inline-block;
+	margin: 0px;
+	width: 10%;
+	height: 30px;
+	float: left;
+	font-size: 16px;
+}
+
+ul.login-nav li:first-child {
+	width: 45%;
+}
+
+ul.login-nav li:last-child {
+	width: 45%;
+}
+
+.registerOrForget {
+	margin-top: 10px;
+}
+
+.registerOrForget:after {
+	display: block;
+	content: '';
+	clear: both;
+}
+
+/*版本升级提醒*/
+.versionRemind-win .topdiv {
+	height: calc(100% - 68px);
+}
+
+.versionRemind-win .bottomdiv {
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+.versionRemind-win .button {
+	width: 60px;
+	height: 25px;
+	border-radius: 7px;
+	background: rgba(255, 102, 0, 1);
+	color: #fff;
+	cursor: pointer;
+	margin: 0px 10px;
+}
+
+.versionRemind-win .message_title {
+	font-size: 16px;
+	margin-top: 12px;
+	color: #343434;
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.versionRemind-win .createTime {
+	color: #999;
+	font-size: 14px;
+	margin-top: 12px;
+}
+
+.versionRemind-win .content {
+	height: calc(100% - 30px);
+	overflow: auto;
+	margin-top: 12px;
+	font-size: 14px;
+	border: solid 1px #d9d9d9;
+	border-radius: 5px;
+	padding: 10px;
+	color: #595959;
+	box-sizing: border-box;
+	line-height: 24px;
+	word-break: break-all;
+}
+
+.versionRemind-win .contentBox {
+	padding: 0 16px;
+}
+
+
+.my-container {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	position: absolute;
+	top:0;
+	left:0;
+}
+
+.model {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.3);
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	z-index: 500;
+}
+
+.flip-container {
+	perspective: 1000;
+	width: 580px;
+	height: 450px;
+	border-radius: 5px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -290px;
+	margin-top: -225px;
+	z-index: 501;
+}
+
+.flip-rolate .flipper {
+	transform: rotateY(180deg);
+}
+
+.flip-container,.front,.back {
+	width: 580px;
+	height: 450px;
+}
+
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+.front,.back {
+	width: 580px;
+	height: 450px;
+	background: #fff;
+	border-radius: 5px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 502;
+	backface-visibility: hidden;
+}
+
+.front {
+	z-index: 502;
+}
+
+.back {
+	transform: rotateY(180deg);
+}
+.version-title h2 {
+	text-align: center;
+	margin: 20px;
+	letter-spacing: 2px;
+	background: url(../images/shengji.png) no-repeat 69%;
+	background-size: 30px;
+	color: #4d4d4d;
+}
+
+.version-content {
+	margin: 0px;
+	padding: 0px 20px;
+}
+
+.version-info {
+	color: #333;
+}
+
+.version-content ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+.version-content ul li {
+	min-height: 30px;
+	margin-bottom: 15px;
+}
+
+.version-content ul li p {
+	float: left;
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	margin: 0px;
+	padding: 0px;
+	font-size: 13px;
+}
+/*.version-content ul li div {
+				float: left;
+				width: calc(100% - 100px);
+				font-size: 13px;
+			}*/
+.version-content ul li div.version-time {
+	min-height: 30px;
+	line-height: 30px;
+	font-size: 13px;
+}
+
+.version-content ul li div.version-info {
+	height: 180px;
+	overflow-y: auto;
+	line-height: 30px;
+	font-size: 13px;
+	word-break: break-all;
+	border: 1px solid #ccc;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+.upadate-tips {
+	line-height: 25px;
+	height: 80px;
+	color: #808080;
+	font-size: 13px;
+	padding: 0px 20px;
+	letter-spacing: 1px;
+}
+
+.btn-list {
+	width: 100%;
+	text-align: center;
+}
+
+.btn-list input[type=button] {
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	font-weight: bold;
+	font-size: 16px;
+	color: #fff;
+	background: #8cd4f5;
+	outline: none;
+	border: 0px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.flag {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 200px;
+	height: 200px;
+	margin-left: -100px;
+	margin-top: -100px;
+	border-radius: 50%;
+	line-height: 220px;
+	background: url(../images/shengji.png) no-repeat 50% 30%;
+	background-size: 40px;
+	border: 2px solid #66bb6a;
+	text-align: center;
+	font-size: 30px;
+	letter-spacing: 2px;
+	font-weight: bold;
+	color: #4d4d4d;
+}

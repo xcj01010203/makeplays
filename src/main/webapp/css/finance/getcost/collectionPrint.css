@@ -1,0 +1,164 @@
+
+
+body{
+    margin: 0px;
+    padding: 0px;
+    font-size: 13px;
+    font-family: '微软雅黑',arial,sans-serif;
+    bakcground-color: #fff;
+    width: 99%;
+    overflow: hidden;
+}
+ul,li {
+    margin: 0px;
+    padding:0px;
+    list-style-type: none;
+}
+dl,dt,dd {
+    margin: 0px;
+    padding: 0px;
+    background: #fff;
+}
+.collection-order-box {
+    width: 100%;
+    height: 90%;
+    color: #333333;
+    position: relative;
+    overflow: hidden;
+    padding: 6px;
+}
+dl.collection-box-dl {
+    font-size: 13px;
+    border: 2px solid #000;
+}
+dt {
+    line-height: 38px;
+    border-bottom: 1px solid #000;
+}
+dl.collection-box-dl .collection-header {
+    margin: 9px 0px;
+    position: relative;
+    font-size: 14px;
+}
+
+.bills-num {
+    font-size: 16px;
+    color: #000;
+    font-family: '微软雅黑';
+    position: absolute;
+    top: 0px;
+    padding-left: 6px;
+}
+input[type=text] {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #000;
+    box-shadow: none;
+    font-size: 16px;
+    color: #000;
+    font-family: '微软雅黑';
+    outline: none;
+}
+
+input[type=text].header-input {
+    border: none;
+    border-bottom: 1px solid #000;
+    width: 150px;
+    height: 30px;
+    outline: none;
+    background: transparent;
+}
+.header-title {
+    text-align: center;
+    font-size: 26px;
+}
+.bills-date {
+	  font-size: 16px;
+	  color: #000;
+	  font-family: '微软雅黑';
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+div.div-clear {
+    clear: both;
+}
+
+.collection-order-box table {
+    table-layout: fixed;
+    font-size: 14px;
+    color: #000;
+}
+.collection-order-box table tr {
+	  width: 100%;
+}
+.collection-order-box table td {
+    border: none;
+    height: 50px;
+    width: 50%;
+}
+.collection-order-box table td.fukuan-td,.collection-order-box table td.zhaiyao,.collection-order-box table td.moneyTd,
+.collection-order-box table td.payMethod {
+    width: 50px;
+    text-align: right;
+    padding-right: 10px;
+    font-size: 14px;
+}
+.collection-order-box table td.money-detail {
+	  width: 130px;
+}
+input[type=text].fukuan-person {
+    width: 100%;
+    height: 30px;
+    outline: none;
+    float: left;
+    background: transparent;
+}
+
+input[type=text].select-currency {
+	  
+    width: 180px;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+}
+input[type=text].money-count {
+    width: 100%;
+    height: 30px;
+    
+}
+.collection-order-box table tr.last-tr td.payMethod {
+    position: relative;
+}
+.collection-order-box table tr.last-tr td.last-td {
+	  position:  relative;
+}
+select.select-pay-method {
+    height: 30px;
+    width: 12%;
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+}
+div.capital-money-div {
+    position:absolute;
+    bottom: 10px;
+    left: 164px;
+}
+div.agent-div {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+}
+input[type=text].agent-person {
+    height: 30px;
+}
+input[type=text].arrows-low {
+    width: 130px;
+    height: 30px;
+    background: url(../image/iconfont-sanjiao-copy.png) no-repeat 112px 15px;
+    background-size: 10px 10px;
+}
+

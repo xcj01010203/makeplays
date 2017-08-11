@@ -1,0 +1,38 @@
+/*tab键样式*/
+.btn_wrap {
+    width: 60%;
+    float: left;
+    height: 32px;
+    border-bottom: 2px solid rgba(255,102,0,1);
+    box-sizing: content-box;
+}
+.tab_wrap {
+    width: 40%;
+    float: right;
+}
+.tab_wrap ul {
+    overflow: hidden;
+    border-bottom: 2px solid rgba(255,102,0,1);
+}
+.tab_wrap li {
+    box-size:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    display: block;
+    float: left;
+    line-height: 30px;
+    border-top-left-radius: 20px;
+    background-color: rgba(4,84,133,1);
+    border: 2px solid rgba(4,84,133,1);
+    border-bottom: none;
+    color: rgba(255,255,255,1);
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+.tab_wrap .tab_li_current {/*tab键点击时的样式*/
+    color: rgba(255,255,255,1);
+    background-color: rgba(255,255,255,1);
+    border: none;
+    padding-bottom: 2px;
+}

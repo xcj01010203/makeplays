@@ -1,0 +1,53 @@
+/**************************可共用的公共样式*****************************/
+
+input[type=button] {
+  border: none;
+}
+input[type=button]:focus {
+  outline: none;
+  }
+/*按钮的公共样式-黄色系*/
+input[type=button].input-orange {
+    min-width: 50px;
+    min-height: 25px;
+    border-radius: 5px;
+    border: none;
+    background: rgba(255,102,0,1);
+    color: white;
+    cursor: pointer;
+    font-family: '微软雅黑';
+    line-height: 25px;
+}
+input[type=button].input-orange:hover {
+    background: rgba(230,93,1,1);
+}
+input[type=button].input-orange:focus {
+    outline: none;
+}
+
+/*按钮的公共样式-蓝色系*/
+.win-btn-list-blue input[type=button]{
+  border-radius: 5px;
+  background-color: #0277BD;
+  color: #fff;
+  cursor: pointer;
+  min-width: 50px;
+    min-height: 25px;
+}
+.win-btn-list-blue input[type=button]:hover {
+  background-color: #1a8cd0;
+}
+
+
+
+/*弹窗公共样式*/
+.jqx-window {
+    display: none;
+}
+.my-jqx-window {
+    display: none;
+}
+
+
+
+

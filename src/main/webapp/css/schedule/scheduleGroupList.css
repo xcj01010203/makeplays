@@ -1,0 +1,230 @@
+@charset "utf-8";
+html, body {
+	margin: 0px;
+	padding:  0px;
+	width:100%;
+	height: 100%;
+}
+.container {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+input[type=text]:focus {
+	outline: none;
+  box-shadow: 0px 0px 5px #409DFE;
+  border: 1px solid #409DFE !important;
+}
+.public-group {
+	/* display: none; */
+}
+.public-group ul {
+  margin: 0px; 
+  padding: 0px;
+  list-style-type: none;
+}
+.public-group ul li {
+	border-bottom: 1px dotted #ccc;
+}
+.rough-info ul li {
+  height: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 4px;
+  line-height: 40px;
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.detail-info {
+	display: none;
+}
+
+.public-group ul li:hover {
+  background: #e3f2fd;
+  cursor: pointer;
+  color: #000;
+}
+.public-group ul li.checked {
+  border: 1px solid #91c7f2;
+  background: #e3f2fd;
+}
+
+/*分组详细信息*/
+.group-toolbar {
+  height: 30px;
+}
+.group-toolbar input[type=button]{
+  width: 24px;
+  height: 24px;
+  margin: 3px 8px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0px;
+  outline: none;
+}
+input[type=button].add-btn {
+  background: url(../../images/add.png) no-repeat;
+  background-size: 24px;
+}
+input[type=button].add-btn:hover {
+  background: url(../../images/add_hover.png) no-repeat;
+  background-size: 24px;
+}
+input[type=button].delete-btn {
+  background: url(../../images/delete.png) no-repeat;
+  background-size: 24px;
+}
+input[type=button].delete-btn:hover {
+  background: url(../../images/delete1.png) no-repeat;
+  background-size: 24px;
+}
+input[type=button].import-btn {
+  background: url("../../images/leading-in.png") no-repeat;
+  background-size: 24px;
+}
+input[type=button].import-btn:hover {
+  background: url("../../images/leading-in_hover.png") no-repeat;
+  background-size: 24px;
+}
+input[type=button].export-btn {
+  background: url("../../images/export.png") no-repeat;
+  background-size: 24px;
+}
+input[type=button].export-btn:hover {
+  background: url("../../images/export_hover.png") no-repeat;
+  background-size: 24px;
+}
+input[type=button].intelligent-arrange {
+  background: url("../../images/tiqu.png") no-repeat;
+  background-size: 24px;
+}
+input[type=button].intelligent-arrange:hover {
+  background: url("../../images/tiqu-hover.png") no-repeat;
+  background-size: 24px;
+}
+.opera-list {
+  height: 35px;
+  background: #e8e8e8;
+}
+label {
+  height: 24px;
+  line-height: 24px;
+  display: inline-block;
+  margin: 0px 8px;
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: normal;
+}
+input[type=checkbox].select-all{
+  vertical-align: middle;
+  width: 15px;
+  height: 15px;
+  margin: 0px;
+}
+input[type=checkbox] {
+  width: 15px;
+  height: 15px;
+}
+.reverse-select {
+  width: 40px;
+  height: 24px;
+  text-align: center;
+  line-height: 24px;
+  border: 0px;
+  background: transparent;
+  box-sizing: border-box;
+  margin: 0px 8px;
+  margin-top: 5px;
+  font-size: 13px;
+  outline: none;
+}
+.search-div {
+  float: right;
+  height: 30px;
+  width: 200px;
+  position: relative;
+  margin-right: 5px;
+  margin-top: 3px;
+}
+.search-div input[type=text] {
+  border: 0px;
+  height: 28px;
+  box-sizing: border-box;
+  padding-left: 3px;
+  width: 100%;
+  background: #fff;
+  border-radius: 3px;
+}
+.search-div input[type=button] {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border: 0px;
+  background: url("../../images/find.png") no-repeat;
+  background-size: 25px;
+  top: 2px;
+  right: 2px;
+  cursor: pointer;
+}
+.group-detail-con {
+	  margin: 0px;
+    padding: 0px;
+	  overflow-y: auto;
+    height: calc(100% - 70px);
+}
+.group-detail-list {
+	  margin: 0px;
+	  padding: 0px;
+	  list-style-type: none;
+}
+.group-detail-list li {
+  height: 80px;
+  padding: 10px 5px;
+  box-sizing: border-box;
+  width: 100%;
+}
+.group-detail-list p {
+  height: 30px;
+  line-height: 20px;
+  font-size: 14px;
+  margin: 0px;
+  padding: 0px;
+}
+.group-detail-list li span.none-group-name {
+	font-weight: bold;
+  font-size: 14px;
+  box-sizing: border-box;
+  height: 30px;
+  width: 200px;
+  background: transparent;
+  display: inline-block;
+}
+.group-detail-list input[type=checkbox]{
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.group-detail-list input[type=text]{
+  border: 0px;
+  font-weight: bold;
+  font-size: 14px;
+  box-sizing: border-box;
+  height: 30px;
+  width: 200px;
+  background: transparent;
+}
+.group-detail-list p:last-child {
+  padding-left: 25px;
+}
+.group-detail-list p:last-child span:first-child {
+  display: inline-block;
+  width: 203px;
+}
+.group-detail-list input[type=text]:hover {
+  box-shadow: 0px 0px 5px #409DFE;
+  border: 1px solid #409DFE !important;
+}
+.group-detial-list p span {
+  font-size: 14px;
+}

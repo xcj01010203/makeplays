@@ -1,0 +1,343 @@
+.my-container {
+	 width: 100%;
+	 height: 100%;
+	 overflow: auto;
+	 position: relative;
+}
+.top_wrap {
+  width: 100%;
+  overflow: hidden;
+  padding-top: 5px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  z-index: 10;
+}
+.button_box {
+  width: 100%;
+  overflow: hidden;
+  /* padding-left: 10px; */
+  line-height: 28px;
+  position: relative;
+}
+
+.button_box>div {
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.icon {
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 24px;
+  height: 24px;
+  margin-top: 3px;
+  background-size: 100%;
+}
+div.icon_compare {
+    float: right;
+    margin-right: 40px;
+    margin-left: 10px;
+    background: url(../../images/compare.png) no-repeat;
+    background-size: 24px;
+}
+div.icon_compare:hover {
+    background: url(../../images/compare-hover.png) no-repeat;
+    background-size: 24px;
+    cursor: pointer;
+}
+div.icon_edit {
+    float: right;
+    margin-right: 10px;
+    margin-left: 10px;
+    background: url(../../images/modify.png) no-repeat;
+    background-size: 24px;
+}
+div.icon_edit:hover {
+    background: url(../../images/modify_hover.png) no-repeat;
+    background-size: 24px;
+    cursor: pointer;
+}
+div.icon_analysis {
+    float: right;
+    margin-right: 10px;
+    margin-left: 10px;
+    background: url(../../images/view.png) no-repeat;
+    background-size: 24px;
+}
+div.icon_analysis:hover {
+    background: url(../../images/view-hover.png) no-repeat;
+    background-size: 24px;
+    cursor: pointer;
+}
+div.default-status {
+    background: url(../../images/compare-hover.png) no-repeat;
+    background-size: 24px;
+}
+
+
+/**************************集场面板*****************************/
+#scenarioViewDiv {
+  margin-left: 50px;
+}
+#moviceViewDiv {
+  margin-left: 50px;
+}
+.ji_chang_box {
+  height: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-image: url(../images/upload/drop_down.png);
+  background-repeat: no-repeat;
+  background-position: 95%;
+  background-color: #eeeced;
+  cursor: pointer;
+  min-width: 50px;
+  text-align: center;
+}
+
+.ji_chang_box span {
+  margin-right: 10px;
+  font-size: 13px;
+}
+
+.ji_chang_box_up {
+  border: 1px solid #ffc68e;
+  background-image: url(../../images/upload/drop_down.png);
+}
+
+.ji_chang_box_down {
+  border-top: 1px solid #ffc68e;
+  border-left: 1px solid #ffc68e;
+  border-right: 1px solid #ffc68e;
+  background-image: url(../../images/upload/drop_up.png);
+}
+
+.select_box {
+  width: 100%;
+  overflow: hidden;
+  background-color: #eeeced;
+  margin-top: -1px;
+  border-top: 1px solid #ffc68e;
+  padding-bottom: 5px;
+  display: none;
+}
+
+.select_table {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 5px;
+}
+
+.select_table tr {
+  line-height: 30px;
+}
+
+.select_table th {
+  width: 60px;
+  font-size: 12px;
+}
+
+.ji_tab_box li {
+  width: 76px;
+  margin-bottom: 5px;
+}
+
+.ji_tab_box li:hover, .ji_current {
+  background-color: #49a6f2;
+  color: white;
+}
+
+.select_table .ji_tab_box li:hover a, .ji_current a {
+  color: #ebebeb;
+}
+
+.select_table li {
+  float: left;
+  margin-right: 5px;
+  margin-top: 5px;
+  border: 1px solid #dbdbdb;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.select_table li a {
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.chang_tab_box ul {
+  max-height: 200px;
+  overflow: auto;
+}
+
+.chang_tab_box li {
+  width: 34px;
+  height: 30px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: normal;
+  font-size: 12px;
+}
+
+.chang_tab_box .hasNoGetRole:after {
+  /* margin-left:27px; */
+  /* width:3px; */
+  /* border-radius:50%; */
+  /* content: ' ';
+  display:block;
+  height:3px;
+  background-color:orange;
+  margin-top:-3px;
+  color:rgba(244,81,30,0.8); */
+  
+}
+
+.chang_tab_box .hasNoGetRole {
+  border-color: #EC8E0C;
+}
+
+.chang_tab_box .unread {
+    background: url(../../images/arrows.png) no-repeat right bottom;
+}
+.chang_tab_box .saved {
+  background: url(../../images/arrows_blue.gif) no-repeat right top;
+}
+
+.chang_tab_box li:hover, .chang_current {
+  background-color: #f27049 !important;
+  color: white;
+}
+
+
+
+
+/******************************************主要内容*****************************************************/
+.scenario-title-div {
+	 padding: 0px 15px;
+	 height: 40px;
+	 margin-top: 37px;
+	 background: #f8f8f8;
+}
+.scenario-title-div:after {
+	 display: block;
+	 clear: both;
+	 content: '';
+}
+.scenario-title-div div {
+	 display: block;
+   float: left;
+   box-sizing: border-box;
+   height: 100%;
+   border: 0px;
+   background: transparent;
+   resize: none;
+   outline: none;
+   box-sizing: border-box;
+   padding-left: 5px;
+   overflow: auto;
+   border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    line-height: 25px;
+    font-size: 13px;
+    line-height: 40px;
+}
+.scenario-title-div div.scenario-left-title {
+    width: calc((100% - 28px) / 2);
+    margin-right: 28px;
+    color: #ccc;
+}
+.scenario-title-div .version-select {
+	height: 40px;
+    border-bottom: none;
+    color: #ec6840;
+}
+.scenario-title-div div.scenario-right-title {
+   width: calc((100% - 32px) / 2);
+   color: #1d8fc7;
+}
+.main-content-div {
+	 position:relative;
+	 height: calc(100% - 80px);
+	 padding: 0px 15px;
+}
+.scenario-div-container {
+	 width: 100%;
+	 height: 100%;
+	 margin: 0px auto;
+}
+ #view_btn {
+  height: 100%;
+  position: absolute;
+  text-align: center;
+  width: 100px;
+  bottom: 0px;
+  background: #f8f8f8;
+  right: 5px;
+}
+.view-btn-div {
+  height: 40%; 
+  width: 100%;
+}
+#btn_list {
+  margin: 0;
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 61px;
+  position: absolute;
+  right: 7px;
+}
+
+#btn_list #preScene {
+  background: url("../../images/upload/preView.png") no-repeat;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
+#btn_list #preScene:hover {
+  background: url("../../images/upload/preView_hover.png") no-repeat;
+}
+
+#btn_list #nextScene {
+  background: url("../../images/upload/nextView.png") no-repeat;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
+#btn_list #nextScene:hover {
+  background: url("../../images/upload/nextView_hover.png") no-repeat;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  cursor: pointer;
+  margin-left: 16px;
+
+}
+div.CodeMirror {
+	 height: 100%;
+}
+
+.button_box>div a {
+	  font-size: 13px;
+}
+div.page-btn-list {
+	  width: 121px;
+	  position: absolute;
+	  left: 50%;
+	  bottom: 0px;
+	  margin: 0px;
+    margin-left: -60px;
+    padding: 0px;
+}
+div.page-btn-list span {
+	  color: #eb6100;
+}

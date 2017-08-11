@@ -1,0 +1,1 @@
+ALTER TABLE tab_view_info ADD COLUMN specialRemind VARCHAR(100) DEFAULT NULL COMMENT '特殊提醒';

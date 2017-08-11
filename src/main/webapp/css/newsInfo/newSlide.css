@@ -1,0 +1,59 @@
+html, body {
+    position: relative;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+img{
+    max-width: 100%;
+    vertical-align: middle;
+    max-height: 100%;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility:hidden;
+    backface-visibility: hidden;
+    -webkit-perspective:1000;
+    perspective:1000;
+}
+#slide{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -99;
+    opacity: 0;
+    background-color: #353535;
+    transition: opacity ease-in .2s;
+}
+.swiper-slide{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+    overflow: hidden;
+}
+.swiper-container{
+    height: 100%;
+    width: 100%;
+}
+#num-pagination {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: #fff;
+    font-size: 25px;
+    z-index: 999;
+}
+
+#num-pagination span{
+   float: left;
+   overflow: hidden;
+}
+#active-num {
+    font-size: 14px;
+    line-height: 14px;
+    float: left;
+}

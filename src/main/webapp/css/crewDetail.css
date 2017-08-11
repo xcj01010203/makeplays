@@ -1,0 +1,111 @@
+@charset "utf-8";
+*{margin:0; padding:0; list-style:none; outline:none; font-family:"微软雅黑"; font-size: 14px;}
+input[type=button] {
+    color: #fff;
+    background-color: #0277BD;
+    border-radius: 3px;
+    border: 0px;
+}
+input[type=button]:hover{
+    cursor: pointer;
+    background-color: #1A8CD0;
+}
+input[type=button]:focus{
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+    background-color: #0265A0;
+}
+input[type=button].disabled{
+    background: grey;
+}
+input[type=button].disabled:hover {
+    cursor: default;
+}
+input[type=button].disabled:focus {
+    outline: none;
+}
+.necessory {
+    color:red;
+    font-size: 16px;
+    vertical-align: middle;
+}
+.error-message {
+    color: red;
+    font-size: 13px;
+}
+.descrip {
+    color: #B7B7B7;
+    font-size: 13px;
+}
+.ms-container .ms-selectable li.ms-elem-selectable, .ms-container .ms-selection li.ms-elem-selection {
+    line-height: 24px;
+}
+
+
+.create-crew {
+    width: 780px;
+    padding: 10px;
+    border: 0px solid #CCCCCC;
+    margin: 0 auto;
+}
+.create-crew .error-message-li {
+    color: red;
+    height: 4px;
+}
+.create-crew .error-message-li label {
+    margin-left: 100px;
+}
+.create-crew ul li {
+    margin: 15px;
+}
+.create-crew ul li p {
+    width: 100px;
+    text-align: right;
+    display: inline-block;
+}
+
+.create-crew ul li input[type=text] {
+    width:350px;
+    height:35px;
+    border-radius: 3px;
+    border: 1px solid #CCC;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+.create-crew ul li select {
+    width:350px;
+    height:35px;
+    border-radius: 3px;
+    border: 1px solid #CCC;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+}
+.create-crew ul li input[type=text]:focus, .create-crew ul li select:focus {
+    box-shadow: 0px 0px 5px #409DFE;
+    border: 1px solid #409DFE;
+}
+.create-crew .create-btn-li {
+    width: 550px;
+    text-align: center;
+}
+.create-crew .create-btn {
+    width: 241px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 16px;
+    background-color: #eb6100;
+}
+.create-crew .create-btn:hover {
+    background-color: #FF6900;
+}
+.create-crew .create-btn:focus {
+    background-color: #E66205;
+}
+.create-crew .success-msg-li {
+    width: 550px;
+    text-align: center;
+    color:green;
+}
