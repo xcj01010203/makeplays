@@ -91,6 +91,15 @@ public class LoginController {
 		ModelAndView view = new ModelAndView("forgetPassword");
 		return view;
 	}
+	/**
+	 * 跳转到没有权限页面
+	 * @return
+	 */
+	@RequestMapping("/toRestrictedPage")
+	public ModelAndView toRestrictedPage() {
+		ModelAndView view = new ModelAndView("/common/restricted");
+		return view;
+	}
 	
 	/**
 	 * 用户登录操作
@@ -211,6 +220,7 @@ public class LoginController {
 			session.setAttribute(Constants.SESSION_USER_AUTH_MAP, authCodeMap); // 用户权限信息
 			session.setAttribute(Constants.SESSION_LOGIN_USER_TYPE, loginUserType);	//用户类型：1-系统管理员  2-客服  3-普通剧组用户  4--总客服
 			session.setAttribute(Constants.SESSION_LOGIN_SERVICE_TYPE, roleId);	//客服角色，即具体客服类型
+			session.setAttribute(Constants.SESSION_IFCHECK, "OK");
 
 			// 记录用户登录日志
 			userService.insertLoginInfo(request, userInfo.getUserId());

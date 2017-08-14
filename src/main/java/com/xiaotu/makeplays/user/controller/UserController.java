@@ -582,6 +582,7 @@ public class UserController extends BaseController{
 			session.setAttribute(Constants.SESSION_CREWINFO_ALL, userCrewList); // 用户所有的剧组
 			session.setAttribute(Constants.SESSION_USER_AUTH_MAP, authCodeMap); // 用户权限信息
 			session.setAttribute(Constants.SESSION_LOGIN_USER_TYPE, loginUserType);
+			session.setAttribute(Constants.SESSION_IFCHECK, "OK");
 			
 			this.sysLogService.saveSysLog(request, "普通用户切换剧组", Constants.TERMINAL_PC, "tab_crew_info", null,2);
 			
@@ -649,6 +650,7 @@ public class UserController extends BaseController{
 			session.setAttribute(Constants.SESSION_USER_AUTH_MAP, authCodeMap); // 用户权限信息
 			session.setAttribute(Constants.SESSION_LOGIN_USER_TYPE, loginUserType);
 			session.setAttribute(Constants.SESSION_LOGIN_SERVICE_TYPE, roleId);	//客服角色，即具体客服类型
+			session.setAttribute(Constants.SESSION_IFCHECK, "OK");
 			
 			this.sysLogService.saveSysLog(request, "客服切换剧组", Constants.TERMINAL_PC, "tab_crew_user_map", null,2);
 			
@@ -704,6 +706,7 @@ public class UserController extends BaseController{
 			session.setAttribute(Constants.SESSION_CREW_INFO, crewInfo); // 当前剧组信息
 			session.setAttribute(Constants.SESSION_USER_AUTH_MAP, authCodeMap); // 用户权限信息
 			session.setAttribute(Constants.SESSION_LOGIN_USER_TYPE, loginUserType);
+			session.setAttribute(Constants.SESSION_IFCHECK, "OK");
 
 			this.sysLogService.saveSysLog(request, "客服切换剧组", Constants.TERMINAL_PC, "tab_crew_user_map", null,2);
 		} catch (IllegalArgumentException ie) {

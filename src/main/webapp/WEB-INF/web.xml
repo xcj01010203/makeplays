@@ -59,6 +59,20 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
+	<!-- 功能权限拦截器 begin -->
+	<filter>
+        <filter-name>userAuthFilter</filter-name>
+        <filter-class>
+            org.springframework.web.filter.DelegatingFilterProxy
+        </filter-class>
+	</filter>
+	
+	<filter-mapping>
+        <filter-name>userAuthFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+	</filter-mapping>
+   <!-- 功能权限拦截器 end --> 
+	
 	  
 	<listener>
 		<listener-class>

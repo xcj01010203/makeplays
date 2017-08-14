@@ -974,6 +974,7 @@ public class ViewRoleDao extends BaseDao<ViewRoleModel> {
 		if(StringUtils.isNotBlank(roleName)) {
 			sql.append(" 	and (tvr.viewRoleName like ? or tai.actorName like ?) ");
 			params.add("%" + roleName + "%");
+			params.add("%" + roleName + "%");
 		}
 		sql.append(" GROUP BY ");
 		sql.append(" 	tvr.viewRoleId, ");

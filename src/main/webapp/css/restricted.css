@@ -1,0 +1,49 @@
+@charset "UTF-8"; 
+
+html {
+	font-size: 10px;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+body {
+	font-family: "微软雅黑";
+	font-size: 30px;
+	color: #89c0e3;
+	background-color: #f3f9fc;
+	margin: 0;
+	position:relative;
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box
+}
+
+.main-div {
+	position: absolute;
+    top: 50%;
+    margin: 0 auto;
+    margin-top: -200px;
+    width: 100%;
+    text-align: center;
+    color: #8c8c8c;
+    height: 266px;
+}
+.sorry-p {
+	font-size: 48px;
+	margin-bottom: 100px;
+	line-height: 128px;
+	font-weight: 400;
+}
+.minute-p {
+	font-size: 22px;
+}
+.minute-span {
+	color: #e57373;
+	font-size: 36px;
+}
+.sorry-p img {
+	vertical-align: bottom;
+    margin-right: 30px;
+}

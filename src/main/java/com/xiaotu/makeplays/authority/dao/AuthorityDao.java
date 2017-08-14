@@ -229,8 +229,9 @@ public class AuthorityDao extends BaseDao<AuthorityModel> {
 	 * 根据某个角色获取所有权限及角色对应此权限的状态
 	 */
 	public List<Map<String,Object>> getAllAuthByRoleId(String roleId){
-		String sql="SELECT aut.authId as `id`,parentid as parentid,authName as `text`,authUrl as `value`, differInRAndW, defaultRorW, IF(romap.mapId is NULL,0,1) as checked, romap.readonly from tab_sys_authority aut" 
-				+" LEFT JOIN tab_role_auth_map romap ON aut.authId=romap.authId AND romap.roleId=? where aut.status=0 ORDER BY sequence";//order by ifMenu desc,sequence
+		String sql = "SELECT aut.*,romap.readonly from tab_sys_authority aut " 
+				+ " LEFT JOIN tab_role_auth_map romap ON aut.authId=romap.authId " 
+				+ " where aut.status=0 AND romap.roleId=? ORDER BY aut.sequence";//order by ifMenu desc,sequence
 		List<Map<String,Object>> resultList = this.query(sql, new Object[]{roleId}, null);
 		return resultList;
 	}	

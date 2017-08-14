@@ -71,6 +71,11 @@ public class Constants {
 	public static final String SESSION_LOGIN_SERVICE_TYPE = "loginServiceType";
 	
 	/**
+	 * session中是否获取用户权限标识
+	 */
+	public static final String SESSION_IFCHECK = "ifcheck";
+	
+	/**
 	 * session中的用户不可以访问的菜单权限集合
 	 */
 	public static final String AUTH_NOTMENU="authNotMenu";
