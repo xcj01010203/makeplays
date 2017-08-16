@@ -212,8 +212,16 @@ public class CrewContactFacade extends BaseFacade{
 						roleMapMap.put("roleName", roleName);
 						roleMapMap.put("pRoleId", pRoleId);
 						roleMapMap.put("pRoleName", pRoleName);
-						roleMapMap.put("pRoleOrderNo", Integer.parseInt(pRoleOrderNo));
-						roleMapMap.put("roleOrderNo", Integer.parseInt(roleOrderNo));
+						if(StringUtils.isNotBlank(pRoleOrderNo)) {
+							roleMapMap.put("pRoleOrderNo", Integer.parseInt(pRoleOrderNo));
+						} else {
+							roleMapMap.put("pRoleOrderNo", null);
+						}
+						if(StringUtils.isNotBlank(roleOrderNo)) {
+							roleMapMap.put("roleOrderNo", Integer.parseInt(roleOrderNo));
+						} else{
+							roleMapMap.put("roleOrderNo", null);
+						}
 						
 						List<Map<String, Object>> roleUserList = new ArrayList<Map<String, Object>>();
 						roleUserList.add(map);

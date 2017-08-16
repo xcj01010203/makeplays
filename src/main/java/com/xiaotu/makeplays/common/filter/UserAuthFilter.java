@@ -69,6 +69,9 @@ public class UserAuthFilter extends OncePerRequestFilter {
 				if(crewInfo != null) {
 					crewId = crewInfo.getCrewId();
 				}
+//				if(loginUserType == 1) {//系统管理员，没有默认剧组
+//					crewId = "";
+//				}
 				
 				if("OK".equals(ifCheck)) {
 					try {

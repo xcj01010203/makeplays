@@ -19,7 +19,7 @@ function getcrewType(){
 	$.ajax({
 		url: '/viewManager/getCrewType',
 		type: 'post',
-		async: true,
+		async: false,
 		datatype: 'json',
 		success: function(response){
 			if(response.success){
@@ -82,7 +82,7 @@ function loadContentData(){
              	_list=_this.parents('.tagWrap').next('.tagWrap_popup').find('li a');
              for(var i=0; i<arr.length; i++){
                  var _val = $.trim(arr[i]).replace(regPerformerCommonNum, '');
-                 var _num;
+                 var _num = '';
                  
                //主演后台传递的值格式为“演员名称_（OS）”，该格式需要特殊处理
                  if ($(this).parents('.tagWrap').hasClass('performer_first')) {
@@ -714,24 +714,29 @@ function initContentColor(){
 
 //初始化页面时,加载场景表字段信息
 function loadViewMainInfo(viewInfoDto, advertInfoList, saveType, filterDto){
-	//新增场景表时,需要单独显示数据及文本框中没有值
+	//修改场次面板和新增场次面板不同，新增面板中没有数据，而修改面板中有数据
 	if (saveType == 'update') {
 		
 	$("#saveType").attr("value", saveType);
 	$("#shootStatus").attr("value", viewInfoDto.shootStatus);
 	$("#isManualSave").attr("value", viewInfoDto.isManualSave);
 	
+
+	$(".page-btn").show();
+	
 	//拍摄已完成/删戏
 	if ((parentFromFlag=='scene' && isScenarioReadonly) || (parentFromFlag=='view' && isViewInfoReadonly) ) {
 		//如果为电影类型剧组，则不展示集号
 		if (crewType == 0 || crewType == 3) { //当前剧本为电影
+			$("#tvbTypeTr").empty();
+			
 			$("#filmViewid").attr("value", viewInfoDto.viewId);
 			$("#filmSeriesNo").attr("value", viewInfoDto.seriesNo);
 			$("#filmViewNo").attr("value", viewInfoDto.viewNo);
 			$("#filmPageCount").attr("value", viewInfoDto.pageCount);
-			$("#tvbTypeTr").empty();
 		}else {
 			$("#flimTypeTr").empty();
+			
 			$("#tvbViewid").attr("value", viewInfoDto.viewId);
 			$("#tvbSeriesNo").attr("value", viewInfoDto.seriesNo);
 			$("#tvbViewNo").attr("value", viewInfoDto.viewNo);
@@ -1537,4 +1542,23 @@ function changeClass(own){
 		_this.removeClass("major-os-button-hover");
 		_this.addClass("major-os-button");
 	}
+}
+
+//计算页数
+function calculateViewPage() {
+	var viewId = $("#viewDetailId").val();
+	$.ajax({
+		url: "/scenarioManager/calculateViewPage",
+		type: "post",
+		data: {viewId: viewId},
+		success: function(response) {
+			if (!response.success) {
+				parent.showErrorMessage(response.message);
+				return;
+			}
+			var pageCount = response.pageCount;
+			$("input[name=pageCount]").val(pageCount);
+			parent.showSuccessMessage("操作成功");
+		}
+	});
 }

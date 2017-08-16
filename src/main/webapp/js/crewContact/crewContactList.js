@@ -477,7 +477,9 @@ function confirmSaveContact() {
 	}
 	if (identityCardNumber == undefined || identityCardNumber == '') {
         var str = "";
-        if(identityCardType==1){
+        if(!identityCardType) {
+        	str = "请选择证件类型";
+        }else if(identityCardType==1){
         	str = "请填写身份证号码";
         }else if(identityCardType==2){
         	str = "请填写护照号码";

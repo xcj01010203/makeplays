@@ -1600,6 +1600,38 @@ public class ScenarioController extends BaseController {
 		return resultMap;
 	}
 	
+	/**
+	 * 计算场次的页数
+	 * @param viewId
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/calculateViewPage")
+	public Map<String, Object> calculateViewPage(HttpServletRequest request, String viewId) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		boolean success = true;
+		String message = "";
+		try {
+			if (StringUtils.isBlank(viewId)) {
+				throw new IllegalArgumentException("请提供场次ID");
+			}
+			
+			String crewId = this.getCrewId(request);
+			double pageCount = this.scenarioService.calculateViewPage(crewId, viewId);
+			
+			resultMap.put("pageCount", pageCount);
+		} catch(IllegalArgumentException ie) {
+			success = false;
+			message = ie.getMessage();
+		} catch(Exception e) {
+			success = false;
+			message = "未知异常，计算失败";
+		}
+		resultMap.put("success", success);
+		resultMap.put("message", message);
+		
+		return resultMap;
+	}
 	
 	
 	

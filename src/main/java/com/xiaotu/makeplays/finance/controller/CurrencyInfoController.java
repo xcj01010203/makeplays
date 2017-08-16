@@ -293,4 +293,115 @@ public class CurrencyInfoController extends BaseController {
         resultMap.put("message", message);
         return resultMap;
 	}
+	
+	/**
+	 * 设置币种的为本位币
+	 * @param id	币种ID
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/makeCurrencyStandard")
+	public Map<String, Object> makeCurrencyStandard(HttpServletRequest request, String id) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		boolean success = true;
+		String message = "";
+		try {
+			if (StringUtils.isBlank(id)) {
+				throw new IllegalArgumentException("请提供币种ID");
+			}
+			String crewId = this.getCrewId(request);
+			this.currencyInfoService.makeCurrencyStandard(crewId, id);
+		} catch(IllegalArgumentException ie) {
+			success = false;
+			message = ie.getMessage();
+			logger.error(ie.getMessage(), ie);
+		} catch(Exception e) {
+			success = false;
+			message = "未知异常，设置失败";
+			logger.error(message, e);
+		}
+		
+		resultMap.put("success", success);
+		resultMap.put("message", message);
+		return resultMap;
+	}
+	
+	/**
+	 * 设置币种是否启用
+	 * @param request
+	 * @param id	币种ID
+	 * @param ifEnable	是否启用
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/saveCurrencyEnableStatus")
+	public Map<String, Object> saveCurrencyEnableStatus(HttpServletRequest request, String id, boolean ifEnable) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		boolean success = true;
+		String message = "";
+		try {
+			if (StringUtils.isBlank(id)) {
+				throw new IllegalArgumentException("请提供币种ID");
+			}
+			String crewId = this.getCrewId(request);
+			CurrencyInfoModel myCurrency = this.currencyInfoService.queryById(id);
+			
+			if (!ifEnable) {
+				Map<String, Object> conditionMap = new HashMap<String, Object>();
+				conditionMap.put("currencyId", id);
+				//关联的合同（演员、职员、制作）
+				List<ContractActorModel> contractActorList = this.contractActorService.queryManyByMutiCondition(conditionMap, null);
+				List<ContractWorkerModel> contractWorkerList = this.contractWorkerService.queryManyByMutiCondition(conditionMap, null);
+				List<ContractProduceModel> contractProduceList = this.contractProduceService.queryManyByMutiCondition(conditionMap, null);
+				if (contractActorList != null && contractActorList.size() > 0) {
+					throw new IllegalArgumentException("该币种已关联" + contractActorList.get(0).getActorName() + "合同，不可禁用");
+				}
+				if (contractWorkerList != null && contractWorkerList.size() > 0) {
+					throw new IllegalArgumentException("该币种已关联" + contractWorkerList.get(0).getWorkerName() + "合同，不可禁用");
+				}
+				if (contractProduceList != null && contractProduceList.size() > 0) {
+					throw new IllegalArgumentException("该币种已关联" + contractProduceList.get(0).getCompany() + "合同，不可禁用");
+				}
+				
+				//关联的单据（付款单、收款单、借款单）
+				List<PaymentInfoModel> paymentList = this.paymentInfoService.queryManyByMutiCondition(conditionMap, null);
+				List<CollectionInfoModel> collectionList = this.collectionInfoService.queryManyByMutiCondition(conditionMap, null);
+				List<LoanInfoModel> loanInfoList = this.loanInfoService.queryManyByMutiCondition(conditionMap, null);
+				if (paymentList != null && paymentList.size() > 0) {
+					throw new IllegalArgumentException("该币种已关联"+ this.sdf1.format(paymentList.get(0).getPaymentDate()) +"日付款单，不可禁用");
+				}
+				if (collectionList != null && collectionList.size() > 0) {
+					throw new IllegalArgumentException("该币种已关联"+ this.sdf1.format(collectionList.get(0).getCollectionDate()) +"日收款单，不可禁用");
+				}
+				if (loanInfoList != null && loanInfoList.size() > 0) {
+					throw new IllegalArgumentException("该币种已关联"+ this.sdf1.format(loanInfoList.get(0).getLoanDate()) +"日借款单，不可禁用");
+				}
+				
+				//关联的财务科目预算
+				List<FinanceSubjectModel> subjectList = this.financeSubjectService.queryByCurrencyId(crewId, id);
+				if (subjectList != null && subjectList.size() > 0) {
+					throw new IllegalArgumentException("该币种已关联"+ subjectList.get(0).getName() +"财务科目，不可禁用");
+				}
+				
+				if (myCurrency.getIfStandard()) {
+					throw new IllegalArgumentException("该币种为本位币，不可禁用");
+				}
+			}
+			myCurrency.setIfEnable(ifEnable);
+			this.currencyInfoService.updateOne(myCurrency);			
+			
+		} catch(IllegalArgumentException ie) {
+			success = false;
+			message = ie.getMessage();
+			logger.error(ie.getMessage(), ie);
+		} catch(Exception e) {
+			success = false;
+			message = "未知异常，设置失败";
+			logger.error(message, e);
+		}
+		
+		resultMap.put("success", success);
+		resultMap.put("message", message);
+		return resultMap;
+	}
 }

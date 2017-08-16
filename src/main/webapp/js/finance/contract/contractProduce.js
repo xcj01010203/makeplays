@@ -491,7 +491,7 @@ function confirmExportProduce(){
 	                form.attr("action","/fileManager/downloadFileByAddr");
 	                form.attr("method","post");
 	                form.append("<input type='hidden' name='address'>");
-	                form.append("<input type='hidden' name='fileName'>");
+	                form.append("<input type='hidden' name='fileName' value='制作合同（统计列表）.xls'>");
 	                form.find("input[name='address']").val(downLoadPath);
 	                $("body").append(form);
 					form.submit();
@@ -519,7 +519,7 @@ function confirmExportProduce(){
 	                form.attr("action","/fileManager/downloadFileByAddr");
 	                form.attr("method","post");
 	                form.append("<input type='hidden' name='address'>");
-	                form.append("<input type='hidden' name='fileName'>");
+	                form.append("<input type='hidden' name='fileName' value='制作合同（详情）.xls'>");
 	                form.find("input[name='address']").val(downLoadPath);
 	                $("body").append(form);
 					form.submit();

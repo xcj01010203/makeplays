@@ -80,7 +80,7 @@ public class CrewContactDao extends BaseDao<CrewContactModel> {
 		paramList.add(crewId);
 		sql.append(" WHERE ");
 		sql.append("    tcc.crewId = ? ");
-		sql.append(" and ptsi.parentId != '01' ");
+		sql.append(" and (tsi.roleId is null or ptsi.parentId != '01') ");
 		paramList.add(crewId);
 		if (contactFilter != null) {
 			if (StringUtils.isNotBlank(contactFilter.getSourceFrom())) {

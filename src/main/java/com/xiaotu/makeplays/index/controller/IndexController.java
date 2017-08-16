@@ -6,9 +6,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import net.sf.json.JSONObject;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -25,6 +28,11 @@ import com.xiaotu.makeplays.index.service.IndexService;
 import com.xiaotu.makeplays.roleactor.service.ViewRoleService;
 import com.xiaotu.makeplays.utils.BaseController;
 import com.xiaotu.makeplays.utils.DateUtils;
+import com.xiaotu.makeplays.utils.HttpUtils;
+import com.xiaotu.makeplays.utils.PropertiesUitls;
+import com.xiaotu.makeplays.utils.StringUtil;
+import com.xiaotu.makeplays.weather.controller.dto.WeatherInfoDto;
+import com.xiaotu.makeplays.weather.service.WeatherInfoService;
 
 /**
  * 首页
@@ -36,6 +44,9 @@ import com.xiaotu.makeplays.utils.DateUtils;
 public class IndexController extends BaseController {
 	
 	Logger logger = LoggerFactory.getLogger(IndexController.class);
+	
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+	private SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMdd");
 	
 	@Autowired
 	private HttpSession session;
@@ -53,7 +64,11 @@ public class IndexController extends BaseController {
 	private IndexService indexService;
 	
 	@Autowired
-	private ViewRoleService viewRoleService;
+	private ViewRoleService viewRoleService;	
+
+	@Autowired
+	private WeatherInfoService weatherInfoService;
+	
 	
 	@RequestMapping("/toIndexPage")
 	public ModelAndView index(HttpServletRequest request) throws Exception{
@@ -265,6 +280,61 @@ public class IndexController extends BaseController {
 		String crewId = this.getCrewId(request);
 		map.put("contact", this.indexService.getContactList(crewId));
 		return map;
+	}
+	
+	/**
+	 * 查询天气信息
+	 * @param request
+	 * @param cityName 城市名称
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryWeatherInfo")
+	public Map<String, Object> queryWeatherInfo(HttpServletRequest request, String cityName) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		boolean success = true;
+		String message = "";
+		try {
+			if(StringUtils.isBlank(cityName)) {
+				Properties properties = PropertiesUitls.fetchProperties("/config.properties");
+				String appId = properties.getProperty("YIYUAN_APPID");
+				String secret = properties.getProperty("YIYUAN_SECRET");
+
+				// 从易源获取外网IP地址
+				JSONObject ipResultJson = HttpUtils.httpGet("http://route.showapi.com/632-1?showapi_appid="
+								+ appId + "&showapi_sign=" + secret
+								+ "&showapi_timestamp="
+								+ this.sdf.format(new Date()));
+				
+				if("0".equals(ipResultJson.get("showapi_res_code").toString())){
+					cityName = ipResultJson.getJSONObject("showapi_res_body").getString("city");
+				} else {
+					throw new IllegalArgumentException("获取天气信息失败");
+				}
+			}
+			List<WeatherInfoDto> weatherList = weatherInfoService.saveWeatherInfoByCityName(cityName);
+			
+			WeatherInfoDto weatherInfo = null;
+			String noticeDateStr = this.sdf2.format(new Date());
+			for (WeatherInfoDto one : weatherList) {
+				if (one.getDay().equals(noticeDateStr)) {
+					weatherInfo = one;
+				}
+			}
+			resultMap.put("cityName", cityName);
+			resultMap.put("weatherInfo", weatherInfo);
+		} catch (IllegalArgumentException ie) {
+			message = ie.getMessage();
+			success = false;
+			logger.error(message, ie);
+		} catch (Exception e) {
+			success = false;
+	        message = "未知异常，获取天气信息失败";
+	        logger.error(message, e);
+		}
+        resultMap.put("success", success);
+        resultMap.put("message", message);
+		return resultMap;
 	}
 	
 	/** 

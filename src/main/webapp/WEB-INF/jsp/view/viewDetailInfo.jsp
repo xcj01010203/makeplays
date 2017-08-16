@@ -72,7 +72,266 @@ var parentFromFlag = '<%=flag%>';
 	<div class="right_add_tb" id="rightAddDiv">
 		<table id="shootStatusTable">
 			<tbody>
+                <table id="completeShootTable"> <!-- 已完成不能修改场景 -->
+                    <tr>
+                        <td><span class="groupTag">基本信息：</span></td>
+                    </tr>
 
+                    <!-- 如果为电影类型剧组，则不展示集号 -->
+                    <tr id="flimTypeTr" class="hiddenWindow">
+                        <td class="view-no-td"><em class="must">*</em>场次：</td>
+                        <td align="left">
+                            <input type="hidden" id="filmViewid" name="viewId" value="" /> 
+                            <input type="text" id="filmSeriesNo" class="scene_set" name="seriesNo" value="1" readonly /> 
+                            <input type="text" id="filmViewNo" class="scene_field" name="viewNo" value="" readonly /> 
+                            <span>页数：</span>
+                            <input type="text" id="filmPageCount" class="scene_page" name="pageCount" value="" readonly /></td>
+                    </tr>
+                    <tr id="tvbTypeTr">
+                        <td width="90"><em class="must">*</em>集-场：</td>
+                        <td align="left">
+                            <input type="hidden" id="tvbViewid" name="viewId" value="" /> 
+                            <input type="text" id="tvbSeriesNo" class="scene_set" name="seriesNo" value="" readonly />
+                             - 
+                             <input type="text" id="tvbViewNo" class="scene_field" name="viewNo" value=""readonly /> 
+                             <span>页数：</span> 
+                             <input type="text" id="tvbPageCount" class="scene_page" name="pageCount" value="" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>气氛/内外：</td>
+                        <td align="left">
+                        <input type="text" id="viewAtmosphereName" class="scene_aura drop_click mark-grey" name="view" value="" readonly />
+                        / 
+                        <input type="text" id="viewSite" class="scene_location drop_click mark-grey" name="site" value="" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="scene_vertical_top">特殊提醒：</td>
+                        <td>
+                            <input type="text" id="viewSpecialRemind" class="drop_click mark-grey" value="" readonly />
+                        </td>
+                    </tr>
+                    <!-- <tr>
+                        <td>季节：</td>
+                        <td>
+                            <input type="text" id="viewSeason" class="season drop_click mark-grey" name="season" value="" readonly />
+                        </td>
+                    </tr> -->
+
+                    <tr>
+                        <td>主要内容：</td>
+                        <td>
+                            <input type="text" id="viewContent" class="scene_content mark-grey" name="mainContent" value="" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="groupTag">场 景：</span></td>
+                    </tr>
+                    <tr>
+                        <td>主场景：</td>
+                        <td>
+                            <input type="text" id="viewFirstLocation" class="scene_first drop_click mark-grey" name="firstLocation" value="" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>次场景：</td>
+                        <td>
+                            <input type="text" id="viewSecondLocation"  class="scene_second drop_click mark-grey" name="secondLocation" value="" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>三级场景：</td>
+                        <td>
+                            <input type="text" id="viewThirdLocation" class="scene_third drop_click mark-grey" name="thirdLocation" value="" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="scene_vertical_top">拍摄地：</td>
+                        <td>
+                            <input type="text" id="viewShootLocation" class="drop_click mark-grey" value="" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="groupTag">人 物：</span></td>
+                    </tr>
+                    <tr>
+                        <td class="scene_vertical_top">主要演员：</td>
+                        <td>
+                            <div class="tagWrap performer_first readOnly">
+                                <ul class="f_l">
+                                    <li class="tagInput">
+                                        <input class="make-width-104" type="text" id="viewMajorActor" sv="" readOnly /> 
+                                        <!-- <span class="hidden-span"></span> -->
+                                    </li>
+                                    <div class="clear"></div>
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="tagWrap_popup">
+                                <div class="trigonUp"></div>
+                                <a class="closePopup" href="javascript:void(0)"></a>
+                                <ul id="majorFilterUl">
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="scene_vertical_top">特约演员：</td>
+                        <td>
+                            <div class="tagWrap performer_special readOnly">
+                                <ul class="f_l">
+                                    <li class="tagInput">
+                                        <input class="make-width-104 mark-grey" type="text" id="viewGuestActor" sv="" readonly /> 
+                                        <span class="hidden-span"></span>
+                                    </li>
+                                    <div class="clear"></div>
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="tagWrap_popup">
+                                <div class="trigonUp"></div>
+                                <a class="closePopup" href="javascript:void(0)"></a>
+                                <ul id="guestFilterUl">
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="scene_vertical_top">群众演员：</td>
+                        <td>
+                            <div class="tagWrap performer_common readOnly">
+                                <ul class="f_l">
+                                    <li class="tagInput">
+                                        <input class="make-width-104 mark-grey" type="text" id="viewMassActor" sv="" readonly /> 
+                                        <span class="hidden-span"></span>
+                                    </li>
+                                    <div class="clear"></div>
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="tagWrap_popup">
+                                <div class="trigonUp"></div>
+                                <a class="closePopup" href="javascript:void(0)"></a>
+                                <ul id="massFilterUl">
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="groupTag">服、化、道：</span></td>
+                    </tr>
+                    <tr>
+                        <td class="scene_vertical_top">服装：</td>
+                        <td>
+                            <div class="tagWrap clothes_info readOnly">
+                                <ul class="f_l">
+                                    <li class="tagInput">
+                                        <input class="make-width-104 mark-grey" type="text" id="viewClothes" sv="" readonly />
+                                         <span class="hidden-span"></span>
+                                        </li>
+                                    <div class="clear"></div>
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="tagWrap_popup">
+                                <div class="trigonUp"></div>
+                                <a class="closePopup" href="javascript:void(0)"></a>
+                                <ul id="clothesFilterUl">
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="scene_vertical_top">化妆：</td>
+                        <td>
+                            <div class="tagWrap makeup_info readOnly">
+                                <ul class="f_l">
+                                    <li class="tagInput">
+                                        <input class="make-width-104 mark-grey" type="text" id="viewMakeups" sv="" readonly /> 
+                                        <span class="hidden-span"></span>
+                                    </li>
+                                    <div class="clear"></div>
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="tagWrap_popup">
+                                <div class="trigonUp"></div>
+                                <a class="closePopup" href="javascript:void(0)"></a>
+                                <ul id="makeupsFilterUl">
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="scene_vertical_top">道具：</td>
+                        <td>
+                            <div class="tagWrap tool_main readOnly">
+                                <ul class="f_l">
+                                    <li class="tagInput">
+                                        <input class="make-width-104 mark-grey" type="text" id="viewCommonProps" style="width: 104px;" sv=""    style='color:grey' readonly /> 
+                                        <span class="hidden-span"></span>
+                                    </li>
+                                    <div class="clear"></div>
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="tagWrap_popup">
+                                <div class="trigonUp"></div>
+                                <a class="closePopup" href="javascript:void(0)"></a>
+                                <ul id="commonPropsFilterUl">
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="scene_vertical_top">特殊道具：</td>
+                        <td>
+                            <div class="tagWrap tool_special readOnly">
+                                <ul class="f_l">
+                                    <li class="tagInput">
+                                        <input class="make-width-104 mark-grey" type="text" id="viewSpecialProps" sv="" readonly /> 
+                                        <span class="hidden-span"></span>
+                                    </li>
+                                    <div class="clear"></div>
+                                </ul>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="tagWrap_popup">
+                                <div class="trigonUp"></div>
+                                <a class="closePopup" href="javascript:void(0)"></a>
+                                <ul id="specialPropsFliterUl">
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="groupTag">其 他：</span></td>
+                    </tr>
+                    <tr>
+                        <td class="scene_vertical_top">拍摄状态：</td>
+                        <td>
+                            <input type="text" id="viewShootStatus" style="color: red" value="" style='color:grey' readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>备注：</td>
+                        <td>
+                            <!-- 备注 -->
+                            <input type="text" id="viewRemark" class="scene_remark mark-grey"   name="remark" value="" readonly /> 
+                            <!--主要演员-->
+                            <input type="hidden" name="majorActor" class="performer_first" />
+                            <!--特约演员--> 
+                            <input type="hidden" name="guestActor" class="performer_special" /> 
+                            <!--群众演员-->
+                            <input type="hidden" name="massesActor" class="performer_common" /> 
+                            <!--主要服化道--> 
+                            <input type="hidden" name="majorTop" class="tool_main" />
+                            <!--道具--> 
+                            <input type="hidden" name="specialTop" class="tool_special" />
+                        </td>
+                    </tr>
+                </table>
 				<table id="otherShootTables">
 					<tr>
 						<td><span class="groupTag">基本信息：</span></td>
@@ -89,6 +348,7 @@ var parentFromFlag = '<%=flag%>';
 							<input type="text" class="scene_field movie_scene" id="noFinishFilmViewNo" name="viewNo" value="" /> 
 							<span>页数：</span>
 							<input type="text" id="noFinishFilmPageCount" class="scene_page" name="pageCount" value="" />
+							<input type="button" class="page-btn" value="" title="计算页数" onclick="calculateViewPage()">
 					    </td>
 					</tr>
 					<tr id="noFinishTvbTr">
@@ -102,6 +362,7 @@ var parentFromFlag = '<%=flag%>';
 							<input type="text" id="noFinishTvbViewNo"	class="scene_field" name="viewNo" value="" /> 
 							<span>页数：</span> 
 							<input type="text" id="noFinishTvbPageCount" class="scene_page"	name="pageCount" value="" />
+                            <input type="button" class="page-btn" value="" title="计算页数" onclick="calculateViewPage()">
 						</td>
 					</tr>
 					<tr>

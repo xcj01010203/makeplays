@@ -1129,7 +1129,6 @@ function queryPaymentOrder(id){
 				var contractToPaidMap = response.contractToPaidMap;
 				if(contractToPaidMap.length != 0){
 					for(var i= 0; i< contractToPaidMap.length; i++){
-						
 						var contactname = contractToPaidMap[i].contactname;
 						var contractId = contractToPaidMap[i].contractId;
 						var contracttype = contractToPaidMap[i].contacttype;
@@ -1144,6 +1143,7 @@ function queryPaymentOrder(id){
 							_frame.find("#payContractMoney").prop("checked", true).attr("disabled", true);
 							_frame.find("#receivePersonDropdown").css("display","block");
 							_frame.find("#contractId").val(contractId);
+							_frame.find("#contractId").attr("finsubjid", subjectId);;
 							_frame.find("#contractType").val(contracttype);
 							_frame.find("#currency").val(currencyId);
 							var addSubTr = _frame.find(".add-sub-tr").eq(0);

@@ -147,16 +147,15 @@ public class TeamInfoDao extends BaseDao<TeamInfoModel> {
 			Integer startType = (Integer) conditionMap.get("shootStartType");
 			if (startType != null && startType != 0) {
 				//值为 1 表示查询最近一个月; 2 表示查询最近三个月; 3 表示查询最近半年
+				sql.append(" and ti.shootStartDate IS NOT NULL ");
 				if (startType == 1) {
-					sql.append(" and TIMESTAMPDIFF(DAY,DATE_FORMAT(ti.shootStartDate,'%y-%m-%d'),DATE_FORMAT(?,'%y-%m-%d')) < 30");
-					param.add(currentDate);
+					sql.append(" AND TIMESTAMPDIFF(DAY, DATE_FORMAT(now(), '%y-%m-%d'), DATE_FORMAT(ti.shootStartDate, '%y-%m-%d')) <= 30");
 				}else if (startType == 2) {
-					sql.append(" and TIMESTAMPDIFF(DAY,DATE_FORMAT(ti.shootStartDate,'%y-%m-%d'),DATE_FORMAT(?,'%y-%m-%d')) < 90");
-					param.add(currentDate);
+					sql.append(" AND TIMESTAMPDIFF(DAY, DATE_FORMAT(now(), '%y-%m-%d'), DATE_FORMAT(ti.shootStartDate, '%y-%m-%d')) <= 90");
 				}else if (startType == 3) {
-					sql.append(" and TIMESTAMPDIFF(DAY,DATE_FORMAT(ti.shootStartDate,'%y-%m-%d'),DATE_FORMAT(?,'%y-%m-%d')) < 180");
-					param.add(currentDate);
+					sql.append(" AND TIMESTAMPDIFF(DAY, DATE_FORMAT(now(), '%y-%m-%d'), DATE_FORMAT(ti.shootStartDate, '%y-%m-%d')) <= 180");
 				}
+				sql.append(" AND TIMESTAMPDIFF(DAY, DATE_FORMAT(now(), '%y-%m-%d'), DATE_FORMAT(ti.shootStartDate, '%y-%m-%d')) >= 0 ");
 			}
 			
 			//根据发布时间查询

@@ -127,6 +127,7 @@ public class LoginController {
 			if (StringUtils.isBlank(password)) {
 				throw new IllegalArgumentException("请输入密码");
 			}
+			userName = userName.trim();
 
 			// 校验用户名/手机号
 			UserInfoModel nameUserInfo = this.userService.queryUserByLoginName(userName, null);

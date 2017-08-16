@@ -98,7 +98,16 @@ input[type=button] {
 .right_add_tb input.scene_field.movie_scene {
 	width: 85px;
 }
-
+.right_add_tb input.page-btn {
+	width: 20px;
+    height: 20px;
+    border: none;
+    background: url(../images/refresh.png);
+    float: right;
+    top: 50px;
+    position: absolute;
+    display: none;
+}
 .tagWrap {
 	outline: none;
 	line-height: 35px;

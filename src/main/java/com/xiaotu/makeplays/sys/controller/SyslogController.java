@@ -35,7 +35,18 @@ public class SyslogController {
 	 * @return
 	 */
 	@RequestMapping("/toSyslogListPage")
-	public ModelAndView goSyslog(){
+	public ModelAndView toSyslogListPage(){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("sys/syslogList");
+		return mv;
+	}
+	
+	/**
+	 * 跳转到日志管理页面，供内部开发人员使用
+	 * @return
+	 */
+	@RequestMapping("/toSyslogListPageForInnerDeveloper")
+	public ModelAndView toSyslogListPageForInnerDeveloper(){
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("sys/syslogList");
 		return mv;

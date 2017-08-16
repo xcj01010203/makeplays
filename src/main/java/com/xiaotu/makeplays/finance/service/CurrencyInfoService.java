@@ -171,4 +171,33 @@ public class CurrencyInfoService {
 		return this.currencyInfoDao.queryCurrencyInfoByCrewId(crewId);
 	}
 	
+	/**
+	 * 设置币种为本位币
+	 * @param id	币种ID
+	 * @param ifStandard	是否是本位币
+	 * @return
+	 * @throws Exception 
+	 */
+	public void makeCurrencyStandard(String crewId, String id) throws Exception {
+		//把其他的本位币设置为非本位币
+		CurrencyInfoModel standardCurrency = this.currencyInfoDao.queryStandardCurrency(crewId);
+		standardCurrency.setIfStandard(false);
+		this.currencyInfoDao.update(standardCurrency, "id");
+		
+		//把该币种设置为本位币
+		CurrencyInfoModel myCurrency = this.currencyInfoDao.queryById(id);
+		myCurrency.setIfStandard(true);
+		myCurrency.setIfEnable(true);
+		myCurrency.setExchangeRate(1);
+		this.currencyInfoDao.update(myCurrency, "id");
+	}
+	
+	/**
+	 * 更新一条记录
+	 * @param currency
+	 * @throws Exception
+	 */
+	public void updateOne(CurrencyInfoModel currency) throws Exception {
+		this.currencyInfoDao.update(currency, "id");
+	}
 }

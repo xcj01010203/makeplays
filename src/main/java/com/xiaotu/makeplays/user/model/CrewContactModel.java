@@ -38,7 +38,7 @@ public class CrewContactModel {
 	/**
 	 * 身份证件类型，详细信息见IdentityCardType枚举类
 	 */
-	private int identityCardType = 1;
+	private Integer identityCardType = 1;
 	
 	/**
 	 * 身份证件号码
@@ -120,11 +120,11 @@ public class CrewContactModel {
 		this.sex = sex;
 	}
 
-	public int getIdentityCardType() {
+	public Integer getIdentityCardType() {
 		return this.identityCardType;
 	}
 
-	public void setIdentityCardType(int identityCardType) {
+	public void setIdentityCardType(Integer identityCardType) {
 		this.identityCardType = identityCardType;
 	}
 

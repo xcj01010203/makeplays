@@ -47,6 +47,7 @@ import com.xiaotu.makeplays.scenario.dao.ScripteleInfoDao;
 import com.xiaotu.makeplays.scenario.dao.SeparatorInfoDao;
 import com.xiaotu.makeplays.scenario.model.BookMarkModel;
 import com.xiaotu.makeplays.scenario.model.PublishScenarioSettingModel;
+import com.xiaotu.makeplays.scenario.model.ScenarioFormatModel;
 import com.xiaotu.makeplays.scenario.model.ScenarioInfoModel;
 import com.xiaotu.makeplays.scenario.model.ScripteleInfoModel;
 import com.xiaotu.makeplays.scenario.model.SeparatorInfoModel;
@@ -147,6 +148,9 @@ public class ScenarioService {
 	
 	@Autowired
 	private PublishScenarioSettingService publishScenarioSettingService;
+	
+	@Autowired
+	private ScenarioFormatService scenarioFormatService;
 	
 	/*
 	 * 不完全符合自定义格式信息但是符合集场规则的场景信息
@@ -2786,5 +2790,43 @@ public class ScenarioService {
 		}
 		
 		return scenarioDtoList;
+	}
+	
+	/**
+	 * 计算场次的页数
+	 * @param viewId
+	 * @throws Exception 
+	 */
+	public double calculateViewPage(String crewId, String viewId) throws Exception {
+		ViewContentModel viewContent = this.viewContentService.queryByViewId(viewId);
+		String content = "";
+		String title = "";
+		if (viewContent != null) {
+			content = viewContent.getContent();
+			title = viewContent.getTitle();
+		}
+		
+		//剧本格式信息
+		ScenarioFormatModel format = this.scenarioFormatService.queryByCrewId(crewId);
+		int wordCount = 35;
+		int lineCount = 40;
+		boolean pageIncludeTitle = true;
+		if (format != null) {
+			wordCount = format.getWordCount();
+			lineCount = format.getLineCount();
+			pageIncludeTitle = format.getPageIncludeTitle();
+		}
+		
+		//计算页数
+		String pageContent = content;
+		if (pageIncludeTitle) {
+			pageContent = title + this.lineSeprator + pageContent;
+		}
+		int viewLineCount = this.calculateLineCount(pageContent, wordCount, true);
+		double pageCount=com.xiaotu.makeplays.utils.StringUtils.div(viewLineCount, lineCount, 1);
+		
+		this.viewInfoDao.updatePageCountById(pageCount, viewId);
+		
+		return pageCount;
 	}
 }

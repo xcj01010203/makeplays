@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.lang.StringUtils;
-import org.bouncycastle.jce.provider.symmetric.AES.OFB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -170,7 +169,7 @@ public class CrewInfoController extends BaseController{
 			CrewInfoModel crewInfo = crewInfoService.queryById(crewId);
 			HttpSession session = request.getSession();
 			session.setAttribute(Constants.SESSION_CREW_INFO, crewInfo); // 用户所选剧组信息
-			
+			session.setAttribute(Constants.SESSION_IFCHECK, "OK"); // 用户所选剧组信息
 			view.setViewName("/crew/crewSettings");
 		} catch (Exception e) {
 			logger.error("未知异常，剧组管理", e);
@@ -760,6 +759,7 @@ public class CrewInfoController extends BaseController{
 					}
 				}
 				session.setAttribute(Constants.SESSION_USER_AUTH_MAP, authCodeMap);
+				session.setAttribute(Constants.SESSION_IFCHECK, "OK");
 			}
 			this.sysLogService.saveSysLog(request, "普通用户新增剧组", Constants.TERMINAL_PC, CrewInfoModel.TABLE_NAME, crewInfo.getCrewId(), 1);
 		} catch (IllegalArgumentException ie) {

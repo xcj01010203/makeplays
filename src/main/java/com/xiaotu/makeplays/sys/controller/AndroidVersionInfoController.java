@@ -61,6 +61,22 @@ public class AndroidVersionInfoController extends BaseController {
 	}
 	
 	/**
+	 * 跳转到版本控制页面,供内部开发人员使用
+	 * @param type
+	 * @return
+	 */
+	@RequestMapping("/toAppVersionListPageForInnerDeveloper")
+	public ModelAndView toAppVersionListPageForInnerDeveloper(Integer type) {
+		ModelAndView mv = new ModelAndView();
+		if(type == null || type == 1) {
+			mv.setViewName("/version/appVersionList");
+		} else if (type == 2) {
+			mv.setViewName("/version/webVersionList");
+		}
+		return mv;
+	}
+	
+	/**
 	 * 保存或更新App版本信息
 	 * @param request
 	 * @param id
