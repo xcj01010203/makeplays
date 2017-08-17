@@ -566,7 +566,7 @@ public class CrewInfoDao extends BaseDao<CrewInfoModel> {
 			sql += "and crew.crewName like ? ";
 			params.add("%" + crewName + "%");
 		}
-		sql += "  group by crew.crewId,crew.crewName ";
+		sql += "  group by crew.crewId,crew.crewName order by createTime desc";
 		return this.query(sql, params.toArray(),  null);
 	}
 	

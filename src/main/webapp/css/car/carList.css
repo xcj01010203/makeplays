@@ -17,6 +17,9 @@ div,ul,li,p,dl,dt,dd,label,a {
 	 height: calc(100% - 32px);
 	 overflow: auto;
 }
+.car-detail-grid {
+	 height: 100%;
+}
 .car-finance-modal {
 	 display: none;
 }
@@ -414,7 +417,7 @@ div.sweet-alert input {
 	margin-left: 20px;
 }
 
-.data-table{
+/* .data-table{
 	width: 100%;
 	height: 100%;
 }
@@ -423,12 +426,46 @@ table.data-table td{
 	border: 1px solid #ABABAB;
 	font-family: 微软雅黑;
 	font-size: 14px;
+} */
+.toolbar {
+	  height: 45px;
+}
+.car-table-head, .car-table-body {
+    table-layout: fixed;
+    width: 100%;
+}
+.car-info-grid {
+	  clear: both;
+    height: calc(100% - 45px);
+}
+.car-info-head {
+    height: 40px;
+    background: #e8e8e8;
+}
+.car-table-head tr {
+	  height: 40px;
+}
+ .car-table-body tr {
+    height: 30px;
+}
+.car-table-head td, .car-table-body td {
+    border: 1px solid #ccc;
+}
+.car-info-body {
+    height: calc(100% - 40px);
+    overflow-y: auto;
+}
+.car-table-body {
+    background: #fff;
+}
+.car-table-body tr {
+	  height: 30px;
 }
 
-table.data-table tr:HOVER{
+.car-table-body tr:HOVER{
 	background-color: #E8E8E8;
 }
 
-.click-tr-color{
+.car-table-body tr.click-tr-color{
 	background-color: #D2D2D2;
 }

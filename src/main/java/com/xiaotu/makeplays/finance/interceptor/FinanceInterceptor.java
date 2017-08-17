@@ -112,7 +112,7 @@ public class FinanceInterceptor {
 			} else if (entry.getValue() instanceof Date) {
 				mMap.put(entry.getKey(), new Date());
 			} else if (entry.getValue() instanceof Boolean) {
-				mMap.put(entry.getKey(), false);
+				mMap.put(entry.getKey(), true);
 			}  else {
 				mMap.put(entry.getKey(), parseObject(entry.getValue()));
 			}
@@ -220,7 +220,7 @@ public class FinanceInterceptor {
 			} else if (object instanceof Date) {
 				list.set(i, new Date());
 			} else if (object instanceof Boolean) {
-				list.set(i, false);
+				list.set(i, true);
 			} else {
 				list.set(i, parseObject(object));
 			}
@@ -257,7 +257,7 @@ public class FinanceInterceptor {
 			} else if (entry.getValue() instanceof Date) {
 				map.put(entry.getKey(), new Date());
 			} else if (entry.getValue() instanceof Boolean) {
-				map.put(entry.getKey(), false);
+				map.put(entry.getKey(), true);
 			} else {
 				map.put(entry.getKey(), parseObject(entry.getValue()));
 			}

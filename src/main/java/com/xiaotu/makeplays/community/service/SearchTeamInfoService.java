@@ -171,6 +171,7 @@ public class SearchTeamInfoService {
 				//拼接数据
 				infoDto.setAge((Integer)map.get("age"));
 				infoDto.setCreateTime(sdf.format((Date)map.get("createTime")));
+				infoDto.setLikePositionId((String) map.get("likePositionId"));
 				infoDto.setLikePositionName((String)map.get("likePositionName"));
 				infoDto.setRealName((String)map.get("realName"));
 				infoDto.setSex((Integer)map.get("sex"));

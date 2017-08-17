@@ -1259,6 +1259,13 @@ public class ViewInfoController extends BaseController {
 			if (StringUtils.isBlank(seriesNo) || StringUtils.isBlank(viewNo)) {
 				throw new IllegalArgumentException("请填写集场信息");
 			}
+			
+			viewNo = viewNo.replace(" ", "");
+			try {
+				Integer.parseInt(seriesNo);
+			} catch (Exception e) {
+				throw new IllegalArgumentException("请输入正确的集次");
+			}
 
 			// 校验主要演员是否在特约演员和群众演员中同时存在
 			this.checkActor(massesActor, guestActor, majorActor);

@@ -9,7 +9,10 @@ $(function() {
 		$("#selectDateBtn").removeClass("open");
 		$("#hotelDatePanel").slideUp(300);
 	});
-	
+	window.onresize = function(){
+		var scrollWidth = document.getElementById("carInfoBody").offsetWidth - document.getElementById("tableBody").scrollWidth;
+		$("#lastTd").width(scrollWidth);
+	};
 });
 
 //初始化消息弹出窗口
@@ -43,14 +46,14 @@ function initTipWindow(){
 //加载车辆管理主列表
 function loadCarListGrid() {
 	//每次加载之前清空数据列表
-	var trs = $("#dataTable").children("tr");
-	if (trs != undefined && trs != null && trs.length > 1) {
-		for(var i = 0; i < trs.length; i++){
-			if (i != 0) {
-				$(trs[i]).remove();
-			}
-		}
-	}
+//	var trs = $("#dataTable").children("tr");
+//	if (trs != undefined && trs != null && trs.length > 1) {
+//		for(var i = 0; i < trs.length; i++){
+//			if (i != 0) {
+//				$(trs[i]).remove();
+//			}
+//		}
+//	}
 	$.ajax({
 		url: '/carManager/queryAllCarInfo',
 		type: "post",
@@ -59,75 +62,79 @@ function loadCarListGrid() {
 		success:function(data){
 			//获取主列表
 			var carInfoList = data.result;
-			var $table = $("#dataTable");
+			var $table = $("#tableBody");
 			var dataArr = [];
-			
+			dataArr.push('<tbody>');
 			if (carInfoList != null && carInfoList.length>0) {
 				for(var i=0; i<carInfoList.length; i++){
 					dataArr.push("<tr onclick='changeColor(this)' sval='"+ carInfoList[i].carId +"'>");
 					//编号
-					dataArr.push("<td><div class='jqx-column align-center'>");
+					dataArr.push("<td style='width: 7%;'><div class='jqx-column align-center'>");
 					dataArr.push("	<a carid='"+ carInfoList[i].carId +"' href='javascript:modifyCarInfo(\""+carInfoList[i].carId+"\")'>" + carInfoList[i].carNo + "</a></div></td>");
 					//部门
 					if (carInfoList[i].departments == null) {
 						carInfoList[i].departments = '';
 					}
-					dataArr.push("<td><div class='jqx-column' title='"+ carInfoList[i].departments +"'>"+ carInfoList[i].departments +"</div></td>");
+					dataArr.push("<td style='width: 10%;'><div class='jqx-column' title='"+ carInfoList[i].departments +"'>"+ carInfoList[i].departments +"</div></td>");
 					//用途
 					if (carInfoList[i].useFor == null) {
 						carInfoList[i].useFor = '';
 					}
-					dataArr.push("<td><div class='jqx-column' title='"+ carInfoList[i].useFor +"'>"+ carInfoList[i].useFor +"</div></td>");
+					dataArr.push("<td style='width: 9%;'><div class='jqx-column' title='"+ carInfoList[i].useFor +"'>"+ carInfoList[i].useFor +"</div></td>");
 					//车牌号
 					if (carInfoList[i].carNumber == null) {
 						carInfoList[i].carNumber = '';
 					}
-					dataArr.push("<td><div class='jqx-column'>");
+					dataArr.push("<td style='width: 10%;'><div class='jqx-column'>");
 					dataArr.push("	<a carid='"+ carInfoList[i].carId +"' title='"+ carInfoList[i].carNumber +"' href='javascript:modifyCarInfo(\""+carInfoList[i].carId+"\")'>" + carInfoList[i].carNumber + "</a></div></td>");
 					//车辆类型
 					if (carInfoList[i].carModel == null) {
 						carInfoList[i].carModel = '';
 					}
-					dataArr.push("<td><div class='jqx-column' title='"+ carInfoList[i].carModel +"'>"+ carInfoList[i].carModel +"</div></td>");
+					dataArr.push("<td style='width: 8%;'><div class='jqx-column' title='"+ carInfoList[i].carModel +"'>"+ carInfoList[i].carModel +"</div></td>");
 					//dataArr.push("	<a carid='"+ carInfoList[i].carId +"' href='javascript:modifyCarInfo(\""+carInfoList[i].carId+"\")'>" + carInfoList[i].carModel + "</a></div></td>");
 					//电话号码
 					if (carInfoList[i].phone == null) {
 						carInfoList[i].phone = '';
 					}
-					dataArr.push("<td><div class='jqx-column' title='"+ carInfoList[i].phone +"'>"+ carInfoList[i].phone +"</div></td>");
+					dataArr.push("<td style='width: 8%;'><div class='jqx-column' title='"+ carInfoList[i].phone +"'>"+ carInfoList[i].phone +"</div></td>");
 					//累计油费
 					if (carInfoList[i].totalMoney != null) {
-						dataArr.push("<td><div class='jqx-column align-right'>"+ fmoney(carInfoList[i].totalMoney) + "</div></td>");
+						dataArr.push("<td style='width: 10%;'><div class='jqx-column align-right'>"+ fmoney(carInfoList[i].totalMoney) + "</div></td>");
 					}else {
-						dataArr.push("<td><div class='jqx-column align-right'></div></td>");
+						dataArr.push("<td style='width: 10%;'><div class='jqx-column align-right'></div></td>");
 					}
 					//累计里程
 					if (carInfoList[i].totalMiles != null) {
-						dataArr.push("<td><div class='jqx-column align-right'>"+ fmoney(carInfoList[i].totalMiles) + "</div></td>");
+						dataArr.push("<td style='width: 10%;'><div class='jqx-column align-right'>"+ fmoney(carInfoList[i].totalMiles) + "</div></td>");
 					}else {
-						dataArr.push("<td><div class='jqx-column align-right'></div></td>");
+						dataArr.push("<td style='width: 10%;'><div class='jqx-column align-right'></div></td>");
 					}
 					//累计油量
 					if (carInfoList[i].totalOil != null) {
-						dataArr.push("<td><div class='jqx-column align-right'>"+ fmoney(carInfoList[i].totalOil) + "</div></td>");
+						dataArr.push("<td style='width: 10%;'><div class='jqx-column align-right'>"+ fmoney(carInfoList[i].totalOil) + "</div></td>");
 					}else {
-						dataArr.push("<td><div class='jqx-column align-right'></div></td>");
+						dataArr.push("<td style='width: 10%;'><div class='jqx-column align-right'></div></td>");
 					}
 					//实际油耗
 					if (carInfoList[i].oilConsume != null) {
-						dataArr.push("<td><div class='jqx-column align-right'>"+ fmoney(carInfoList[i].oilConsume) + "</div></td>");
+						dataArr.push("<td style='width: 10%;'><div class='jqx-column align-right'>"+ fmoney(carInfoList[i].oilConsume) + "</div></td>");
 					}else {
-						dataArr.push("<td><div class='jqx-column align-right'></div></td>");
+						dataArr.push("<td style='width: 10%;'><div class='jqx-column align-right'></div></td>");
 					}
 					//状态
 					if(carInfoList[i].status == 0){
-						dataArr.push("<td><div class='jqx-column'>离组</div></td>");
+						dataArr.push("<td style='width: 8%;'><div class='jqx-column'>离组</div></td>");
 					}
 					if(carInfoList[i].status == 1){
-						dataArr.push("<td><div class='jqx-column'>在组</div></td>");
+						dataArr.push("<td style='width: 8%;'><div class='jqx-column'>在组</div></td>");
 					}
 				}
+				dataArr.push('</tbody>');
+				$table.empty();
 				$table.append(dataArr.join(''));
+				var scrollWidth = document.getElementById("carInfoBody").offsetWidth - document.getElementById("tableBody").scrollWidth;
+				$("#lastTd").width(scrollWidth);
 				
 				var fixHelper = function(e, ui) {  
 		            //console.log(ui)   
@@ -137,7 +144,7 @@ function loadCarListGrid() {
 		            return ui;
 		        };
 		        if (!isCarInfoReadonly) {
-		        	$("#dataTable").sortable({                //这里是talbe tbody，绑定 了sortable   
+		        	$("#tableBody tbody").sortable({                //这里是talbe tbody，绑定 了sortable   
 		        		helper: fixHelper,                  //调用fixHelper   
 		        		axis:"y",  
 		        		start:function(e, ui){  
@@ -149,7 +156,7 @@ function loadCarListGrid() {
 		        			return ui;  
 		        		}
 		        	}).disableSelection();
-		        	$("#dataTable").on( "sortstop", function( event, ui ) {
+		        	$("#tableBody tbody").on( "sortstop", function( event, ui ) {
 		        		updateCarSort();
 		        	});
 					
@@ -477,7 +484,7 @@ function confirmSearchCarInfo() {
 //添加选中颜色
 function changeColor(own) {
 	//移除所有的选中颜色
-	$("#dataTable tr").each(function(){
+	$("#tableBody tr").each(function(){
 		$(this).removeClass("click-tr-color");
 	});
 	//设置当前行被选中
@@ -489,7 +496,7 @@ function changeColor(own) {
  */
 function updateCarSort(){
 	var carIdArr = [];
-	$("#dataTable tr").each(function() {
+	$("#tableBody tr").each(function() {
 		var carId = $(this).attr("sval");
 		if (carId != undefined && carId != '' && carId != null) {
 			carIdArr.push(carId);

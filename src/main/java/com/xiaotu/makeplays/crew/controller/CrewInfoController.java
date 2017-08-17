@@ -388,7 +388,7 @@ public class CrewInfoController extends BaseController{
 				CrewInfoModel crewInfo = crewInfoService.queryById(crewId);
 				HttpSession session = request.getSession();
 				session.setAttribute(Constants.SESSION_CREW_INFO, crewInfo); // 用户所选剧组信息
-				
+				session.setAttribute(Constants.SESSION_IFCHECK, "OK"); // 用户所选剧组信息
 				view.setViewName("/crew/crewSettings");
 //				this.sysLogService.saveSysLog(request, "跳转到剧组管理页面", Constants.TERMINAL_PC, "tab_crew_info",null,0);
 			}else{

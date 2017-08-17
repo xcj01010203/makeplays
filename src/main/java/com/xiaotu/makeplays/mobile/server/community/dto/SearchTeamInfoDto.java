@@ -33,6 +33,11 @@ public class SearchTeamInfoDto {
 	private Integer age;
 	
 	/**
+	 * 意向职位ID
+	 */
+	private String likePositionId;
+	
+	/**
 	 * 意向职位
 	 */
 	private String likePositionName;
@@ -93,6 +98,12 @@ public class SearchTeamInfoDto {
 	}
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+	public String getLikePositionId() {
+		return likePositionId;
+	}
+	public void setLikePositionId(String likePositionId) {
+		this.likePositionId = likePositionId;
 	}
 	public String getLikePositionName() {
 		return likePositionName;

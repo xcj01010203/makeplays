@@ -267,6 +267,13 @@ $(document).ready(function () {
                 //initFinancePwdWin();
     			//初始化验证用户窗口
                 initValidUserWin();
+    			
+              	//隐藏剧组选择框
+            	$(document).click(function(){
+            		if($(".crewsearchlist")) {
+                		$(".crewsearchlist").hide();
+            		}
+            	});
 });
 
 function contactScroll() {
@@ -423,10 +430,10 @@ function searchMenuCrew(){
 	var _this = $("#crewManuSearchInput");
 	var crewName=_this.val();
 	
-	if($.trim(crewName) == ''){
-		$(".crewsearchlist").hide();
-		return;
-	}
+	//if($.trim(crewName) == ''){
+		//$(".crewsearchlist").hide();
+		//return;
+	//}
 	
 	var key = event.keyCode;
 	var search_show = $(".crewsearchlist ul");
@@ -731,7 +738,7 @@ function openDownLoadImagePage(obj){
     </div> -->
 </div>
 <c:if test="${loginUserType == 4}">
-<div class='crewsearchlist' style="position: absolute;z-index: 17000;display: none;top:-324px;float:right;">
+<div class='crewsearchlist' style="position: absolute;z-index: 17000;display: none;top:-324px;float:right;max-height: calc(100% - 50px);overflow-y:auto;">
         				<ul>
             				
                 			<!-- <li>花千骨</li>
@@ -760,7 +767,8 @@ function openDownLoadImagePage(obj){
     			<c:when test="${loginUserType == 4 }">
     				
     					<div class="main_search_box">
-			                <input type="text" id='crewManuSearchInput' value="${crewInfo.crewName}" onkeyup="searchMenuCrew();" class="search_kuang21">
+			                <input type="text" id='crewManuSearchInput' value="${crewInfo.crewName}" onkeyup="searchMenuCrew();" onClick="searchMenuCrew()" class="search_kuang21">
+    						<input type="text" style="display: none;">
 			                <div class="icon_cha1" onclick="searchMenuCrew();"><img src="<%=request.getContextPath()%>/images/search.png"></div>
 	            		</div>
     				

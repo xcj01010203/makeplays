@@ -71,9 +71,9 @@
 	     <!-- 车辆列表模块 -->
 	     <div class="car-public car-info-modal">
 	         <!-- 车辆管理主列表 -->
-		       <div id="carInfoList">
+		       <div id="carInfoList" class="car-detail-grid">
 		       		<!-- 按钮组 -->
-		       		<div id='opreateBtn'>
+		       		<div id='opreateBtn' class="toolbar">
 		       			<input type='button' class='add-car-btn' id='addCarInfoBtn' onclick='addCarInfo()' title='添加车辆信息'>
 		       			<input type='button' class='export-car' id='exportCarInfoBtn' onclick='exportCarInfo()' title='导出车辆信息'>
 		       			<input type='button' class='import-btn' id='importCarInfoBtn' onclick='showImportWin()' title='导入车辆信息'>
@@ -84,10 +84,10 @@
 		       		</div>
 		       
 		       	<!-- 数据列表 -->
-		       	<div id="dataDiv">
+		       	<!-- <div id="dataDiv">
 		       		<table class='data-table'>
 		       			<tbody id='dataTable'>
-			       			<!-- 第一行 -->
+			       			第一行
 			       			<tr style="line-height: 40px;background-color: #E8E8E8;text-align: center;">
 			       				<td><span style='text-align: center;width: 7%;'>编号</span></td>
 			       				<td><span style='text-align: center;width: 8%;'>部门</span></td>
@@ -103,7 +103,30 @@
 			       			</tr>
 		       			</tbody>
 		       		</table>
-		       	</div>
+		       	</div> -->
+		       	<div class="car-info-grid">
+                  <div class="car-info-head">
+                      <table class="car-table-head" id="tableHead">
+                          <tr>
+                              <td style='text-align: center;width: 7%;'>编号</td>
+                              <td style='text-align: center;width: 10%;'>部门</td>
+                              <td style='text-align: center;width: 9%;'>用途</td>
+                              <td style='text-align: center;width: 10%;'>车牌号</td>
+                              <td style='text-align: center;width: 8%;'>车辆类型</td>
+                              <td style='text-align: center;width: 8%;'>电话号</td>
+                              <td style='text-align: center;width: 10%;'>累计油费</td>
+                              <td style='text-align: center;width: 10%;'>累计里程</td>
+                              <td style='text-align: center;width: 10%;'>累计油量</td>
+                              <td style='text-align: center;width: 10%;'>实际油耗</td>
+                              <td style='text-align: center;width: 8%;'>状态</td>
+                              <td id="lastTd" style="padding: 0px; border: 0px; width: 0px;"></td>
+                          </tr>
+                      </table>
+                  </div>
+                  <div class="car-info-body" id="carInfoBody">
+                      <table class="car-table-body" id="tableBody"></table>
+                  </div>
+              </div>
 		       	
 		       </div>
 		       <!-- 添加/修改窗口 -->
