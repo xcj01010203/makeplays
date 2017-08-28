@@ -25,16 +25,20 @@ import com.xiaotu.makeplays.finance.dao.ContractActorDao;
 import com.xiaotu.makeplays.finance.dao.ContractProduceDao;
 import com.xiaotu.makeplays.finance.dao.ContractWorkerDao;
 import com.xiaotu.makeplays.finance.dao.FinanSubjCurrencyMapDao;
+import com.xiaotu.makeplays.finance.dao.FinanceSettingDao;
 import com.xiaotu.makeplays.finance.dao.FinanceSubjectDao;
 import com.xiaotu.makeplays.finance.dao.LoanInfoDao;
+import com.xiaotu.makeplays.finance.dao.PaymentFinanSubjMapDao;
 import com.xiaotu.makeplays.finance.dao.PaymentInfoDao;
 import com.xiaotu.makeplays.finance.model.ContractActorModel;
 import com.xiaotu.makeplays.finance.model.ContractProduceModel;
 import com.xiaotu.makeplays.finance.model.ContractWorkerModel;
 import com.xiaotu.makeplays.finance.model.CurrencyInfoModel;
 import com.xiaotu.makeplays.finance.model.FinanSubjCurrencyMapModel;
+import com.xiaotu.makeplays.finance.model.FinanceSettingModel;
 import com.xiaotu.makeplays.finance.model.FinanceSubjectModel;
 import com.xiaotu.makeplays.finance.model.LoanInfoModel;
+import com.xiaotu.makeplays.finance.model.PaymentFinanSubjMapModel;
 import com.xiaotu.makeplays.finance.model.PaymentInfoModel;
 import com.xiaotu.makeplays.utils.BigDecimalUtil;
 import com.xiaotu.makeplays.utils.Constants;
@@ -77,6 +81,12 @@ public class FinanceSubjectService {
 	private PaymentInfoDao paymentInfoDao;
 	@Autowired
 	private LoanInfoDao loanInfoDao;
+	
+	@Autowired
+	private PaymentFinanSubjMapDao paymentFinanSubjMapDap;
+	
+	@Autowired
+	private FinanceSettingDao financeSettingDao;
 	
 	/**
 	 * @Description 根据剧组id查询是否有财务数据关联到财务科目
@@ -164,6 +174,22 @@ public class FinanceSubjectService {
 		financeSubjectDao.deleteByCrewId(crewId);
 		//删除原有的预算信息
 		this.finanSubjCurrencyMapDao.deleteByCrewId(crewId);
+		//清空财务科目ID
+		//清空合同与财务科目关联关系
+		this.contractWorkerDao.deleteFinanceSubjectByCrewId(crewId);
+		this.contractActorDao.deleteFinanceSubjectByCrewId(crewId);
+		this.contractProduceDao.deleteFinanceSubjectByCrewId(crewId);
+		//清空付款单与财务科目关联关系
+		this.paymentFinanSubjMapDap.deleteOne(crewId, "crewId", PaymentFinanSubjMapModel.TABLE_NAME);
+		//清空借款单与财务科目关联关系
+		this.loanInfoDao.deleteFinanceSubjectByCrewId(crewId);
+		//清空财务设置付款单缴税设置信息
+		FinanceSettingModel financeSetting = this.financeSettingDao.queryByCrewId(crewId);
+    	if (financeSetting != null) {
+    		financeSetting.setTaxFinanSubjId(null);
+    		financeSetting.setTaxRate(null);
+    		this.financeSettingDao.updateWithNull(financeSetting, "setId");
+    	}
 		
 		List<Map<String, Object>> insertDataList = new ArrayList<Map<String,Object>>();
 		//添加财务科目信息--
@@ -225,8 +251,6 @@ public class FinanceSubjectService {
 						String value = maps.get(innerKey)!=null?maps.get(innerKey).toString():"";
 						if(StringUtils.isNotBlank(value)){
 							currencyValueList.add(value);
-						}
-						if (StringUtils.isNotBlank(matchStr)) {
 							currencyCodeList.add(matchStr);
 						}
 					}
@@ -259,9 +283,16 @@ public class FinanceSubjectService {
 							throw new IllegalArgumentException("第" + rowNumber + "行数据异常，数量必须为数字");
 						}
 						insertDataMap.put("amount", amount);
+					}else if(currencyCodeList.size() == 0 && innerKey.contains("预算") && !innerKey.equals("预算比例") && currencyList.size() == 1) {
+						String currentcyCode = currencyList.get(0).getCode();
+						currencyInfoCodeSet.add(currentcyCode);
+						currencyCodeList.add(currentcyCode);
+						String value = maps.get(innerKey)!=null?maps.get(innerKey).toString():"";
+						currencyValueList.add(value);
 					}
 				}
 				if (currencyCodeList.size() == 0) {
+					//单币种不提示添加币种
 					throw new IllegalArgumentException("请在预算金额列添加币种信息");
 				}
 				

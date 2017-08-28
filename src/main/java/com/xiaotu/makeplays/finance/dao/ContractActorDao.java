@@ -280,4 +280,12 @@ public class ContractActorDao extends BaseDao<ContractActorModel>{
 		return this.query(sql.toString(), new Object[] {crewId, actorName}, null);
 	}
 	
+	/**
+	 * 根据剧组ID清空财务科目关联信息，用于费用预算导入
+	 * @param crewId
+	 */
+	public void deleteFinanceSubjectByCrewId(String crewId) {
+		String sql = "update " + ContractActorModel.TABLE_NAME + " set financeSubjId=null,financeSubjName=null where crewId = ? ";
+		this.getJdbcTemplate().update(sql, new Object[]{crewId});
+	}
 }

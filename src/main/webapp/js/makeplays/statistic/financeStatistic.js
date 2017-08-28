@@ -142,9 +142,10 @@ function closeRightWin() {
 function loadSubjectDetail(subjectId) {
 	var source = {
 		url: '/getCostManager/queryFinanceRunningAccount',
+		//url:'/getCostManager/queryPaymnetDetail',
 		type: "post",
 		dataType : "json",
-		data: {financeSubjIds:subjectId, isAsc:true, status:1},
+		data: {financeSubjIds:subjectId, isAsc:true, status:1, isQueryFinanceSubjPayment:true},
 		datafields : [
 		    { name: 'receiptDate',type: 'string' },//日期
 			{ name: 'receiptNo',type: 'string' },//票据编号
@@ -267,7 +268,7 @@ function loadSubjectTotal(subjectId){
 	$.ajax({
 		url: '/getCostManager/queryRunnigAccountStatistic',
 		type: 'post',
-		data: {financeSubjIds:subjectId, status:1},
+		data: {financeSubjIds:subjectId, status:1, isQueryFinanceSubjPayment:true},
 		datatype: 'json',
 		success: function(response){
 			if(response.success){				
@@ -330,7 +331,7 @@ function exportSubjectDetail(){
 	$.ajax({
 		url: '/getCostManager/exportFinanceRunningAccount',
 		type: 'post',
-		data: {financeSubjIds:$("#exportSubjectDetailBtn").attr('subjectId'), isAsc:true, status:1, templateName:'subject'},
+		data: {financeSubjIds:$("#exportSubjectDetailBtn").attr('subjectId'), isAsc:true, status:1, templateName:'subject',isQueryFinanceSubjPayment:true},
 		datatype: 'json',
 		success: function(response){
 			_LoadingHtml.hide();

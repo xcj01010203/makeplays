@@ -195,6 +195,7 @@ public class ViewInfoController extends BaseController {
 			resultMap.put("crewName", crewName);
 			resultMap.put("seriesLgth", crewInfo.getLengthPerSet());
 			resultMap.put("cutRadio", crewInfo.getCutRate());
+			
 			message = "获取成功!";
 		} catch (Exception e) {
 			message = "未知错误,查询失败!";
@@ -2127,12 +2128,20 @@ public class ViewInfoController extends BaseController {
 				for (int i = roleSignList.size() - 1; i >= 0; i--) {
 					ViewRoleModel role = roleSignList.get(i);
 					boolean hasRoleFlag = false; // 标识当前场景的演员在所有主要演员中是否存在
+					//变成不同对象ViewRoleModel
+					ViewRoleModel role1 =new ViewRoleModel();
 					for (Map<String, Object> roleMap : roleList) {
 						if (roleMap.get("viewRoleId").equals(role.getViewRoleId())) {
-							if (StringUtils.isBlank(role.getShortName())) {
-								role.setShortName("√");
+							if("0".equals(String.valueOf(roleMap.get("roleNum").toString()))) {
+								role1.setShortName("OS");
+							}else {
+								if (StringUtils.isBlank(role.getShortName())) {
+									role1.setShortName("√");
+								}else {
+									role1.setShortName(role.getShortName());
+								}
 							}
-							newRoleList.add(role);
+							newRoleList.add(role1);
 							hasRoleFlag = true;
 							break;
 						}

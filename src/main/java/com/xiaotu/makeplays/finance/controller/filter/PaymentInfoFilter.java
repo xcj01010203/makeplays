@@ -91,6 +91,11 @@ public class PaymentInfoFilter {
 	 */
 	private Integer billType;
 	
+	/**
+	 * 是否是查询财务科目支付明细
+	 */
+	private boolean isQueryFinanceSubjPayment;
+	
 	public String getDepartment() {
 		return department;
 	}
@@ -225,5 +230,13 @@ public class PaymentInfoFilter {
 
 	public void setMaxMoney(Double maxMoney) {
 		this.maxMoney = maxMoney;
+	}
+
+	public boolean isQueryFinanceSubjPayment() {
+		return isQueryFinanceSubjPayment;
+	}
+
+	public void setQueryFinanceSubjPayment(boolean isQueryFinanceSubjPayment) {
+		this.isQueryFinanceSubjPayment = isQueryFinanceSubjPayment;
 	}
 }

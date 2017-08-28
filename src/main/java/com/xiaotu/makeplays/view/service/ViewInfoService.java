@@ -614,6 +614,15 @@ public class ViewInfoService {
 		Map<String,String> propNameMap2 = new HashMap<String,String>();
 		//道具信息
 		List<GoodsInfoModel> propsInfoList = goodsInfoDao.queryCrewPropInfo(crewId);
+
+		//服化道信息
+		List<GoodsInfoModel> goodsInfoList = new ArrayList<GoodsInfoModel>();
+		goodsInfoList.addAll(clothesInfoList);
+		goodsInfoList.addAll(makeUpInfoList);
+		goodsInfoList.addAll(propsInfoList);
+		//服化道名称
+		Map<String,String> goodsNameMap = new HashMap<String,String>();
+		
 		//场景道具信息
 		List<ViewGoodsInfoMap> viewPropMapList = viewGoodsMapDao.queryPropViewMap(crewId);
 		
@@ -892,13 +901,13 @@ public class ViewInfoService {
 			delViewClothByViewId.add(viewId);
 			//this.saveClothes(scenarioDto.getClothes(), crewId, viewId, userInfo.getUserId(), userInfo.getUserName());
 			String clothesInfo = scenarioDto.getClothes();
-			arrangeViewClotheInfo(crewId, userInfo, clothesInfoList, batchAddClothesInfoList, viewClothesInfoMap,batchAddViewClothesInfoList, clotheNameMap, viewId, clothesInfo);
+			arrangeViewClotheInfo(crewId, userInfo, goodsInfoList, batchAddClothesInfoList, viewClothesInfoMap,batchAddViewClothesInfoList, goodsNameMap, viewId, clothesInfo);
 			
 			//化妆
 //			this.viewMakeupMapDao.deleteManyByViewId(viewId);
 			//this.saveMakeupInfo(scenarioDto.getMakeups(), crewId, viewId, userInfo.getUserId(), userInfo.getUserName());
 			String makeUps = scenarioDto.getMakeups();
-			arrangeViewMakeUpInfo(crewId, userInfo, makeUpInfoList, viewMakeUpInfoList, makeupNameMap,batchAddMakeUpInfoList, batchAddViewMakeUpMapList, viewId, makeUps);
+			arrangeViewMakeUpInfo(crewId, userInfo, goodsInfoList, viewMakeUpInfoList, goodsNameMap,batchAddMakeUpInfoList, batchAddViewMakeUpMapList, viewId, makeUps);
 			
 			//道具信息
 //			this.viewPropsMapDao.deleteManyByViewId(viewId);
@@ -906,8 +915,8 @@ public class ViewInfoService {
 			String specialPropInfo = scenarioDto.getSpecialProps();
 			//this.saveProps(scenarioDto.getProps(), crewId, viewId, userInfo.getUserId(), userInfo.getUserName(), PropsType.Normal.getValue());
 			//this.saveProps(scenarioDto.getSpecialProps(), crewId, viewId, userInfo.getUserId(), userInfo.getUserName(), PropsType.Special.getValue());
-			arrangeViewPropInfo(crewId, userInfo, propsInfoList, viewPropMapList, propNameMap1,batchAddPropsInfoList, batchAddViewPropsInfoList, viewId, propInfo,GoodsType.CommonProps.getValue());
-			arrangeViewPropInfo(crewId, userInfo, propsInfoList, viewPropMapList, propNameMap2,batchAddPropsInfoList, batchAddViewPropsInfoList, viewId, specialPropInfo,GoodsType.SpecialProps.getValue());
+			arrangeViewPropInfo(crewId, userInfo, goodsInfoList, viewPropMapList, goodsNameMap,batchAddPropsInfoList, batchAddViewPropsInfoList, viewId, propInfo,GoodsType.CommonProps.getValue());
+			arrangeViewPropInfo(crewId, userInfo, goodsInfoList, viewPropMapList, goodsNameMap,batchAddPropsInfoList, batchAddViewPropsInfoList, viewId, specialPropInfo,GoodsType.SpecialProps.getValue());
 			
 			
 			//场景信息
@@ -1104,6 +1113,14 @@ public class ViewInfoService {
 		Map<String,String> propNameMap2 = new HashMap<String,String>();
 		//道具信息
 		List<GoodsInfoModel> propsInfoList = goodsInfoDao.queryCrewPropInfo(crewId);
+		//服化道信息
+		List<GoodsInfoModel> goodsInfoList = new ArrayList<GoodsInfoModel>();
+		goodsInfoList.addAll(clothesInfoList);
+		goodsInfoList.addAll(makeUpInfoList);
+		goodsInfoList.addAll(propsInfoList);
+		//服化道名称信息
+		Map<String,String> goodsNameMap = new HashMap<String,String>();
+		
 		//场景道具信息
 		List<ViewGoodsInfoMap> viewPropMapList = viewGoodsMapDao.queryPropViewMap(crewId);
 		
@@ -1293,14 +1310,14 @@ public class ViewInfoService {
 			
 			//服装信息
 			String clothesInfo = scenarioDto.getClothes();
-			arrangeViewClotheInfo(crewId, userInfo, clothesInfoList, batchAddClothesInfoList, viewClothesInfoMap,batchAddViewClothesInfoList, clotheNameMap, viewInfo.getViewId(), clothesInfo);
+			arrangeViewClotheInfo(crewId, userInfo, goodsInfoList, batchAddClothesInfoList, viewClothesInfoMap,batchAddViewClothesInfoList, goodsNameMap, viewInfo.getViewId(), clothesInfo);
 			//服装
 			//this.saveClothes(scenarioDto.getClothes(), crewId, viewInfo.getViewId(), userInfo.getUserId(), userInfo.getUserName());
 			
 			
 			//化妆
 			String makeUps = scenarioDto.getMakeups();
-			arrangeViewMakeUpInfo(crewId, userInfo, makeUpInfoList, viewMakeUpInfoList, makeupNameMap,batchAddMakeUpInfoList, batchAddViewMakeUpMapList, viewInfo.getViewId(), makeUps);
+			arrangeViewMakeUpInfo(crewId, userInfo, goodsInfoList, viewMakeUpInfoList, goodsNameMap,batchAddMakeUpInfoList, batchAddViewMakeUpMapList, viewInfo.getViewId(), makeUps);
 			
 			//化妆
 			//this.saveMakeupInfo(scenarioDto.getMakeups(), crewId, viewInfo.getViewId(), userInfo.getUserId(), userInfo.getUserName());
@@ -1310,8 +1327,8 @@ public class ViewInfoService {
 			
 			String propInfo = scenarioDto.getProps();
 			String specialPropInfo = scenarioDto.getSpecialProps();
-			arrangeViewPropInfo(crewId, userInfo, propsInfoList, viewPropMapList, propNameMap1,batchAddPropsInfoList, batchAddViewPropsInfoList, viewInfo.getViewId(), propInfo,GoodsType.CommonProps.getValue());
-			arrangeViewPropInfo(crewId, userInfo, propsInfoList, viewPropMapList, propNameMap2,batchAddPropsInfoList, batchAddViewPropsInfoList, viewInfo.getViewId(), specialPropInfo,GoodsType.SpecialProps.getValue());
+			arrangeViewPropInfo(crewId, userInfo, goodsInfoList, viewPropMapList, goodsNameMap,batchAddPropsInfoList, batchAddViewPropsInfoList, viewInfo.getViewId(), propInfo,GoodsType.CommonProps.getValue());
+			arrangeViewPropInfo(crewId, userInfo, goodsInfoList, viewPropMapList, goodsNameMap,batchAddPropsInfoList, batchAddViewPropsInfoList, viewInfo.getViewId(), specialPropInfo,GoodsType.SpecialProps.getValue());
 			
 			
 			
@@ -1491,7 +1508,7 @@ public class ViewInfoService {
 					String propsId = "";
 					if(propsInfoList!=null&&propsInfoList.size()>0){
 						for(GoodsInfoModel model:propsInfoList){
-							if(propsName.equals(model.getGoodsName())&&propsType == model.getGoodsType()){
+							if(propsName.equals(model.getGoodsName())){ // &&propsType == model.getGoodsType() 如果库里已经有一个同名的服化道，则按库里的来，不对比类型
 								propsId = model.getId();
 								break;
 							}
@@ -3412,7 +3429,7 @@ public class ViewInfoService {
 		
 		//场景地点信息
 		List<ViewLocationModel> viewLocationList = this.viewLocationService.queryManyByCrewId(crewId);
-		Collections.sort(viewLocationList, new Comparator<ViewLocationModel>() {
+		/*Collections.sort(viewLocationList, new Comparator<ViewLocationModel>() {
 			@Override
 			public int compare(ViewLocationModel o1, ViewLocationModel o2) {
 				if (o1.getLocation() == null) {
@@ -3425,7 +3442,7 @@ public class ViewInfoService {
 				CollationKey key2 = Collator.getInstance().getCollationKey(o2.getLocation().toString().toLowerCase());
         		return key1.compareTo(key2);
 			}
-		});
+		});*/
 		for (ViewLocationModel viewLocation : viewLocationList) {
 			String location = viewLocation.getLocation();
 			String locationId = viewLocation.getLocationId();
@@ -3659,14 +3676,14 @@ public class ViewInfoService {
 		}
 		//场景地点信息
 		List<ViewLocationModel> viewLocationList = this.viewLocationService.queryManyByCrewId(crewId);
-		Collections.sort(viewLocationList, new Comparator<ViewLocationModel>() {
-			@Override
-			public int compare(ViewLocationModel o1, ViewLocationModel o2) {
-				CollationKey key1 = Collator.getInstance().getCollationKey(o1.getLocation().toString().toLowerCase());// 要想不区分大小写进行比较用o1.toString().toLowerCase()
-        		CollationKey key2 = Collator.getInstance().getCollationKey(o2.getLocation().toString().toLowerCase());
-        		return key1.compareTo(key2);
-			}
-		});
+//		Collections.sort(viewLocationList, new Comparator<ViewLocationModel>() {
+//			@Override
+//			public int compare(ViewLocationModel o1, ViewLocationModel o2) {
+//				CollationKey key1 = Collator.getInstance().getCollationKey(o1.getLocation().toString().toLowerCase());// 要想不区分大小写进行比较用o1.toString().toLowerCase()
+//        		CollationKey key2 = Collator.getInstance().getCollationKey(o2.getLocation().toString().toLowerCase());
+//        		return key1.compareTo(key2);
+//			}
+//		});
 		for (ViewLocationModel viewLocation : viewLocationList) {
 			String location = viewLocation.getLocation();
 			String locationId = viewLocation.getLocationId();

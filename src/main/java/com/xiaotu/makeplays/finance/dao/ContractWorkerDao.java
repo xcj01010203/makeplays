@@ -272,4 +272,13 @@ public class ContractWorkerDao extends BaseDao<ContractWorkerModel> {
 				+ " LEFT JOIN tab_sysrole_info tsi ON tsi.roleId = tcsm.sysroleId WHERE tcc.crewId = ? and tcc.contactName = ?";
 		return this.query(sql, new Object[] {crewId, contactName}, null);
 	}
+	
+	/**
+	 * 根据剧组ID清空财务科目关联信息，用于费用预算导入
+	 * @param crewId
+	 */
+	public void deleteFinanceSubjectByCrewId(String crewId) {
+		String sql = "update " + ContractWorkerModel.TABLE_NAME + " set financeSubjId=null,financeSubjName=null where crewId = ? ";
+		this.getJdbcTemplate().update(sql, new Object[]{crewId});
+	}
 }

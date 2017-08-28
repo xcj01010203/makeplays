@@ -1014,7 +1014,14 @@ public class ContractActorController extends BaseController {
 					conditionMap.put("customContractNo", customContractNo);
 					List<ContractActorModel> workerByCustomNo = this.contractActorService.queryManyByMutiCondition(conditionMap, null);
 					if (workerByCustomNo == null || workerByCustomNo.size() == 0) {
-						dataMap.put("isRepeat", false);
+						conditionMap.remove("customContractNo");
+						conditionMap.put("contractNo", customContractNo);
+						workerByCustomNo = this.contractActorService.queryManyByMutiCondition(conditionMap, null);
+						if (workerByCustomNo == null || workerByCustomNo.size() == 0) {
+							dataMap.put("isRepeat", false);
+						} else {
+							dataMap.put("isRepeat", true);
+						}
 					}else {
 						dataMap.put("isRepeat", true);
 					}

@@ -52,6 +52,16 @@ public class CaterMoneyInfoModel {
 	 * 餐饮id
 	 */
 	private String caterId;
+	
+	/**
+	 * 用餐时间
+	 */
+	private String caterTimeType;
+	
+	/**
+	 * 用餐地点
+	 */
+	private String caterAddr;
 
 	public String getCaterId() {
 		return caterId;
@@ -123,6 +133,22 @@ public class CaterMoneyInfoModel {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+
+	public String getCaterTimeType() {
+		return caterTimeType;
+	}
+
+	public void setCaterTimeType(String caterTimeType) {
+		this.caterTimeType = caterTimeType;
+	}
+
+	public String getCaterAddr() {
+		return caterAddr;
+	}
+
+	public void setCaterAddr(String caterAddr) {
+		this.caterAddr = caterAddr;
 	}
 	
 }

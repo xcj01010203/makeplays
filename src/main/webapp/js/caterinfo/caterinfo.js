@@ -1,4 +1,6 @@
 var caterTypeList;
+var caterTypeTimeList;
+var caterAddrList;
 //餐饮管理
 $(function(){
 	loadCaterListGrid();
@@ -131,6 +133,8 @@ function modifyCarInfo(editrow, date){
 				var totalMoney = data.data.totalMoney;//合计金额
 				var totalPeopleMoney = data.data.totalPeopleMoney;//总人数
 				var inHotelInfoStr = data.inHotelInfoStr; //入住信息
+				var balance=0;
+				
 				
 				if(!totalPeopleMoney || totalPeopleMoney == 'null'){
 					totalPeopleMoney = 0;
@@ -147,21 +151,27 @@ function modifyCarInfo(editrow, date){
 				$('.total-people').text(totalPeopleMoney);
 				$('.total-price').text(fmoney(totalMoney));
 				$('.people-avg').prop('disabled',true);
-				if(leftMoney < 0){
+				/*if(leftMoney < 0){
 				    leftMoney = leftMoney + "";
 				    var money = leftMoney.split("-");
 				    $('.save-over').html("-" + fmoney(money));
 				}else{
 					$('.save-over').html(fmoney(leftMoney));
+				}*/
+				balance=totalMoney/totalPeopleMoney;
+				if(totalMoney==0 || totalPeopleMoney==0){
+					$('.save-over').html(fmoney(0.00));
+				}else{
+					$('.save-over').html(fmoney(balance));
 				}
 				
-				
 				var len = data.data.caterMoneyList.length;
-				
 				for(var i = 0 ; i < len; i ++){
 					var rowid = $('#right-add-icon').attr('rowid');
 					//餐饮金额信息
 					var rightCaterType = data.data.caterMoneyList[i].caterType;//餐饮类别
+					var rightCaterTime = data.data.caterMoneyList[i].caterTimeType;//用餐时间
+					var rightCaterAddr = data.data.caterMoneyList[i].caterAddr;//用餐地点
 					var rightPeopleCount = data.data.caterMoneyList[i].peopleCount;//人数
 					var rightCaterCount = data.data.caterMoneyList[i].caterCount;//份数
 					var rightMoney = data.data.caterMoneyList[i].caterMoney;//金额
@@ -175,6 +185,12 @@ function modifyCarInfo(editrow, date){
 					}
 					if(!rightCaterType){
 						rightCaterType='';
+					}
+					if(!rightCaterTime){
+						rightCaterTime='';
+					}
+					if(!rightCaterAddr){
+						rightCaterAddr='';
 					}
 					if(!rightPeopleCount){
 						rightPeopleCount='';
@@ -196,6 +212,8 @@ function modifyCarInfo(editrow, date){
 					//创建对应的行
 					var tr = $('<tr class="right-popup-table-tr"></tr>');
 					var caterTd = $('<td class="cater-type" ><input type="text" name="right-select-cater" id="right-select-cater'+rowid+'" opotion-id="" value="'+ rightCaterType +'" class="right-select-cater insert-input" onclick="showSelectWin(this)"/><div class="delete-add-row" onclick="deleteCaterMoneyInfo(this)"></div></td>');
+					var caterTt = $('<td class="cater-time" ><input type="text" name="right-select-cater1" id="right-select-caterTime'+rowid+'" opotion-id="" value="'+ rightCaterTime +'" class="right-select-cater insert-time" onclick="showSelectWinTime(this)"/></td>');
+					var caterTa = $('<td class="cater-addr" ><input type="text" name="right-select-cater2" id="right-select-caterAddr'+rowid+'" opotion-id="" value="'+ rightCaterAddr +'" class="right-select-cater insert-addr" onclick="showSelectWinAddr(this)"/></td>');
 					var peopleTd = $('<td class="people-num"><input type="text" id="right-people-input'+rowid+'" class="right-select-cater total-people-num" onblur="getCaterPeopleNum(this)" onkeyup="onlyNumber(this)"  value="'+ rightPeopleCount +'"/></td>');
 					var copiesTd = $('<td class="copies-num"><input type="text" id="right-copies-input'+rowid+'" class="right-select-cater cater-copies" onblur="getCaterCopies(this)"  onkeyup="onlyNumber(this)"  value="'+ rightCaterCount +'"/></td>');
 					var priceTd = $('<td class="prices-num"><input type="text" id="right-price-input'+rowid+'" class="right-select-cater total-price" value="'+ fmoney(rightMoney) +'" onkeyup="caterPriceVerify(this)"  onblur="caterPeoplePrice(this)" /></td>');
@@ -207,6 +225,8 @@ function modifyCarInfo(editrow, date){
 					remarkTd = $('<td class="remark-info"><input type="text" id="right-remark-input'+rowid+'"  class="right-select-cater" value="'+ rightRemark +'"/><input type="text" class="hide-input-val" value="'+ caterMoneyId +'" style="display:none;"/></td>');
 		
 					tr.append(caterTd);
+					tr.append(caterTt);
+					tr.append(caterTa);
 					tr.append(peopleTd);
 					tr.append(copiesTd);
 					tr.append(priceTd);
@@ -214,6 +234,8 @@ function modifyCarInfo(editrow, date){
 					tr.append(remarkTd);
 					$('#totalSumTr').before(tr);
 					getCaterType(tr);
+					getCaterTypeTime(tr);
+					getCaterAddr(tr);
 				}
 				if(isReadonly){
 					$(".delete-add-row").hide();
@@ -234,6 +256,20 @@ function modifyCarInfo(editrow, date){
 }
 //选择餐饮类型
 function selectCaterType(own){
+	var $this = $(own);
+	$this.parent().prev().val($this.text());
+	$this.parent().prev().attr("value", $this.text());
+	$this.parent().prev().attr('opotion-id',$this.attr('id'));
+}
+//选择餐饮时间
+function selectCaterTypeTime(own){
+	var $this = $(own);
+	$this.parent().prev().val($this.text());
+	$this.parent().prev().attr("value", $this.text());
+	$this.parent().prev().attr('opotion-id',$this.attr('id'));
+}
+//选择餐饮地点
+function selectCaterAddr(own){
 	var $this = $(own);
 	$this.parent().prev().val($this.text());
 	$this.parent().prev().attr("value", $this.text());
@@ -274,6 +310,7 @@ function getCaterPeopleNum(own){
 		peopleAvg = Price / peopleNum;
 		$this.parent().parent().find('.people-avg').val(fmoney(peopleAvg));
 	}
+	countSaveOver();
 }
 //caterPeoplePrice 填写完金额，失去焦点，计算总金额，计算人均
 function caterPeoplePrice(own){
@@ -340,6 +377,18 @@ function showSelectWin(own){
 	_this.parent().find(".right-select-wrap").toggle();
 	_this.parent().find('.right-select-wrap').parents('tr.right-popup-table-tr').siblings().find('td.cater-type').find('.right-select-wrap').hide();
 }
+//显示下下拉选项框 用餐时间
+function showSelectWinTime(own){
+	var _this = $(own);
+	_this.parent().find(".right-select-wrap-time").toggle();
+	_this.parent().find('.right-select-wrap-time').parents('tr.right-popup-table-tr').siblings().find('td.cater-time').find('.right-select-wrap-time').hide();
+}
+//显示下下拉选项框 用餐地点
+function showSelectWinAddr(own){
+	var _this = $(own);
+	_this.parent().find(".right-select-wrap-addr").toggle();
+	_this.parent().find('.right-select-wrap-addr').parents('tr.right-popup-table-tr').siblings().find('td.cater-addr').find('.right-select-wrap-addr').hide();
+}
 //获取餐饮类别
 function gatCaterType(){
 	$.ajax({ 
@@ -349,6 +398,8 @@ function gatCaterType(){
 	    success:function(data){//这个data就是后台给你的json格式的数据
 	    	if(data.success){
 				caterTypeList = data.caterTypeList;
+				caterTypeTimeList = data.caterTimeTypeList;
+				caterAddrList = data.caterAddrList;
 			}else{
 				showErrorMessage(data.message);
 			}

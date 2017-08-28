@@ -83,7 +83,6 @@ function loadContentData(){
              for(var i=0; i<arr.length; i++){
                  var _val = $.trim(arr[i]).replace(regPerformerCommonNum, '');
                  var _num = '';
-                 
                //主演后台传递的值格式为“演员名称_（OS）”，该格式需要特殊处理
                  if ($(this).parents('.tagWrap').hasClass('performer_first')) {
                 	 var majorArr = _val.split('(');
@@ -336,7 +335,8 @@ function initSelectMany(){
             	var text = item.text;
             	var selected = false;
             	$.each(selectedLi, function(seletedIndex, seletedItem) {
-            		if (seletedItem.textContent == text) {
+            		//修改添加OS就不能默认选中
+            		if (seletedItem.textContent.indexOf(text) != -1) {
             			selected = true;
             			return false;
             		}
@@ -384,7 +384,9 @@ function initSelectMany(){
             	} else {
             		var selectedLi = $this.find("ul li[sid=19]");
             		$.each(selectedLi, function(seletedIndex, seletedItem) {
-                		if (seletedItem.textContent == option.value) {
+            			//左侧列表带OS点击与右侧关联
+                		//if (seletedItem.textContent == option.value) {
+            			if (seletedItem.textContent.indexOf(option.value) != -1) {
                 			$(this).remove();
                 		}
                 	});
@@ -413,6 +415,7 @@ function initSelectMany(){
     			if (text.indexOf('OS')== -1) {
     				_target.text( _target.text().replace(regPerformerCommonNum, '') + '(OS)' ).append(_close);
     				$osinp.remove();
+    				setViewIsChanged();
 				}else {
 					$osinp.remove();
 				}
@@ -423,6 +426,7 @@ function initSelectMany(){
     			if (text.indexOf('OS')!= -1) {
     				_target.text( _target.text().substring(0,text.indexOf("(")).replace(regPerformerCommonNum, '')).append(_close);
     				$osinp.remove();
+    				setViewIsChanged();
 				}else {
 					$osinp.remove();
 				}

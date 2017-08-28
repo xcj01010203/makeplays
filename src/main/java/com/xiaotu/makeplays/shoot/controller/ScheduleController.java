@@ -744,13 +744,18 @@ public class ScheduleController extends BaseController{
 				// 循环所有角色
 				for (int i = 0; i < majorRoleList.size(); i++) {
 					Map<String, Object> role = majorRoleList.get(i);
+					
 					boolean hasRoleFlag = false; // 标识当前场景的演员在所有主要演员中是否存在
 					for (Map<String, Object> roleMap : roleList) {
 						if (roleMap.get("viewRoleId").equals(role.get("viewRoleId"))) {
-							if (StringUtils.isBlank((String) role.get("shortName"))) {
+							if("0".equals(String.valueOf(roleMap.get("roleNum")))) {
+								map.put(role.get("viewRoleId") + "", "OS");
+							}else {
+								if (StringUtils.isBlank((String) role.get("shortName"))) {
 								map.put(role.get("viewRoleId") + "", "√");
-							} else {
-								map.put(role.get("viewRoleId") + "", role.get("shortName"));
+								}else {
+									map.put(role.get("viewRoleId") + "", role.get("shortName"));
+								}
 							}
 							hasRoleFlag = true;
 							break;
@@ -885,10 +890,14 @@ public class ScheduleController extends BaseController{
 						boolean hasRoleFlag = false; // 标识当前场景的演员在所有主要演员中是否存在
 						for (Map<String, Object> roleMap : roleList) {
 							if (roleMap.get("viewRoleId").equals(role.get("viewRoleId"))) {
-								if (StringUtils.isBlank((String) role.get("shortName"))) {
+								if("0".equals(String.valueOf(roleMap.get("roleNum")))) {
+									map.put(role.get("viewRoleId") + "", "OS");
+								}else {
+									if (StringUtils.isBlank((String) role.get("shortName"))) {
 									map.put(role.get("viewRoleId") + "", "√");
-								} else {
-									map.put(role.get("viewRoleId") + "", role.get("shortName"));
+									}else {
+										map.put(role.get("viewRoleId") + "", role.get("shortName"));
+									}
 								}
 								hasRoleFlag = true;
 								break;

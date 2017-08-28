@@ -455,7 +455,15 @@ public class SettlementController extends BaseController {
 	        		return o1sequence - o2sequence;
 				}
 			});
-        	
+        	for(Map<String, Object> map : settlementInfoMapList) {
+        		String financeSubjParentId = map.get("financeSubjParentId") + "";
+        		if(!financeSubjParentId.equals("0")) {
+	        		map.put("_parentId", map.get("financeSubjParentId"));
+        		}
+        	}
+
+            resultMap.put("total", settlementInfoMapList.size());
+            resultMap.put("rows", settlementInfoMapList);
         	resultMap.put("settleInfoList", settlementInfoMapList);
         	
         	this.sysLogService.saveSysLog(request, "查询费用结算信息", Constants.TERMINAL_PC, 

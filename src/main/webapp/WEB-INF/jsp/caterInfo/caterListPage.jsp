@@ -63,19 +63,32 @@
 									<span class="font14">餐别<span class="right-must-write">*</span></span>
 									<input type="button" id="right-add-icon" rowid="0" class="right-add-icon" onclick="addNewRecord()"/>
 								</th>
-								<th class="width223">人数</th>
-								<th class="width223">份数</th>
+								<th class="width223">
+									<span class="font14">用餐时间</span>
+									<input type="button" id="right-add-icon1" rowid="0" />
+								</th>
+								<th class="width223">
+									<span class="font14">用餐地点</span>
+									<input type="button" id="right-add-icon2" rowid="0" />
+								</th>
+								<th class="width223">当日总人数</th>
+								<th class="width145">份数</th>
 								<th class="width238">金额<span class="right-must-write">*</span></th>
 								<th class="width223">人均</th>
 								<th class="width223">备注</th>
 							</tr>
 							<tr id="totalSumTr">
-								<td colspan="6" class="total-sum-wrap">
+								<td colspan="3" style="border-right-color:transparent;"></td>
+								<td colspan="2" class="total-sum-wrap" style="border-left-color:transparent;border-right-color:transparent;">
 									<span >总人数：</span>
 									<span class="total-people">0</span>
-									<span>合计金额：</span>
-									<span class="total-price">0</span>
-									<span>节约/超支：</span>
+								</td>
+								<td colspan="1" class="total-sum-wrap" style="border-left-color:transparent;border-right-color:transparent;">
+									<span style="padding-right:5px;">合计金额：    <span class="total-price" style="padding-right:5px;">0</span></span>
+									
+								</td>
+								<td colspan="2" class="total-sum-wrap" style="border-left-color:transparent;">
+									<span>人均：</span>
 									<span class="save-over">0</span>
 								</td>
 							</tr>

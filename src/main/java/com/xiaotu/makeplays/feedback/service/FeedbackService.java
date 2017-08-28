@@ -71,6 +71,8 @@ public class FeedbackService {
 //		UserInfoModel fbUserInfo = this.userInfoDao.queryById(feedBackModel.getUserId());
 		//查询需要发送站内信和推送消息的用户
 		List<UserInfoModel> userList = this.userInfoDao.queryUserListForFeedBack(feedbackModel.getUserId());
+		//查询发送消息人的信息
+		UserInfoModel sendMsgUser=this.userInfoDao.queryById(feedbackModel.getUserId());
 		
 		List<String> iosUserTokenList = new ArrayList<String>();
 		List<String> androidTokenList = new ArrayList<String>();
@@ -93,7 +95,8 @@ public class FeedbackService {
 			messageInfo.setBuzId(null);
 			messageInfo.setStatus(MessageInfoStatus.UnRead.getValue());
 			messageInfo.setTitle("用户反馈");
-			messageInfo.setContent("您收到了一条用户反馈，请查看。");//fbUserInfo.getRealName() + "反馈：" + feedBackModel.getMessage()
+			
+			messageInfo.setContent("【用户反馈】"+sendMsgUser.getRealName()+":"+feedbackModel.getMessage());//fbUserInfo.getRealName() + "反馈：" + feedBackModel.getMessage()
 			messageInfo.setRemindTime(new Date());
 			messageInfo.setCreateTime(new Date());
 			messageInfoList.add(messageInfo);
@@ -105,8 +108,8 @@ public class FeedbackService {
 		 * push消息
 		 */
 		String title = "用户反馈";
-		String pushMessage = "您收到了一条用户反馈，请查看。";//fbUserInfo.getRealName() + "反馈：" + feedBackModel.getMessage();
-		
+		//String pushMessage = "您收到了一条用户反馈，请查看。";fbUserInfo.getRealName() + "反馈：" + feedBackModel.getMessage();
+		String pushMessage = "【用户反馈】"+sendMsgUser.getRealName()+":"+feedbackModel.getMessage();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String myTime = sdf.format(new Date());
 		
@@ -272,12 +275,13 @@ public class FeedbackService {
 		feedbackReplyDao.add(feedBackReply);
 		
 		String messageTitle = "反馈答复";
-		String messageContent = "您收到了一条反馈答复，请查看。";
+		String messageContent = "【反馈答复】客服："+reply;
 		
 		List<UserInfoModel> userList = new ArrayList<UserInfoModel>();
 		if(loginUserType == 3) {//普通用户
 			messageTitle = "用户反馈";
-			messageContent = "您收到了一条用户回复，请查看。";
+			UserInfoModel user=this.userInfoDao.queryById(userInfo.getUserId());
+			messageContent = "【用户回复】"+user.getRealName()+":"+reply;
 			
 			//查询需要发送站内信和推送消息的用户
 			userList = this.userInfoDao.queryUserListForFeedBack(userInfo.getUserId());

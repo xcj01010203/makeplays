@@ -24,6 +24,7 @@ import com.xiaotu.makeplays.finance.model.FinancePaymentWayModel;
 import com.xiaotu.makeplays.finance.model.FinanceSettingModel;
 import com.xiaotu.makeplays.finance.model.PaymentInfoModel;
 import com.xiaotu.makeplays.finance.model.PaymentLoanMapModel;
+import com.xiaotu.makeplays.finance.model.constants.BillType;
 import com.xiaotu.makeplays.message.model.MessageInfoModel;
 import com.xiaotu.makeplays.message.model.constants.MessageInfoStatus;
 import com.xiaotu.makeplays.message.model.constants.MessageType;
@@ -410,9 +411,12 @@ public class PaymentInfoService {
 				String newReceipNo = this.getNewReceiptNo(crewId, true, sdf1.format(paymentInfo.getPaymentDate()), paymentInfo.getReceiptNo(), false, true);
     			paymentInfo.setReceiptNo(newReceipNo);
     			paymentInfo.setHasReceipt(true);
+    			//无票改有票，票据种类默认设为普通发票
+    			paymentInfo.setBillType(BillType.CommonReceip.getValue());
+    			this.paymentInfoDao.update(paymentInfo, "paymentId");
 			}
 		}
-    	this.paymentInfoDao.updateBatch(paymentList, "paymentId", PaymentInfoModel.class);
+//    	this.paymentInfoDao.updateBatch(paymentList, "paymentId", PaymentInfoModel.class);
 	}
 	
 	/**

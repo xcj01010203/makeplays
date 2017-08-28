@@ -7,7 +7,9 @@
 .jqx-window {
 	  display: none;
 }
-
+span.over-color {
+	  color: darkorange;
+}
 div.finance-subj-settle-list-div {
 	  width: 100%;
 	  height: 80%;

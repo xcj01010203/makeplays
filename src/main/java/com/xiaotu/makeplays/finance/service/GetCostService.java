@@ -33,6 +33,7 @@ import com.xiaotu.makeplays.finance.model.CurrencyInfoModel;
 import com.xiaotu.makeplays.finance.model.FinancePaymentWayModel;
 import com.xiaotu.makeplays.finance.model.FinanceSettingModel;
 import com.xiaotu.makeplays.finance.model.LoanInfoModel;
+import com.xiaotu.makeplays.finance.model.PaymentFinanSubjMapModel;
 import com.xiaotu.makeplays.finance.model.constants.LoanPaymentWay;
 import com.xiaotu.makeplays.utils.Constants;
 import com.xiaotu.makeplays.utils.DateUtils;
@@ -74,6 +75,15 @@ public class GetCostService {
 	@Autowired
 	private PaymentLoanMapService paymentLoanMapService;
 	
+	private PaymentFinanSubjMapModel paymentFinanSubjMapModel;
+	
+	public PaymentFinanSubjMapModel getPaymentFinanSubjMapModel() {
+		return paymentFinanSubjMapModel;
+	}
+	public void setPaymentFinanSubjMapModel(
+			PaymentFinanSubjMapModel paymentFinanSubjMapModel) {
+		this.paymentFinanSubjMapModel = paymentFinanSubjMapModel;
+	}
 	/**
 	 * 根据合同号判断合同类型    
 	 *  查询结果：worker:职员合同，actor:演员合同 ，produce:制作合同
@@ -129,606 +139,65 @@ public class GetCostService {
 	 * 
 	 * @throws Exception 
 	 */
-	public void saveFinanceInfoFromExcel(Map<String , Object> getCostInfoMap, Map<String, String> FINANCE_MAP, String crewId, Boolean isCover){
-		try {
-			//获取财务科目数据（财务科目名称格式：父科目-子科目）
-			List<FinanceSubjectDto> subjectDtoList = this.financeSubjectService.refreshCachedSubjectList(crewId);
-			
-			//判断当前剧组的财务设置中的票据编号是否是按月分号
-			FinanceSettingModel financeSettingModel = financeSettingService.queryByCrewId(crewId);
-			//判断是否是按月编号
-			Boolean payStatus = financeSettingModel.getPayStatus();
-			
-			//先将数据拆分开（付款、收款、借款）
-			List<Map<String, Object>> payList = new ArrayList<Map<String,Object>>();//付款
-			List<Map<String, Object>> collectList = new ArrayList<Map<String,Object>>();//收款
-			List<Map<String, Object>> loanList = new ArrayList<Map<String,Object>>();//借款信息
-			List<Map<String, Object>> needDealDataList = new ArrayList<Map<String,Object>>();//借款信息
-			
-			//获取当前剧组货币信息   key:货币code  value:货币id
-			Map<String, String> currencyMap  = queryCrewCurrencyCodeIdByCrewId(crewId);
-			
-			//根据剧组id获取该剧组下的付款方式，只针对付款和收款，借款的付款方式为固定的（详情见：LoanPaymentWay)
-			Map<String, String> payOrCollectPaymentWayMap = queryPayOrCollectPaymentWay(crewId);
-			
-			//保存不存在的付款方式
-			List<FinancePaymentWayModel> listPayWay = new ArrayList<FinancePaymentWayModel>();
-			Map<String, String> tempMap = new HashMap<String, String>();//临时存储需要添加的付款方式id，名称避免重复添加
-			
-			//整理excel中的数据  将数据分类为    收款、付款、借款三类数据
-			arrangeSaveInfoFromExcel(crewId, getCostInfoMap, FINANCE_MAP, payList, collectList, loanList, needDealDataList, subjectDtoList);
-			
-			if (needDealDataList.size() > 0) {
-				String errorRowNumber = "";
-				for (Map<String, Object> needDealData : needDealDataList) {
-					int rowNumber = (Integer) needDealData.get("rowNumber");
-					errorRowNumber += rowNumber + "行" + ",";
-				}
-				errorRowNumber = errorRowNumber.substring(0, errorRowNumber.length() - 1);
-				throw new IllegalArgumentException("第" + errorRowNumber + "单据的财务科目在系统中存在多个，请改成“父科目-子科目”的完整格式");
+	public void saveFinanceInfoFromExcel(Map<String , Object> getCostInfoMap, Map<String, String> FINANCE_MAP, String crewId, Boolean isCover) throws Exception{
+		//获取财务科目数据（财务科目名称格式：父科目-子科目）
+		List<FinanceSubjectDto> subjectDtoList = this.financeSubjectService.refreshCachedSubjectList(crewId);
+		
+		//判断当前剧组的财务设置中的票据编号是否是按月分号
+		FinanceSettingModel financeSettingModel = financeSettingService.queryByCrewId(crewId);
+		//判断是否是按月编号
+		Boolean payStatus = financeSettingModel.getPayStatus();
+		
+		//先将数据拆分开（付款、收款、借款）
+		List<Map<String, Object>> payList = new ArrayList<Map<String,Object>>();//付款
+		List<Map<String, Object>> collectList = new ArrayList<Map<String,Object>>();//收款
+		List<Map<String, Object>> loanList = new ArrayList<Map<String,Object>>();//借款信息
+		List<Map<String, Object>> needDealDataList = new ArrayList<Map<String,Object>>();//借款信息
+		
+		//获取当前剧组货币信息   key:货币code  value:货币id
+		Map<String, String> currencyMap  = queryCrewCurrencyCodeIdByCrewId(crewId);
+		
+		//根据剧组id获取该剧组下的付款方式，只针对付款和收款，借款的付款方式为固定的（详情见：LoanPaymentWay)
+		Map<String, String> payOrCollectPaymentWayMap = queryPayOrCollectPaymentWay(crewId);
+		
+		//保存不存在的付款方式
+		List<FinancePaymentWayModel> listPayWay = new ArrayList<FinancePaymentWayModel>();
+		Map<String, String> tempMap = new HashMap<String, String>();//临时存储需要添加的付款方式id，名称避免重复添加
+		
+		//整理excel中的数据  将数据分类为    收款、付款、借款三类数据
+		arrangeSaveInfoFromExcel(crewId, getCostInfoMap, FINANCE_MAP, payList, collectList, loanList, needDealDataList, subjectDtoList);
+		
+		if (needDealDataList.size() > 0) {
+			String errorRowNumber = "";
+			for (Map<String, Object> needDealData : needDealDataList) {
+				int rowNumber = (Integer) needDealData.get("rowNumber");
+				errorRowNumber += rowNumber + "行" + ",";
 			}
-			
-			//保存收款信息
-			//根据 日期，摘要，收付款方，金额判断是否有重复数据     未结算的数据才能支持覆盖
-			if(collectList!=null&&collectList.size()>0){
-				List<CollectionInfoModel>  collectInfoList = collectionInfoService.queryByCrewId(crewId);
-				if(collectInfoList!=null&&collectInfoList.size()>0){
-					List<Map<String, Object>> insertList = new ArrayList<Map<String,Object>>();//保存数据
-					List<Map<String, Object>> updateList = new ArrayList<Map<String,Object>>();//需要更新的数据
-					int columIndex = 3;
-						
-					for(Map<String, Object> mapExcel :collectList){
-						boolean isRepeat = false;
-						String paymentDateExcel = mapExcel.get("receiptDate")!=null?mapExcel.get("receiptDate").toString():"";
-						String payeeNameExcel = mapExcel.get("aimPersonName")!=null?mapExcel.get("aimPersonName").toString():"";
-						String summaryExcel = mapExcel.get("summary")!=null?mapExcel.get("summary").toString():"";
-						String moneyExcel = mapExcel.get("collectMoney")!=null?mapExcel.get("collectMoney").toString():"";
-						
-						//将excel表中的时间格式化为月份
-						String excelMonthDate = "";
-						if (StringUtils.isNotBlank(paymentDateExcel)) {
-							excelMonthDate = paymentDateExcel.substring(0, paymentDateExcel.lastIndexOf("-"));
-						}
-						//取出用户输入的票据编号
-						String receiptNoExcel = mapExcel.get("receiptNo") != null ?mapExcel.get("receiptNo").toString():"";
-						//获取货币编号
-						moneyExcel.replaceAll(Constants.REGEX_EXCEL, ")");
-						String moneyCode = "";
-						if (moneyExcel.contains("(")) {
-							moneyCode = moneyExcel.substring(moneyExcel.indexOf("(")+1, moneyExcel.indexOf(")"));
-						}
-						
-						if (moneyExcel.contains("(")) {
-							moneyExcel = moneyExcel.substring(0, moneyExcel.indexOf("("));
-						}
-						
-						if(StringUtils.isNotBlank(moneyExcel)){
-							moneyExcel = String.valueOf(Double.valueOf(moneyExcel.replaceAll(",", "").replaceAll("，", "")));
-						}
-						mapExcel.put("collectMoney", moneyExcel +"(" + moneyCode +")");
-						
-						for (CollectionInfoModel colModel :collectInfoList) {
-							//收款
-							String collectionId = colModel.getCollectionId();//收款id
-							String paymentDateDB = colModel.getCollectionDate()!=null?new SimpleDateFormat("yyyy-MM-dd").format(colModel.getCollectionDate()):"";//收款时间
-							String payeeNameDB = colModel.getOtherUnit();//收款方
-							String summaryDB = colModel.getSummary();//摘要
-							String moneyDB = colModel.getMoney()!=0.0?String.valueOf(colModel.getMoney()):"";
-							paymentDateExcel = DateUtils.formatToString(paymentDateExcel, columIndex);
-							mapExcel.put("receiptDate", paymentDateExcel);
-							String monthDBDate = colModel.getCollectionDate()!=null?new SimpleDateFormat("yyyy-MM").format(colModel.getCollectionDate()):"";//收款时间
-							
-							/**************在进行其它四个条件比对之前，先根据票据编号比对，如果用户导入的票据编号在库中已存在，就认为是重复数据；否则在比对其它四个条件******************/
-							String receiptNoDB = colModel.getReceiptNo(); 
-							
-							if (payStatus) { //按月编号
-								//判断是否在同一个月内，如果在同一个月内，比较票据编号，否则不比较
-								if (monthDBDate.equals(excelMonthDate)) { //在同一个月内，判断票据编号
-									if (receiptNoDB.equals(receiptNoExcel)) {
-										mapExcel.put("collectionId", collectionId);
-										mapExcel.put("receiptNo", colModel.getReceiptNo());
-										mapExcel.put("createTime", colModel.getCreateTime());
-										updateList.add(mapExcel);
-										isRepeat = true;
-										break;
-									}
-								}
-								
-								//判断四个条件是否一样
-								if(paymentDateDB.equals(paymentDateExcel)&&payeeNameDB.equals(payeeNameExcel)&&summaryDB.equals(summaryExcel)&&moneyDB.equals(moneyExcel)){
-									mapExcel.put("collectionId", collectionId);
-									mapExcel.put("receiptNo", colModel.getReceiptNo());
-									mapExcel.put("createTime", colModel.getCreateTime());
-									updateList.add(mapExcel);
-									isRepeat = true;
-									break;
-								}
-							}else {
-								
-								if (receiptNoDB.equals(receiptNoExcel)) {
-									mapExcel.put("collectionId", collectionId);
-									mapExcel.put("receiptNo", colModel.getReceiptNo());
-									mapExcel.put("createTime", colModel.getCreateTime());
-									updateList.add(mapExcel);
-									isRepeat = true;
-									break;
-								}else {
-									if(paymentDateDB.equals(paymentDateExcel)&&payeeNameDB.equals(payeeNameExcel)&&summaryDB.equals(summaryExcel)&&moneyDB.equals(moneyExcel)){
-										mapExcel.put("collectionId", collectionId);
-										mapExcel.put("receiptNo", colModel.getReceiptNo());
-										mapExcel.put("createTime", colModel.getCreateTime());
-										updateList.add(mapExcel);
-										isRepeat = true;
-										break;
-									}
-								}
-							}
-						}
-						if(!isRepeat){
-							insertList.add(mapExcel);
-						}
-						columIndex ++;
-					}
-					
-					if(isCover){
-						//更新需要覆盖的数据
-						List<CollectionInfoModel> toUpdateCollectionList = new ArrayList<CollectionInfoModel>();
-						int count = 1;
-						for (Map<String, Object> toUpdateData : updateList) {
-							Integer rowNumber = (Integer) toUpdateData.get("rowNumber");
-							
-							String collectionId = (String) toUpdateData.get("collectionId");
-							String receiptNo = (String) toUpdateData.get("receiptNo");
-							String collectionDate = (String) toUpdateData.get("receiptDate");
-							String otherUnit = (String) toUpdateData.get("aimPersonName");
-							String summary = (String) toUpdateData.get("summary");
-							
-							String collectMoneyStr = (String) toUpdateData.get("collectMoney");
-							String[] moneyInfo = getMoneyInfo(collectMoneyStr, currencyMap, rowNumber.toString());
-							Double money = Double.parseDouble(moneyInfo[0]);
-							String currencyId = moneyInfo[1];
-							
-							String paymentWay = (String) toUpdateData.get("paymentWay");
-							String paymentWayId = payOrCollectPaymentWayMap.get(paymentWay);//付款方式id
-							if(StringUtils.isBlank(paymentWayId)){
-								//判断临时map中是否有付款方式信息
-								paymentWayId = tempMap.get(paymentWay);
-								if(StringUtils.isBlank(paymentWayId)){
-									paymentWayId = UUIDUtils.getId();
-									FinancePaymentWayModel financePaymentWayModel = new FinancePaymentWayModel();
-									financePaymentWayModel.setWayId(paymentWayId);
-									financePaymentWayModel.setWayName(paymentWay);
-									financePaymentWayModel.setCreateTime(new Timestamp(System.currentTimeMillis()+(count*1000)));
-									financePaymentWayModel.setCrewId(crewId);
-									
-									listPayWay.add(financePaymentWayModel);
-									tempMap.put(paymentWay, paymentWayId);
-								}
-							}
-							
-							String agent = (String) toUpdateData.get("agent");
-							Date tempDate = (Date) toUpdateData.get("createTime");
-							Date createTime = new Timestamp(tempDate.getTime()+(count*1000));
-							
-							
-							CollectionInfoModel toUpdateCollectionInfo = new CollectionInfoModel();
-							toUpdateCollectionInfo.setCollectionId(collectionId);
-							toUpdateCollectionInfo.setCrewId(crewId);
-							toUpdateCollectionInfo.setReceiptNo(receiptNo);
-							toUpdateCollectionInfo.setCollectionDate(this.sdf1.parse(collectionDate));
-							toUpdateCollectionInfo.setOtherUnit(otherUnit);
-							toUpdateCollectionInfo.setSummary(summary);
-							toUpdateCollectionInfo.setMoney(money);
-							toUpdateCollectionInfo.setCurrencyId(currencyId);
-							toUpdateCollectionInfo.setPaymentWay(paymentWayId);
-							toUpdateCollectionInfo.setAgent(agent);
-							toUpdateCollectionInfo.setCreateTime(createTime);
-							
-							toUpdateCollectionList.add(toUpdateCollectionInfo);
-							
-							count ++;
-						}
-						
-						this.collectionInfoService.updateBatch(toUpdateCollectionList);
-					}
-					//如果不覆盖   保存不重复的数据
-					collectList = insertList;
-				}
-				saveCollectInfo(crewId, collectList, currencyMap, payOrCollectPaymentWayMap, listPayWay, tempMap);
-			}
-			
-			//保存付款单信息
-			//根据 日期，摘要，收付款方，金额判断是否有重复数据     未结算的数据才能支持覆盖
-			if(payList!=null&&payList.size()>0){
-				List<Map<String, Object>> insertList = new ArrayList<Map<String,Object>>();//需要保存的数据  tab_payment_info
-				List<Map<String, Object>> insertMap = new ArrayList<Map<String,Object>>();//需要保存的数据  tab_payment_finanSubj_map，
-				List<Map<String, Object>> updateList = new ArrayList<Map<String,Object>>();//需要修改的数据  主要是tab_payment_info 
-				List<String> delList = new ArrayList<String>();//删除tab_payment_finanSubj_map中的数据
-				Set<String> mapids = new HashSet<String>();
-				List<Map<String, Object>>  paymentInfoList = paymentInfoService.queryByCrewIdAndStatus(crewId);
-				
-				//取出库中所有的票据编号
-				List<String> receiptNoDBList = new ArrayList<String>();
-				for (Map<String, Object> map : paymentInfoList) {
-					String receiptNoDB = (String) map.get("receiptNo");
-					if (!receiptNoDBList.contains(receiptNoDB)) {
-						receiptNoDBList.add(receiptNoDB);
-					}
-				}
-				
-				
-				if(paymentInfoList!=null&&paymentInfoList.size()>0){
-					int payIndex = 3;
-					//日期，摘要，收付款方，金额 四个字段如果值一样则判断为重复
-					for(Map<String, Object> mapExcel :payList){//excel数据
-						Set<String> keyset = mapExcel.keySet();
-						Iterator<String> eIt = keyset.iterator();
-						
-						List<Map<String, Object>> insertpaymentTabList = new ArrayList<Map<String,Object>>();
-						String  receiptNo = "";
-						while(eIt.hasNext()){
-							receiptNo = eIt.next();
-							List<Map<String, Object>> listMap = (List<Map<String, Object>>)mapExcel.get(receiptNo);
-							double totalMoney = 0.0;
-							for(Map<String, Object> innerMap :listMap){
-								boolean isRepeat = false;
-								String paymentDateExcel = innerMap.get("receiptDate")!=null?innerMap.get("receiptDate").toString():"";
-								String payeeNameExcel = innerMap.get("aimPersonName")!=null?innerMap.get("aimPersonName").toString():"";
-								String summaryExcel = innerMap.get("summary")!=null?innerMap.get("summary").toString():"";
-								String moneyExcel = innerMap.get("payedMoney")!=null?innerMap.get("payedMoney").toString():"0";
-								
-								//将excel表中的时间格式化为月份
-								String excelMonthDate = "";
-								if (StringUtils.isNotBlank(paymentDateExcel)) {
-									excelMonthDate = paymentDateExcel.substring(0, paymentDateExcel.lastIndexOf("-"));
-								}
-
-								//获取货币编号
-								moneyExcel.replaceAll(Constants.REGEX_EXCEL, ")");
-								String moneyCode = "";
-								if (moneyExcel.contains("(")) {
-									moneyCode = moneyExcel.substring(moneyExcel.indexOf("(")+1, moneyExcel.indexOf(")"));
-								}
-								
-								//取出用户输入的票据编号
-								String receiptNoExcel = "";
-								if (StringUtils.isNotBlank(receiptNo)) {
-									receiptNoExcel = receiptNo;
-								}
-								
-								if (moneyExcel.contains("(")) {
-									moneyExcel = moneyExcel.substring(0, moneyExcel.indexOf("("));
-								}
-								
-								if(StringUtils.isNotBlank(moneyExcel)){
-									moneyExcel = String.valueOf(Double.valueOf(moneyExcel.replaceAll(",", "").replaceAll("，", "")));
-								}
-								
-								if (totalMoney == 0.0) {
-									totalMoney = Double.parseDouble(moneyExcel);
-								}else {
-									totalMoney = totalMoney + Double.parseDouble(moneyExcel);
-								}
-								innerMap.put("totalMoney", moneyExcel);
-								innerMap.put("payedMoney", moneyExcel+"("+ moneyCode +")");
-								for(Map<String, Object> mapDB :paymentInfoList){//数据库数据
-									String mapId = mapDB.get("mapId")!=null?mapDB.get("mapId").toString():"";
-									String paymentId = mapDB.get("paymentId")!=null?mapDB.get("paymentId").toString():"";
-									String paymentDateDB = mapDB.get("paymentDate")!=null?mapDB.get("paymentDate").toString():"";
-									String payeeNameDB = mapDB.get("payeeName")!=null?mapDB.get("payeeName").toString():"";
-									String summaryDB = mapDB.get("summary")!=null?mapDB.get("summary").toString():"";
-									String moneyDB = mapDB.get("money")!=null?mapDB.get("money").toString():"0";
-									paymentDateExcel = DateUtils.formatToString(paymentDateExcel, payIndex);
-									innerMap.put("receiptDate", paymentDateExcel);
-									String monthDBDate = mapDB.get("paymentDate")!=null?new SimpleDateFormat("yyyy-MM").format((Date)mapDB.get("paymentDate")):"";//收款时间
-									
-									/**************在进行其它四个条件比对之前，先根据票据编号比对，如果用户导入的票据编号在库中已存在，就认为是重复数据；否则在比对其它四个条件******************/
-									String receiptNoDB = (String) mapDB.get("receiptNo"); 
-									
-									//判断是否按月重新编号
-									if (payStatus) {
-										//判断是否在同一个月内
-										if (monthDBDate.equals(excelMonthDate)) {
-											if (receiptNoDB.equals(receiptNoExcel)) {
-												mapids.add(mapId);//需要删除的数据  主要是tab_payment_finanSubj_map
-												innerMap.put("paymentId", paymentId);
-												insertMap.add(innerMap);//需要保存的数据  主要是tab_payment_finanSubj_map
-												updateList.add(innerMap);//需要修改的数据  主要是tab_payment_info
-												isRepeat = true;
-												break;
-											}
-										}
-										
-										//判断当前编号在库中是否存在
-										if(!receiptNoDBList.contains(receiptNoExcel) && paymentDateDB.equals(paymentDateExcel)&&payeeNameDB.equals(payeeNameExcel)&&summaryDB.equals(summaryExcel)&&moneyDB.equals(moneyExcel)){
-											mapids.add(mapId);//需要删除的数据  主要是tab_payment_finanSubj_map
-											innerMap.put("paymentId", paymentId);
-											insertMap.add(innerMap);//需要保存的数据  主要是tab_payment_finanSubj_map
-											updateList.add(innerMap);//需要修改的数据  主要是tab_payment_info
-											isRepeat = true;
-											break;
-										}
-									}else {
-										//先判断票据编号是否重复
-										if (receiptNoDB.equals(receiptNoExcel)) {
-											mapids.add(mapId);//需要删除的数据  主要是tab_payment_finanSubj_map
-											innerMap.put("paymentId", paymentId);
-											insertMap.add(innerMap);//需要保存的数据  主要是tab_payment_finanSubj_map
-											updateList.add(innerMap);//需要修改的数据  主要是tab_payment_info
-											isRepeat = true;
-											break;
-											
-										}else {
-											if(!receiptNoDBList.contains(receiptNoExcel) && paymentDateDB.equals(paymentDateExcel)&&payeeNameDB.equals(payeeNameExcel)&&summaryDB.equals(summaryExcel)&&moneyDB.equals(moneyExcel)){
-												mapids.add(mapId);//需要删除的数据  主要是tab_payment_finanSubj_map
-												innerMap.put("paymentId", paymentId);
-												insertMap.add(innerMap);//需要保存的数据  主要是tab_payment_finanSubj_map
-												updateList.add(innerMap);//需要修改的数据  主要是tab_payment_info
-												isRepeat = true;
-												break;
-											}
-										}
-									}
-									
-								}
-								if(!isRepeat){
-									insertpaymentTabList.add(innerMap);
-								}
-							}
-						}
-						
-						if(insertpaymentTabList.size()>0){
-							Map<String, Object> inserpaymentTabMap = new HashMap<String, Object>();
-							inserpaymentTabMap.put(receiptNo, insertpaymentTabList);
-							insertList.add(inserpaymentTabMap);
-						}
-						
-						payIndex ++;
-					}
-					 
-					if(isCover){
-						//覆盖   删除原有数据添加新数据
-						//删除tab_payment_finanSubj_map
-						String delSql = "delete from tab_payment_finanSubj_map where paymentId = ?";
-						List<Object[]> paramsDel = new ArrayList<Object[]>();
-						for(Map<String, Object> innmap :updateList){
-							//根据付款单的id删除关联的借款单信息
-							String paymentId = (String) innmap.get("paymentId");//付款id
-							if (!delList.contains(paymentId)) {
-								delList.add(paymentId);
-							}
-						}
-						for(String paymentId :delList){
-							Object[] oo = new Object[]{paymentId};
-							paramsDel.add(oo);
-						}
-						//删除原有数据
-						getCostDao.getJdbcTemplate().batchUpdate(delSql, paramsDel);					
-						
-						//删除付款单关联的借款单信息
-						for(Map<String, Object> innmap :updateList){
-							//根据付款单的id删除关联的借款单信息
-							String paymentId = (String) innmap.get("paymentId");//付款id
-							paymentLoanMapService.deleteByPaymentId(crewId, paymentId);
-						}
-						
-						//insert map 数据
-						String insertMapSql = "insert into tab_payment_finanSubj_map (mapId,paymentId,financeSubjId,summary,money,crewId,financeSubjName) values(?,?,?,?,?,?,?)";
-						
-						List<Object[]> parmInsertMap = new ArrayList<Object[]>();
-						for(Map<String, Object> innmap :insertMap){
-							String rowNumber = 	innmap.get("rowNumber")!=null?innmap.get("rowNumber").toString():""; 
-							//获取剧组财务科目id
-							String financeSubjName = innmap.get("financeSubjName")!=null?innmap.get("financeSubjName").toString():"";
-							String financeSubjId = this.getFinanSubjIdByLevelNames(crewId, financeSubjName, rowNumber, subjectDtoList);
-							
-							if(StringUtils.isBlank(financeSubjId)){
-								throw new IllegalArgumentException("当前剧组中不存在名为：["+financeSubjName+"]的财务科目层级");
-							}
-							//整理付款金额
-							String money = innmap.get("payedMoney")!=null?innmap.get("payedMoney").toString():"";
-							Pattern pattern = Pattern.compile(Constants.REGEX_EXCEL);
-							Matcher matcher = pattern.matcher(money);
-							if(matcher.find()){
-								money = matcher.group(1);
-							}
-							if(StringUtils.isNotBlank(money)){
-								money = String.valueOf(Double.valueOf(money.replaceAll(",", "").replaceAll("，", "")));
-							}
-							
-							Object[] oo = new Object[7];
-							oo[0] = UUIDUtils.getId();//主键
-							oo[1] = innmap.get("paymentId");//付款id
-							oo[2] = financeSubjId;//财务科目id
-							oo[3] = innmap.get("summary");//摘要
-							oo[4] = money;//付款金额
-							oo[5] = crewId;//剧组id
-							oo[6] = financeSubjName;//财务科目名称
-							parmInsertMap.add(oo);
-						}
-						getCostDao.getJdbcTemplate().batchUpdate(insertMapSql, parmInsertMap);	
-						
-						//修改tab_payment_info
-						
-						String updateSql = "update tab_payment_info set contractId =? ,contractType = ? ,currencyId = ? , paymentWay = ? , hasReceipt = ? , billCount = ? , agent = ?, totalMoney = ?, payeeName = ?,department = ? where paymentid = ?";
-						
-						List<Object[]> parmUpdateList = new ArrayList<Object[]>();
-						Map<String, Object> maxMoneyMap = new HashMap<String, Object>();
-						
-						for(int i =0 ; i<updateList.size(); i++) {
-							Map<String, Object> firstMap = updateList.get(i);
-							double allMoney = 0.0;
-							//判断当前map是否遍历
-							boolean isForeach = false;
-							Object isForeachObject = updateList.get(i).get("isForeach");
-							if (isForeachObject != null) {
-								isForeach = (Boolean) updateList.get(i).get("isForeach");
-							}
-							if (!isForeach) {
-								for (int j = updateList.size()-1; j > i; j--) {
-									Map<String, Object> secondMap = updateList.get(j);
-									String firstMoneyExcel = firstMap.get("totalMoney")!=null?firstMap.get("totalMoney").toString():"0";
-									String firstPaymentStr = (String) firstMap.get("paymentId");//付款id
-									
-									String secondMoneyExcel = secondMap.get("totalMoney")!=null?secondMap.get("totalMoney").toString():"0";
-									String secondPaymentStr = (String) secondMap.get("paymentId");//付款id
-									if (firstPaymentStr.equals(secondPaymentStr)) {
-										if (allMoney == 0.0) {
-											allMoney = Double.parseDouble(firstMoneyExcel);
-										}
-										secondMap.put("isForeach", true);
-										allMoney = allMoney + Double.parseDouble(secondMoneyExcel);
-										if (!maxMoneyMap.containsKey(firstPaymentStr)) {
-											maxMoneyMap.put(firstPaymentStr, allMoney);
-										}else {
-											//取出总金额，存入最大金额
-											double maxMoney = 0.0;
-											String maxMoneyStr = maxMoneyMap.get(firstPaymentStr)+"";
-											if (maxMoneyStr != null) {
-												maxMoney = Double.parseDouble(maxMoneyStr);
-											}
-											
-											if (maxMoney < allMoney) {
-												maxMoneyMap.put(firstPaymentStr, allMoney);
-											}
-										}
-									}
-								}
-							}
-						}
-						
-						for (Map<String, Object> innmap : updateList) {
-							//取出付款单id
-							String paymentIDStr = innmap.get("paymentId")+"";
-							if (maxMoneyMap.containsKey(paymentIDStr)) {
-								//取出总金额
-								Object maxMoney = maxMoneyMap.get(paymentIDStr);
-								innmap.put("totalMoney", maxMoney);
-							}
-						}
-						
-						for(Map<String, Object> innmap :updateList){
-							String rowNumber = 	innmap.get("rowNumber")!=null?innmap.get("rowNumber").toString():""; 
-							//合同号
-							int contractType = 0;
-							String contractId = "";
-							String contractNo = innmap.get("contractNo")!=null?innmap.get("contractNo").toString():"";
-							if(StringUtils.isNotBlank(contractNo)){
-								String rowStr = innmap.get("rowNumber")!=null?innmap.get("rowNumber").toString():"";
-								//获取合同类型
-								Map<String, Object> contractMap = queryContractInfoForContractType(crewId,contractNo,rowStr);
-								contractType = contractMap.get("contractType")!=null?Integer.valueOf(contractMap.get("contractType").toString()):0;
-								contractId = contractMap.get("contractId")!=null?contractMap.get("contractId").toString():"";
-								if(0==contractType){
-									
-									throw new IllegalArgumentException("第"+rowStr+"行，合同号：【"+contractNo+"】在数据库中不存在");
-								}
-							}
-							
-							//发票张数
-							int billCount = 0;
-							try {
-								billCount = innmap.get("billCount")!=null?StringUtils.isNotBlank(innmap.get("billCount").toString())?Integer.valueOf(innmap.get("billCount").toString()):0:0;
-							} catch (Exception e) {
-								throw new IllegalArgumentException("第"+rowNumber+"行，票据张数必须为数字");
-							}
-							
-							//有无发票
-							int hasReceipt = 0;//无发票
-							String ifReceiveBill = innmap.get("hasReceipt")!=null?innmap.get("hasReceipt").toString():"";
-							if("有发票".equals(ifReceiveBill)){
-								hasReceipt = 1;//有发票
-							} else {
-								billCount = 0;
-							}
-							
-							
-							String payedMoney = innmap.get("payedMoney")!=null?innmap.get("payedMoney").toString():"";
-							String[] moneyInfo = getMoneyInfo(payedMoney,currencyMap,rowNumber);
-							//货币id
-							String currencyId = moneyInfo[1];
-							
-							String paymentWay=innmap.get("paymentWay").toString();
-							String wayid = payOrCollectPaymentWayMap.get(paymentWay);
-							if(StringUtils.isBlank(wayid)){
-								//判断临时map中是否有付款方式信息
-								wayid = tempMap.get(paymentWay);
-								if(StringUtils.isBlank(wayid)){
-									wayid = UUIDUtils.getId();
-									FinancePaymentWayModel financePaymentWayModel = new FinancePaymentWayModel();
-									financePaymentWayModel.setWayId(wayid);
-									financePaymentWayModel.setWayName(paymentWay);
-									financePaymentWayModel.setCreateTime(new Timestamp(System.currentTimeMillis()));
-									financePaymentWayModel.setCrewId(crewId);
-									
-									listPayWay.add(financePaymentWayModel);
-									tempMap.put(paymentWay, wayid);
-								}
-							}
-							
-							//整理付款金额
-							String money = innmap.get("totalMoney")!=null?innmap.get("totalMoney").toString():"";
-							/*Pattern pattern = Pattern.compile(Constants.REGEX_EXCEL);
-							Matcher matcher = pattern.matcher(money);
-							if(matcher.find()){
-								money = matcher.group(1);
-							}*/
-							if(StringUtils.isNotBlank(money)){
-								money = String.valueOf(Double.valueOf(money.replaceAll(",", "").replaceAll("，", "")));
-							}
-							
-							//收款人姓名
-							String payeeName = innmap.get("aimPersonName")!=null?innmap.get("aimPersonName").toString():"";
-							
-							//部门
-							String department = innmap.get("department")== null?"":innmap.get("department").toString();
-							Object[] oo = new Object[11];
-							oo[0] = contractId;//合同id
-							oo[1] = contractType;//合同类型
-							oo[2] = currencyId;//货币id
-							oo[3] = wayid;//付款方式
-							oo[4] = hasReceipt;//是否有发票
-							oo[5] = billCount;//发票张数
-							oo[6] = innmap.get("agent");//经办人
-							oo[7] = money;  //总金额
-							oo[8] = payeeName; //收款人姓名
-							oo[9] = department; //部门
-							oo[10] = innmap.get("paymentId");//付款id
-							parmUpdateList.add(oo);
-						}
-						getCostDao.getJdbcTemplate().batchUpdate(updateSql, parmUpdateList);	
-						
-						
-					}
-					//   添加不重复数据
-					payList = insertList;
-					
-				}
-				//保存付款信息
-				savePaymentInfo(crewId, payList, currencyMap, payOrCollectPaymentWayMap, listPayWay, tempMap, subjectDtoList);
-			}
-			
-			//保存借款单信息
-			if(loanList!=null&&loanList.size()>0){
+			errorRowNumber = errorRowNumber.substring(0, errorRowNumber.length() - 1);
+			throw new IllegalArgumentException("第" + errorRowNumber + "单据的财务科目在系统中存在多个，请改成“父科目-子科目”的完整格式");
+		}
+		
+		//保存收款信息
+		//根据 日期，摘要，收付款方，金额判断是否有重复数据     未结算的数据才能支持覆盖
+		if(collectList!=null&&collectList.size()>0){
+			List<CollectionInfoModel>  collectInfoList = collectionInfoService.queryByCrewId(crewId);
+			if(collectInfoList!=null&&collectInfoList.size()>0){
 				List<Map<String, Object>> insertList = new ArrayList<Map<String,Object>>();//保存数据
-				List<Map<String, Object>> updateList = new ArrayList<Map<String, Object>>();//删除数据
-				
-				//根据 日期，摘要，收付款方，金额判断是否有重复数据     未结算的数据才能支持覆盖
-				List<LoanInfoModel>  loanInfoList = loanInfoService.queryByCrewId(crewId);
-				int loanIndex = 3;
-				for(Map<String, Object> mapExcel :loanList){
+				List<Map<String, Object>> updateList = new ArrayList<Map<String,Object>>();//需要更新的数据
+				int columIndex = 3;
+					
+				for(Map<String, Object> mapExcel :collectList){
 					boolean isRepeat = false;
 					String paymentDateExcel = mapExcel.get("receiptDate")!=null?mapExcel.get("receiptDate").toString():"";
 					String payeeNameExcel = mapExcel.get("aimPersonName")!=null?mapExcel.get("aimPersonName").toString():"";
 					String summaryExcel = mapExcel.get("summary")!=null?mapExcel.get("summary").toString():"";
-					String moneyExcel = mapExcel.get("payedMoney")!=null?mapExcel.get("payedMoney").toString():"";
+					String moneyExcel = mapExcel.get("collectMoney")!=null?mapExcel.get("collectMoney").toString():"";
 					
 					//将excel表中的时间格式化为月份
 					String excelMonthDate = "";
 					if (StringUtils.isNotBlank(paymentDateExcel)) {
 						excelMonthDate = paymentDateExcel.substring(0, paymentDateExcel.lastIndexOf("-"));
 					}
-					
 					//取出用户输入的票据编号
 					String receiptNoExcel = mapExcel.get("receiptNo") != null ?mapExcel.get("receiptNo").toString():"";
 					//获取货币编号
@@ -745,36 +214,595 @@ public class GetCostService {
 					if(StringUtils.isNotBlank(moneyExcel)){
 						moneyExcel = String.valueOf(Double.valueOf(moneyExcel.replaceAll(",", "").replaceAll("，", "")));
 					}
-					mapExcel.put("payedMoney", moneyExcel+"("+ moneyCode +")");
+					mapExcel.put("collectMoney", moneyExcel +"(" + moneyCode +")");
 					
-					for(LoanInfoModel loModel :loanInfoList){
-						//借款
-						String loanerId = loModel.getLoanId();//借款id
-						String paymentDateDB = loModel.getLoanDate()!=null?new SimpleDateFormat("yyyy-MM-dd").format(loModel.getLoanDate()):"";//借款时间
-						String payeeNameDB = loModel.getPayeeName();//收款方
-						String summaryDB = loModel.getSummary();//摘要
-						String moneyDB = loModel.getMoney()!=0.0?String.valueOf(loModel.getMoney()):"";
-						paymentDateExcel = DateUtils.formatToString(paymentDateExcel, loanIndex);
+					for (CollectionInfoModel colModel :collectInfoList) {
+						//收款
+						String collectionId = colModel.getCollectionId();//收款id
+						String paymentDateDB = colModel.getCollectionDate()!=null?new SimpleDateFormat("yyyy-MM-dd").format(colModel.getCollectionDate()):"";//收款时间
+						String payeeNameDB = colModel.getOtherUnit();//收款方
+						String summaryDB = colModel.getSummary();//摘要
+						String moneyDB = colModel.getMoney()!=0.0?String.valueOf(colModel.getMoney()):"";
+						paymentDateExcel = DateUtils.formatToString(paymentDateExcel, columIndex);
 						mapExcel.put("receiptDate", paymentDateExcel);
-						String monthDBDate = loModel.getLoanDate()!=null?new SimpleDateFormat("yyyy-MM").format(loModel.getLoanDate()):"";//借款时间
+						String monthDBDate = colModel.getCollectionDate()!=null?new SimpleDateFormat("yyyy-MM").format(colModel.getCollectionDate()):"";//收款时间
 						
 						/**************在进行其它四个条件比对之前，先根据票据编号比对，如果用户导入的票据编号在库中已存在，就认为是重复数据；否则在比对其它四个条件******************/
-						String receiptNoDB = loModel.getReceiptNo();
+						String receiptNoDB = colModel.getReceiptNo(); 
 						
-						//判断是否是按月重新编号
-						if (payStatus) {
-							//判断是否在同一个月内
-							if (excelMonthDate.equals(monthDBDate)) {
+						if (payStatus) { //按月编号
+							//判断是否在同一个月内，如果在同一个月内，比较票据编号，否则不比较
+							if (monthDBDate.equals(excelMonthDate)) { //在同一个月内，判断票据编号
 								if (receiptNoDB.equals(receiptNoExcel)) {
-									mapExcel.put("loanId", loModel.getLoanId());
-									mapExcel.put("receiptNo", loModel.getReceiptNo());
-									mapExcel.put("createTime", loModel.getCreateTime());
+									mapExcel.put("collectionId", collectionId);
+									mapExcel.put("receiptNo", colModel.getReceiptNo());
+									mapExcel.put("createTime", colModel.getCreateTime());
 									updateList.add(mapExcel);
 									isRepeat = true;
 									break;
 								}
 							}
-							//判断四个条件是否满足
+							
+							//判断四个条件是否一样
+							if(paymentDateDB.equals(paymentDateExcel)&&payeeNameDB.equals(payeeNameExcel)&&summaryDB.equals(summaryExcel)&&moneyDB.equals(moneyExcel)){
+								mapExcel.put("collectionId", collectionId);
+								mapExcel.put("receiptNo", colModel.getReceiptNo());
+								mapExcel.put("createTime", colModel.getCreateTime());
+								updateList.add(mapExcel);
+								isRepeat = true;
+								break;
+							}
+						}else {
+							
+							if (receiptNoDB.equals(receiptNoExcel)) {
+								mapExcel.put("collectionId", collectionId);
+								mapExcel.put("receiptNo", colModel.getReceiptNo());
+								mapExcel.put("createTime", colModel.getCreateTime());
+								updateList.add(mapExcel);
+								isRepeat = true;
+								break;
+							}else {
+								if(paymentDateDB.equals(paymentDateExcel)&&payeeNameDB.equals(payeeNameExcel)&&summaryDB.equals(summaryExcel)&&moneyDB.equals(moneyExcel)){
+									mapExcel.put("collectionId", collectionId);
+									mapExcel.put("receiptNo", colModel.getReceiptNo());
+									mapExcel.put("createTime", colModel.getCreateTime());
+									updateList.add(mapExcel);
+									isRepeat = true;
+									break;
+								}
+							}
+						}
+					}
+					if(!isRepeat){
+						insertList.add(mapExcel);
+					}
+					columIndex ++;
+				}
+				
+				if(isCover){
+					//更新需要覆盖的数据
+					List<CollectionInfoModel> toUpdateCollectionList = new ArrayList<CollectionInfoModel>();
+					int count = 1;
+					for (Map<String, Object> toUpdateData : updateList) {
+						Integer rowNumber = (Integer) toUpdateData.get("rowNumber");
+						
+						String collectionId = (String) toUpdateData.get("collectionId");
+						String receiptNo = (String) toUpdateData.get("receiptNo");
+						String collectionDate = (String) toUpdateData.get("receiptDate");
+						String otherUnit = (String) toUpdateData.get("aimPersonName");
+						String summary = (String) toUpdateData.get("summary");
+						
+						String collectMoneyStr = (String) toUpdateData.get("collectMoney");
+						String[] moneyInfo = getMoneyInfo(collectMoneyStr, currencyMap, rowNumber.toString());
+						Double money = Double.parseDouble(moneyInfo[0]);
+						String currencyId = moneyInfo[1];
+						
+						String paymentWay = (String) toUpdateData.get("paymentWay");
+						String paymentWayId = payOrCollectPaymentWayMap.get(paymentWay);//付款方式id
+						if(StringUtils.isBlank(paymentWayId)){
+							//判断临时map中是否有付款方式信息
+							paymentWayId = tempMap.get(paymentWay);
+							if(StringUtils.isBlank(paymentWayId)){
+								paymentWayId = UUIDUtils.getId();
+								FinancePaymentWayModel financePaymentWayModel = new FinancePaymentWayModel();
+								financePaymentWayModel.setWayId(paymentWayId);
+								financePaymentWayModel.setWayName(paymentWay);
+								financePaymentWayModel.setCreateTime(new Timestamp(System.currentTimeMillis()+(count*1000)));
+								financePaymentWayModel.setCrewId(crewId);
+								
+								listPayWay.add(financePaymentWayModel);
+								tempMap.put(paymentWay, paymentWayId);
+							}
+						}
+						
+						String agent = (String) toUpdateData.get("agent");
+						Date tempDate = (Date) toUpdateData.get("createTime");
+						Date createTime = new Timestamp(tempDate.getTime()+(count*1000));
+						
+						
+						CollectionInfoModel toUpdateCollectionInfo = new CollectionInfoModel();
+						toUpdateCollectionInfo.setCollectionId(collectionId);
+						toUpdateCollectionInfo.setCrewId(crewId);
+						toUpdateCollectionInfo.setReceiptNo(receiptNo);
+						toUpdateCollectionInfo.setCollectionDate(this.sdf1.parse(collectionDate));
+						toUpdateCollectionInfo.setOtherUnit(otherUnit);
+						toUpdateCollectionInfo.setSummary(summary);
+						toUpdateCollectionInfo.setMoney(money);
+						toUpdateCollectionInfo.setCurrencyId(currencyId);
+						toUpdateCollectionInfo.setPaymentWay(paymentWayId);
+						toUpdateCollectionInfo.setAgent(agent);
+						toUpdateCollectionInfo.setCreateTime(createTime);
+						
+						toUpdateCollectionList.add(toUpdateCollectionInfo);
+						
+						count ++;
+					}
+					
+					this.collectionInfoService.updateBatch(toUpdateCollectionList);
+				}
+				//如果不覆盖   保存不重复的数据
+				collectList = insertList;
+			}
+			saveCollectInfo(crewId, collectList, currencyMap, payOrCollectPaymentWayMap, listPayWay, tempMap);
+		}
+		
+		//保存付款单信息
+		//根据 日期，摘要，收付款方，金额判断是否有重复数据     未结算的数据才能支持覆盖
+		if(payList!=null&&payList.size()>0){
+			List<Map<String, Object>> insertList = new ArrayList<Map<String,Object>>();//需要保存的数据  tab_payment_info
+			List<Map<String, Object>> insertMap = new ArrayList<Map<String,Object>>();//需要保存的数据  tab_payment_finanSubj_map，
+			List<Map<String, Object>> updateList = new ArrayList<Map<String,Object>>();//需要修改的数据  主要是tab_payment_info 
+			List<String> delList = new ArrayList<String>();//删除tab_payment_finanSubj_map中的数据
+			Set<String> mapids = new HashSet<String>();
+			List<Map<String, Object>>  paymentInfoList = paymentInfoService.queryByCrewIdAndStatus(crewId);
+			
+			//取出库中所有的票据编号
+			List<String> receiptNoDBList = new ArrayList<String>();
+			for (Map<String, Object> map : paymentInfoList) {
+				String receiptNoDB = (String) map.get("receiptNo");
+				if (!receiptNoDBList.contains(receiptNoDB)) {
+					receiptNoDBList.add(receiptNoDB);
+				}
+			}
+			
+			
+			if(paymentInfoList!=null&&paymentInfoList.size()>0){
+				int payIndex = 3;
+				//日期，摘要，收付款方，金额 四个字段如果值一样则判断为重复
+				for(Map<String, Object> mapExcel :payList){//excel数据
+					Set<String> keyset = mapExcel.keySet();
+					Iterator<String> eIt = keyset.iterator();
+					
+					List<Map<String, Object>> insertpaymentTabList = new ArrayList<Map<String,Object>>();
+					String  receiptNo = "";
+					while(eIt.hasNext()){
+						receiptNo = eIt.next();
+						List<Map<String, Object>> listMap = (List<Map<String, Object>>)mapExcel.get(receiptNo);
+						double totalMoney = 0.0;
+						for(Map<String, Object> innerMap :listMap){
+							boolean isRepeat = false;
+							String paymentDateExcel = innerMap.get("receiptDate")!=null?innerMap.get("receiptDate").toString():"";
+							String payeeNameExcel = innerMap.get("aimPersonName")!=null?innerMap.get("aimPersonName").toString():"";
+							String summaryExcel = innerMap.get("summary")!=null?innerMap.get("summary").toString():"";
+							String moneyExcel = innerMap.get("payedMoney")!=null?innerMap.get("payedMoney").toString():"0";
+							
+							//将excel表中的时间格式化为月份
+							String excelMonthDate = "";
+							if (StringUtils.isNotBlank(paymentDateExcel)) {
+								excelMonthDate = paymentDateExcel.substring(0, paymentDateExcel.lastIndexOf("-"));
+							}
+
+							//获取货币编号
+							moneyExcel.replaceAll(Constants.REGEX_EXCEL, ")");
+							String moneyCode = "";
+							if (moneyExcel.contains("(")) {
+								moneyCode = moneyExcel.substring(moneyExcel.indexOf("(")+1, moneyExcel.indexOf(")"));
+							}
+							
+							//取出用户输入的票据编号
+							String receiptNoExcel = "";
+							if (StringUtils.isNotBlank(receiptNo)) {
+								receiptNoExcel = receiptNo;
+							}
+							
+							if (moneyExcel.contains("(")) {
+								moneyExcel = moneyExcel.substring(0, moneyExcel.indexOf("("));
+							}
+							
+							if(StringUtils.isNotBlank(moneyExcel)){
+								moneyExcel = String.valueOf(Double.valueOf(moneyExcel.replaceAll(",", "").replaceAll("，", "")));
+								
+								if (totalMoney == 0.0) {
+									totalMoney = Double.parseDouble(moneyExcel);
+								}else {
+									totalMoney = totalMoney + Double.parseDouble(moneyExcel);
+								}
+							}
+							innerMap.put("totalMoney", moneyExcel);
+							innerMap.put("payedMoney", moneyExcel+"("+ moneyCode +")");
+							for(Map<String, Object> mapDB :paymentInfoList){//数据库数据
+								String mapId = mapDB.get("mapId")!=null?mapDB.get("mapId").toString():"";
+								String paymentId = mapDB.get("paymentId")!=null?mapDB.get("paymentId").toString():"";
+								String paymentDateDB = mapDB.get("paymentDate")!=null?mapDB.get("paymentDate").toString():"";
+								String payeeNameDB = mapDB.get("payeeName")!=null?mapDB.get("payeeName").toString():"";
+								String summaryDB = mapDB.get("summary")!=null?mapDB.get("summary").toString():"";
+								String moneyDB = mapDB.get("money")!=null?mapDB.get("money").toString():"0";
+								paymentDateExcel = DateUtils.formatToString(paymentDateExcel, payIndex);
+								innerMap.put("receiptDate", paymentDateExcel);
+								String monthDBDate = mapDB.get("paymentDate")!=null?new SimpleDateFormat("yyyy-MM").format((Date)mapDB.get("paymentDate")):"";//收款时间
+								
+								/**************在进行其它四个条件比对之前，先根据票据编号比对，如果用户导入的票据编号在库中已存在，就认为是重复数据；否则在比对其它四个条件******************/
+								String receiptNoDB = (String) mapDB.get("receiptNo"); 
+								
+								//判断是否按月重新编号
+								if (payStatus) {
+									//判断是否在同一个月内
+									if (monthDBDate.equals(excelMonthDate)) {
+										if (receiptNoDB.equals(receiptNoExcel)) {
+											mapids.add(mapId);//需要删除的数据  主要是tab_payment_finanSubj_map
+											innerMap.put("paymentId", paymentId);
+											insertMap.add(innerMap);//需要保存的数据  主要是tab_payment_finanSubj_map
+											updateList.add(innerMap);//需要修改的数据  主要是tab_payment_info
+											isRepeat = true;
+											break;
+										}
+									}
+									
+									//判断当前编号在库中是否存在
+									if(!receiptNoDBList.contains(receiptNoExcel) && paymentDateDB.equals(paymentDateExcel)&&payeeNameDB.equals(payeeNameExcel)&&summaryDB.equals(summaryExcel)&&moneyDB.equals(moneyExcel)){
+										mapids.add(mapId);//需要删除的数据  主要是tab_payment_finanSubj_map
+										innerMap.put("paymentId", paymentId);
+										insertMap.add(innerMap);//需要保存的数据  主要是tab_payment_finanSubj_map
+										updateList.add(innerMap);//需要修改的数据  主要是tab_payment_info
+										isRepeat = true;
+										break;
+									}
+								}else {
+									//先判断票据编号是否重复
+									if (receiptNoDB.equals(receiptNoExcel)) {
+										mapids.add(mapId);//需要删除的数据  主要是tab_payment_finanSubj_map
+										innerMap.put("paymentId", paymentId);
+										insertMap.add(innerMap);//需要保存的数据  主要是tab_payment_finanSubj_map
+										updateList.add(innerMap);//需要修改的数据  主要是tab_payment_info
+										isRepeat = true;
+										break;
+										
+									}else {
+										if(!receiptNoDBList.contains(receiptNoExcel) && paymentDateDB.equals(paymentDateExcel)&&payeeNameDB.equals(payeeNameExcel)&&summaryDB.equals(summaryExcel)&&moneyDB.equals(moneyExcel)){
+											mapids.add(mapId);//需要删除的数据  主要是tab_payment_finanSubj_map
+											innerMap.put("paymentId", paymentId);
+											insertMap.add(innerMap);//需要保存的数据  主要是tab_payment_finanSubj_map
+											updateList.add(innerMap);//需要修改的数据  主要是tab_payment_info
+											isRepeat = true;
+											break;
+										}
+									}
+								}
+								
+							}
+							if(!isRepeat){
+								insertpaymentTabList.add(innerMap);
+							}
+						}
+					}
+					
+					if(insertpaymentTabList.size()>0){
+						Map<String, Object> inserpaymentTabMap = new HashMap<String, Object>();
+						inserpaymentTabMap.put(receiptNo, insertpaymentTabList);
+						insertList.add(inserpaymentTabMap);
+					}
+					
+					payIndex ++;
+				}
+				 
+				if(isCover){
+					//覆盖   删除原有数据添加新数据
+					//删除tab_payment_finanSubj_map
+					String delSql = "delete from tab_payment_finanSubj_map where paymentId = ?";
+					List<Object[]> paramsDel = new ArrayList<Object[]>();
+					for(Map<String, Object> innmap :updateList){
+						//根据付款单的id删除关联的借款单信息
+						String paymentId = (String) innmap.get("paymentId");//付款id
+						if (!delList.contains(paymentId)) {
+							delList.add(paymentId);
+						}
+					}
+					for(String paymentId :delList){
+						Object[] oo = new Object[]{paymentId};
+						paramsDel.add(oo);
+					}
+					//删除原有数据
+					getCostDao.getJdbcTemplate().batchUpdate(delSql, paramsDel);					
+					
+					//删除付款单关联的借款单信息
+					for(Map<String, Object> innmap :updateList){
+						//根据付款单的id删除关联的借款单信息
+						String paymentId = (String) innmap.get("paymentId");//付款id
+						paymentLoanMapService.deleteByPaymentId(crewId, paymentId);
+					}
+					
+					//insert map 数据
+					String insertMapSql = "insert into tab_payment_finanSubj_map (mapId,paymentId,financeSubjId,summary,money,crewId,financeSubjName) values(?,?,?,?,?,?,?)";
+					
+					List<Object[]> parmInsertMap = new ArrayList<Object[]>();
+					for(Map<String, Object> innmap :insertMap){
+						String rowNumber = 	innmap.get("rowNumber")!=null?innmap.get("rowNumber").toString():""; 
+						//获取剧组财务科目id
+						String financeSubjName = innmap.get("financeSubjName")!=null?innmap.get("financeSubjName").toString():"";
+						String financeSubjId = this.getFinanSubjIdByLevelNames(crewId, financeSubjName, rowNumber, subjectDtoList);
+						
+						if(StringUtils.isBlank(financeSubjId)){
+							throw new IllegalArgumentException("当前剧组中不存在名为：["+financeSubjName+"]的财务科目层级");
+						}
+						//整理付款金额
+						String money = innmap.get("payedMoney")!=null?innmap.get("payedMoney").toString():"";
+						Pattern pattern = Pattern.compile(Constants.REGEX_EXCEL);
+						Matcher matcher = pattern.matcher(money);
+						if(matcher.find()){
+							money = matcher.group(1);
+						}
+						if(StringUtils.isNotBlank(money)){
+							money = String.valueOf(Double.valueOf(money.replaceAll(",", "").replaceAll("，", "")));
+						}
+						
+						Object[] oo = new Object[7];
+						oo[0] = UUIDUtils.getId();//主键
+						oo[1] = innmap.get("paymentId");//付款id
+						oo[2] = financeSubjId;//财务科目id
+						oo[3] = innmap.get("summary");//摘要
+						oo[4] = money;//付款金额
+						oo[5] = crewId;//剧组id
+						oo[6] = financeSubjName;//财务科目名称
+						parmInsertMap.add(oo);
+					}
+					getCostDao.getJdbcTemplate().batchUpdate(insertMapSql, parmInsertMap);	
+					
+					//修改tab_payment_info
+					
+					String updateSql = "update tab_payment_info set contractId =? ,contractType = ? ,currencyId = ? , paymentWay = ? , hasReceipt = ? , billCount = ? , agent = ?, totalMoney = ?, payeeName = ?,department = ? where paymentid = ?";
+					
+					List<Object[]> parmUpdateList = new ArrayList<Object[]>();
+					Map<String, Object> maxMoneyMap = new HashMap<String, Object>();
+					
+					for(int i =0 ; i<updateList.size(); i++) {
+						Map<String, Object> firstMap = updateList.get(i);
+						double allMoney = 0.0;
+						//判断当前map是否遍历
+						boolean isForeach = false;
+						Object isForeachObject = updateList.get(i).get("isForeach");
+						if (isForeachObject != null) {
+							isForeach = (Boolean) updateList.get(i).get("isForeach");
+						}
+						if (!isForeach) {
+							for (int j = updateList.size()-1; j > i; j--) {
+								Map<String, Object> secondMap = updateList.get(j);
+								String firstMoneyExcel = firstMap.get("totalMoney")!=null?firstMap.get("totalMoney").toString():"0";
+								String firstPaymentStr = (String) firstMap.get("paymentId");//付款id
+								
+								String secondMoneyExcel = secondMap.get("totalMoney")!=null?secondMap.get("totalMoney").toString():"0";
+								String secondPaymentStr = (String) secondMap.get("paymentId");//付款id
+								if (firstPaymentStr.equals(secondPaymentStr)) {
+									if (allMoney == 0.0) {
+										allMoney = Double.parseDouble(firstMoneyExcel);
+									}
+									secondMap.put("isForeach", true);
+									allMoney = allMoney + Double.parseDouble(secondMoneyExcel);
+									if (!maxMoneyMap.containsKey(firstPaymentStr)) {
+										maxMoneyMap.put(firstPaymentStr, allMoney);
+									}else {
+										//取出总金额，存入最大金额
+										double maxMoney = 0.0;
+										String maxMoneyStr = maxMoneyMap.get(firstPaymentStr)+"";
+										if (maxMoneyStr != null) {
+											maxMoney = Double.parseDouble(maxMoneyStr);
+										}
+										
+										if (maxMoney < allMoney) {
+											maxMoneyMap.put(firstPaymentStr, allMoney);
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					for (Map<String, Object> innmap : updateList) {
+						//取出付款单id
+						String paymentIDStr = innmap.get("paymentId")+"";
+						if (maxMoneyMap.containsKey(paymentIDStr)) {
+							//取出总金额
+							Object maxMoney = maxMoneyMap.get(paymentIDStr);
+							innmap.put("totalMoney", maxMoney);
+						}
+					}
+					
+					for(Map<String, Object> innmap :updateList){
+						String rowNumber = 	innmap.get("rowNumber")!=null?innmap.get("rowNumber").toString():""; 
+						//合同号
+						int contractType = 0;
+						String contractId = "";
+						String contractNo = innmap.get("contractNo")!=null?innmap.get("contractNo").toString():"";
+						if(StringUtils.isNotBlank(contractNo)){
+							String rowStr = innmap.get("rowNumber")!=null?innmap.get("rowNumber").toString():"";
+							//获取合同类型
+							Map<String, Object> contractMap = queryContractInfoForContractType(crewId,contractNo,rowStr);
+							contractType = contractMap.get("contractType")!=null?Integer.valueOf(contractMap.get("contractType").toString()):0;
+							contractId = contractMap.get("contractId")!=null?contractMap.get("contractId").toString():"";
+							if(0==contractType){
+								
+								throw new IllegalArgumentException("第"+rowStr+"行，合同号：【"+contractNo+"】在数据库中不存在");
+							}
+						}
+						
+						//发票张数
+						int billCount = 0;
+						try {
+							billCount = innmap.get("billCount")!=null?StringUtils.isNotBlank(innmap.get("billCount").toString())?Integer.valueOf(innmap.get("billCount").toString()):0:0;
+						} catch (Exception e) {
+							throw new IllegalArgumentException("第"+rowNumber+"行，票据张数必须为数字");
+						}
+						
+						//有无发票
+						int hasReceipt = 0;//无发票
+						String ifReceiveBill = innmap.get("hasReceipt")!=null?innmap.get("hasReceipt").toString():"";
+						if("有发票".equals(ifReceiveBill)){
+							hasReceipt = 1;//有发票
+						} else {
+							billCount = 0;
+						}
+						
+						
+						String payedMoney = innmap.get("payedMoney")!=null?innmap.get("payedMoney").toString():"";
+						String[] moneyInfo = getMoneyInfo(payedMoney,currencyMap,rowNumber);
+						//货币id
+						String currencyId = moneyInfo[1];
+						
+						String paymentWay=innmap.get("paymentWay").toString();
+						String wayid = payOrCollectPaymentWayMap.get(paymentWay);
+						if(StringUtils.isBlank(wayid)){
+							//判断临时map中是否有付款方式信息
+							wayid = tempMap.get(paymentWay);
+							if(StringUtils.isBlank(wayid)){
+								wayid = UUIDUtils.getId();
+								FinancePaymentWayModel financePaymentWayModel = new FinancePaymentWayModel();
+								financePaymentWayModel.setWayId(wayid);
+								financePaymentWayModel.setWayName(paymentWay);
+								financePaymentWayModel.setCreateTime(new Timestamp(System.currentTimeMillis()));
+								financePaymentWayModel.setCrewId(crewId);
+								
+								listPayWay.add(financePaymentWayModel);
+								tempMap.put(paymentWay, wayid);
+							}
+						}
+						
+						//整理付款金额
+						String money = innmap.get("totalMoney")!=null?innmap.get("totalMoney").toString():"";
+						/*Pattern pattern = Pattern.compile(Constants.REGEX_EXCEL);
+						Matcher matcher = pattern.matcher(money);
+						if(matcher.find()){
+							money = matcher.group(1);
+						}*/
+						if(StringUtils.isNotBlank(money)){
+							money = String.valueOf(Double.valueOf(money.replaceAll(",", "").replaceAll("，", "")));
+						}
+						
+						//收款人姓名
+						String payeeName = innmap.get("aimPersonName")!=null?innmap.get("aimPersonName").toString():"";
+						
+						//部门
+						String department = innmap.get("department")== null?"":innmap.get("department").toString();
+						Object[] oo = new Object[11];
+						oo[0] = contractId;//合同id
+						oo[1] = contractType;//合同类型
+						oo[2] = currencyId;//货币id
+						oo[3] = wayid;//付款方式
+						oo[4] = hasReceipt;//是否有发票
+						oo[5] = billCount;//发票张数
+						oo[6] = innmap.get("agent");//经办人
+						oo[7] = money;  //总金额
+						oo[8] = payeeName; //收款人姓名
+						oo[9] = department; //部门
+						oo[10] = innmap.get("paymentId");//付款id
+						parmUpdateList.add(oo);
+					}
+					getCostDao.getJdbcTemplate().batchUpdate(updateSql, parmUpdateList);	
+					
+					
+				}
+				//   添加不重复数据
+				payList = insertList;
+				
+			}
+			//保存付款信息
+			savePaymentInfo(crewId, payList, currencyMap, payOrCollectPaymentWayMap, listPayWay, tempMap, subjectDtoList);
+		}
+		
+		//保存借款单信息
+		if(loanList!=null&&loanList.size()>0){
+			List<Map<String, Object>> insertList = new ArrayList<Map<String,Object>>();//保存数据
+			List<Map<String, Object>> updateList = new ArrayList<Map<String, Object>>();//删除数据
+			
+			//根据 日期，摘要，收付款方，金额判断是否有重复数据     未结算的数据才能支持覆盖
+			List<LoanInfoModel>  loanInfoList = loanInfoService.queryByCrewId(crewId);
+			int loanIndex = 3;
+			for(Map<String, Object> mapExcel :loanList){
+				boolean isRepeat = false;
+				String paymentDateExcel = mapExcel.get("receiptDate")!=null?mapExcel.get("receiptDate").toString():"";
+				String payeeNameExcel = mapExcel.get("aimPersonName")!=null?mapExcel.get("aimPersonName").toString():"";
+				String summaryExcel = mapExcel.get("summary")!=null?mapExcel.get("summary").toString():"";
+				String moneyExcel = mapExcel.get("payedMoney")!=null?mapExcel.get("payedMoney").toString():"";
+				
+				//将excel表中的时间格式化为月份
+				String excelMonthDate = "";
+				if (StringUtils.isNotBlank(paymentDateExcel)) {
+					excelMonthDate = paymentDateExcel.substring(0, paymentDateExcel.lastIndexOf("-"));
+				}
+				
+				//取出用户输入的票据编号
+				String receiptNoExcel = mapExcel.get("receiptNo") != null ?mapExcel.get("receiptNo").toString():"";
+				//获取货币编号
+				moneyExcel.replaceAll(Constants.REGEX_EXCEL, ")");
+				String moneyCode = "";
+				if (moneyExcel.contains("(")) {
+					moneyCode = moneyExcel.substring(moneyExcel.indexOf("(")+1, moneyExcel.indexOf(")"));
+				}
+				
+				if (moneyExcel.contains("(")) {
+					moneyExcel = moneyExcel.substring(0, moneyExcel.indexOf("("));
+				}
+				
+				if(StringUtils.isNotBlank(moneyExcel)){
+					moneyExcel = String.valueOf(Double.valueOf(moneyExcel.replaceAll(",", "").replaceAll("，", "")));
+				}
+				mapExcel.put("payedMoney", moneyExcel+"("+ moneyCode +")");
+				
+				for(LoanInfoModel loModel :loanInfoList){
+					//借款
+					String loanerId = loModel.getLoanId();//借款id
+					String paymentDateDB = loModel.getLoanDate()!=null?new SimpleDateFormat("yyyy-MM-dd").format(loModel.getLoanDate()):"";//借款时间
+					String payeeNameDB = loModel.getPayeeName();//收款方
+					String summaryDB = loModel.getSummary();//摘要
+					String moneyDB = loModel.getMoney()!=0.0?String.valueOf(loModel.getMoney()):"";
+					paymentDateExcel = DateUtils.formatToString(paymentDateExcel, loanIndex);
+					mapExcel.put("receiptDate", paymentDateExcel);
+					String monthDBDate = loModel.getLoanDate()!=null?new SimpleDateFormat("yyyy-MM").format(loModel.getLoanDate()):"";//借款时间
+					
+					/**************在进行其它四个条件比对之前，先根据票据编号比对，如果用户导入的票据编号在库中已存在，就认为是重复数据；否则在比对其它四个条件******************/
+					String receiptNoDB = loModel.getReceiptNo();
+					
+					//判断是否是按月重新编号
+					if (payStatus) {
+						//判断是否在同一个月内
+						if (excelMonthDate.equals(monthDBDate)) {
+							if (receiptNoDB.equals(receiptNoExcel)) {
+								mapExcel.put("loanId", loModel.getLoanId());
+								mapExcel.put("receiptNo", loModel.getReceiptNo());
+								mapExcel.put("createTime", loModel.getCreateTime());
+								updateList.add(mapExcel);
+								isRepeat = true;
+								break;
+							}
+						}
+						//判断四个条件是否满足
+						if(paymentDateDB.equals(paymentDateExcel)&&payeeNameDB.equals(payeeNameExcel)&&summaryDB.equals(summaryExcel)&&moneyDB.equals(moneyExcel)){
+							mapExcel.put("loanId", loModel.getLoanId());
+							mapExcel.put("receiptNo", loModel.getReceiptNo());
+							mapExcel.put("createTime", loModel.getCreateTime());
+							
+							updateList.add(mapExcel);
+							isRepeat = true;
+							break;
+						}
+					}else {
+						if (receiptNoDB.equals(receiptNoExcel)) {
+							mapExcel.put("loanId", loModel.getLoanId());
+							mapExcel.put("receiptNo", loModel.getReceiptNo());
+							mapExcel.put("createTime", loModel.getCreateTime());
+							
+							updateList.add(mapExcel);
+							isRepeat = true;
+							break;
+						}else {
 							if(paymentDateDB.equals(paymentDateExcel)&&payeeNameDB.equals(payeeNameExcel)&&summaryDB.equals(summaryExcel)&&moneyDB.equals(moneyExcel)){
 								mapExcel.put("loanId", loModel.getLoanId());
 								mapExcel.put("receiptNo", loModel.getReceiptNo());
@@ -784,99 +812,75 @@ public class GetCostService {
 								isRepeat = true;
 								break;
 							}
-						}else {
-							if (receiptNoDB.equals(receiptNoExcel)) {
-								mapExcel.put("loanId", loModel.getLoanId());
-								mapExcel.put("receiptNo", loModel.getReceiptNo());
-								mapExcel.put("createTime", loModel.getCreateTime());
-								
-								updateList.add(mapExcel);
-								isRepeat = true;
-								break;
-							}else {
-								if(paymentDateDB.equals(paymentDateExcel)&&payeeNameDB.equals(payeeNameExcel)&&summaryDB.equals(summaryExcel)&&moneyDB.equals(moneyExcel)){
-									mapExcel.put("loanId", loModel.getLoanId());
-									mapExcel.put("receiptNo", loModel.getReceiptNo());
-									mapExcel.put("createTime", loModel.getCreateTime());
-									
-									updateList.add(mapExcel);
-									isRepeat = true;
-									break;
-								}
-							}
 						}
-						
-					}
-					if(!isRepeat){
-						insertList.add(mapExcel);
 					}
 					
-					loanIndex ++;
 				}
-				if(isCover){
-					int count = 1;
-					List<LoanInfoModel> toUpdateLoanInfoList = new ArrayList<LoanInfoModel>();
-					for (Map<String, Object> toUpdateData : updateList) {
-						Integer rowNumber = (Integer) toUpdateData.get("rowNumber");
-						
-						String loanId = (String) toUpdateData.get("loanId");
-						String receiptNo = (String) toUpdateData.get("receiptNo");
-						String loanDate = (String) toUpdateData.get("receiptDate");
-						String payeeName = (String) toUpdateData.get("aimPersonName");
-						String summary = (String) toUpdateData.get("summary");
-						
-						String payedMoney = (String) toUpdateData.get("payedMoney");
-						String[] moneyInfo = getMoneyInfo(payedMoney, currencyMap, rowNumber.toString());
-						Double money = Double.parseDouble(moneyInfo[0]);
-						String currencyId = moneyInfo[1];
-						
-						String paymentWayStr = (String) toUpdateData.get("paymentWay");
-						if (!paymentWayStr.equals("现金") && !paymentWayStr.equals("现金（网转）") && !paymentWayStr.equals("银行")) {
-							throw new IllegalArgumentException("第" + rowNumber + "行付款方式只能为【现金,现金（网转）,银行】之一");
-						}
-						int paymentWay = LoanPaymentWay.nameOf(paymentWayStr).getValue();
-						String agent = (String) toUpdateData.get("agent");
-						Date tempDate = (Date) toUpdateData.get("createTime");
-						Date createTime =  new Timestamp(tempDate.getTime()+(count*1000));
-						
-						String finanSubjName = (String) toUpdateData.get("financeSubjName");
-						String financeSubjId = null;
-						
-						if (StringUtils.isNotBlank(finanSubjName)) {
-							financeSubjId = this.getFinanSubjIdByLevelNames(crewId, finanSubjName, rowNumber.toString(), subjectDtoList);
-						}
-						
-						LoanInfoModel toUpdateLoanInfo = new LoanInfoModel();
-						toUpdateLoanInfo.setLoanId(loanId);
-						toUpdateLoanInfo.setCrewId(crewId);
-						toUpdateLoanInfo.setReceiptNo(receiptNo);
-						toUpdateLoanInfo.setLoanDate(this.sdf1.parse(loanDate));
-						toUpdateLoanInfo.setPayeeName(payeeName);
-						toUpdateLoanInfo.setSummary(summary);
-						toUpdateLoanInfo.setMoney(money);
-						toUpdateLoanInfo.setCurrencyId(currencyId);
-						toUpdateLoanInfo.setPaymentWay(paymentWay);
-						toUpdateLoanInfo.setAgent(agent);
-						toUpdateLoanInfo.setCreateTime(createTime);
-						toUpdateLoanInfo.setFinanceSubjId(financeSubjId);
-						toUpdateLoanInfo.setFinanceSubjName(finanSubjName);
-						
-						toUpdateLoanInfoList.add(toUpdateLoanInfo);
-					}
-					
-					this.loanInfoService.updateBatch(toUpdateLoanInfoList);
+				if(!isRepeat){
+					insertList.add(mapExcel);
 				}
-				loanList = insertList;
-				saveloanInfo(crewId, loanList, currencyMap, subjectDtoList);
+				
+				loanIndex ++;
 			}
-			
-			//保存该剧组的付款方式
-			savePayOrCollectPayment(listPayWay);
-		} catch(IllegalArgumentException ie){
-			throw new IllegalArgumentException(ie.getMessage());
-		}catch (Exception e) {
-			throw new IllegalArgumentException("未知异常",e);
+			if(isCover){
+				int count = 1;
+				List<LoanInfoModel> toUpdateLoanInfoList = new ArrayList<LoanInfoModel>();
+				for (Map<String, Object> toUpdateData : updateList) {
+					Integer rowNumber = (Integer) toUpdateData.get("rowNumber");
+					
+					String loanId = (String) toUpdateData.get("loanId");
+					String receiptNo = (String) toUpdateData.get("receiptNo");
+					String loanDate = (String) toUpdateData.get("receiptDate");
+					String payeeName = (String) toUpdateData.get("aimPersonName");
+					String summary = (String) toUpdateData.get("summary");
+					
+					String payedMoney = (String) toUpdateData.get("payedMoney");
+					String[] moneyInfo = getMoneyInfo(payedMoney, currencyMap, rowNumber.toString());
+					Double money = Double.parseDouble(moneyInfo[0]);
+					String currencyId = moneyInfo[1];
+					
+					String paymentWayStr = (String) toUpdateData.get("paymentWay");
+					if (!paymentWayStr.equals("现金") && !paymentWayStr.equals("现金（网转）") && !paymentWayStr.equals("银行")) {
+						throw new IllegalArgumentException("第" + rowNumber + "行付款方式只能为【现金,现金（网转）,银行】之一");
+					}
+					int paymentWay = LoanPaymentWay.nameOf(paymentWayStr).getValue();
+					String agent = (String) toUpdateData.get("agent");
+					Date tempDate = (Date) toUpdateData.get("createTime");
+					Date createTime =  new Timestamp(tempDate.getTime()+(count*1000));
+					
+					String finanSubjName = (String) toUpdateData.get("financeSubjName");
+					String financeSubjId = null;
+					
+					if (StringUtils.isNotBlank(finanSubjName)) {
+						financeSubjId = this.getFinanSubjIdByLevelNames(crewId, finanSubjName, rowNumber.toString(), subjectDtoList);
+					}
+					
+					LoanInfoModel toUpdateLoanInfo = new LoanInfoModel();
+					toUpdateLoanInfo.setLoanId(loanId);
+					toUpdateLoanInfo.setCrewId(crewId);
+					toUpdateLoanInfo.setReceiptNo(receiptNo);
+					toUpdateLoanInfo.setLoanDate(this.sdf1.parse(loanDate));
+					toUpdateLoanInfo.setPayeeName(payeeName);
+					toUpdateLoanInfo.setSummary(summary);
+					toUpdateLoanInfo.setMoney(money);
+					toUpdateLoanInfo.setCurrencyId(currencyId);
+					toUpdateLoanInfo.setPaymentWay(paymentWay);
+					toUpdateLoanInfo.setAgent(agent);
+					toUpdateLoanInfo.setCreateTime(createTime);
+					toUpdateLoanInfo.setFinanceSubjId(financeSubjId);
+					toUpdateLoanInfo.setFinanceSubjName(finanSubjName);
+					
+					toUpdateLoanInfoList.add(toUpdateLoanInfo);
+				}
+				
+				this.loanInfoService.updateBatch(toUpdateLoanInfoList);
+			}
+			loanList = insertList;
+			saveloanInfo(crewId, loanList, currencyMap, subjectDtoList);
 		}
+		
+		//保存该剧组的付款方式
+		savePayOrCollectPayment(listPayWay);
 	}
 
 	/**
@@ -965,6 +969,10 @@ public class GetCostService {
 			for(Map<String, Object> inMap :datalist){
 				++rowNumber; 
 				inMap.put("rowNumber", rowNumber);
+				String paymentDate = inMap.get("receiptDate")!=null?inMap.get("receiptDate").toString():"";//付款日期
+				if(StringUtils.isBlank(paymentDate)) {
+					throw new IllegalArgumentException("第"+rowNumber+"行，日期不能为空");
+				}
 				String identifierNum = inMap.get("receiptNo")!=null?inMap.get("receiptNo").toString():"";//财务票据编号
 				if(StringUtils.isBlank(identifierNum)){
 					throw new IllegalArgumentException("第"+rowNumber+"行，票据编号不能为空");
@@ -997,6 +1005,8 @@ public class GetCostService {
 					String payeeName = inMap.get("aimPersonName")!=null?inMap.get("aimPersonName").toString():"";//收付款人
 					String summary = inMap.get("summary")!=null?inMap.get("summary").toString():"";//摘要
 					String money = inMap.get("collectMoney")!=null?inMap.get("collectMoney").toString():"";//收款金额
+					String agent = (String) inMap.get("agent"); //记账人
+					String billType = (String) inMap.get("billType"); //票据种类
 					
 					if (tempStr == "") {
 						tempStr = paymentDate + payeeName + summary+ money;
@@ -1005,27 +1015,37 @@ public class GetCostService {
 					if(identifierNum.equals(innerIdentifierNum) /*||  tempStr.equals(paymentDate + payeeName + summary+ money)*/){
 						String formType = inMap.get("formType")!=null?inMap.get("formType").toString():"";//财务类型    收款、付款、借款
 						tempStr = paymentDate + payeeName + summary+ money;
-						
-						if (StringUtils.isBlank(paymentWay)) {
-							throw new IllegalArgumentException("第"+rowStr+"行，付款方式不能为空");
-						}
 						//校验付款方式填写是否正确
 						String wayid = payOrCollectPaymentWayMap.get(paymentWay);
 						/*if (StringUtils.isBlank(wayid)) {
 							throw new IllegalArgumentException("第"+rowStr+"行，付款方式不存在，请修改");
 						}*/
-						
-						if(!"收款单".equals(formType)&&!"付款单".equals(formType)&&!"借款单".equals(formType)){
-							throw new IllegalArgumentException("第"+rowStr+"行，财务类型信息异常，财务类型为【收款单、付款单、借款单】");
-						}
+
 						
 						if(StringUtils.isBlank(formType)){
 							throw new IllegalArgumentException("第"+rowStr+"行，财务类型信息不能为空");
 						}
+						if(!"收款单".equals(formType)&&!"付款单".equals(formType)&&!"借款单".equals(formType)){
+							throw new IllegalArgumentException("第"+rowStr+"行，财务类型信息异常，财务类型为【收款单、付款单、借款单】");
+						}						
+						if (StringUtils.isBlank(payeeName)) {
+							throw new IllegalArgumentException("第"+rowStr+"行，收/付款方不能为空");
+						}
+						if (StringUtils.isBlank(paymentWay)) {
+							throw new IllegalArgumentException("第"+rowStr+"行，付款方式不能为空");
+						}
 						if (!StringUtils.isBlank(hasReceipt)) {
 							if (!hasReceipt.equals("有发票") && !hasReceipt.equals("无发票")&& !hasReceipt.equals("/")) {
-								throw new IllegalArgumentException("有无发票必须为“有发票”或者“无发票”");
+								throw new IllegalArgumentException("付款单有无发票必须为“有发票”或者“无发票”，收款单、借款单填“/”");
 							}
+						} else {
+							throw new IllegalArgumentException("第"+rowStr+"行，有无发票不能为空，必须为“有发票”、“无发票”、“/”");
+						}						
+						if(StringUtils.isNotBlank(billType)&&!billType.equals("普通发票")&&!billType.equals("增值税发票")){
+							throw new IllegalArgumentException("第"+rowStr+"行，票据种类必须为“普通发票”或者“增值税发票”");
+						}
+						if (StringUtils.isBlank(agent)) {
+							throw new IllegalArgumentException("第"+rowStr+"行，记账人不能为空");
 						}
 						if(payType.size()!=0){
 							int beforeSize = payType.size();
@@ -1126,12 +1146,13 @@ public class GetCostService {
 					+ "paymentWay,"
 					+ "hasReceipt,"
 					+ "billCount,"
+					+ "billType,"
 					+ "agent,"
 					+ "status,"
 					+ "createtime,"
 					+ "crewId,"
 					+ "department"
-					+ ") values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					+ ") values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			//财务科目和付款信息对照表
 			 String insertPayentFinanSubjMapSql = "insert into tab_payment_finanSubj_map(mapId,paymentId,financeSubjId,summary,money,crewId,financeSubjName) values(?,?,?,?,?,?,?)";
 			List<Object[]> insertPaymentSqlToPaymentParams = new ArrayList<Object[]>();//插入主表的参数集合
@@ -1163,6 +1184,7 @@ public class GetCostService {
 					String paymentWay = "";//支付方式,默认现金
 					int hasReceipt = 0;//是否有票据
 					int billCount = 0;//票据张数
+					Integer billType = 1; //票据种类
 					String agent = "";//经办人
 					String department = ""; //部门
 					//tab_payment_info中字段值
@@ -1190,6 +1212,20 @@ public class GetCostService {
 						paymentDate = innerMap.get("receiptDate")!=null?innerMap.get("receiptDate").toString():"";
 						//有无发票
 						String ifReceiveBill = innerMap.get("hasReceipt")!=null?innerMap.get("hasReceipt").toString():"";
+						
+						if(StringUtils.isBlank(ifReceiveBill)) {
+							throw new IllegalArgumentException("第"+rowNumber+"行，有无发票不能为空");
+						} else {
+							if("有发票".equals(ifReceiveBill)){
+								hasReceipt = 1;
+								hasReceiveBill = true;
+							} else if("无发票".equals(ifReceiveBill)){
+								billCount = 0;
+								hasReceiveBill = false;
+							} else {
+								throw new IllegalArgumentException("第"+rowNumber+"行，有无发票必须为“有发票”或者“无发票”");
+							}
+						}
 						//发票张数
 						try {
 							billCount = innerMap.get("billCount")!=null?StringUtils.isNotBlank(innerMap.get("billCount").toString())?Integer.valueOf(innerMap.get("billCount").toString()):0:0;
@@ -1197,12 +1233,19 @@ public class GetCostService {
 							throw new IllegalArgumentException("第"+rowNumber+"行，票据张数必须为数字");
 						}
 						
-						if(StringUtils.isNotBlank(ifReceiveBill)&&"有发票".equals(ifReceiveBill)){
-							hasReceipt = 1;
-							hasReceiveBill = true;
+						String myBillType = (String) innerMap.get("billType");
+						if(!hasReceiveBill) {
+							billType = null;
 						} else {
-							billCount = 0;
-							hasReceiveBill = false;
+							if(StringUtils.isBlank(myBillType)) {
+								billType = 1;
+							} else {
+								if(myBillType.equals("普通发票")) {
+									billType = 1;
+								} else if(myBillType.equals("增值税发票")) {
+									billType = 2;
+								}
+							}
 						}
 						//摘要
 						String summary = innerMap.get("summary")!=null?innerMap.get("summary").toString():"";
@@ -1284,7 +1327,7 @@ public class GetCostService {
 					}
 					
 					//主表（tab_payment_info）参数信息
-					Object[] arg = new Object[16];
+					Object[] arg = new Object[17];
 					arg[0] = paymentId;//'付款信息ID',
 					arg[1] = receiptNo;//'票据编号',
 					arg[2] = paymentDate;//'付款日期',
@@ -1296,11 +1339,12 @@ public class GetCostService {
 					arg[8] = wayid;//'财务付款方式',
 					arg[9] = hasReceipt;//'有无发票。0：无；1：有',
 					arg[10] = billCount;//'单据张数',
-					arg[11] = agent;//'经办人',
-					arg[12] = 0;//'状态。0：未结算；1：已结算',
-					arg[13] = new Timestamp(System.currentTimeMillis()+(count*1000));//'创建时间',
-					arg[14] = crewId;//'剧组ID',
-					arg[15] = department;//部门
+					arg[11] = billType;//'单据类型',
+					arg[12] = agent;//'经办人',
+					arg[13] = 0;//'状态。0：未结算；1：已结算',
+					arg[14] = new Timestamp(System.currentTimeMillis()+(count*1000));//'创建时间',
+					arg[15] = crewId;//'剧组ID',
+					arg[16] = department;//部门
 					insertPaymentSqlToPaymentParams.add(arg);
 				}
 			}
@@ -1363,10 +1407,13 @@ public class GetCostService {
 				
 				//获取剧组财务科目id
 				String financeSubjName = innerMap.get("financeSubjName")!=null?innerMap.get("financeSubjName").toString():"";
-				String financeSubjId = this.getFinanSubjIdByLevelNames(crewId, financeSubjName, rowNumber, subjectDtoList);
-				
-				if(StringUtils.isBlank(financeSubjId)){
-					throw new IllegalArgumentException("当前剧组中不存在名为：["+financeSubjName+"]的财务科目层级");
+				String financeSubjId = "";
+				if(StringUtils.isNotBlank(financeSubjName)) {
+					financeSubjId = this.getFinanSubjIdByLevelNames(crewId, financeSubjName, rowNumber, subjectDtoList);
+					
+					if(StringUtils.isBlank(financeSubjId)){
+						throw new IllegalArgumentException("当前剧组中不存在名为：["+financeSubjName+"]的财务科目层级");
+					}
 				}
 				Object[] arg = new Object[13];
 				arg[0] = UUIDUtils.getId();//id
@@ -1748,6 +1795,7 @@ public class GetCostService {
 	 * exchangeRate	币种汇率
 	 * contractNo	关联的合同编码
 	 * contractName	关联的合同名称
+	 * @param isQueryFinanceSubjPayment 是否是查询财务科目支付明细
 	 */
 	public List<Map<String, Object>> queryFinanceRunningAccount(String crewId, boolean includePayment, 
 			boolean includeCollection, boolean includeLoan, 

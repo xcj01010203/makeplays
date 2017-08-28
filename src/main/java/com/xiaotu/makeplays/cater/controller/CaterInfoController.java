@@ -174,9 +174,14 @@ public class CaterInfoController extends BaseController{
 			String crewId = this.getCrewId(request);
 			
 			//调用service的方法
-			List<Map<String,Object>> list = this.caterMoneyInfoService.queryCaterTypeByCrewId(crewId);
+			//获取用餐类型
+			List<Map<String,Object>>  lis=this.caterMoneyInfoService.queryCaterTypeByCrewId(crewId);
+			//获取用餐时间，用餐地点
+			List<List<Map<String,Object>>> list = this.caterMoneyInfoService.queryCaterTimeAddrByCrewId(crewId);
 			
-			resultMap.put("caterTypeList", list);
+			resultMap.put("caterTypeList", lis);
+			resultMap.put("caterTimeTypeList", list.get(0));
+			resultMap.put("caterAddrList", list.get(1));
 		} catch (Exception e) {
 			success = false;
 			message = "未知错误，查询失败";

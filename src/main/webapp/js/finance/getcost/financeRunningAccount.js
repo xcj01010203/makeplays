@@ -381,6 +381,22 @@ function loadFinanceRunning(){
 		html.join("");
 		return html;
 	};
+	
+	//票据种类
+	billTypeRenderer = function(columnfield, value, columnproperties, rowdata){
+		var html = [];
+		if(rowdata.hasReceipt== 1 && rowdata.billType != null){
+			if(rowdata.billType==1) {
+				html.push("<div class='jqx-column column-align-center'>普通发票</div>");
+			} else if (rowdata.billType==2) {
+				html.push("<div class='jqx-column column-align-center'>增值税发票</div>");
+			}
+		}else{
+			html.push("<div class='jqx-column column-align-center'></div>");
+		}
+		html.join("");
+		return html;
+	};
 	//记账
 	agentRenderer = function(columnfield, value, columnproperties, rowdata){
 		var html = [];
@@ -407,6 +423,7 @@ function loadFinanceRunning(){
 			{text: "付款方式", datafield:'paymentWay',cellsrenderer: paymentWayRenderer, width: '160px', cellsAlign: 'center', align: 'center', sortable: false},
 			{text: "有无发票", datafield: 'hasReceipt', cellsrenderer: hasReceiptRenderer, width: '70px', cellsAlign: 'center', align: 'center', sortable: false},
 			{text: "票据张数", datafield:'billCount',cellsrenderer: billCountRenderer, width: '70px', cellsAlign: 'center', align: 'center', sortable: false},
+			{text: "票据种类", datafield:'billType',cellsrenderer: billTypeRenderer, width: '90px', cellsAlign: 'center', align: 'center', sortable: false},
 			{text: "记账", datafield:'agent',cellsrenderer: agentRenderer, width: '120px', cellsAlign: 'center', align: 'center', sortable: false}		
     );
     rendertoolbar = function (toolbar){

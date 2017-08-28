@@ -1,11 +1,13 @@
 package com.xiaotu.makeplays.cater.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.dbcp.AbandonedConfig;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,6 +70,8 @@ public class CaterMoneyInfoService {
 	 * @param caterId	餐饮ID
 	 * @param caterMoneyId	餐饮明细ID
 	 * @param caterType	餐别
+	 * @param caterTime 用餐时间
+	 * @param caterAddr 用餐地点
 	 * @param peopleCount	人数
 	 * @param caterCount	份数
 	 * @param caterMoney	金额
@@ -76,10 +80,10 @@ public class CaterMoneyInfoService {
 	 * @return
 	 * @throws Exception 
 	 */
-	public void saveCaterDetailInfo(String crewId, String caterId, 
-		String caterMoneyId, String caterType, Integer peopleCount, 
-		Integer caterCount, Double caterMoney, Double perCapita, 
-		String remark) throws Exception {
+	public void saveCaterDetailInfo(String crewId, String caterId, String caterMoneyId,
+			String caterType, String caterTime, String caterAddr, Integer peopleCount,
+			Integer caterCount, Double caterMoney, Double perCapita, String remark)
+			throws Exception {
 		
 		//校验是否已经存在该餐别的餐饮记录
 		Map<String, Object> caterMoneyConditionMap = new HashMap<String, Object>();
@@ -104,6 +108,8 @@ public class CaterMoneyInfoService {
 		caterMoneyInfo.setPeopleCount(peopleCount);
 		caterMoneyInfo.setCaterCount(caterCount);
 		caterMoneyInfo.setCaterType(caterType);
+		caterMoneyInfo.setCaterTimeType(caterTime);
+		caterMoneyInfo.setCaterAddr(caterAddr);
 		caterMoneyInfo.setCaterMoney(caterMoney);
 		caterMoneyInfo.setPerCapita(perCapita);
 		caterMoneyInfo.setRemark(remark);
@@ -144,7 +150,43 @@ public class CaterMoneyInfoService {
 				}
 			}
 		});
-		
 		return list;
+	}
+	/**
+	 * 获取当前剧组的所有的餐饮时间、餐饮地点
+	 * @param crewId
+	 * @return
+	 */
+	public List<List<Map<String, Object>>> queryCaterTimeAddrByCrewId(String crewId) {
+		List<Map<String,Object>> listTime=this.caterMoneyInfoDao.queryCaterTimeTypeList(crewId);
+		List<Map<String,Object>> listAdd=this.caterMoneyInfoDao.queryCaterAddrList(crewId);
+		Collections.sort(listTime, new Comparator<Map<String, Object>>() {
+
+			@Override
+			public int compare(Map<String, Object> o1, Map<String, Object> o2) {
+				String caterTimeType = (String) o2.get("caterTimeType");
+				if (caterTimeType.equals("其它")) {
+					return -1;
+				}else {
+					return 0;
+				}
+			}
+		});
+		Collections.sort(listAdd, new Comparator<Map<String, Object>>() {
+
+			@Override
+			public int compare(Map<String, Object> o1, Map<String, Object> o2) {
+				String caterAddr = (String) o2.get("caterAddr");
+				if (caterAddr.equals("其它")) {
+					return -1;
+				}else {
+					return 0;
+				}
+			}
+		});
+		List<List<Map<String, Object>>> llist=new ArrayList<List<Map<String,Object>>>();
+		llist.add(listTime);
+		llist.add(listAdd);
+		return llist;
 	}
 }

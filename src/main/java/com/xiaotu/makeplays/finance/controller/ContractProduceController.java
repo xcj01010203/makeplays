@@ -1010,7 +1010,14 @@ public class ContractProduceController extends BaseController {
 					conditionMap.put("customContractNo", customContractNo);
 					List<ContractProduceModel> workerByCustomNo = this.contractProduceService.queryManyByMutiCondition(conditionMap, null);
 					if (workerByCustomNo == null || workerByCustomNo.size() == 0) {
-						dataMap.put("isRepeat", false);
+						conditionMap.remove("customContractNo");
+						conditionMap.put("contractNo", customContractNo);
+						workerByCustomNo = this.contractProduceService.queryManyByMutiCondition(conditionMap, null);
+						if (workerByCustomNo == null || workerByCustomNo.size() == 0) {
+							dataMap.put("isRepeat", false);
+						} else {
+							dataMap.put("isRepeat", true);
+						}
 					}else {
 						dataMap.put("isRepeat", true);
 					}

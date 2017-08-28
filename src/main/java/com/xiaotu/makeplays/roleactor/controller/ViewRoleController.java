@@ -1200,14 +1200,20 @@ public class ViewRoleController extends BaseController{
 			//循环所有角色
 			for(int i = 0; i < roleSignList.size(); i++){
 				ViewRoleModel role = roleSignList.get(i);
-				
+				ViewRoleModel role1=new ViewRoleModel();
 				boolean hasRoleFlag = false;	//标识当前场景的演员在所有主要演员中是否存在
 				for(Map<String, Object> roleMap: roleList) {
 					if(roleMap.get("viewRoleId").equals(role.getViewRoleId())){
-						if(StringUtils.isBlank(role.getShortName())){
-							role.setShortName("√");
+						if("0".equals(String.valueOf(roleMap.get("roleNum")))) {
+							role1.setShortName("OS");
+						}else {
+							if(StringUtils.isBlank(role.getShortName())){
+								role1.setShortName("√");
+							}else {
+								role1.setShortName(role.getShortName());
+							}
 						}
-						newRoleList.add(role);
+						newRoleList.add(role1);
 						hasRoleFlag = true;
 						break;
 					}

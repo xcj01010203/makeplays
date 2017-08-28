@@ -96,7 +96,7 @@ if(obj!=null){
 						</li>
 						
 						<li class="fl">
-							<span>库存数量&nbsp;<span class="must-info">*</span>：</span>
+							<span>库存数量&nbsp;<!-- <span class="must-info">*</span>： --></span>
 							<span><input type="text" class="prop-num" placeholder="请输入库存数量" id="propStock" value="" onkeyup="onlyNumber(this)"/></span>
 						</li>
 						

@@ -1013,7 +1013,14 @@ public class ContractWorkerController extends BaseController {
 					conditionMap.put("customContractNo", customContractNo);
 					List<ContractWorkerModel> workerByCustomNo = this.contractWorkerService.queryManyByMutiCondition(conditionMap, null);
 					if (workerByCustomNo == null || workerByCustomNo.size() == 0) {
-						dataMap.put("isRepeat", false);
+						conditionMap.remove("customContractNo");
+						conditionMap.put("contractNo", customContractNo);
+						workerByCustomNo = this.contractWorkerService.queryManyByMutiCondition(conditionMap, null);
+						if (workerByCustomNo == null || workerByCustomNo.size() == 0) {
+							dataMap.put("isRepeat", false);
+						} else {
+							dataMap.put("isRepeat", true);
+						}
 					}else {
 						dataMap.put("isRepeat", true);
 					}
@@ -1125,7 +1132,7 @@ public class ContractWorkerController extends BaseController {
 					dataMap.put("remark", remark);
 					
 					if (StringUtils.isNotBlank(errorMessage)) {
-						throw new IllegalArgumentException("第"+ i + "行 " + errorMessage);
+						throw new IllegalArgumentException("第"+ (i+1) + "行 " + errorMessage);
 					}else {
 						dataList.add(dataMap);
 					}

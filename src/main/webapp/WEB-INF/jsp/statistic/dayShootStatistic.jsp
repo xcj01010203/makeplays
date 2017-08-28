@@ -19,10 +19,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<link rel="stylesheet" type="text/css" href="<%=basePath%>/css/statistic/dayShootStatistic.css">
+	<link rel="stylesheet" type="text/css" href="<%=basePath%>/css/statistic/dayShootStatistic.css?version=20170821">
 	<script type="text/javascript" src="<%=basePath%>/js/scripts/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="<%=basePath%>/js/echarts/echarts.js"></script>
-  <script type="text/javascript" src="<%=basePath%>/js/makeplays/statistic/dayShootStatistic.js?version=20170807"></script>
+  <script type="text/javascript" src="<%=basePath%>/js/makeplays/statistic/dayShootStatistic.js?version=20170821"></script>
   
   
   </head>

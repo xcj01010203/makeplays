@@ -85,6 +85,26 @@ function loadFinanceSubjSettleList(){
 	var cellsTitle = function(row, column, value, rowData){
 		return "<span class='jqx-column text-align-right' title='"+ value +"'>" + value + "</span>";
 	};
+	var totalPayedRenderer = function(row, column, value, rowData){
+		html = "";
+		var totalBadgetMoney = rowData.totalBadgetMoney.replace(/,/g, "")-0;
+		var totalPayedMoney = rowData.totalPayedMoney.replace(/,/g, "")-0;
+		if((totalBadgetMoney <= 0) && (totalPayedMoney >=  totalBadgetMoney) && (totalPayedMoney != 0)){
+			html = "<span class='jqx-column text-align-right over-color' title='"+ value +"'>" + value + "</span>";
+		}else{
+			if(totalPayedMoney != 0 && totalBadgetMoney != 0){
+				var percent = divide(totalPayedMoney, totalBadgetMoney);
+				if(percent > 0.8){
+					html = "<span class='jqx-column text-align-right over-color' title='"+ value +"'>" + value + "</span>";
+				}else{
+					html = "<span class='jqx-column text-align-right' title='"+ value +"'>" + value + "</span>";
+				}
+			}else{
+				html = "<span class='jqx-column text-align-right' title='"+ value +"'>" + value + "</span>";
+			}
+		}
+		return html;
+	};
 	
 	//定义导出数据变量
 	var exportData = [];
@@ -110,7 +130,7 @@ function loadFinanceSubjSettleList(){
 	var columnInformation = [];
 	columnInformation.push({text: '财务科目', datafield: 'financeSubjName', cellsrenderer: financeSubjRender, width: '12%', cellsAlign: 'left', align: 'center'});
 	columnInformation.push({text: '总预算', datafield: 'totalBadgetMoney', cellsrenderer: cellsTitle, columngroup: 'totalMoneyDetail', width: '8%', cellsAlign: 'right', align: 'center'});
-	columnInformation.push({text: '总支出', datafield: 'totalPayedMoney',  columngroup: 'totalMoneyDetail', width: '6%', cellsAlign: 'right', align: 'center'});
+	columnInformation.push({text: '总支出', datafield: 'totalPayedMoney', cellsrenderer: totalPayedRenderer,  columngroup: 'totalMoneyDetail', width: '6%', cellsAlign: 'right', align: 'center'});
 	columnInformation.push({text: '有票总支出', datafield: 'totalHasReceiptMoney',  columngroup: 'totalMoneyDetail', width: '6%', cellsAlign: 'right', align: 'center'});
 	columnInformation.push({text: '无票总支出', datafield: 'totalNoreceiptMoney',  columngroup: 'totalMoneyDetail', width: '6%', cellsAlign: 'right', align: 'center'});
 	columnInformation.push({text: '总结余', datafield: 'totalLeftMoney', cellsrenderer: balanceRenderer, columngroup: 'totalMoneyDetail', width: '6%', cellsAlign: 'right', align: 'center'});

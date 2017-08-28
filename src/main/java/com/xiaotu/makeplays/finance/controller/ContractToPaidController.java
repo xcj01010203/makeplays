@@ -198,7 +198,7 @@ public class ContractToPaidController extends BaseController{
 	/**
 	 * 获取下拉框数据   合同用户名
 	 * 			   财务科目名称
-	 * 
+	 * 只查询合同批量支付中有的财务科目
 	 * @param request
 	 * @return
 	 */

@@ -290,6 +290,11 @@ public class ContractProduceService {
 				conditionMap.put("crewId", crewId);
 				conditionMap.put("customContractNo", customContractNo);
 				List<ContractProduceModel> workerByCustomNo = this.contractProduceDao.queryManyByMutiCondition(conditionMap, null);
+				if(workerByCustomNo == null || workerByCustomNo.size() == 0) {
+					conditionMap.remove("customContractNo");
+					conditionMap.put("contractNo", customContractNo);
+					workerByCustomNo = this.contractProduceDao.queryManyByMutiCondition(conditionMap, null);
+				}
 				ContractProduceModel model = workerByCustomNo.get(0);
 				model.setContractDate(contractDate);
 				

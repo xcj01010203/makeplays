@@ -5,6 +5,12 @@ $(function(){
 		if(target.closest(".cater-type").length == 0){ 
 			$(".right-select-wrap").hide(); 
 		} 
+		if(target.closest(".cater-time").length == 0){ 
+			$(".right-select-wrap-time").hide(); 
+		} 
+		if(target.closest(".cater-addr").length == 0){ 
+			$(".right-select-wrap-addr").hide(); 
+		} 
 	});
 	if(isReadonly){
 		$("#right-save-btn").hide();
@@ -34,11 +40,13 @@ var blankFlag = false;;//空行标志
 function addNewRecord(){
 	$("#right-popup-table .right-popup-table-tr").each(function(){
 	   var caterTypeCont = $(this).find("input[type=text]").eq(0).val();
-	   var caterPeopleNum = $(this).find("input[type=text]").eq(1).val();
-	   var caterCoipes = $(this).find("input[type=text]").eq(2).val();
-	   var caterPrices = $(this).find("input[type=text]").eq(3).val();
-	   var caterPeopleAvg = $(this).find("input[type=text]").eq(4).val();
-	   var caterRemark = $(this).find("input[type=text]").eq(5).val();
+	   var caterTypeTime = $(this).find("input[type=text]").eq(1).val();
+	   var caterTypeAddr = $(this).find("input[type=text]").eq(2).val();
+	   var caterPeople = $(this).find("input[type=text]").eq(3).val();
+	   var caterCoipes = $(this).find("input[type=text]").eq(4).val();
+	   var caterPrices = $(this).find("input[type=text]").eq(5).val();
+	   var caterPeopleAvg = $(this).find("input[type=text]").eq(6).val();
+	   var caterRemark = $(this).find("input[type=text]").eq(7).val();
 	   if(caterTypeCont == "" || caterPrices == ""){
 		   blankFlag = true;
 		   return;
@@ -80,12 +88,16 @@ function addBlankRow(){
 	$('#right-add-icon').attr('rowid',parseInt($('#right-add-icon').attr('rowid'))+1);
 	var tr = $('<tr class="right-popup-table-tr"></tr>');
 	var caterTd = $('<td class="cater-type"><input type="text" name="right-select-cater" id="right-select-cater'+rowid+'" class="right-select-cater insert-input" opotion-id="blank" onclick="showSelectWin(this)"/><div class="delete-add-row" onclick="deleteCaterMoneyInfo(this)"></div></td>');
+	var caterTt = $('<td class="cater-time" ><input type="text" name="right-select-cater" id="right-select-caterTime'+rowid+'" opotion-id="blank"  class="right-select-cater insert-time" onclick="showSelectWinTime(this)"/></td>');
+	var caterTa = $('<td class="cater-addr" ><input type="text" name="right-select-cater" id="right-select-caterAddr'+rowid+'" opotion-id="blank"  class="right-select-cater insert-addr" onclick="showSelectWinAddr(this)"/></td>');
 	var peopleTd = $('<td class="people-num"><input type="text" id="right-people-input'+rowid+'" onkeyup="onlyNumber(this)"  class="right-select-cater total-people-num" onblur="getCaterPeopleNum(this)"/></td>');
 	var copiesTd = $('<td class="copies-num"><input type="text" id="right-copies-input'+rowid+'" onkeyup="onlyNumber(this)"  class="right-select-cater cater-copies" onblur="getCaterCopies(this)"/></td>');
 	var priceTd = $('<td class="prices-num"><input type="text" id="right-price-input'+rowid+'" onkeyup="caterPriceVerify(this)" class="right-select-cater total-price" onblur="caterPeoplePrice(this)"/></td>');
 	var avgTd = $('<td class="people-avg"><input type="text" id="right-people-avg'+rowid+'" class="right-select-cater people-avg" readonly/></td>');
 	var remarkTd = $('<td class="remark-info"><input type="text" id="right-remark-input'+rowid+'"  class="right-select-cater" /><input type="text" class="hide-input-val" value="" style="display:none;"/></td>');
 	tr.append(caterTd);
+	tr.append(caterTt);
+	tr.append(caterTa);
 	tr.append(peopleTd);
 	tr.append(copiesTd);
 	tr.append(priceTd);
@@ -93,6 +105,8 @@ function addBlankRow(){
 	tr.append(remarkTd);
 	$('#totalSumTr').before(tr);
 	getCaterType(tr);
+	getCaterTypeTime(tr);
+	getCaterAddr(tr);
 	
 }
 //删除餐饮信息
@@ -124,6 +138,25 @@ function getCaterType(tr){
 	html = '<div class="right-select-wrap">'+ html +'</div>';
 	tr.find('.insert-input').after(html);
 }
+//获取餐饮时间
+function getCaterTypeTime(tr){
+	var html = '';
+	for(var i = 0;i<caterTypeTimeList.length;i++){
+		html +='<div class="select-option" id="'+ caterTypeTimeList[i].caterTimeType +'" onclick="selectCaterTypeTime(this)">'+ caterTypeTimeList[i].caterTimeType +'</div>';
+	}
+	html = '<div class="right-select-wrap-time">'+ html +'</div>';
+	tr.find('.insert-time').after(html);
+}
+//获取餐饮地点
+function getCaterAddr(tr){
+	var html = '';
+	for(var i = 0;i<caterAddrList.length;i++){
+		html +='<div class="select-option" id="'+ caterAddrList[i].caterAddr +'" onclick="selectCaterAddr(this)">'+ caterAddrList[i].caterAddr +'</div>';
+	}
+	html = '<div class="right-select-wrap-addr">'+ html +'</div>';
+	tr.find('.insert-addr').after(html);
+}
+//
 //计算总人数
 function countPeopleNum(){
 	var countPeopleSum = 0;
@@ -158,11 +191,11 @@ function countTotalPrice(){
 //计算合计金额、总人数、节约超支
 function showTableFooter(){
 	var html = [];
-	$('.total-sum-wrap').html('<span>总人数：'+ countPeopleNum() +'</span><span>合计金额：<span id="totalPriceNum">'+ countTotalPrice() +'</span></span><span>节约/超支：'+ countSaveOver() +'</span>');
+	$('.total-sum-wrap').html('<span>总人数：'+ countPeopleNum() +'</span><span>合计金额：<span id="totalPriceNum">'+ countTotalPrice() +'</span></span><span>人均：'+ countSaveOver() +'</span>');
 }
 //计算节约超支
 function countSaveOver(){
-	var saveOver = 0;
+	/*var saveOver = 0;
 	var budgetNum = 0;
 	var totalPriceNum = 0;
 	//获取本日预算值
@@ -185,6 +218,39 @@ function countSaveOver(){
 	    $('.save-over').html("-" + fmoney(money));
 	}else{
 		$('.save-over').html(fmoney(saveOver));
+	}*/
+	//总人数
+	var countPeopleSum = 0;
+	$('#right-popup-table').find('tr').each(function(){
+		var _this = $(this);
+		var num = _this.find('.total-people-num').val();
+		if(!num){
+			num = 0;
+		}
+		countPeopleSum += parseInt(num);
+	});
+	$("span.total-people").text(countPeopleSum);
+	//总金额
+	var totalPrice = 0;
+	$('#right-popup-table').find('tr').each(function(){
+		var num = 0;
+		var _this = $(this);
+		
+		if(!_this.find('.total-price').val()){
+			num = 0;
+		}else{
+			num = _this.find('.total-price').val().replace(/,/g, "");
+		}
+		totalPrice += parseFloat(num);
+		tempTotalPrice=totalPrice;
+	});
+	$("span.total-price").text(fmoney(totalPrice));
+	var balance = 0;
+	balance=totalPrice/countPeopleSum;
+	if(totalPrice==0 || countPeopleSum==0){
+		$('.save-over').html(fmoney(0.00));
+	}else{
+		$('.save-over').html(fmoney(balance));
 	}
 }
 //保存餐饮信息
@@ -214,7 +280,7 @@ function saveOneCaterInfo(){
 	var errorMessage = "";
 	$("#right-popup-table .right-popup-table-tr").each(function(){
 	   var caterTypeCont = $(this).find("input[type=text]").eq(0).val();
-	   var caterPrices = $(this).find("input[type=text]").eq(3).val();
+	   var caterPrices = $(this).find("input[type=text]").eq(5).val();
 	   if(caterTypeCont == "" && caterPrices == ""){
 		   showInfoMessage("餐饮类别和就餐金额不能为空");
 		   errorMessage = "餐饮类别和就餐金额不能为空";
@@ -239,7 +305,9 @@ function saveOneCaterInfo(){
 				caterMOneyStr += _this.find('td[class=prices-num] input[class*=right-select-cater]').val().replace(/,/g, "")+',';//金额
 				caterMOneyStr += _this.find('td[class=people-avg] input[class*=right-select-cater]').val().replace(/,/g, "")+',';//人均
 				caterMOneyStr += _this.find('td[class=remark-info] input[class*=right-select-cater]').val()+',';//备注
-				caterMOneyStr += _this.find('td[class=remark-info] input[class*=hide-input-val]').val()+',##'; //就餐信息id
+				caterMOneyStr += _this.find('td[class=remark-info] input[class*=hide-input-val]').val()+','; //就餐信息id
+				caterMOneyStr += _this.find('td[class=cater-time] input[class*=right-select-cater]').val()+',';//用餐时间
+				caterMOneyStr += _this.find('td[class=cater-addr] input[class*=right-select-cater]').val()+',##';//用餐地点
 			});
 	   }
 	   caterMOneyStr = caterMOneyStr.substring(0,caterMOneyStr.length-2);
@@ -382,47 +450,52 @@ function closeRightWindow(){
 							valugflag = true;
 						}
 					}
-					
 					if(!valugflag){
-						if($(trObj[j]).find("input[type=text]").eq(1).val() != caterMoneyList[i].peopleCount){//人数
+						if($(trObj[j]).find("input[type=text]").eq(1).val() != caterMoneyList[i].caterTimeType){//用餐地点
 							valugflag = true;
-							if($(trObj[j]).find("input[type=text]").eq(1).val() == "" && caterMoneyList[i].peopleCount == null || $(trObj[j]).find("input[type=text]").eq(1).val() == "" && caterMoneyList[i].peopleCount == ""){
+						}
+					}
+					if(!valugflag){
+						if($(trObj[j]).find("input[type=text]").eq(2).val() != caterMoneyList[i].caterAddr){//用餐时间
+							valugflag = true;
+						}
+					}
+					if(!valugflag){
+						if($(trObj[j]).find("input[type=text]").eq(3).val() != caterMoneyList[i].peopleCount){//人数
+							valugflag = true;
+							if($(trObj[j]).find("input[type=text]").eq(3).val() == "" && caterMoneyList[i].peopleCount == null || $(trObj[j]).find("input[type=text]").eq(3).val() == "" && caterMoneyList[i].peopleCount == ""){
 								valugflag = false;
 							}
 						}
 					}
-					
 					if(!valugflag){
-						if($(trObj[j]).find("input[type=text]").eq(2).val() != caterMoneyList[i].caterCount){//份数
+						if($(trObj[j]).find("input[type=text]").eq(4).val() != caterMoneyList[i].caterCount){//份数
 							valugflag = true;
-							if($(trObj[j]).find("input[type=text]").eq(2).val() == "" && caterMoneyList[i].caterCount == null || $(trObj[j]).find("input[type=text]").eq(2).val() == "" && caterMoneyList[i].caterCount == ""){
+							if($(trObj[j]).find("input[type=text]").eq(4).val() == "" && caterMoneyList[i].caterCount == null || $(trObj[j]).find("input[type=text]").eq(4).val() == "" && caterMoneyList[i].caterCount == ""){
 								valugflag = false;
 							}
 						}
 					}
-					
 					if(!valugflag){
-						if($(trObj[j]).find("input[type=text]").eq(3).val().replace(/,/g, "") != caterMoneyList[i].caterMoney){//金额
+						if($(trObj[j]).find("input[type=text]").eq(5).val().replace(/,/g, "") != caterMoneyList[i].caterMoney){//金额
 							valugflag = true;
-							if($(trObj[j]).find("input[type=text]").eq(3).val() == "" && caterMoneyList[i].caterMoney == null || $(trObj[j]).find("input[type=text]").eq(3).val() == "" && caterMoneyList[i].caterMoney == ""){
+							if($(trObj[j]).find("input[type=text]").eq(5).val() == "" && caterMoneyList[i].caterMoney == null || $(trObj[j]).find("input[type=text]").eq(5).val() == "" && caterMoneyList[i].caterMoney == ""){
 								valugflag = false;
 							}
 						}
 					}
-					
 					if(!valugflag){
-						if($(trObj[j]).find("input[type=text]").eq(4).val().replace(/,/g, "") != caterMoneyList[i].perCapita){//人均
+						if($(trObj[j]).find("input[type=text]").eq(6).val().replace(/,/g, "") != caterMoneyList[i].perCapita){//人均
 							valugflag = true;
-							if($(trObj[j]).find("input[type=text]").eq(4).val() == "" && caterMoneyList[i].perCapita == null || $(trObj[j]).find("input[type=text]").eq(4).val() == "" && caterMoneyList[i].perCapita == ""){
+							if($(trObj[j]).find("input[type=text]").eq(6).val() == "" && caterMoneyList[i].perCapita == null || $(trObj[j]).find("input[type=text]").eq(6).val() == "" && caterMoneyList[i].perCapita == ""){
 								valugflag = false;
 							}
 						}
 					}
-					
 					if(!valugflag){
-						if($(trObj[j]).find("input[type=text]").eq(5).val() != caterMoneyList[i].remark){//备注
+						if($(trObj[j]).find("input[type=text]").eq(7).val() != caterMoneyList[i].remark){//备注
 							valugflag = true;
-							if($(trObj[j]).find("input[type=text]").eq(5).val() == "" && caterMoneyList[i].remark == null || $(trObj[j]).find("input[type=text]").eq(5).val() == "" && caterMoneyList[i].remark == ""){
+							if($(trObj[j]).find("input[type=text]").eq(7).val() == "" && caterMoneyList[i].remark == null || $(trObj[j]).find("input[type=text]").eq(7).val() == "" && caterMoneyList[i].remark == ""){
 								valugflag = false;
 							}
 						}

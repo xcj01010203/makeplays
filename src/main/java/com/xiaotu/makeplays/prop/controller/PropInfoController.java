@@ -397,9 +397,9 @@ public class PropInfoController extends BaseController{
 			if(type == null){
 				throw new IllegalArgumentException("请选择服化道类型");
 			}
-			if(stock == null){
-				throw new IllegalArgumentException("请填写库存信息");
-			}
+//			if(stock == null){
+//				throw new IllegalArgumentException("请填写库存信息");
+//			}
 			UserInfoModel userInfoModel = this.getSessionUserInfo(request);
 			String crewId = this.getCrewId(request);
 			

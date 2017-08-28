@@ -320,12 +320,14 @@ public class ContractToPaidDao extends BaseDao<ContractToPaidModel>{
 	}
 	
 	/**
- 	 * 获取财务科目
+ 	 * 获取财务科目，只查询合同批量支付中有的财务科目
  	 * @param crewId
  	 * @return
  	 */
 	public List<FinanceSubjectModel> querySubjectId(String crewId){
-		String sql = "SELECT * FROM "+FinanceSubjectModel.TABLE_NAME+" WHERE id IN ( SELECT subjectid FROM "+ContractToPaidModel.TABLE_NAME+" WHERE crewid = ? )";
+		String sql = "SELECT * FROM " + FinanceSubjectModel.TABLE_NAME
+				+ " WHERE id IN ( SELECT subjectid FROM " + ContractToPaidModel.TABLE_NAME
+				+ " WHERE crewid = ? and status between 0 and 1)";
 		List<FinanceSubjectModel> list = financeSubjectDao.query(sql, new Object[]{crewId}, FinanceSubjectModel.class, null);
 		return list;
 		

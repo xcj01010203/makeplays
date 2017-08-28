@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +41,7 @@ import com.xiaotu.makeplays.sys.model.constants.SysLogOperType;
 import com.xiaotu.makeplays.user.model.UserInfoModel;
 import com.xiaotu.makeplays.utils.BigDecimalUtil;
 import com.xiaotu.makeplays.utils.Page;
+import com.xiaotu.makeplays.utils.StringUtil;
 
 /**
  * 收支管理相关接口
@@ -90,6 +92,7 @@ public class GetCostFacade extends BaseFacade{
 	 * @param summary	摘要
 	 * @param minMoney	最小金额
 	 * @param maxMoney	最大金额
+	 * @param isQueryFinanceSubjPayment 是否是查询财务科目支付明细
 	 * @return
 	 */
 	@ResponseBody
@@ -99,7 +102,7 @@ public class GetCostFacade extends BaseFacade{
 			String financeSubjIds, String aimPeopleNames, String startAimDate,
 			String endAimDate, String formTypes, Boolean hasReceipt,
 			Integer status, String summary, Double minMoney, Double maxMoney,
-			String paymentWayId) {
+			String paymentWayId, boolean isQueryFinanceSubjPayment) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		UserInfoModel userInfo = new UserInfoModel();
 		try {
@@ -157,6 +160,7 @@ public class GetCostFacade extends BaseFacade{
 			paymentInfoFilter.setMinMoney(minMoney);
 			paymentInfoFilter.setMaxMoney(maxMoney);
 			paymentInfoFilter.setPaymentWayId(paymentWayId);
+			paymentInfoFilter.setQueryFinanceSubjPayment(isQueryFinanceSubjPayment);
 			
 			//收款单过滤条件
 			CollectionInfoFilter collectionFilter = new CollectionInfoFilter();
@@ -186,12 +190,12 @@ public class GetCostFacade extends BaseFacade{
 			List<Map<String, Object>> runningAccountList = this.getCostService.queryFinanceRunningAccount(crewId, includePayment, 
 					includeCollection, includeLoan, 
 					paymentInfoFilter, collectionFilter, 
-					loanInfoFilter, page, false,0);
+					loanInfoFilter, page, false, 0);
 			
 			//处理财务科目
 			for (Map<String, Object> runningAccountMap : runningAccountList) {
 				String financeSubjId = (String) runningAccountMap.get("financeSubjId");
-				
+					
 				String financeSubjNames = "";
 				//获取财务科目名称
 				if (!StringUtils.isBlank(financeSubjId)) {
@@ -222,7 +226,7 @@ public class GetCostFacade extends BaseFacade{
 			CurrencyInfoModel standardCurrency = this.currencyInfoService.queryStandardCurrency(crewId);
 			if (standardCurrency == null) {
 				standardCurrency = this.currencyInfoService.initFirstCurrency(crewId);
-        	}
+	    	}
 			
 			
 			//金额统计信息
@@ -262,9 +266,9 @@ public class GetCostFacade extends BaseFacade{
 			
 			boolean  singleCurrencyFlag= false;	//标识剧组中是否只有一个有效币种
 			Map<String, Object> conditionMap = new HashMap<String, Object>();
-        	conditionMap.put("crewId", crewId);
-        	conditionMap.put("ifEnable", true);
-        	List<CurrencyInfoModel> currencyInfoList = this.currencyInfoService.queryManyByMutiCondition(conditionMap, null);
+	    	conditionMap.put("crewId", crewId);
+	    	conditionMap.put("ifEnable", true);
+	    	List<CurrencyInfoModel> currencyInfoList = this.currencyInfoService.queryManyByMutiCondition(conditionMap, null);
 			if (currencyInfoList.size() == 1) {
 				singleCurrencyFlag = true;
 			}

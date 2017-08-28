@@ -646,7 +646,7 @@ function getSubjNameInfo(){
 		
 		$('#subjectName').click(function(ev){
 			var obj = $(this);
-			$('.fin_subj').css({left:obj.position().left,top:obj.position().top+32, "display": "block"});
+			$('.fin_subj').css({left:obj.offset().left,top:obj.offset().top+32, "display": "block"});
 			$('.fin_subj #filterSearch').focus();
 		    ev.stopPropagation();
 		});

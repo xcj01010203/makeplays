@@ -394,7 +394,7 @@ function savePropsInfo(){
 	if(propName){
 		subData.propName =propName;
 	}else{
-		showErrorMessage("名称不为空");
+		showErrorMessage("名称不能为空");
 		
 		return false;
 	}
@@ -414,13 +414,13 @@ function savePropsInfo(){
 		showErrorMessage("请选择类型");
 		return false;
 	}
-	
-	if(stock){
-		subData.stock =stock;
-	}else{
-		showErrorMessage("库存量不为空");
-		return false;
-	}
+	subData.stock =stock;
+//	if(stock){
+//		subData.stock =stock;
+//	}else{
+//		showErrorMessage("库存量不为空");
+//		return false;
+//	}
 	if(!remark || remark ==''){
 		remark = ' ';
 	}

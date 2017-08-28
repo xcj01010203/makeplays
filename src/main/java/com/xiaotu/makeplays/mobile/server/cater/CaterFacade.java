@@ -159,10 +159,15 @@ public class CaterFacade extends BaseFacade {
 			}
 
 			double saveMoney = BigDecimalUtil.subtract(budget, totalMoney);	//节约金额
+			double peopleAvg = 0;
+			if(peopleCount != 0) {
+				peopleAvg = BigDecimalUtil.divide(totalMoney, peopleCount); 
+			}			
 			
 			resultMap.put("peopleCount", peopleCount);
 			resultMap.put("totalMoney", totalMoney);
 			resultMap.put("saveMoney", saveMoney);
+			resultMap.put("peopleAvg", peopleAvg);
 			resultMap.put("caterDate", this.sdf1.format(caterInfo.getCaterDate()));
 			resultMap.put("budget", budget);
 			resultMap.put("caterMoneyList", caterMoneyList);
@@ -282,6 +287,8 @@ public class CaterFacade extends BaseFacade {
 	 * @param caterId	餐饮ID
 	 * @param caterMoneyId	餐饮明细ID
 	 * @param caterType	餐别
+	 * @param caterTime 用餐时间
+	 * @param caterAddr 用餐地点
 	 * @param peopleCount	人数
 	 * @param caterCount	份数
 	 * @param caterMoney	金额
@@ -292,7 +299,7 @@ public class CaterFacade extends BaseFacade {
 	@ResponseBody
 	@RequestMapping("/saveCaterDetailInfo")
 	public Object saveCaterDetailInfo(HttpServletRequest request, String userId, String crewId, String caterId, 
-			String caterMoneyId, String caterType, Integer peopleCount, 
+			String caterMoneyId, String caterType, String caterTime, String caterAddr, Integer peopleCount, 
 			Integer caterCount, Double caterMoney, Double perCapita, 
 			String remark) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -311,9 +318,9 @@ public class CaterFacade extends BaseFacade {
 				throw new IllegalArgumentException("请填写金额");
 			}
 			
-			this.caterMoneyInfoService.saveCaterDetailInfo(crewId, caterId, caterMoneyId, 
-					caterType, peopleCount, caterCount, 
-					caterMoney, perCapita, remark);
+			this.caterMoneyInfoService.saveCaterDetailInfo(crewId, caterId, caterMoneyId,
+					caterType, caterTime, caterAddr, peopleCount, caterCount, caterMoney,
+					perCapita, remark);
 
 			this.sysLogService.saveSysLogForApp(request, "保存餐饮信息", this.getClientType(userId), CaterMoneyInfoModel.TABLE_NAME, "", 1);
 		} catch (IllegalArgumentException ie) {
@@ -377,13 +384,26 @@ public class CaterFacade extends BaseFacade {
 			// 判断用户是否有效
 			MobileUtils.checkUserValid(userId);
 			
+			//获取用餐类型
 			List<Map<String,Object>> list = this.caterMoneyInfoService.queryCaterTypeByCrewId(crewId);			
 			List<String> caterTypeNameList = new ArrayList<String>();
 			for (Map<String, Object> map : list) {
 				caterTypeNameList.add((String)map.get("caterType"));
 			}
+			//获取用餐时间，用餐地点
+			List<List<Map<String,Object>>> timeAddrList = this.caterMoneyInfoService.queryCaterTimeAddrByCrewId(crewId);
+			List<String> caterTimeNameList = new ArrayList<String>();
+			for(Map<String, Object> map : timeAddrList.get(0)) {
+				caterTimeNameList.add((String) map.get("caterTimeType"));
+			}
+			List<String> caterAddrNameList = new ArrayList<String>();
+			for(Map<String, Object> map : timeAddrList.get(1)) {
+				caterAddrNameList.add((String) map.get("caterAddr"));
+			}
 			
 			resultMap.put("caterTypeList", caterTypeNameList);
+			resultMap.put("caterTimeList", caterTimeNameList);
+			resultMap.put("caterAddrList", caterAddrNameList);
 		} catch (IllegalArgumentException ie) {
 			logger.error(ie.getMessage(), ie);
 			throw new IllegalArgumentException(ie.getMessage(), ie);

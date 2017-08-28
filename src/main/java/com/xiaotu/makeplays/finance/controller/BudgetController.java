@@ -188,7 +188,14 @@ public class BudgetController extends BaseController {
 	        		return o1sequence - o2sequence;
 				}
 			});
-        	
+        	for(Map<String, Object> map : budgetInfoMapList) {
+        		String financeSubjParentId = map.get("financeSubjParentId") + "";
+        		if(!financeSubjParentId.equals("0")) {
+	        		map.put("_parentId", map.get("financeSubjParentId"));
+        		}
+        	}
+            resultMap.put("total", budgetInfoMapList.size());
+            resultMap.put("rows", budgetInfoMapList);
         	resultMap.put("budgetInfoMapList", budgetInfoMapList);
         } catch (IllegalArgumentException ie) {
             success = false;

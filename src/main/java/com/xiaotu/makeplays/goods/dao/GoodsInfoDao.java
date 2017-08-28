@@ -93,7 +93,7 @@ public class GoodsInfoDao extends BaseDao<GoodsInfoModel>{
 	public List<Map<String, Object>> queryGoodsInfoByView(String crewId,String goodsName,Integer type, String start,String end, Integer sortType){
 		List<Object> args = new ArrayList<Object>();
 		StringBuilder sql = new StringBuilder();
-
+		sql.append(" SELECT * from ( ");
 		sql.append(" SELECT ");
 		sql.append("    propsId,propsName,propsType,crewid,remark,stock,createTime,max(firstUse) firstUse,sum(allViewNo) allViewNo,max(seriesNo) seriesNo,max(viewNo) viewNo ");
 		sql.append(" FROM ");
@@ -150,14 +150,6 @@ public class GoodsInfoDao extends BaseDao<GoodsInfoModel>{
 			sql.append(" and propstype = ? ");
 			args.add(type);
 		}
-		if(StringUtils.isNotBlank(start)){
-			sql.append(" and allViewNo >= ? ");
-			args.add(start);
-		}
-		if(StringUtils.isNotBlank(end)){
-			sql.append(" and allViewNo <= ? ");
-			args.add(end);
-		}
 		sql.append("	group by propsId,propsName,propsType,crewid,remark,stock,createTime ");
 		
 		//判断排序条件
@@ -172,6 +164,15 @@ public class GoodsInfoDao extends BaseDao<GoodsInfoModel>{
 			}else if (sortType == 3) { //按照出场集次排序
 				sql.append("	ORDER BY seriesNo, abs(viewno), viewno, allViewNo desc, propsType,CONVERT(propsName USING gbk)");
 			}
+		}
+		sql.append(" ) c where 1=1 ");
+		if(StringUtils.isNotBlank(start)){
+			sql.append(" and allViewNo >= ? ");
+			args.add(start);
+		}
+		if(StringUtils.isNotBlank(end)){
+			sql.append(" and allViewNo <= ? ");
+			args.add(end);
 		}
 		List<Map<String, Object>> resultList = this.getJdbcTemplate().queryForList(sql.toString(), args.toArray());
 		return resultList;

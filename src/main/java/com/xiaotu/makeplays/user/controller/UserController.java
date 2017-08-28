@@ -2523,4 +2523,128 @@ public class UserController extends BaseController{
 		resultMap.put("message", message);
 		return resultMap;
 	}
+	
+	/**
+	 * 查询剧组下所有用户职务分组列表
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryCrewUserGroupList")
+	public Map<String, Object> queryCrewAllUserListWithFletter(HttpServletRequest request) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		boolean success = true;
+		String message = "";
+		try {
+			String crewId = this.getCrewId(request);
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//审核中的人员申请进组信息
+			List<Map<String, Object>> auditingJoinMsgList = this.joinCrewApplyMsgService.queryCrewAuditingMsg(crewId, JoinCrewAuditStatus.Auditing.getValue());
+			List<Map<String, Object>> auditingUserList = new ArrayList<Map<String, Object>>();
+			for (Map<String, Object> joinMsg : auditingJoinMsgList) {
+				Map<String, Object> auditingUserInfo = new HashMap<String, Object>();
+				auditingUserInfo.put("userId", joinMsg.get("userId"));
+				auditingUserInfo.put("userName", joinMsg.get("userName"));
+				auditingUserInfo.put("phone", joinMsg.get("phone"));
+				auditingUserInfo.put("roleNames", joinMsg.get("aimRoleNames"));
+				auditingUserInfo.put("remark", joinMsg.get("remark"));
+				Date createTime = (Date) joinMsg.get("createTime");
+				auditingUserInfo.put("createTime", sdf.format(createTime));
+				
+				auditingUserList.add(auditingUserInfo);
+			}
+			
+			//剧组已有人员部门信息
+			List<Map<String, Object>> crewGroupList = this.sysRoleInfoService.queryCrewGroupInfo(crewId);
+			
+			resultMap.put("toAuditUserList", auditingUserList);
+			resultMap.put("crewGroupList", crewGroupList);
+		} catch (IllegalArgumentException ie) {
+			success = false;
+			message = ie.getMessage();
+			logger.error(message, ie);
+		} catch (Exception e) {
+			success = false;
+			message = "未知异常，查询剧组下所有用户职务分组列表失败";
+			logger.error(message, e);
+		}
+
+		resultMap.put("success", success);
+		resultMap.put("message", message);
+		return resultMap;
+	}
+	
+	/**
+	 * 获取指定剧组的指定小组下人员列表
+	 * 只返回状态为有效的用户
+	 * 在剧组中被冻结的用户也需要返回
+	 * @param request
+	 * @param groupId 职务分组ID
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryGroupUserList")
+	public Map<String, Object> queryGroupUserList(HttpServletRequest request, String groupId) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		boolean success = true;
+		String message = "";
+		try {
+			if (StringUtils.isBlank(groupId)) {
+				throw new IllegalArgumentException("请选择分组");
+			}
+			String crewId = this.getCrewId(request);
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			//小组名
+			SysroleInfoModel sysRoleInfo = this.sysRoleInfoService.queryById(groupId);
+			String groupName = sysRoleInfo.getRoleName();
+			//小组内总人数
+//			List<UserInfoModel> userList = this.userService.queryCrewUserByGroupId(crewId, groupId);
+//			int userNum = userList.size();
+			
+			List<Map<String, Object>> roleInfo = new ArrayList<Map<String, Object>>();	//小组内职务信息
+			List<Map<String, Object>> groupUserList = this.userService.queryByCrewGroupId(crewId, groupId);	//小组内用户信息
+			
+			List<String> roleNames = new ArrayList<String>();
+			for (Map<String, Object> map : groupUserList) {
+				String roleName = (String) map.get("roleName");
+				Date createTime = (Date) map.get("createTime");
+				map.put("createTime", sdf.format(createTime));
+				
+				if (!roleNames.contains(roleName)) {
+					roleNames.add(roleName);
+					
+					Map<String, Object> roleMap = new HashMap<String, Object>();
+					roleMap.put("roleName", roleName);
+					
+					List<Map<String, Object>> roleUserList = new ArrayList<Map<String, Object>>();
+					roleUserList.add(map);
+					roleMap.put("roleUserList", roleUserList);
+					
+					roleInfo.add(roleMap);
+				} else {
+					Map<String, Object> roleInfoMap = roleInfo.get(roleNames.indexOf(roleName));
+					List<Map<String, Object>> roleUserList = (List<Map<String, Object>>) roleInfoMap.get("roleUserList");
+					roleUserList.add(map);
+				}
+			}
+			
+			resultMap.put("groupName", groupName);
+//			resultMap.put("userNum", userNum);
+			resultMap.put("roleInfo", roleInfo);
+		} catch (IllegalArgumentException ie) {
+			success = false;
+			message = ie.getMessage();
+			logger.error(message, ie);
+		} catch (Exception e) {
+			success = false;
+			message = "未知异常，获取指定剧组的指定小组下人员列表失败";
+			logger.error(message, e);
+		}
+
+		resultMap.put("success", success);
+		resultMap.put("message", message);
+		return resultMap;
+	}
 }

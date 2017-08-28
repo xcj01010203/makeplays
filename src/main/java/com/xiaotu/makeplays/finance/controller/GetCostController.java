@@ -1,6 +1,7 @@
 package com.xiaotu.makeplays.finance.controller;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,6 +10,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,6 +85,7 @@ public class GetCostController extends BaseController {
     	FINANCE_MAP.put("付款方式",  "paymentWay");
     	FINANCE_MAP.put("有无发票",  "hasReceipt");
     	FINANCE_MAP.put("票据张数",  "billCount");
+    	FINANCE_MAP.put("票据种类",  "billType");
     	FINANCE_MAP.put("记账人",  "agent");
     }
 	
@@ -171,7 +174,7 @@ public class GetCostController extends BaseController {
 	public Map<String, Object> queryFinanceRunningAccount(HttpServletRequest request, String financeSubjIds, 
 			String aimPeopleNames, String aimDates, String aimMonth, String agents, Integer formType, Boolean hasReceipt, Integer status, 
 			String summary, Double minMoney, Double maxMoney, Boolean includeLoan, String paymentWayId, Integer billType, Integer pageNo, Integer pageSize, Boolean isAsc,
-			Integer sortType,String department) {
+			Integer sortType,String department, boolean isQueryFinanceSubjPayment) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
 		boolean success = true;
@@ -207,6 +210,7 @@ public class GetCostController extends BaseController {
 			paymentInfoFilter.setPaymentWayId(paymentWayId);
 			paymentInfoFilter.setBillType(billType);
 			paymentInfoFilter.setDepartment(department);
+			paymentInfoFilter.setQueryFinanceSubjPayment(isQueryFinanceSubjPayment);
 			
 			CollectionInfoFilter collectionFilter = new CollectionInfoFilter();
 			collectionFilter.setOtherUnits(aimPeopleNames);
@@ -421,6 +425,7 @@ public class GetCostController extends BaseController {
 		return resultMap;
 	}
 	
+	
 	/**
 	 * 查询账务详情统计信息
 	 * @param request
@@ -441,11 +446,12 @@ public class GetCostController extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/queryRunnigAccountStatistic")
-	public Map<String, Object> queryRunnigAccountStatistic(HttpServletRequest request, String financeSubjIds, 
-			String aimPeopleNames, String aimDates, String aimMonth, String agents, Integer formType, Boolean hasReceipt, Integer status, 
-			String summary, Double minMoney, Double maxMoney,Integer billType, Boolean includeLoan, String paymentWayId,String department) {
+	public Map<String, Object> queryRunnigAccountStatistic(HttpServletRequest request,
+			String financeSubjIds, String aimPeopleNames, String aimDates, String aimMonth,
+			String agents, Integer formType, Boolean hasReceipt, Integer status, String summary,
+			Double minMoney, Double maxMoney, Integer billType, Boolean includeLoan,
+			String paymentWayId, String department, boolean isQueryFinanceSubjPayment) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-
 		boolean success = true;
 		String message = "";
 		try {
@@ -475,6 +481,7 @@ public class GetCostController extends BaseController {
 			paymentInfoFilter.setPaymentWayId(paymentWayId);
 			paymentInfoFilter.setBillType(billType);
 			paymentInfoFilter.setDepartment(department);
+			paymentInfoFilter.setQueryFinanceSubjPayment(isQueryFinanceSubjPayment);
 			
 			CollectionInfoFilter collectionFilter = new CollectionInfoFilter();
 			collectionFilter.setOtherUnits(aimPeopleNames);
@@ -583,7 +590,8 @@ public class GetCostController extends BaseController {
 	@RequestMapping("/exportFinanceRunningAccount")
 	public Map<String, Object> exportFinanceRunningAccount(HttpServletRequest request, String financeSubjIds, 
 			String aimPeopleNames, String aimDates, String aimMonth, String agents, Integer formType, Boolean hasReceipt, Integer status, 
-			String summary, Double minMoney, Double maxMoney, Boolean includeLoan, String paymentWayId, Integer billType, String templateName) {
+			String summary, Double minMoney, Double maxMoney, Boolean includeLoan, String paymentWayId, 
+			Integer billType, String templateName, boolean isQueryFinanceSubjPayment) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
 		boolean success = true;
@@ -659,6 +667,7 @@ public class GetCostController extends BaseController {
 				filter.setMaxMoney(maxMoney);
 				filter.setBillType(billType);
 				filter.setPaymentWayId(paymentWayId);
+				filter.setQueryFinanceSubjPayment(isQueryFinanceSubjPayment);
 				
 				List<Map<String, Object>> paymentList = this.paymentInfoService.queryPaymentList(crewId, filter);
 				runningAccountList.addAll(this.genRunningAccountByPaymentList(paymentList, includeLoan, true, singleCurrencyFlag));
@@ -745,6 +754,17 @@ public class GetCostController extends BaseController {
 				//票据日期
 				Date receiptDate = (Date) map.get("receiptDate");
 				map.put("receiptDate", this.sdf1.format(receiptDate));
+				
+				Integer myBillType = (Integer) map.get("billType");
+				if(myBillType != null) {
+					if(myBillType == 1) {
+						map.put("billType", "普通发票");
+					} else if(myBillType == 2) {
+						map.put("billType", "增值税发票");
+					}
+				} else {
+					map.put("billType", "");
+				}
 			}
 			
 			/*
@@ -763,6 +783,7 @@ public class GetCostController extends BaseController {
 			paymentInfoFilter.setMaxMoney(maxMoney);
 			paymentInfoFilter.setPaymentWayId(paymentWayId);
 			paymentInfoFilter.setBillType(billType);
+			paymentInfoFilter.setQueryFinanceSubjPayment(isQueryFinanceSubjPayment);
 			
 			CollectionInfoFilter collectionFilter = new CollectionInfoFilter();
 			collectionFilter.setOtherUnits(aimPeopleNames);
@@ -1010,6 +1031,7 @@ public class GetCostController extends BaseController {
 			String loanIds = (String) map.get("loanIds");
 			Double forLoanMoney = (Double) map.get("forLoanMoney");
 			String department = (String) map.get("department");
+			Integer billType = (Integer) map.get("billType");
 			
 			Integer contractType = (Integer) map.get("contractType");
 			String acontractNo = map.get("acontractNo")!=null ? map.get("acontractNo").toString() : "";
@@ -1040,6 +1062,7 @@ public class GetCostController extends BaseController {
 			singleAccountMap.put("paymentWay", paymentWay);
 			singleAccountMap.put("hasReceipt", hasReceipt + "");
 			singleAccountMap.put("billCount", billCount);
+			singleAccountMap.put("billType", billType);
 			singleAccountMap.put("agent", agent);
 			singleAccountMap.put("currencyId", currencyId);
 			singleAccountMap.put("currencyCode", currencyCode);
@@ -1099,14 +1122,14 @@ public class GetCostController extends BaseController {
 						mySingleAccountMap.putAll(singleAccountMap);
 						mySingleAccountMap.put("payedMoney", myFinanceSubjMoney);
 						mySingleAccountMap.put("summary", myFinanceSubjSummary);
-						
+							
 						if (!singleCurrencyFlag) {
 							mySingleAccountMap.put("payedMoneyStr", this.df.format(myFinanceSubjMoney) + "(" + currencyCode + ")");
 						} else {
 							mySingleAccountMap.put("payedMoneyStr", this.df.format(myFinanceSubjMoney));
 						}
 						mySingleAccountMap.put("financeSubjName", this.financeSubjectService.getFinanceSubjName(myFinanceSubjId));
-						runningAccountList.add(mySingleAccountMap);
+						runningAccountList.add(mySingleAccountMap);						
 					}
 				}
 			} else {

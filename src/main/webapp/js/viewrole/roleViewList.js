@@ -112,11 +112,17 @@ function loadViewListTable(majorRoleList){
     	var roleArray = thisRowData.roleList;
     	for(var i=0;i<roleArray.length;i++){
     		if(columnproperties.text==roleArray[i].viewRoleName){
-    			if(roleArray[i].shortName==null || roleArray[i].shortName.trim() == ""){
-    				return "√";
+    			//修改不能显示为OS信息
+    			if(roleArray[i].roleNum==0){
+    				return "OS";
     			}else{
-    				return roleArray[i].shortName;
+    				if(roleArray[i].shortName==null || roleArray[i].shortName.trim() == ""){
+    					return "√";
+    				}else{
+    	    			return roleArray[i].shortName;
+    	    		}
     			}
+    			
     		}
     	}
     	return "";

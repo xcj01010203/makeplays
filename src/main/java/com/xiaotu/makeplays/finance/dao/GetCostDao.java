@@ -6,18 +6,19 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.poi.ss.formula.functions.T;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.xiaotu.makeplays.finance.controller.filter.CollectionInfoFilter;
 import com.xiaotu.makeplays.finance.controller.filter.LoanInfoFilter;
 import com.xiaotu.makeplays.finance.controller.filter.PaymentInfoFilter;
+import com.xiaotu.makeplays.finance.model.PaymentFinanSubjMapModel;
 import com.xiaotu.makeplays.finance.model.constants.PaymentStatus;
 import com.xiaotu.makeplays.utils.BaseDao;
 import com.xiaotu.makeplays.utils.Page;
 
 @Repository
 public class GetCostDao extends BaseDao<T>{
-	
 	
 	/**
 	 * 根据合同号查询   演员合同表、 职员合同表、制作合同表
@@ -64,6 +65,7 @@ public class GetCostDao extends BaseDao<T>{
 	 * exchangeRate	币种汇率
 	 * contractNo	关联的合同编码
 	 * contractName	关联的合同名称
+	 * @param isQueryFinanceSubjPayment 是否是查询财务科目支付明细
 	 */
 	public List<Map<String, Object>> queryFinanceRunningAccount(String crewId, boolean includePayment, 
 			boolean includeCollection, boolean includeLoan, 
@@ -84,6 +86,7 @@ public class GetCostDao extends BaseDao<T>{
 		sql.append(" '' summary, ");
 		sql.append(" '' financeSubjId, ");
 		sql.append(" '' financeSubjName, ");
+		sql.append(" '' financeSubjMoney, ");
 		sql.append(" 0 collectMoney, ");
 		sql.append(" 0 payedMoney, ");
 		sql.append(" '' department, ");
@@ -93,6 +96,7 @@ public class GetCostDao extends BaseDao<T>{
 		sql.append(" '' paymentWay, ");
 		sql.append(" '' hasReceipt, ");
 		sql.append(" 0 billCount, ");
+		sql.append(" null billType, ");
 		sql.append(" '' agent, ");
 		sql.append(" '' currencyId, ");
 		sql.append(" '' currencyCode, ");
@@ -120,8 +124,9 @@ public class GetCostDao extends BaseDao<T>{
 			sql.append(" 		GROUP_CONCAT(DISTINCT if(tpfm.summary = '', null, tpfm.summary) order BY tpfm.mapId  SEPARATOR ' | ') summary, ");
 			sql.append(" 		GROUP_CONCAT(tpfm.financeSubjId) financeSubjId, ");
 			sql.append(" 		GROUP_CONCAT(tpfm.financeSubjName) financeSubjName, ");
+			sql.append(" 		GROUP_CONCAT(tpfm.money) financeSubjMoney, ");
 			sql.append(" 		0 collectMoney, ");
-			sql.append(" 		tpi.totalMoney payedMoney, ");
+			sql.append(" 		sum(tpfm.money) payedMoney, ");
 			sql.append(" 		tpi.department department, ");
 			sql.append(" 		tpi.`status` + '' status, ");
 			sql.append(" 		1 formType, ");
@@ -129,6 +134,7 @@ public class GetCostDao extends BaseDao<T>{
 			sql.append(" 		tfpi.wayName paymentWay, ");
 			sql.append(" 		tpi.hasReceipt + '' hasReceipt, ");
 			sql.append(" 		tpi.billCount, ");
+			sql.append(" 		tpi.billType,");
 			sql.append(" 		tpi.agent, ");
 			sql.append(" 		tci.id currencyId, ");
 			sql.append(" 		tci.`code` currencyCode, ");
@@ -258,6 +264,21 @@ public class GetCostDao extends BaseDao<T>{
 				sql.append(" AND tpi.billType = ? ");
 				paramsList.add(paymentInfoFilter.getBillType());
 			}
+			//查询某个财务科目支付明细使用
+			if(paymentInfoFilter.isQueryFinanceSubjPayment() && !StringUtils.isBlank(paymentInfoFilter.getFinanceSubjIds())) {
+				String[] financeSubjIdsArray = paymentInfoFilter.getFinanceSubjIds().split(",");
+				sql.append(" AND ( ");
+				for (int i = 0; i < financeSubjIdsArray.length; i++) {
+					String myFinanceSubjId = financeSubjIdsArray[i];
+					if (i == 0) {
+						sql.append(" tpfm.financeSubjId = ? ");
+					} else {
+						sql.append(" or tpfm.financeSubjId = ? ");
+					}
+					paramsList.add(myFinanceSubjId);
+				}
+				sql.append(" ) ");
+			}
 			sql.append(" GROUP BY ");
 			sql.append(" 	tpi.paymentDate, ");
 			sql.append(" 	tpi.receiptNo, ");
@@ -298,6 +319,7 @@ public class GetCostDao extends BaseDao<T>{
 			sql.append(" 	tci.summary, ");
 			sql.append(" 	'' financeSubjId, ");
 			sql.append(" 	'' financeSubjName, ");
+			sql.append(" 	'' financeSubjMoney, ");
 			sql.append(" 	tci.money collectMoney, ");
 			sql.append(" 	0 payedMoney, ");
 			sql.append("	'' department, ");
@@ -307,6 +329,7 @@ public class GetCostDao extends BaseDao<T>{
 			sql.append(" 	tfpi.wayName paymentWay, ");
 			sql.append(" 	'/' hasReceipt, ");
 			sql.append(" 	'/' billCount, ");
+			sql.append(" 	null billType, ");
 			sql.append(" 	tci.agent, ");
 			sql.append(" 	tcci.id currencyId, ");
 			sql.append(" 	tcci. CODE currencyCode, ");
@@ -405,6 +428,7 @@ public class GetCostDao extends BaseDao<T>{
 			sql.append(" 	tli.summary, ");
 			sql.append(" 	tli.financeSubjId, ");
 			sql.append(" 	tli.financeSubjName, ");
+			sql.append(" 	tli.money financeSubjMoney, ");
 			sql.append(" 	0 collectMoney, ");
 			sql.append(" 	tli.money payedMoney, ");
 			sql.append("	'' department, ");
@@ -414,6 +438,7 @@ public class GetCostDao extends BaseDao<T>{
 			sql.append(" 	tfpi.wayName paymentWay, ");
 			sql.append(" 	'/' hasReceipt, ");
 			sql.append(" 	'/' billCount, ");
+			sql.append(" 	null billType, ");
 			sql.append(" 	tli.agent, ");
 			sql.append(" 	tci.id currencyId, ");
 			sql.append(" 	tci. CODE currencyCode, ");
@@ -599,7 +624,11 @@ public class GetCostDao extends BaseDao<T>{
 			sql.append(" 		GROUP_CONCAT(tpfm.financeSubjId) financeSubjId, ");
 			sql.append(" 		GROUP_CONCAT(tpfm.financeSubjName) financeSubjName, ");
 			sql.append(" 		0.00 collectMoney, ");
-			sql.append(" 		tpi.totalMoney payedMoney, ");
+			if(paymentInfoFilter.isQueryFinanceSubjPayment()) {
+				sql.append(" 		sum(tpfm.money) payedMoney, ");
+			} else {
+				sql.append(" 		tpi.totalMoney payedMoney, ");
+			}
 			sql.append(" 		tpi.`status` + '' status, ");
 			sql.append(" 		1 formType, ");
 			sql.append(" 		tpi.payeeName aimPersonName, ");

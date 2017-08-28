@@ -1,6 +1,8 @@
 package com.xiaotu.makeplays.authority.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -182,6 +184,174 @@ public class AuthorityController extends BaseController{
 		resultMap.put("message", message);
 		resultMap.put("success", success);
 		return resultMap;
+	}
+	
+	/**
+	 * 查询所有权限及拥有该权限的用户数量
+	 * 格式化为bootstrap-treeview树形结构
+	 * @param request
+	 * @param type 权限类型, 2：pc,3:app
+	 * @return 只返回已分配的权限(通过与tab_role_auth_map关联)，并且会把admin和客服特有的权限排除掉
+	 */
+	@RequestMapping("/queryAuthAndUserNumWithoutAdminFormat")
+	@ResponseBody
+	public Map<String, Object> queryAuthAndUserNumWithoutAdminFormat(HttpServletRequest request, Integer type) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		String message = "";
+		boolean success = true;
+		
+		try{
+			if(type == null) {
+				throw new IllegalArgumentException("请输入平台类型");
+			}
+			String crewId = this.getCrewId(request);
+			List<Map<String, Object>> list = authorityService.queryAuthAndUserNumWithoutAdmin(type, crewId);
+			List<Map<String, Object>> authList = loopAuthForNodeTree(list, new ArrayList<Map<String,Object>>());
+			resultMap.put("result", authList);
+		} catch (Exception e) {
+			success = false;
+			message = "未知异常，查询所有权限及拥有该权限的用户数量失败";
+			logger.error(message);
+		}
+		resultMap.put("message", message);
+		resultMap.put("success", success);
+		return resultMap;
+	}
+	
+	/**
+	 * 递归权限树
+	 * 封装成id, text:name-num, nodes的格式
+	 * @param subjectList
+	 * @param resultList
+	 * @return
+	 */
+	private List<Map<String, Object>> loopAuthForNodeTree(List<Map<String, Object>> authList, List<Map<String, Object>> resultList) {
+		List<Map<String, Object>> myAuthMapList = new ArrayList<Map<String, Object>>();
+		
+		/*
+		 * 首先过滤出纯粹子节点科目
+		 */
+		List<Map<String, Object>> parentAuthList = new ArrayList<Map<String, Object>>();
+		List<Map<String, Object>> childAuthList = new ArrayList<Map<String, Object>>();
+		
+		for (Map<String, Object> fauth : authList) {
+			String fid = (String) fauth.get("authId");
+			String fparentId = (String) fauth.get("parentId");
+
+			boolean isParent = false;
+			boolean isChild = false;
+			for (Map<String, Object> cauth : authList) {
+				String cid = (String) cauth.get("authId");
+				String cparentId = (String) cauth.get("parentId");
+				
+				if (fid.equals(cparentId)) {
+					isParent = true;
+				}
+				if (fparentId.equals(cid)) {
+					isChild = true;
+				}
+			}
+			
+			//双层循环遍历权限列表，区分其中哪些权限是别人的子权限，哪些权限是别人的父权限
+			//因为数据嵌套多层，过滤出的这两类数据必然会有重合的地方，但是childAuthList中有而parentAuthList没有的数据必然是叶子节点
+			if (isParent) {
+				parentAuthList.add(fauth);
+			}
+			if (isChild || (!isParent && !isChild)) {
+				childAuthList.add(fauth);
+			}
+		}
+		
+		//childAuthList中有而parentAuthList没有的数据必然是叶子节点
+		List<Map<String, Object>> leafAuthList = new ArrayList<Map<String, Object>>();
+		
+		for (Map<String, Object> cauth : childAuthList) {
+			String cid = (String) cauth.get("authId");
+			boolean exist = false;
+			for (Map<String, Object> fauth : parentAuthList) {
+				String fid = (String) fauth.get("authId");
+				if (cid.equals(fid)) {
+					exist = true;
+					break;
+				}
+			}
+			if (!exist) {
+				leafAuthList.add(cauth);
+			}
+		}
+		
+		
+		/*
+		 * 为最后的结果字段赋值
+		 * leafAuthList表示当前循环中的叶子权限
+		 * 但是相对于上一层传过来的resultList，leafAuthList中有些数据为resultList中数据的父权限
+		 * 因此，此处对比出leafAuthList中每个权限的子权限，然后为相应字段赋值
+		 * 
+		 * 如果数据在resultList存在且在leafAuthList中找不到任何父权限，则说明此数据层级也为当前循环的叶子权限
+		 */
+		for (Map<String, Object> auth : leafAuthList) {
+			List<Map<String, Object>> children = new ArrayList<Map<String, Object>>();
+			
+			for (Map<String, Object> authMap : resultList) {
+				String parentId = (String) authMap.get("parentId");
+				
+				if (parentId.equals((String) auth.get("authId"))) {
+					children.add(authMap);
+				}
+			}
+			
+			//为子权限排序
+			Collections.sort(children, new Comparator<Map<String, Object>>() {
+				@Override
+				public int compare(Map<String, Object> o1, Map<String, Object> o2) {
+					int o1sequence = (Integer) o1.get("sequence");
+					int o2sequence = (Integer) o2.get("sequence");
+	        		return o1sequence - o2sequence;
+				}
+			});
+			
+			Map<String, Object> myAuthMap = new HashMap<String, Object>();
+			myAuthMap.put("authId", auth.get("authId"));
+			myAuthMap.put("parentId", auth.get("parentId"));
+			myAuthMap.put("userNum", auth.get("userNum") );
+			myAuthMap.put("text", auth.get("authName") + "-" + auth.get("userNum"));
+			myAuthMap.put("sequence", auth.get("sequence") );
+			if (children.size() > 0) {
+				myAuthMap.put("nodes", children);
+			}
+			
+			
+			myAuthMapList.add(myAuthMap);
+		}
+		for (Map<String, Object> authMap : resultList) {
+			boolean exist = false;
+			for (Map<String, Object> auth : leafAuthList) {
+				String parentId = (String) authMap.get("parentId");
+				if (parentId.equals((String) auth.get("authId"))) {
+					exist = true;
+				}
+			}
+			
+			if (!exist) {
+				myAuthMapList.add(authMap);
+			}
+		}
+		
+		if (parentAuthList.size() > 0) {
+			authList.removeAll(leafAuthList);
+			myAuthMapList = this.loopAuthForNodeTree(authList, myAuthMapList);
+		}
+		
+		//排序
+		Collections.sort(myAuthMapList, new Comparator<Map<String, Object>>() {
+			@Override
+			public int compare(Map<String, Object> o1, Map<String, Object> o2) {
+				int o1sequence = (Integer) o1.get("sequence");
+				int o2sequence = (Integer) o2.get("sequence");
+        		return o1sequence - o2sequence;
+			}
+		});
+		return myAuthMapList;
 	}
 	
 	/**

@@ -152,13 +152,40 @@ public class FinanceSubjectController extends BaseController {
         	if (type == null) {
         		throw new IllegalArgumentException("请提供模板类型");
         	}
+
+    		List<Map<String, Object>> resultList = new ArrayList<Map<String,Object>>();
         	if(StringUtils.isNotBlank(crewId)){
         		List<FinanceSubjectModel> financeSubjectList = this.financeSubjectService.queryByCrewId(crewId);
-        		resultMap.put("financeSubjectList", financeSubjectList);
+        		//将列表处理成easyui树状结构
+        		for(FinanceSubjectModel one : financeSubjectList) {
+        			Map<String, Object> map = new HashMap<String, Object>();
+        			map.put("id", one.getId());
+        			map.put("name", one.getName());
+        			map.put("level", one.getLevel());
+        			map.put("parentId", one.getParentId());
+        			if(!one.getParentId().equals("0")) {
+        				map.put("_parentId", one.getParentId());
+        			}
+        			resultList.add(map);
+        		}
         	}else{
         		List<FinanceSubjectTemplateModel> financeSubjectTemplateList = this.financeSubjectTemplateService.queryByType(type);
         		resultMap.put("financeSubjectList", financeSubjectTemplateList);
+        		//将列表处理成easyui树状结构
+        		for(FinanceSubjectTemplateModel one : financeSubjectTemplateList) {
+        			Map<String, Object> map = new HashMap<String, Object>();
+        			map.put("id", one.getId());
+        			map.put("name", one.getName());
+        			map.put("level", one.getLevel());
+        			map.put("parentId", one.getParentId());
+        			if(!one.getParentId().equals("0")) {
+            			map.put("_parentId", one.getParentId());
+        			}
+        			resultList.add(map);
+        		}
         	}
+    		resultMap.put("total", resultList.size());
+    		resultMap.put("rows", resultList);
         	
         } catch (IllegalArgumentException ie) {
             success = false;

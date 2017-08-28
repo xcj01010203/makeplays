@@ -294,7 +294,7 @@ public class ContractToPaidService {
  	
  	
  	/**
- 	 * 获取财务科目
+ 	 * 获取财务科目，只查询合同批量支付中有的财务科目
  	 * @param crewId
  	 * @return
  	 */

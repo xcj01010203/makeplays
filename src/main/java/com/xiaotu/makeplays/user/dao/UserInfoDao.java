@@ -532,7 +532,7 @@ public class UserInfoDao extends BaseDao<UserInfoModel> {
 	public List<Map<String, Object>> queryByCrewGroupId(String crewId, String groupId) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" SELECT ");
-		sql.append(" 	tui.userId, tui.realName as userName, tui.phone, tsi.roleId, tsi.roleName, tcum.status ");
+		sql.append(" 	tui.userId, tui.realName as userName, tui.phone, tsi.roleId, tsi.roleName, tcum.status,tcum.createTime ");
 		sql.append(" FROM ");
 		sql.append(" 	tab_user_info tui, ");
 		sql.append(" 	tab_crew_user_map tcum, ");
@@ -552,7 +552,7 @@ public class UserInfoDao extends BaseDao<UserInfoModel> {
 			sql.append(" AND tsi.parentId = ? "); 
 		}
 		
-		sql.append(" ORDER BY tsi.roleId ");
+		sql.append(" ORDER BY tsi.orderNo, tcum.createTime, userName ");
 		
 		return this.query(sql.toString(), new Object[] {crewId, crewId, groupId}, null);
 		

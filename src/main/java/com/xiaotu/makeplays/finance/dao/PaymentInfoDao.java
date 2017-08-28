@@ -411,6 +411,21 @@ public class PaymentInfoDao extends BaseDao<PaymentInfoModel> {
 			sql.append(" AND tpi.billType = ? ");
 			paramsList.add(paymentInfoFilter.getBillType());
 		}
+		//查询某个财务科目支付明细使用
+		if(paymentInfoFilter.isQueryFinanceSubjPayment() && !StringUtils.isBlank(paymentInfoFilter.getFinanceSubjIds())) {
+			String[] financeSubjIdsArray = paymentInfoFilter.getFinanceSubjIds().split(",");
+			sql.append(" AND ( ");
+			for (int i = 0; i < financeSubjIdsArray.length; i++) {
+				String myFinanceSubjId = financeSubjIdsArray[i];
+				if (i == 0) {
+					sql.append(" tpfm.financeSubjId = ? ");
+				} else {
+					sql.append(" or tpfm.financeSubjId = ? ");
+				}
+				paramsList.add(myFinanceSubjId);
+			}
+			sql.append(" ) ");
+		}
 		
 		sql.append(" GROUP BY ");
 		sql.append(" 	tpi.paymentDate, ");

@@ -103,8 +103,23 @@ public class CaterInfoService {
 		List<CaterMoneyInfoModel> addMoneyList = new ArrayList<CaterMoneyInfoModel>(); //新增shuju
 		List<CaterMoneyInfoModel> updateMoneyList = new ArrayList<CaterMoneyInfoModel>(); //更新数据
 		if (StringUtils.isNotBlank(caterMoneyStr)) {
-			//对餐饮的详细信息就行分割
-			String[] caterTrArr = caterMoneyStr.split("##");
+			
+			String[] caterTrArr=null;
+			caterTrArr = caterMoneyStr.split("##");
+			//前端页面将##移至最后一个参数后面 或者
+			//前端页面在拼写参数时如果有新增的用餐地点和用餐时间，需要在最后的参数后拼接 @@ 字符串，用来分割参数
+			/*if(caterMoneyStr.indexOf("@@")!=-1) {
+				caterMoneyStr=caterMoneyStr.replaceAll("##", "");
+				caterTrArr = caterMoneyStr.split("@@");
+			}else {
+				//参数增加@@打开
+				//if(caterMoneyStr.lastIndexOf("##")!=caterMoneyStr.length()-2) {
+				//	caterMoneyStr=caterMoneyStr.replaceAll("##", "");
+				//}
+				//对餐饮的详细信息就行分割
+				caterTrArr = caterMoneyStr.split("##");
+			}*/
+			
 			int i =1;
 			for (String caterTrData : caterTrArr) {
 				CaterMoneyInfoModel caterMoneyInfo = new CaterMoneyInfoModel();
@@ -121,7 +136,6 @@ public class CaterInfoService {
 				if (StringUtils.isBlank(caterType)) {
 					throw new IllegalArgumentException("第 " + i + " 行餐饮类别为空，请完善信息");
 				}
-				
 				//人数
 				String peopleCountStr = caterInfoArr[1];
 				//份数
@@ -150,7 +164,25 @@ public class CaterInfoService {
 					caterMoneyId = caterInfoArr[6];
 				}
 				
+				//供餐时间
+				String caterTypeTime = "";
+				if(caterInfoArr.length>7) {
+					caterTypeTime = caterInfoArr[7];
+					/*if (StringUtils.isBlank(caterTypeTime)) {
+						throw new IllegalArgumentException("第 " + i + " 行用餐时间为空，请完善信息");
+					}*/
+				}
+				//用餐地点
+				String caterAddr = "";
+				if(caterInfoArr.length>8) {
+					caterAddr = caterInfoArr[8];
+					/*if (StringUtils.isBlank(caterAddr)) {
+						throw new IllegalArgumentException("第 " + i + " 行用餐地点为空，请完善信息");
+					}*/
+				}
 				caterMoneyInfo.setCaterType(caterType);
+				caterMoneyInfo.setCaterTimeType(caterTypeTime);
+				caterMoneyInfo.setCaterAddr(caterAddr);
 				
 				if (StringUtils.isNotBlank(peopleCountStr)) {
 					caterMoneyInfo.setPeopleCount(Integer.parseInt(peopleCountStr));
