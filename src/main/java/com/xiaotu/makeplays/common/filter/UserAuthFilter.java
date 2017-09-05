@@ -59,60 +59,65 @@ public class UserAuthFilter extends OncePerRequestFilter {
 			HttpSession session = request.getSession();
 			UserInfoModel userInfo = (UserInfoModel) session.getAttribute(Constants.SESSION_USER_INFO);
 			CrewInfoModel crewInfo = (CrewInfoModel) session.getAttribute(Constants.SESSION_CREW_INFO);
-			String ifCheck = (String) session.getAttribute(Constants.SESSION_IFCHECK);
 			Integer loginUserType = (Integer) session.getAttribute(Constants.SESSION_LOGIN_USER_TYPE);
-			String roleId = (String) session.getAttribute(Constants.SESSION_LOGIN_SERVICE_TYPE);
-			if(userInfo != null) {
+			if(loginUserType != null && loginUserType == 4) {
+				filterChain.doFilter(request, response);
+			} else {
 
-				String userId = userInfo.getUserId();
-				String crewId = "";
-				if(crewInfo != null) {
-					crewId = crewInfo.getCrewId();
-				}
-//				if(loginUserType == 1) {//系统管理员，没有默认剧组
-//					crewId = "";
-//				}
-				
-				if("OK".equals(ifCheck)) {
-					try {
-						userAuthFilterService.setFuncPermitList(userId, crewId, loginUserType, roleId);
-						session.setAttribute(Constants.SESSION_IFCHECK, "NO");
-					} catch (Exception e) {
-						e.printStackTrace();
+				String ifCheck = (String) session.getAttribute(Constants.SESSION_IFCHECK);
+				String roleId = (String) session.getAttribute(Constants.SESSION_LOGIN_SERVICE_TYPE);
+				if(userInfo != null) {
+
+					String userId = userInfo.getUserId();
+					String crewId = "";
+					if(crewInfo != null) {
+						crewId = crewInfo.getCrewId();
 					}
-				}
-				
-				boolean isRegisted = UserAuthFilterService.checkAuthRegistered(url, path);
-				
-				if(isRegisted) { // 如果url已注册，执行过滤
-					//用户是否有权限访问
-					boolean hasAuth = UserAuthFilterService.checkAuthControl(crewId, userId, url, path);
-					if(hasAuth) {
-						// 如果有访问权，则继续
-						filterChain.doFilter(request, response);
+//					if(loginUserType == 1) {//系统管理员，没有默认剧组
+//						crewId = "";
+//					}
+					
+					if("OK".equals(ifCheck)) {
+						try {
+							userAuthFilterService.setFuncPermitList(userId, crewId, loginUserType, roleId);
+							session.setAttribute(Constants.SESSION_IFCHECK, "NO");
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+					
+					boolean isRegisted = UserAuthFilterService.checkAuthRegistered(url, path);
+					
+					if(isRegisted) { // 如果url已注册，执行过滤
+						//用户是否有权限访问
+						boolean hasAuth = UserAuthFilterService.checkAuthControl(crewId, userId, url, path);
+						if(hasAuth) {
+							// 如果有访问权，则继续
+							filterChain.doFilter(request, response);
+						} else {
+							// 如果没有访问权，则转到失败页面
+							request.setCharacterEncoding("UTF-8");
+							response.setCharacterEncoding("UTF-8");
+							response.setContentType("text/html;charset=UTF-8");
+							PrintWriter out = response.getWriter();
+							String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort() + request.getContextPath();
+							String loginPage = basePath + "/toRestrictedPage";
+							StringBuilder builder = new StringBuilder();
+							builder.append("<script charset=\"utf-8\" language=\"javascript\" type=\"text/javascript\">");
+							builder.append("window.location='");
+							builder.append(loginPage);
+							builder.append("';");
+							builder.append("</script>");
+							out.print(builder.toString());
+						}
 					} else {
-						// 如果没有访问权，则转到失败页面
-						request.setCharacterEncoding("UTF-8");
-						response.setCharacterEncoding("UTF-8");
-						response.setContentType("text/html;charset=UTF-8");
-						PrintWriter out = response.getWriter();
-						String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort() + request.getContextPath();
-						String loginPage = basePath + "/toRestrictedPage";
-						StringBuilder builder = new StringBuilder();
-						builder.append("<script charset=\"utf-8\" language=\"javascript\" type=\"text/javascript\">");
-						builder.append("window.location='");
-						builder.append(loginPage);
-						builder.append("';");
-						builder.append("</script>");
-						out.print(builder.toString());
+						// 如果没注册，则继续
+						filterChain.doFilter(request, response);
 					}
 				} else {
 					// 如果没注册，则继续
 					filterChain.doFilter(request, response);
 				}
-			} else {
-				// 如果没注册，则继续
-				filterChain.doFilter(request, response);
 			}
 		} else {
 			// 如果不过滤 ，则继续

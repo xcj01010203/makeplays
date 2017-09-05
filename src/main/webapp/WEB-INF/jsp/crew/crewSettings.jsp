@@ -221,8 +221,13 @@ String today = formatter.format(currentTime); //将日期时间格式化
 		            </div>
 	            </div>
 	            <div id="crewUserManage" style="display: none;">
-		            <input class="add-user-btn" type="button" value="添加成员" onclick="showAddUserWin()">
-		            <input type="text" style="display: none">
+	            	<div>
+	            	<button class="select-btn" id="selectAll" title="全选" onclick="selectAll(this)">全选</button>
+	            	<button class="select-btn" id="notselectAll" title="全不选" onclick="notselectAll(this)">全不选</button>
+	            	<button class="select-btn" id="reverseSelect" title="反选" onclick="reverseSelect(this)">反选</button>
+		            <input class="add-user-btn" type="button" value="添加成员" onclick="showAddUserWin()" style="margin-left: calc(50% - 350px)">
+		            <input class="add-user-btn" type="button" value="批量设置权限" onclick="showMultiAuthSetWin()">
+		            </div>
 		            <div id="crewUserListDiv">
 		                
 		            </div>
@@ -264,6 +269,13 @@ String today = formatter.format(currentTime); //将日期时间格式化
 	    
 	    <div id='addUserDiv' style='display:none;'>
 	        <div>添加成员</div>
+	        <div>
+	            <iframe frameborder="0" scrolling="yes" width="100%" height="100%" src=""></iframe>
+	        </div>
+	    </div>	    
+	    
+	    <div id='multiAuthSetDiv' style='display:none;'>
+	        <div>批量设置权限</div>
 	        <div>
 	            <iframe frameborder="0" scrolling="yes" width="100%" height="100%" src=""></iframe>
 	        </div>

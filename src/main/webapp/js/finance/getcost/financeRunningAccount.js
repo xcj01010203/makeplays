@@ -78,7 +78,8 @@ $(document).ready(function(){
 		
 	    }
 	});
-	
+	//初始化批量修改弹窗
+	initMultiUpdateReceiptNoWin();
 });
 var currencyIdCodeMap = {};
 //获取币种列表
@@ -434,13 +435,23 @@ function loadFinanceRunning(){
 //    		if(!isRunningAccountReadonly){
     			container.push("<input type='button' class='account-subject-btn' id='accountSubjectBtn' onclick='AccountSubjectPage()'>");
 //    		}
+    		if(!isRunningAccountReadonly){
+    			container.push("<div class='multiset-btn' id='multiSetBtn'>");
+    			container.push("<div class='jqx-tree-drop' id='jqxTreeDrop'>");
+    			container.push(" <ul style='display:block;'>");
+    			container.push("   <li value='1'>结算</li>");
+    			container.push("   <li value='2'>无票改有票</li>");
+    			container.push("   <li value='3'>打印付款单</li>");
+    			container.push("   <li value='4'>修改票据编号</li>");
+    			container.push(" </ul>");
+    			container.push("</div>");
+    			container.push("</div>");
+//        		container.push("<input type='button' class='settlement-btn' id='settlementBtn' onclick='settlePaymentBatch()'>");
+//        		container.push("<input type='button' class='ticket-change-btn' id='ticketChangeBtn' onclick='changeTicket()'>");
+//        		container.push("<input type='button' class='print-btn' id='printBtn' onclick='printPayments()'>");
+    		}
     		if(hasExportFinanceDetailAuth) {
         		container.push("<input type='button' class='export-btn' id='exportBtn' onclick='exportList()'>");
-    		}
-    		if(!isRunningAccountReadonly){
-    			container.push("<input type='button' class='settlement-btn' id='settlementBtn' onclick='settlePaymentBatch()'>");
-    			container.push("<input type='button' class='ticket-change-btn' id='ticketChangeBtn' onclick='changeTicket()'>");
-    			container.push("<input type='button' class='print-btn' id='printBtn' onclick='printPayments()'>");
     		}
     		if(!isRunningAccountReadonly && hasImportFinanceDetailAuth){
     			container.push("<input type='button' class='import-btn' id='importBtn' onclick='showImportWin()'>");
@@ -455,9 +466,13 @@ function loadFinanceRunning(){
     		$("#advanceQueryBtn").jqxTooltip({content: "高级查询", position: "bottom"});
 			$("#accountSubjectBtn").jqxTooltip({content: "会计科目", position: "bottom"});
     		if(!isRunningAccountReadonly){
-    			$("#settlementBtn").jqxTooltip({content: "结算", position: "bottom"});
-    			$("#ticketChangeBtn").jqxTooltip({content: "无票改有票", position: "bottom"});
-    			$("#printBtn").jqxTooltip({content: "批量打印付款单", position: "bottom"});
+    			$("#multiSetBtn").jqxDropDownButton({theme:theme, height: 24, width: 24});
+    			$("#multiSetBtn").jqxTooltip({content: "批量修改", position: "bottom"});
+    			$("#jqxTreeDrop").jqxTree({theme:theme, width: 120, height: 130});
+    			$('#jqxTreeDrop').click('select', multiSet);
+//    			$("#settlementBtn").jqxTooltip({content: "结算", position: "bottom"});
+//    			$("#ticketChangeBtn").jqxTooltip({content: "无票改有票", position: "bottom"});
+//    			$("#printBtn").jqxTooltip({content: "批量打印付款单", position: "bottom"});
     		}
     		if(!isRunningAccountReadonly && hasImportFinanceDetailAuth){
     			$("#importBtn").jqxTooltip({content: "导入", position: "bottom"});
@@ -1816,6 +1831,7 @@ function selectAimdate(own){
 	grid.setFilter(filter);
 }
 
+
 //结算
 function settlePaymentBatch(){
 	$("#paymentIds").val("");
@@ -3050,4 +3066,139 @@ function sortFom(own, sortType){
 		$("#sortOfType").val(1);
 		grid.loadTable();
 	}
+}
+
+//初始化批量修改票据编号弹窗
+function initMultiUpdateReceiptNoWin() {
+	$("#multiUpdateReceiptWin").jqxWindow({
+		theme: theme,
+		height: 200,
+		width: 400,
+		maxWidth: 2000,
+		maxHeight: 1000,
+		resizable: false,
+		isModal: true,
+		autoOpen: false,
+	    cancelButton: $('#cancelReceiptSet'),
+		initContent: function(){
+			
+		}
+	});
+}
+//显示批量修改票据编号弹窗
+function showMultiUpdateReceiptWin(){
+	$("#paymentIds").val("");
+	var count=0;
+	var paymentIds;
+	$(".div-checkbox").each(function(i){
+		
+		if($(this).is(':checked')){
+			count++;
+			paymentIds= $("#paymentIds").val();
+			
+			paymentIds+= "," + $(this).attr("rid")+ ",";
+			paymentIds= paymentIds.replace(/(^\,*)|(\,*$)/g, "");
+			$("#paymentIds").val(paymentIds);
+		}
+		
+	});
+	if(count<=0){
+		showErrorMessage("请选择要修改的数据");
+		return;
+	}
+	//清空
+	$("#noNum").val('0');
+	$("#multiUpdateReceiptWin").jqxWindow('open');
+}
+//批量修改下拉框点击事件
+function multiSet(event) {
+	 var item = event.target.innerHTML;
+     if(item == "结算") {
+    	 settlePaymentBatch();
+     } else if (item=='无票改有票'){
+    	 changeTicket();
+     }else if(item=='打印付款单'){
+    	 printPayments();
+     }else if(item=='修改票据编号'){
+    	 showMultiUpdateReceiptWin();
+     }
+     if($("#jqxTreeDrop").parent().css('visibility')) {
+    	 $("#jqxTreeDrop").parent().css('visibility','hidden');
+     }
+}
+//只允许输入正整数和负整数
+function onlyNumber(own){
+	var $this = $(own);
+	$this.val($this.val().replace(/[^\-\d]/g,""));  //清除“数字”和“-”以外的字符
+	$this.val($this.val().replace(/\-{2,}/g,"-"));
+	$this.val($this.val().replace("-","$#$").replace(/\-/g,"").replace("$#$","-"));
+}
+//减少
+function substractNums(own){
+	$(own).attr("disabled", true);
+	if($("#noNum").val() == ""){
+		var value = 0;
+		$("#noNum").val(value);
+	}else{
+		var value = parseInt($("#noNum").val());
+		value-=1;
+		$("#noNum").val(value);
+	}
+	$(own).attr("disabled", false);
+}
+//增加
+function addNums(own){
+	$(own).attr("disabled", true);
+	if($("#noNum").val() == ""){
+		var value = 0;
+		$("#noNum").val(value);
+	}else{
+		var value = parseInt($("#noNum").val());
+		value+=1;
+		$("#noNum").val(value);
+	}
+	$(own).attr("disabled", false);
+}
+//批量修改票据编号
+function confirmReceiptSet(){
+	if($("#noNum").val()==''){
+		showInfoMessage('请输入调整日期');
+		return;
+	}
+	var noNum = parseInt($("#noNum").val());
+	if(noNum==0) {
+		$("#multiUpdateReceiptWin").jqxWindow('close');
+		return;
+	}
+	$.ajax({
+		url: '/paymentManager/updateReceiptNoBatch',
+		type: 'post',
+		data: {noNum:noNum, paymentIds:$("#paymentIds").val()},
+		datatype: 'json',
+		success: function(response){
+			if(response.success){
+				showSuccessMessage("操作成功");
+				$("#multiUpdateReceiptWin").jqxWindow('close');
+				$("#paymentIds").val("");
+				
+				var paymentInfoList = response.paymentInfoList;debugger;
+				var idArray = grid.getSelectedIndexs();
+				grid.unSelectAll();
+				grid.unCheckAll();debugger;
+				for(var i=0,le = idArray.length;i<le;i++){
+					var index = idArray[i];
+					var data = grid.getRowData(parseInt(index));
+					for(var j=0;j<paymentInfoList.length;j++){
+						if(paymentInfoList[j].paymentId==data.receiptId){
+							data.receiptNo=paymentInfoList[j].receiptNo;
+							break;
+						}
+					}
+					grid.updaterowdata(index, data);
+				}
+			}else{
+				showErrorMessage(response.message);
+			}
+		}
+	});
 }

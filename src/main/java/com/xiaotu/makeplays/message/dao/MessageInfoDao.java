@@ -74,7 +74,7 @@ public class MessageInfoDao extends BaseDao<MessageInfoModel> {
 		
 		sql.append(" ORDER BY remindTime desc ");
 		Object[] objArr = conList.toArray();
-		List<MessageInfoModel> messageInfoList = this.query(sql.toString(), objArr, MessageInfoModel.class, null);
+		List<MessageInfoModel> messageInfoList = this.query(sql.toString(), objArr, MessageInfoModel.class, page);
 		
 		return messageInfoList;
 	}

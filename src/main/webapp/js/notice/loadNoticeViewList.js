@@ -551,8 +551,8 @@ function createRow (tableIndex,rowData) {
    	}
    	_row.append("<td><p style='width:80px;'>"+tapNoText+"</p></td>");*/ //带号
 	var remarkText="";
-   	if(rowData.remark){
-   		remarkText=rowData.remark;
+   	if(rowData.viewRemark){
+   		remarkText=rowData.viewRemark;
    	}
    	_row.append("<td><p style='width:150px;' title='"+ remarkText +"'>"+remarkText+"</p></td>");//备注
    	/*_row.append("<td><p style='width:6px;'></p></td>");*/

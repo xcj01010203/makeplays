@@ -28,6 +28,24 @@ public class UserAuthMapDao extends BaseDao<UserAuthMapModel> {
 	}
 	
 	/**
+	 * 查询用户在指定剧组下的权限关联
+	 * 多个用户
+	 * @param crewId
+	 * @param userIds
+	 * @return
+	 */
+	public List<Map<String, Object>> queryByCrewUserIds (String crewId, String userIds) {
+		int num = userIds.split(",").length;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select authId,if(count(userId)=?,1,2) hasAuth,case when (count(userId)=? and sum(readonly)=0) then 0 when sum(readonly)=count(userId) then 1 else 2 end readonly ");
+		sql.append(" from tab_user_auth_map ");
+		sql.append(" where crewId=? ");
+		sql.append(" and userId in ('" + userIds.replace(",", "','") + "') ");
+		sql.append(" group by authId ");
+		return this.query(sql.toString(), new Object[]{num, num, crewId}, null);
+	}
+	
+	/**
 	 * 查询用户在指定剧组下的指定权限信息
 	 * @param crewId
 	 * @param userId

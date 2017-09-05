@@ -1,5 +1,8 @@
 package com.xiaotu.makeplays.user.service;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
@@ -18,6 +22,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaotu.makeplays.authority.dao.UserAuthMapDao;
 import com.xiaotu.makeplays.crew.dao.CrewInfoDao;
@@ -62,6 +67,7 @@ import com.xiaotu.makeplays.utils.Constants;
 import com.xiaotu.makeplays.utils.FileUtils;
 import com.xiaotu.makeplays.utils.IpUtil;
 import com.xiaotu.makeplays.utils.Page;
+import com.xiaotu.makeplays.utils.PropertiesUitls;
 import com.xiaotu.makeplays.utils.RegexUtils;
 import com.xiaotu.makeplays.utils.UUIDUtils;
 import com.xiaotu.makeplays.verifycode.dao.VerifyCodeInfoDao;
@@ -345,6 +351,48 @@ public class UserService {
 	 */
 	public void updateOne(UserInfoModel userInfo) throws Exception {
 		this.userInfoDao.updateWithNull(userInfo, "userId");
+	}
+	
+	/**
+	 * 更新用户头像
+	 * @param userInfo
+	 * @param file
+	 * @return
+	 * @throws Exception 
+	 */
+	public UserInfoModel updateUserImg(String userId, MultipartFile file) throws Exception {
+		UserInfoModel userInfo = this.queryById(userId);
+		//删除原来的头像
+		if (!StringUtils.isBlank(userInfo.getBigImgUrl())) {
+			FileUtils.deleteFile(userInfo.getBigImgUrl());
+		}
+		if (!StringUtils.isBlank(userInfo.getSmallImgUrl())) {
+			FileUtils.deleteFile(userInfo.getSmallImgUrl());
+		}
+		//上传新头像
+		Properties properties = PropertiesUitls.fetchProperties("/config.properties");
+		String baseStorePath = properties.getProperty("fileupload.path");
+		String storePath = baseStorePath + "userHeader/";
+		Map<String, String> fileMap = FileUtils.uploadFile(file, false, storePath);
+		
+		String fileStoreName = fileMap.get("fileStoreName");
+		String hdStorePath = fileMap.get("storePath");
+		
+		String exceptSuffixName = fileStoreName.substring(0, fileStoreName.lastIndexOf("."));	//不带后缀的文件名
+		String suffix = fileStoreName.substring(fileStoreName.lastIndexOf("."));//文件后缀
+		
+		String sdStorePath = hdStorePath + "sd/" + exceptSuffixName + "_sd" + suffix;
+		BufferedImage newImage = FileUtils.getNewImage(file, null, 200, 200);
+		File destFile = new File(sdStorePath);
+		FileUtils.makeDir(destFile);
+		
+        ImageIO.write(newImage, "png", destFile);
+        
+        userInfo.setBigImgUrl(hdStorePath + fileStoreName);
+        userInfo.setSmallImgUrl(sdStorePath);
+		
+        this.updateOne(userInfo);
+        return userInfo;
 	}
 	
 	/**

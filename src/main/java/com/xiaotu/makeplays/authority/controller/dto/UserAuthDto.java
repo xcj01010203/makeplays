@@ -52,6 +52,16 @@ public class UserAuthDto {
 	 * 是否只读
 	 */
 	private boolean readonly;
+	
+	/**
+	 * 多个用户拥有此权限的状态，0：都没有，1：都有，2：部分有
+	 */
+	private Integer hasAuthStatus;
+	
+	/**
+	 * 多个用户是否只读状态，0：都否，1：都是，2：部分是
+	 */
+	private Integer readonlyStatus;
 
 	public Integer getSequence() {
 		return this.sequence;
@@ -123,5 +133,21 @@ public class UserAuthDto {
 
 	public void setReadonly(boolean readonly) {
 		this.readonly = readonly;
+	}
+
+	public Integer getHasAuthStatus() {
+		return hasAuthStatus;
+	}
+
+	public void setHasAuthStatus(Integer hasAuthStatus) {
+		this.hasAuthStatus = hasAuthStatus;
+	}
+
+	public Integer getReadonlyStatus() {
+		return readonlyStatus;
+	}
+
+	public void setReadonlyStatus(Integer readonlyStatus) {
+		this.readonlyStatus = readonlyStatus;
 	}
 }

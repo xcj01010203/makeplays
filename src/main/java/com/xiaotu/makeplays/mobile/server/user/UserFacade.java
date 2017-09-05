@@ -643,33 +643,9 @@ public class UserFacade extends BaseFacade{
 				throw new IllegalArgumentException("请选择头像图片");
 			}
 			
-			UserInfoModel userInfo = this.userService.queryById(userId);
-			
-			Properties properties = PropertiesUitls.fetchProperties("/config.properties");
-			String baseStorePath = properties.getProperty("fileupload.path");
-			String storePath = baseStorePath + "userHeader/";
-			Map<String, String> fileMap = FileUtils.uploadFile(iconData, false, storePath);
-			
-			String fileStoreName = fileMap.get("fileStoreName");
-			String hdStorePath = fileMap.get("storePath");
-			
-			String exceptSuffixName = fileStoreName.substring(0, fileStoreName.lastIndexOf("."));	//不带后缀的文件名
-			String suffix = fileStoreName.substring(fileStoreName.lastIndexOf("."));//文件后缀
-			
-			String sdStorePath = hdStorePath + "sd/" + exceptSuffixName + "_sd" + suffix;
-			BufferedImage newImage = FileUtils.getNewImage(iconData, null, 200, 200);
-			File destFile = new File(sdStorePath);
-			FileUtils.makeDir(destFile);
-			
-            ImageIO.write(newImage, "png", destFile);
+			UserInfoModel userInfo = this.userService.updateUserImg(userId, iconData);
             
-            userInfo.setBigImgUrl(hdStorePath + fileStoreName);
-            userInfo.setSmallImgUrl(sdStorePath);
-			
-            this.userService.updateOne(userInfo);
-            
-            
-            resultMap.put("imgUrl", FileUtils.genPreviewPath(hdStorePath + fileStoreName));
+            resultMap.put("imgUrl", FileUtils.genPreviewPath(userInfo.getBigImgUrl()));
 		} catch (IllegalArgumentException ie) {
 			logger.error(ie.getMessage(), ie);
 			throw new IllegalArgumentException(ie.getMessage(), ie);

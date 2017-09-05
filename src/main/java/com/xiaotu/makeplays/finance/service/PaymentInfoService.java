@@ -3,6 +3,7 @@ package com.xiaotu.makeplays.finance.service;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -420,6 +421,62 @@ public class PaymentInfoService {
 	}
 	
 	/**
+	 * 批量更新票据编号
+	 * @param crewId 剧组ID
+	 * @param paymentIds 付款单ID
+	 * @param noNum 要调整的位数
+	 * @throws Exception
+	 */
+	public List<PaymentInfoModel> updateReceiptNoBatch(String crewId, String paymentIds, Integer noNum) throws Exception {
+		//查询出要修改的付款单信息
+		List<PaymentInfoModel> paymentInfoList = this.paymentInfoDao.queryByIds(paymentIds);
+		//查询财务设置票据设置信息
+    	FinanceSettingModel financeSetting = this.financeSettingService.queryByCrewId(crewId);
+    	Boolean hasReceiptStatus = financeSetting.getHasReceiptStatus();	//付款单编号是否分为有票无票
+    	Boolean payStatus = financeSetting.getPayStatus();	//付款单编号是否按月重新开始
+		//计算调整后的票据编号
+		DecimalFormat df = new DecimalFormat("000000");
+		for(PaymentInfoModel paymentInfo : paymentInfoList) {
+			String receipNo = paymentInfo.getReceiptNo();
+			String prefix = receipNo.substring(0, 4);
+			int number = Integer.parseInt(receipNo.substring(4));
+			int newNumber = number + noNum;
+			if(newNumber < 1) {
+				throw new IllegalArgumentException("票据编号应从1开始，" + receipNo + "：调整后票据编号越界");
+			}
+			String newReceiptNo = prefix + df.format(newNumber);
+
+	    	//获取付款日期当月的第一天和最后一天
+	    	Date moonFirstDay = null;
+			Date moonLastDay = null;
+			if(payStatus) {
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(paymentInfo.getPaymentDate());
+				calendar.set(Calendar.DAY_OF_MONTH, 1);//设置为1号,当前日期既为本月第一天
+				moonFirstDay = calendar.getTime();
+				
+				calendar.add(Calendar.MONTH, 1);//月增加1天
+				calendar.add(Calendar.DAY_OF_MONTH, -1);//日期倒数一日,即得到本月最后一天
+				moonLastDay = calendar.getTime();
+			}
+			String queryReceiptNo = newReceiptNo;
+			//查询库中是否已有调整后的票据编号
+			if(!hasReceiptStatus) {
+				queryReceiptNo = df.format(newNumber);
+			}
+			List<PaymentInfoModel> list = this.paymentInfoDao.queryByReceiptNo(crewId, paymentIds, queryReceiptNo, moonFirstDay, moonLastDay);
+			if(list != null && list.size() > 0) {
+				throw new IllegalArgumentException(receipNo + "：调整后的票据编号已存在");
+			}
+			paymentInfo.setReceiptNo(newReceiptNo);
+		}
+		//批量修改票据编号
+		this.paymentInfoDao.updateBatch(paymentInfoList, "paymentId", PaymentInfoModel.class);
+		
+		return paymentInfoList;
+	}
+	
+	/**
 	 * 查询跟借款单关联的付款单信息
 	 * @param crewId
 	 * @param loanId
@@ -454,7 +511,6 @@ public class PaymentInfoService {
 	
 	/**
 	 * 获取付款单单据编号
-	 * 该方法默认有票无票条件已经变了，付款月份已经变了
 	 * @param crewId 剧组id
 	 * @param hasReceipt 是否有单据
 	 * @param paymentDate 操作日期

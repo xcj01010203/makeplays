@@ -348,9 +348,9 @@ public class SceneViewInfoDao extends BaseDao<SceneViewInfoModel>{
 	 * @return
 	 */
 	public void saveSceneViewInfo(String id,String vName,String vCity,String vAddress,
-			String vLongitude,String vLatitude,String distanceToHotel,Integer holePeoples,String deviceSpace,Integer isModifyView,
-			Double modifyViewCost,String modifyViewTime,Integer hasProp,Double propCost,String propTime,String enterViewDate,
-			String leaveViewDate,String viewUseTime,String contactNo,String contactName,String contactRole,Double viewPrice,String freeStartDate,
+			String vLongitude,String vLatitude,String distanceToHotel,String holePeoples,String deviceSpace,Integer isModifyView,
+			String modifyViewCost,String modifyViewTime,Integer hasProp,String propCost,String propTime,String enterViewDate,
+			String leaveViewDate,String viewUseTime,String contactNo,String contactName,String contactRole,String viewPrice,String freeStartDate,
 			String freeEndDate,String remark,String crewId) throws Exception{
 		
 		String sql = "insert into "+SceneViewInfoModel.TABLE_NAME+"(id,vName,vCity,vAddress,vLongitude,vLatitude,distanceToHotel,"
@@ -422,9 +422,9 @@ public class SceneViewInfoDao extends BaseDao<SceneViewInfoModel>{
 	 * @return
 	 */
 	public void updateSceneViewInfo(String id,String vName,String vCity,String vAddress,
-			String vLongitude,String vLatitude,String distanceToHotel,Integer holePeoples,String deviceSpace,Integer isModifyView,
-			Double modifyViewCost,String modifyViewTime,Integer hasProp,Double propCost,String propTime,String enterViewDate,
-			String leaveViewDate,String viewUseTime,String contactNo,String contactName,String contactRole,Double viewPrice,String freeStartDate,
+			String vLongitude,String vLatitude,String distanceToHotel,String holePeoples,String deviceSpace,Integer isModifyView,
+			String modifyViewCost,String modifyViewTime,Integer hasProp,String propCost,String propTime,String enterViewDate,
+			String leaveViewDate,String viewUseTime,String contactNo,String contactName,String contactRole,String viewPrice,String freeStartDate,
 			String freeEndDate,String remark) throws Exception{
 		String sql = "update "+SceneViewInfoModel.TABLE_NAME +" set vName = ? ,"
 				+ "vCity = ? ,vAddress = ? ,vLongitude = ?,vLatitude = ?,"

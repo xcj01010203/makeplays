@@ -91,6 +91,8 @@
         <pattern>*/scheduleManager/toScheduleCalendarPage*</pattern>
         <!-- 跳转到计划详情页面 -->
         <pattern>*/scheduleManager/toScheduleDetailPage*</pattern>
+        <!-- 跳转到批量设置剧组成员权限页面 -->
+        <pattern>*/userManager/toUserMultiSetAuthPage*</pattern>
     </excludes>
 
     <decorator name="main" page="main.jsp">

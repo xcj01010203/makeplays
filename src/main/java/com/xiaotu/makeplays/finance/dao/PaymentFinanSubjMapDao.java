@@ -54,4 +54,13 @@ public class PaymentFinanSubjMapDao extends BaseDao<PaymentFinanSubjMapModel> {
 		String sql = "select * from " + PaymentFinanSubjMapModel.TABLE_NAME + " where paymentId = ? order by mapId";
 		return this.query(sql, new Object[] {paymentId}, PaymentFinanSubjMapModel.class, null);
 	}
+	
+	/**
+	 * 根据剧组ID清空财务科目关联信息，用于费用预算导入
+	 * @param crewId
+	 */
+	public void deleteFinanceSubjectByCrewId(String crewId) {
+		String sql = "update " + PaymentFinanSubjMapModel.TABLE_NAME + " set financeSubjId=null,financeSubjName=null where crewId = ? ";
+		this.getJdbcTemplate().update(sql, new Object[]{crewId});
+	}
 }

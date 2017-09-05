@@ -1109,8 +1109,8 @@ public class GetCostController extends BaseController {
 
 			singleAccountMap.put("financeSubjName", financeSubjNames);
 			
-			if (forExport) {
-				if (!StringUtils.isBlank(financeSubjIds)) {
+			if (forExport) {				
+				if (!StringUtils.isBlank(financeSubjInfo)) {
 					String[] financeSubjInfoArray = financeSubjInfo.split("##");
 					for (String myFinanceSubjInfo : financeSubjInfoArray) {
 						String[] myFinanceSubjInfoArray = myFinanceSubjInfo.split("&&");

@@ -751,6 +751,9 @@ public class PaymentInfoController extends BaseController {
 						financeSubjName = this.financeSubjectService.getFinanceSubjName(financeSubjId);
 						paymentInfo.setFinanceSubjName(financeSubjName);
 					}
+					if(StringUtils.isBlank(financeSubjName)) {
+						paymentInfo.setFinanceSubjName("");
+					}
 				}
 				
 				map.put("paymentFinanSubjMapList", paymentFinanSubjMapList);
@@ -843,6 +846,47 @@ public class PaymentInfoController extends BaseController {
 			logger.error("未知异常", e);
 			this.sysLogService.saveSysLog(request, "付款单批量无票改有票(" + paymentIds.split(",").length + ")失败：" + e.getMessage(), 
 					Constants.TERMINAL_PC, PaymentInfoModel.TABLE_NAME, paymentIds, SysLogOperType.ERROR.getValue());
+		}
+		
+		resultMap.put("success", success);
+		resultMap.put("message", message);
+		return resultMap;
+	}
+	
+	/**
+	 * 批量修改票据编号
+	 * @param request
+	 * @param paymentIds
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/updateReceiptNoBatch")
+	public Map<String, Object> updateReceiptNoBatch (HttpServletRequest request, String paymentIds, Integer noNum) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		boolean success = true;
+		String message = "";
+		try {
+			if (StringUtils.isBlank(paymentIds)) {
+				throw new IllegalArgumentException("请提供付款单ID");
+			}
+			String crewId = this.getCrewId(request);
+			List<PaymentInfoModel> paymentInfoList = this.paymentInfoService.updateReceiptNoBatch(crewId, paymentIds, noNum);
+			
+			resultMap.put("paymentInfoList", paymentInfoList);
+			
+			this.sysLogService.saveSysLog(request, "批量修改票据编号(" + paymentIds.split(",").length + ")", Constants.TERMINAL_PC, 
+					PaymentInfoModel.TABLE_NAME + "," + ContractToPaidModel.TABLE_NAME, paymentIds, SysLogOperType.UPDATE.getValue());
+		} catch (IllegalArgumentException ie) {
+			success = false;
+			message = ie.getMessage();
+		} catch (Exception e) {
+			success = false;
+			message = "未知异常";
+			
+			logger.error("未知异常", e);
+			this.sysLogService.saveSysLog(request, "批量修改票据编号(" + paymentIds.split(",").length + ")失败：" + e.getMessage(), Constants.TERMINAL_PC, 
+					PaymentInfoModel.TABLE_NAME + "," + ContractToPaidModel.TABLE_NAME, paymentIds, SysLogOperType.ERROR.getValue());
 		}
 		
 		resultMap.put("success", success);

@@ -156,6 +156,7 @@ public class FinanceSubjectController extends BaseController {
     		List<Map<String, Object>> resultList = new ArrayList<Map<String,Object>>();
         	if(StringUtils.isNotBlank(crewId)){
         		List<FinanceSubjectModel> financeSubjectList = this.financeSubjectService.queryByCrewId(crewId);
+        		resultMap.put("financeSubjectList", financeSubjectList);
         		//将列表处理成easyui树状结构
         		for(FinanceSubjectModel one : financeSubjectList) {
         			Map<String, Object> map = new HashMap<String, Object>();

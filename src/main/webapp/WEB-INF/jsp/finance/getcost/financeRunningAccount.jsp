@@ -433,6 +433,24 @@ if(obj!=null){
                 </div>
             </div>
         </div>
-           
+        <!-- 批量修改 -->
+	     <div class="jqx-window" id="multiUpdateReceiptWin">
+	        <div>批量修改票据编号</div>
+	        <div class="jqx-content">
+	            <p class="update-content">
+		            <label>调整编号:</label>
+	                <button class="date-icon" onclick="substractNums(this)">-</button>
+	                <input type="text" class="only-num" id="noNum" onkeyup="onlyNumber(this)">
+	                <button class="date-icon2" onclick="addNums(this)">+</button>
+                </p>
+                <p class="tips">
+                	<i>正数为“增大”编号，负数为“减小”编号</i>
+                </p>
+                <p class="button-content">
+                	<input type="button" value="确定" onclick="confirmReceiptSet()">
+                	<input type="button" value="取消" id="cancelReceiptSet">
+                </p>
+	        </div>
+	     </div>
   </body>
 </html>

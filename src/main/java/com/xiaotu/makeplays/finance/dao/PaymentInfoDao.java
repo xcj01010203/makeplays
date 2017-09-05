@@ -245,8 +245,36 @@ public class PaymentInfoDao extends BaseDao<PaymentInfoModel> {
 	 */
 	public List<PaymentInfoModel> queryByIds(String paymentIds) throws Exception {
 		paymentIds = "'" + paymentIds.replace(",", "','") + "'";
-		String sql = "select * from " + PaymentInfoModel.TABLE_NAME + " where paymentId in ("+ paymentIds +") ";
+		String sql = "select * from " + PaymentInfoModel.TABLE_NAME + " where paymentId in ("+ paymentIds +") order by createtime ";
 		return this.query(sql, new Object[] {}, PaymentInfoModel.class, null);
+	}
+	
+	/**
+	 * 查询票据编号是否已存在
+	 * @param crewId
+	 * @param paymentIds
+	 * @param receiptNo
+	 * @throws Exception
+	 */
+	public List<PaymentInfoModel> queryByReceiptNo(String crewId, String paymentIds, String receiptNo, Date moonFirstDay, Date moonLastDay) throws Exception {		
+		StringBuilder sql = new StringBuilder();
+		sql.append("select * from " + PaymentInfoModel.TABLE_NAME + " where crewId=? ");
+		List<Object> params = new ArrayList<Object>();
+		params.add(crewId);
+		if(StringUtils.isNotBlank(paymentIds)) {
+			paymentIds = "'" + paymentIds.replace(",", "','") + "'";
+			sql.append(" and paymentId not in (" + paymentIds + ")");
+		}
+		if(StringUtils.isNotBlank(receiptNo)) {
+			sql.append(" and receiptNo like ? ");
+			params.add("%" + receiptNo + "%");
+		}
+		if (moonFirstDay != null && moonLastDay != null) {
+			sql.append(" and paymentDate >= ? and paymentDate <= ? ");
+			params.add(moonFirstDay);
+			params.add(moonLastDay);
+		}
+		return this.query(sql.toString(), params.toArray(), PaymentInfoModel.class, null);
 	}
 	
 	/**
@@ -274,7 +302,7 @@ public class PaymentInfoDao extends BaseDao<PaymentInfoModel> {
 //		sql.append(" 	GROUP_CONCAT(DISTINCT if(tpfm.summary is null or tpfm.summary='', ' ', tpfm.summary) SEPARATOR '&&') formatSummary, ");
 		sql.append(" 	GROUP_CONCAT(tpfm.financeSubjId) financeSubjIds, ");
 //		sql.append(" 	GROUP_CONCAT(tpfm.money) financeSubjMoneys, ");
-		sql.append("    GROUP_CONCAT(tpfm.financeSubjId, '&&', tpfm.money, '&&', if(tpfm.summary is null or tpfm.summary='', ' ', tpfm.summary) SEPARATOR '##') financeSubjInfo, ");
+		sql.append("    GROUP_CONCAT(ifnull(tpfm.financeSubjId,''), '&&', tpfm.money, '&&', if(tpfm.summary is null or tpfm.summary='', ' ', tpfm.summary) SEPARATOR '##') financeSubjInfo, ");
 		
 		sql.append(" 	GROUP_CONCAT( ");
 		sql.append(" 		tpfm.financeSubjName ");

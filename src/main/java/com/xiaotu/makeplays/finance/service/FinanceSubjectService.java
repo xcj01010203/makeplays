@@ -180,7 +180,7 @@ public class FinanceSubjectService {
 		this.contractActorDao.deleteFinanceSubjectByCrewId(crewId);
 		this.contractProduceDao.deleteFinanceSubjectByCrewId(crewId);
 		//清空付款单与财务科目关联关系
-		this.paymentFinanSubjMapDap.deleteOne(crewId, "crewId", PaymentFinanSubjMapModel.TABLE_NAME);
+		this.paymentFinanSubjMapDap.deleteFinanceSubjectByCrewId(crewId);
 		//清空借款单与财务科目关联关系
 		this.loanInfoDao.deleteFinanceSubjectByCrewId(crewId);
 		//清空财务设置付款单缴税设置信息

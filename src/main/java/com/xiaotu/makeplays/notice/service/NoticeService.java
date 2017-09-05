@@ -48,6 +48,7 @@ import com.xiaotu.makeplays.user.dao.UserInfoDao;
 import com.xiaotu.makeplays.user.model.UserInfoModel;
 import com.xiaotu.makeplays.user.service.UserService;
 import com.xiaotu.makeplays.utils.Constants;
+import com.xiaotu.makeplays.utils.DateUtils;
 import com.xiaotu.makeplays.utils.FileUtils;
 import com.xiaotu.makeplays.utils.Page;
 import com.xiaotu.makeplays.utils.UUIDUtils;
@@ -1294,6 +1295,15 @@ public class NoticeService {
 		 return this.noticeInfoDao.queryCancledNoticeCount(crewId);
 	 }
 	
+	 /**
+	  * 查询当前剧组中未销场通告单的总数
+	 * @param crewId
+	 * @return
+	 */
+	public List<Map<String, Object>> queryNotCancledNoticeCount(String crewId){
+		 return this.noticeInfoDao.queryNotCancledNoticeCount(crewId);
+	 }
+	
 	/**
 	 * 分页查询月份列表
 	 * @param crewId
@@ -1369,5 +1379,110 @@ public class NoticeService {
 	 */
 	public List<NoticeInfoModel> queryNotReadNoticeList(String crewId, String userId) {
 		return this.noticeInfoDao.queryNotReadNoticeList(crewId, userId);
+	}
+	
+	/**
+	 * 分页查询通告单日期列表
+	 * @param crewId
+	 * @param canceledStatus
+	 * @param noticeMonth
+	 * @param page
+	 * @return
+	 * @throws ParseException 
+	 */
+	public List<Map<String, Object>> queryNoticeDateList(String crewId, Integer canceledStatus, String noticeMonth, Page page) throws ParseException {
+		//查询通告单日期统计列表
+		List<Map<String, Object>> noticeDateList = this.noticeInfoDao.queryNoticeDateList(crewId, canceledStatus, noticeMonth, page);
+
+		if(noticeDateList != null && noticeDateList.size() > 0) {
+
+			String noticeStartDate = null;
+			String noticeEndDate = null;
+			if(canceledStatus == 0) {
+				noticeStartDate = sdf1.format(noticeDateList.get(0).get("noticeDate"));
+				noticeEndDate = sdf1.format(noticeDateList.get(noticeDateList.size() - 1).get("noticeDate"));
+			} else {
+				noticeStartDate = sdf1.format(noticeDateList.get(noticeDateList.size() - 1).get("noticeDate"));
+				noticeEndDate = sdf1.format(noticeDateList.get(0).get("noticeDate"));
+			}
+			//查询指定日期下的通告单
+			Map<String, Object> conditionMap = new HashMap<String, Object>();
+			conditionMap.put("noticeStartDate", noticeStartDate);
+			conditionMap.put("noticeEndDate", noticeEndDate);
+			conditionMap.put("canceledStatus", canceledStatus);
+			List<Map<String, Object>> noticeList = this.noticeInfoDao.queryNoticeByCrewId(crewId, null, null, true, conditionMap);
+			for(Map<String, Object> noticeDateMap : noticeDateList) {
+				String noticeDate = noticeDateMap.get("noticeDate") + "";
+				String rownum = noticeDateMap.get("rownum") + "";
+				List<Map<String, Object>> noticeMapList = new ArrayList<Map<String,Object>>();
+				noticeDateMap.put("noticeList", noticeMapList);
+				for(Map<String, Object> noticeInfo : noticeList) {
+					if((noticeInfo.get("noticeDate") + "").equals(noticeDate)) {
+						noticeInfo.put("rownum", rownum);
+						//取出通告单中主要演员的信息
+						String mainRole = (String) noticeInfo.get("mainrole");
+						//取出通告单中特约演员的信息
+						String guestRole = (String) noticeInfo.get("guestrole");
+						
+						if (!StringUtils.isBlank(mainRole)) {
+							String[] mainRoleArr = mainRole.split(",");
+							List<String> mainRoleList = new ArrayList<String>();
+							mainRole = "";
+							
+							//使用list集合去除主要演员的重复数据
+							for (String mainRoleStr : mainRoleArr) {
+								if (!mainRoleList.contains(mainRoleStr)) {
+									mainRoleList.add(mainRoleStr);
+									mainRole += mainRoleStr + "，";
+								}
+							}
+							
+							if (!StringUtils.isBlank(mainRole)) {
+								mainRole = mainRole.substring(0, mainRole.length() - 1);
+							}
+							//将去重之后的主要演员的信息重新放进map中
+							noticeInfo.remove("mainrole");
+							noticeInfo.put("mainrole", mainRole);
+						}
+						
+						//对特约演员的数据进行去重
+						if (!StringUtils.isBlank(guestRole)) {
+							String[] guestRoleArr = guestRole.split(",");
+							
+							List<String> guestRoleList = new ArrayList<String>();
+							guestRole = "";
+							for (String guestRoleStr : guestRoleArr) {
+								if (!guestRoleList.contains(guestRoleStr)) {
+									guestRoleList.add(guestRoleStr);
+									guestRole += guestRoleStr + ",";
+								}
+							}
+							if (!StringUtils.isBlank(guestRole)) {
+								guestRole = guestRole.substring(0, guestRole.length() - 1);
+							}
+							noticeInfo.remove("guestrole");
+							noticeInfo.put("guestrole", guestRole);
+						}
+						
+						//将更新时间进行格式化
+						Date updateTime = (Date) noticeInfo.get("updateTime");
+						String updateTimeStr = DateUtils.parse2String(updateTime, "yyyy-MM-dd HH:mm:ss");
+						noticeInfo.remove("updateTime");
+						noticeInfo.put("updateTime", updateTimeStr);
+						
+						//格式化发布通告单的时间
+						if (noticeInfo.get("publishTime") != null) {
+							Date publishTime = (Date) noticeInfo.get("publishTime");
+							String publishTimeStr = DateUtils.parse2String(publishTime, "yyyy-MM-dd HH:mm:ss");
+							noticeInfo.remove("publishTime");
+							noticeInfo.put("publishTime", publishTimeStr);
+						}
+						noticeMapList.add(noticeInfo);
+					}
+				}
+				noticeDateList.removeAll(noticeMapList);
+			}
+		}
+		return noticeDateList;
 	}
  }

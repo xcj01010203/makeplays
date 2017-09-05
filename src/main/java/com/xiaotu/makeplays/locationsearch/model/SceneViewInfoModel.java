@@ -26,19 +26,19 @@ public class SceneViewInfoModel {
 
 	private String distanceToHotel;//距离住宿地距离
 
-	private Integer holePeoples;//容纳人数
+	private String holePeoples;//容纳人数
 
 	private String deviceSpace;//设备空间
 
 	private Integer isModifyView = 1;//是否改景   0：是   1： 否
 
-	private Double modifyViewCost;//改景费用
+	private String modifyViewCost;//改景费用
 	
 	private String modifyViewTime;//改景耗时
 
 	private Integer hasProp = 1;//是否有道具陈设
 
-	private Double propCost;//道具陈设费用
+	private String propCost;//道具陈设费用
 
 	private String propTime;//道具陈设时间
 	
@@ -56,7 +56,7 @@ public class SceneViewInfoModel {
 	
 	private String contactRole;//联系人职务
 
-	private Double viewPrice;//场景价格
+	private String viewPrice;//场景价格
 	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private String freeStartDate;//空档期开始时间
@@ -128,11 +128,11 @@ public class SceneViewInfoModel {
 		this.distanceToHotel = distanceToHotel;
 	}
 
-	public Integer getHolePeoples() {
+	public String getHolePeoples() {
 		return holePeoples;
 	}
 
-	public void setHolePeoples(Integer holePeoples) {
+	public void setHolePeoples(String holePeoples) {
 		this.holePeoples = holePeoples;
 	}
 
@@ -152,11 +152,11 @@ public class SceneViewInfoModel {
 		this.isModifyView = isModifyView;
 	}
 
-	public Double getModifyViewCost() {
+	public String getModifyViewCost() {
 		return modifyViewCost;
 	}
 
-	public void setModifyViewCost(Double modifyViewCost) {
+	public void setModifyViewCost(String modifyViewCost) {
 		this.modifyViewCost = modifyViewCost;
 	}
 
@@ -176,11 +176,11 @@ public class SceneViewInfoModel {
 		this.hasProp = hasProp;
 	}
 
-	public Double getPropCost() {
+	public String getPropCost() {
 		return propCost;
 	}
 
-	public void setPropCost(Double propCost) {
+	public void setPropCost(String propCost) {
 		this.propCost = propCost;
 	}
 
@@ -218,11 +218,11 @@ public class SceneViewInfoModel {
 		this.contactRole = contactRole;
 	}
 
-	public Double getViewPrice() {
+	public String getViewPrice() {
 		return viewPrice;
 	}
 
-	public void setViewPrice(Double viewPrice) {
+	public void setViewPrice(String viewPrice) {
 		this.viewPrice = viewPrice;
 	}
 

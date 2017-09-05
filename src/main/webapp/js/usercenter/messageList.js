@@ -243,8 +243,8 @@ function readMessage(id,rowid,rowdata) {
 				if(typeof(parent.loadUnReadMessageNum)=='function') {
 					parent.loadUnReadMessageNum();
 				}
-				if(typeof(parent.parent.getMessageList)=='function') {
-					parent.parent.getMessageList();
+				if(typeof(parent.getMessageList)=='function') {
+					parent.getMessageList();
 				}
 			}
 		}

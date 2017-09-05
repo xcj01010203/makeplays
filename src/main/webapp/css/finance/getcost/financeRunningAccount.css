@@ -208,6 +208,25 @@ input[type=button].export-btn:hover {
 	  background-size: 24px 24px;
 	  cursor: pointer;
 }
+.multiset-btn {
+	background: url(../../../images/batch-update.png) no-repeat;
+	background-size: 24px 24px;
+    border: 0px;
+    display: block;
+    top: 27px;
+    width: 24px;
+    height: 24px;
+    float: left;
+    margin: 0 8px;
+    margin-top: 7px;
+}
+#multiSetBtn .jqx-icon-arrow-down-ui-lightness {
+	display: none;
+}
+.multiset-btn:hover {
+	  background: url(../../../images/batch-update-hover.png) no-repeat;
+	  background-size: 24px 24px;
+}
 input[type=button].settlement-btn {
 	  background: url(../image/jiesuan.png) no-repeat;
 	  background-size: 24px 24px;
@@ -1031,4 +1050,68 @@ a.clear-finance {
 } 
 a.clear-finance:hover {
       text-decoration: underline;
+}
+.jqx-content button[class^="date-icon"] {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #fff;
+	background: #ccc;
+	text-align: center;
+	line-height: 22px;
+	cursor: pointer;
+	border: 0px;
+	outline: none;
+}
+.jqx-content button.date-icon2 {
+	background: #0288d1;
+}
+.jqx-content .update-content input[type=text].only-num {
+    width: calc(100% - 115px);
+    height: 30px;
+    border: 0px;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    text-align: center;
+}
+.jqx-content p.update-content{
+	width: 340px;
+    margin: 25px auto;
+    margin-bottom: 15px;
+}
+.jqx-content p.tips {
+    width: 90%;
+    margin: 0px auto;
+    height: 20px;
+    font-size: 12px;
+    color: #ccc;
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+.jqx-content input[type=button] {
+    border: 0px;
+    outline: none;
+    width: 65px;
+    height: 25px;
+    line-height: 25px;
+    color: #fff;
+    margin-right: 20px;
+    background: rgba(255,102,0,1);
+    border-radius: 5px;
+    margin-top: 7px;
+    font-size: 14px;
+    font-family: '微软雅黑';
+    cursor: pointer;
+}
+.jqx-content input[type=button]:hover {
+    background: rgba(230,93,1,1);
+}
+.button-content {
+	text-align: center;
+	margin-top: 15px;
+}
+#jqxTreeDrop .jqx-tree-item-li {
+	height: 30px;
 }

@@ -90,6 +90,24 @@ $(document).ready(function() {
               
          }
     });
+    
+    //初始化批量设置权限弹出窗
+    $("#multiAuthSetDiv").jqxWindow({
+         theme:theme,  
+         width: 500,
+         height: 720, 
+         autoOpen: false,
+         maxWidth: 2000,
+         maxHeight: 1500,
+         resizable: true,
+         isModal: true,
+         showCloseButton: true,
+         resizable: false,
+         modalZIndex: 1000,
+         initContent: function() {
+              
+         }
+    });
     $("#addUserDiv").on("close", function() {
         loadCrewUserInfo();
     });
@@ -588,7 +606,7 @@ function loadCrewUserInfo() {
                     var roleUserList = ritem.roleUserList;
                     
                     singleGroupArray.push("<tr class='role-name-tr'>");
-                    singleGroupArray.push("<td colspan='3'>"+ roleName +"</td>");
+                    singleGroupArray.push("<td colspan='4'>"+ roleName +"</td>");
                     singleGroupArray.push("</tr>");
                     
                     $.each(roleUserList, function(uindex, uitem) {
@@ -597,14 +615,15 @@ function loadCrewUserInfo() {
                         var phone = uitem.phone;
                         var createTime = uitem.createTime;
                         
-                        singleGroupArray.push("<tr title='单击查看详情' userId='"+ userId +"' onclick='showDetail(this)'>");
-                        singleGroupArray.push("<td style='width: 20%'><p>"+ userName +"</p>");
+                        singleGroupArray.push("<tr>");
+                        singleGroupArray.push("<td style='width: 34px'><input type='checkbox' class='multi-checkbox' name='userSelChk' value='"+userId+"' onclick='stopPropagation()'></td>");
+                        singleGroupArray.push("<td style='width: 25%'><p><a userId='"+ userId +"' onclick='showDetail(this)'>"+ userName +"</a></p>");
                         if(loginUserType=='1') {
                         	singleGroupArray.push("<span title='删除' name='delfloatspan' userId='"+userId+"' onclick='delUser(this)'></span>");
                         }
                         singleGroupArray.push("</td>");
-                        singleGroupArray.push("<td style='width: 20%'>"+ phone +"</td>");
-                        singleGroupArray.push("<td style='width: 60%'>"+ createTime +" 入组</td>");
+                        singleGroupArray.push("<td style='width: 25%'>"+ phone +"</td>");
+                        singleGroupArray.push("<td>"+ createTime +" 入组</td>");
                         singleGroupArray.push("</tr>");
                         
                     });
@@ -654,7 +673,7 @@ function loadCrewAuthInfo() {
                    
                    firstlvlAuthHtml.push("<div class='first-level-auth'>");
                    firstlvlAuthHtml.push("<label><input type='checkbox' class='checkbox-auth' id='"+fauthId+"' onclick='checkRootAuth(this)'>");
-                   firstlvlAuthHtml.push("<em id='"+ fauthId +"' class='single-auth group-auth'>"+ fauthName +"</em></label>");
+                   firstlvlAuthHtml.push("<em id='"+ fauthId +"' class='group-auth'>"+ fauthName +"</em></label>");
                    
                    var isAllChecked=0;//0:不选中,1：全部选中，2：部分选中
                    if (fhasAuth) {  //是否拥有此权限
@@ -727,6 +746,9 @@ function loadCrewAuthInfo() {
                            
                            if (tdifferInRAndW) {
                                if (thasAuth) {
+                            	   if(isAllChecked==0){
+                             		  isAllChecked=1;
+                             	  }
                                    thirdlvlAuthHtml.push("<label id='"+ tauthId +"' class='single-auth selected' onclick='changeCrewAuth(this, false)'>"+ tauthName +"</label>");
                                    
                                    if (treadonly) {
@@ -736,13 +758,22 @@ function loadCrewAuthInfo() {
                                    }
                                    
                                } else {
+                            	   if(isAllChecked==1){
+                             		  isAllChecked=2;
+                             	  }
                                    thirdlvlAuthHtml.push("<label id='"+ tauthId +"' class='single-auth' onclick='changeCrewAuth(this, false)'>"+ tauthName +"</label>");
                                    thirdlvlAuthHtml.push("<label class='allow-modify-tag' onclick='changeCrewAuth(this, true)'>可编辑</label>");
                                }
                            } else {
                                if (thasAuth) {
+                            	   if(isAllChecked==0){
+                              		   isAllChecked=1;
+                              	   }
                                    thirdlvlAuthHtml.push("<label id='"+ tauthId +"' class='single-auth selected' onclick='changeCrewAuth(this, false)'>"+ tauthName +"</label>");
                                } else {
+                             	   if(isAllChecked==1){
+                            		   isAllChecked=2;
+                            	   }
                                    thirdlvlAuthHtml.push("<label id='"+ tauthId +"' class='single-auth' onclick='changeCrewAuth(this, false)'>"+ tauthName +"</label>");
                                }
                            }
@@ -836,7 +867,7 @@ function checkRootAuth(own) {
 	$.ajax({
         url: "/crewManager/saveCrewAuthInfo",
         type: "post",
-        async: true,
+        async: false,
         dataType: "json",
         data: {operateType: operateType, authId: authId},
         success: function(response) {
@@ -863,7 +894,8 @@ function checkRootAuth(own) {
                 
                 //显示三级权限
                 childs.siblings(".third-level-auth").show();
-                childs.siblings(".third-level-auth").find(".single-auth").removeClass("selected");
+                childs.siblings(".third-level-auth").find(".single-auth").addClass("selected");
+                //childs.siblings(".third-level-auth").find(".single-auth").removeClass("selected");
             }
         }
     });
@@ -903,7 +935,7 @@ function changeCrewAuth(own, isModify) {
     $.ajax({
         url: "/crewManager/saveCrewAuthInfo",
         type: "post",
-        async: true,
+        async: false,
         dataType: "json",
         data: {operateType: operateType, authId: authId, readonly: readonly},
         success: function(response) {
@@ -920,26 +952,6 @@ function changeCrewAuth(own, isModify) {
                     //三级权限隐藏
                     $this.siblings(".third-level-auth").hide();
                     $this.siblings(".third-level-auth").find(".single-auth").removeClass("selected");
-                    
-                    //设置根权限checkbox
-                    if($this.parent().hasClass("second-level-auth")) {
-                    	var childs = $this.parent().siblings(".second-level-auth").find(".single-auth");
-                    	var isAllChecked=0;
-                    	for(var i=0;i<childs.length;i++){
-                    		if($(childs[i]).parent().hasClass("second-level-auth")) {
-                    			if($(childs[i]).hasClass("selected")) {
-                    				isAllChecked=2;
-                    				break;
-                    			}
-                    		}
-                    	}
-                		$this.parent().siblings("label").find("input").prop("indeterminate", false);
-                    	if(isAllChecked==0){
-                    		$this.parent().siblings("label").find("input").prop("checked", false);
-                    	}else if(isAllChecked==2){
-                    		$this.parent().siblings("label").find("input").prop("indeterminate", true);
-                    	}
-                    }
                 }
             } else {
                 $this.addClass("selected");
@@ -948,28 +960,47 @@ function changeCrewAuth(own, isModify) {
                     
                     //显示三级权限
                     $this.siblings(".third-level-auth").show();
-                    
-                  	//设置根权限checkbox
-                    if($this.parent().hasClass("second-level-auth")) {
-                    	var childs = $this.parent().siblings(".second-level-auth").find(".single-auth");
-                    	var isAllChecked=1;
-                    	for(var i=0;i<childs.length;i++){
-                    		if($(childs[i]).parent().hasClass("second-level-auth")) {
-                    			if($(childs[i]).hasClass("selected")) {
-                        			isAllChecked=1;
-                    			} else {
-                    				isAllChecked=2;
-                    				break;
-                    			}
-                    		}
-                    	}
-                    	$this.parent().siblings("label").find("input").prop("indeterminate", false);
-                    	if(isAllChecked==1){
-                    		$this.parent().siblings("label").find("input").prop("checked", true);
-                    	}else if(isAllChecked==2){
-                    		$this.parent().siblings("label").find("input").prop("indeterminate", true);
-                    	}
-                    }
+                }
+            }
+            if(!isModify){
+            	//设置根权限checkbox
+             	var root=null;
+                if($this.parent().hasClass("second-level-auth")) {
+                	root=$this.parent().parent();
+                }
+                if($this.parent().hasClass("third-level-auth")) {
+                	root=$this.parent().parent().parent();
+                }
+                if(root) {
+                	//获取所有子节点
+                	var childs = root.find(".single-auth");
+                	var isAllChecked=null;
+                	for(var i=0;i<childs.length;i++){
+                		if($(childs[i]).hasClass("selected")) {
+                			if(isAllChecked==null){
+                				isAllChecked=1;
+                			}else if(isAllChecked==0){
+                				isAllChecked=2;
+                				break;
+                			}
+            			}else{
+            				if(isAllChecked==null){
+                				isAllChecked=0;
+                			}else if(isAllChecked==1){
+                				isAllChecked=2;
+                				break;
+                			}
+            			}
+                	}
+            		root.find(".checkbox-auth").prop("indeterminate", false);
+                	if(isAllChecked==0){
+                		root.find(".checkbox-auth").prop("checked", false);
+                	}else if(isAllChecked==1){
+                		root.find(".checkbox-auth").prop("checked", true);
+                	}else if(isAllChecked==2){
+                		root.find(".checkbox-auth").prop("checked", true);
+                		root.find(".checkbox-auth").prop("indeterminate", true);
+                	}
                 }
             }
         }
@@ -1632,4 +1663,37 @@ function deleteReadyUploadFile(own, fileId){
 //删除已经上传的文件
 function deleteUploadFile(own){
 	$(own).parent("li").remove();
+}
+//显示批量设置权限窗口
+function showMultiAuthSetWin(){
+	var userIds = [];
+	$("input[name='userSelChk']:checked").each(function(){
+		if($.inArray($(this).val(), userIds)==-1) {
+			userIds.push($(this).val());
+		}
+	});
+	if(userIds.length==0) {
+		showInfoMessage("请选择剧组成员");
+		return;
+	}
+	$("#multiAuthSetDiv").find("iframe").attr("src", "/userManager/toUserMultiSetAuthPage?userIds=" + userIds.toString());
+    $("#multiAuthSetDiv").jqxWindow("open");
+}
+//全选
+function selectAll(own){
+	$("input[name='userSelChk']").prop('checked', true);
+}
+//全不选
+function notselectAll(own){
+	$("input[name='userSelChk']").prop('checked', false);
+}
+//反选
+function reverseSelect(own){
+	$("input[name='userSelChk']").each(function(){
+		if($(this).prop('checked')){
+			$(this).prop('checked', false);
+		} else {
+			$(this).prop('checked', true);
+		}
+	});
 }

@@ -134,7 +134,10 @@ public class ProjectManageController extends BaseController{
         		throw new IllegalArgumentException("请提供剧组信息");
         	}       	
         	
-        	resultMap.put("settleInfoList", this.getSettlementInfoMapList(crewId));
+        	List<Map<String, Object>> settlementInfoMapList = this.getSettlementInfoMapList(crewId);
+        	resultMap.put("settleInfoList", settlementInfoMapList);
+        	resultMap.put("rows", settlementInfoMapList);
+        	resultMap.put("total", settlementInfoMapList.size());
         	
         	this.sysLogService.saveSysLog(request, "查询财务预算支出信息", Constants.TERMINAL_PC, 
         			FinanceSubjectModel.TABLE_NAME + "," + PaymentFinanSubjMapModel.TABLE_NAME + "," + PaymentInfoModel.TABLE_NAME, crewId, 0);
@@ -777,6 +780,11 @@ public class ProjectManageController extends BaseController{
 			budgetInfoMap.put("financeSubjId", financeSubjId);
 			budgetInfoMap.put("financeSubjName", financeSubjName);
 			budgetInfoMap.put("financeSubjParentId", financeSubjParentId);
+			//格式化成easyui-tree格式
+			if(!financeSubjParentId.equals("0")) {
+				budgetInfoMap.put("_parentId", financeSubjParentId);
+			}
+			
 			budgetInfoMap.put("remark", remark);
 			budgetInfoMap.put("hasChildren", hasChildren);
 			budgetInfoMap.put("level", level);

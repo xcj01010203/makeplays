@@ -305,9 +305,9 @@ public class SceneViewInfoController extends BaseController{
 	@ResponseBody
 	@RequestMapping("saveOrUpdateSceneViewInfo")
 	public Object saveOrUpdateSceneViewInfo(HttpServletRequest request,String id,String vName,String vCity,String vAddress,
-			String vLongitude,String vLatitude,String distanceToHotel,Integer holePeoples,String deviceSpace,Integer isModifyView,
-			Double modifyViewCost,String modifyViewTime,int hasProp,Double propCost,String propTime,String enterViewDate,
-			String leaveViewDate,String viewUseTime,String contactNo,String contactName,String contactRole,Double viewPrice,String freeStartDate,
+			String vLongitude,String vLatitude,String distanceToHotel,String holePeoples,String deviceSpace,Integer isModifyView,
+			String modifyViewCost,String modifyViewTime,int hasProp, String propCost,String propTime,String enterViewDate,
+			String leaveViewDate,String viewUseTime,String contactNo,String contactName,String contactRole,String viewPrice,String freeStartDate,
 			String freeEndDate, String remark){
 		Map<String, Object> back = new HashMap<String, Object>();
 		boolean success = true;

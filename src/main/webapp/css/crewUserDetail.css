@@ -264,14 +264,6 @@ input[type=button].disabled:focus {
 	display: none;
 }
 
-
-
-
-
-
-
-
-
 .crew-user-detail .btn-div {
 	width: 70px;
 	margin: 0px auto;
@@ -284,6 +276,11 @@ input[type=button].disabled:focus {
     letter-spacing: 5px;
 }
 
-
-
+.checkbox-group-auth {
+	margin-right: 5px;
+}
+.checkbox-group-readonly {
+	margin-left: 20px;
+	margin-right: 5px;
+}
 

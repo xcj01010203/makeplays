@@ -537,19 +537,22 @@ function saveScenceInfo(){
 	subData.vName = $("#vName").val();
 	subData.distanceToHotel = $("#distanceToHotel").val();
 	subData.vCity = $("#cityName").val();
-	subData.holePeoples = $("#holePeoples").val()-0;
+	subData.holePeoples = $("#holePeoples").val();
 	subData.vAddress = $("#address").val();
 	subData.vLongitude = $("#vLongitude").val();
 	subData.vLatitude = $("#vLatitude").val();
 	subData.deviceSpace = $("#equipmentSpace").val();
 	subData.isModifyView = $("#isModifyView").val()-0;
-	subData.modifyViewCost = $("#modifyViewCost").next("input[type=hidden]").val()-0;
+//	subData.modifyViewCost = $("#modifyViewCost").next("input[type=hidden]").val();
+	subData.modifyViewCost = $("#modifyViewCost").val();
 	subData.modifyViewTime = $("#modifyViewTime").val();
 	subData.hasProp = $("#hasProp").val()-0;
-	subData.propCost = $("#propCost").next("input[type=hidden]").val()-0;
+//	subData.propCost = $("#propCost").next("input[type=hidden]").val();
+	subData.propCost = $("#propCost").val();
 	subData.propTime = $("#propTime").val();
 	subData.viewUseTime = $("#viewUseTime").val();
-	subData.viewPrice = $("#viewPrice").next("input[type=hidden]").val()-0;
+//	subData.viewPrice = $("#viewPrice").next("input[type=hidden]").val();
+	subData.viewPrice = $("#viewPrice").val();
 	//空闲档期
 	subData.freeStartDate = $("#freeStartDate").val();
 	subData.freeEndDate = $("#freeEndDate").val();
@@ -613,12 +616,12 @@ function loadSceneInfo(){
 				$("#vName").val(sceneViewList.vname);
 				$("#distanceToHotel").val(sceneViewList.distanceToHotel);
 				$("#cityName").val(sceneViewList.vcity);
-				if(sceneViewList.holePeoples == 0){
-					$("#holePeoples").val("");
-				}else{
-					$("#holePeoples").val(sceneViewList.holePeoples);
-				}
-				
+//				if(sceneViewList.holePeoples == 0){
+//					$("#holePeoples").val("");
+//				}else{
+//					$("#holePeoples").val(sceneViewList.holePeoples);
+//				}
+				$("#holePeoples").val(sceneViewList.holePeoples);
 				$("#address").val(sceneViewList.vaddress);
 				$("#vLongitude").val(sceneViewList.vlongitude);
 				$("#vLatitude").val(sceneViewList.vlatitude);
@@ -636,7 +639,8 @@ function loadSceneInfo(){
 					$("#modifyViewCost").next("input[type=hidden]").val("");*/
 				}else{
 					$("#modifyViewCost").next("input[type=hidden]").val(sceneViewList.modifyViewCost);
-					$("#modifyViewCost").val(fmoney(sceneViewList.modifyViewCost));
+//					$("#modifyViewCost").val(fmoney(sceneViewList.modifyViewCost));
+					$("#modifyViewCost").val(sceneViewList.modifyViewCost);
 				}
 				
 				$("#modifyViewTime").val(sceneViewList.modifyViewTime);
@@ -654,17 +658,20 @@ function loadSceneInfo(){
 					$("#propCost").next("input[type=hidden]").val("");*/
 				}else{
 					$("#propCost").next("input[type=hidden]").val(sceneViewList.propCost);
-					$("#propCost").val(fmoney(sceneViewList.propCost));
+//					$("#propCost").val(fmoney(sceneViewList.propCost));
+					$("#propCost").val(sceneViewList.propCost);
 				}
 				$("#propTime").val(sceneViewList.propTime);
 			    $("#viewUseTime").val(sceneViewList.viewUseTime);
-			    if(sceneViewList.viewPrice == null){
-			    	$("#viewPrice").val("");
-			    	$("#viewPrice").next("input[type=hidden]").val("");
-			    }else{
-			    	$("#viewPrice").val(fmoney(sceneViewList.viewPrice));
-			    	$("#viewPrice").next("input[type=hidden]").val(sceneViewList.viewPrice);
-			    }
+//			    if(sceneViewList.viewPrice == null){
+//			    	$("#viewPrice").val("");
+//			    	$("#viewPrice").next("input[type=hidden]").val("");
+//			    }else{
+//			    	$("#viewPrice").val(fmoney(sceneViewList.viewPrice));
+//			    	$("#viewPrice").next("input[type=hidden]").val(sceneViewList.viewPrice);
+//			    }
+			    $("#viewPrice").val(sceneViewList.viewPrice);
+		    	$("#viewPrice").next("input[type=hidden]").val(sceneViewList.viewPrice);
 				
 				
 				//空闲档期
@@ -739,6 +746,7 @@ function deleteUploadedFile(ev,own,attId){
 
 //格式化价格金额以及后续处理
 function dealValueFormat(){
+	return;
 	$("#viewPrice").keyup(function(){    
 		$(this).val($(this).val().replace(/[^\d.]/g,""));  //清除“数字”和“.”以外的字符
 		$(this).val($(this).val().replace(/^\./g,""));  //验证第一个字符是数字而不是.

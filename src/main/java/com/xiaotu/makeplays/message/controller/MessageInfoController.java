@@ -56,7 +56,7 @@ public class MessageInfoController extends BaseController {
 	 */
 	@ResponseBody
 	@RequestMapping("/queryMessageList")
-	public Map<String, Object> queryMessageList(HttpServletRequest request, Page page, MessageInfoFilter filter) {
+	public Map<String, Object> queryMessageList(HttpServletRequest request, Integer pagesize, Integer pageNo, MessageInfoFilter filter) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		boolean success = true;
 		String message = "";
@@ -69,6 +69,13 @@ public class MessageInfoController extends BaseController {
 			Map<String, Object> conditionMap = new HashMap<String, Object>();
 			conditionMap.put("crewId", crewId);
 			conditionMap.put("receiverId", loginUserInfo.getUserId());
+			
+			Page page = null;
+			if(pagesize != null && pageNo != null) {
+				page = new Page();
+				page.setPagesize(pagesize);
+				page.setPageNo(pageNo);
+			}
 			
 			List<MessageInfoModel> messageList = this.messageInfoService.queryManyByMutiCondition(conditionMap, page, filter);
 			
@@ -88,6 +95,7 @@ public class MessageInfoController extends BaseController {
 			
 			resultMap.put("messageList", messageMapList);
 			resultMap.put("totalCount", page.getTotal());
+			resultMap.put("pageCount", page.getPageCount());
 		} catch (IllegalArgumentException ie) {
 			logger.error(ie.getMessage(), ie);
 			success = false;

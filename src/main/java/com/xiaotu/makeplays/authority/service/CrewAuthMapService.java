@@ -125,32 +125,8 @@ public class CrewAuthMapService {
 		AuthorityModel authorityInfo = this.authorityDao.queryAuthById(authId);
 		//如果当前权限是顶级菜单权限
 		if(authorityInfo.getParentId().equals("0")) {
-			//查询剧组拥有的权限，以及其所有的子权限
-			List<CrewAuthMapModel> crewAuthMapList = this.crewAuthMapDao.queryByCrewAuthIdWithSubAuth(crewId, authId, 1);
 			if(flag == 1) {//新增
-				//将该权限下的二级权限赋给该剧组，设为可编辑
-				//查询该权限下的二级权限
-				List<AuthorityModel> authorityList = this.authorityDao.queryAuthByPid(authId);
-				for(AuthorityModel authority : authorityList) {
-					boolean isExist = false;
-					if(crewAuthMapList != null && crewAuthMapList.size() > 0) {
-						for(CrewAuthMapModel crewAuthMap : crewAuthMapList) {
-							if(crewAuthMap.getAuthId().equals(authority.getAuthId())) {
-								isExist = true;
-								break;
-							}
-						}
-					}
-					if(!isExist) {
-						//新增与二级菜单权限的关联
-						CrewAuthMapModel newCrewAuth = new CrewAuthMapModel();
-						newCrewAuth.setMapId(UUIDUtils.getId());
-						newCrewAuth.setAuthId(authority.getAuthId());
-						newCrewAuth.setCrewId(crewId);
-						newCrewAuth.setReadonly(false);
-						this.crewAuthMapDao.add(newCrewAuth);
-					}
-				}
+				addChildMenuAuth(crewId, authId);
 			}
 		} else {
 			AuthorityModel pAuthInfo = this.authorityDao.queryAuthById(authorityInfo.getParentId());
@@ -185,6 +161,43 @@ public class CrewAuthMapService {
 					//删除与顶级菜单权限的关联
 					this.crewAuthMapDao.deleteOne(pAuthMapId, "mapId", CrewAuthMapModel.TABLE_NAME);
 				}
+			}
+		}
+	}
+	
+	/**
+	 * 循环添加子权限
+	 * @param crewId
+	 * @param authId
+	 * @throws Exception
+	 */
+	public void addChildMenuAuth(String crewId, String authId) throws Exception{
+		//查询剧组拥有的权限，以及其所有的子权限
+		List<CrewAuthMapModel> crewAuthMapList = this.crewAuthMapDao.queryByCrewAuthIdWithSubAuth(crewId, authId, 1);
+		//将该权限下的二级权限赋给该剧组，设为可编辑
+		//查询该权限下的二级权限
+		List<AuthorityModel> authorityList = this.authorityDao.queryAuthByPid(authId);
+		for(AuthorityModel authority : authorityList) {
+			boolean isExist = false;
+			if(crewAuthMapList != null && crewAuthMapList.size() > 0) {
+				for(CrewAuthMapModel crewAuthMap : crewAuthMapList) {
+					if(crewAuthMap.getAuthId().equals(authority.getAuthId())) {
+						isExist = true;
+						break;
+					}
+				}
+			}
+			if(!isExist) {
+				//新增与二级菜单权限的关联
+				CrewAuthMapModel newCrewAuth = new CrewAuthMapModel();
+				newCrewAuth.setMapId(UUIDUtils.getId());
+				newCrewAuth.setAuthId(authority.getAuthId());
+				newCrewAuth.setCrewId(crewId);
+				newCrewAuth.setReadonly(false);
+				this.crewAuthMapDao.add(newCrewAuth);
+				
+				//递归添加下一级子权限
+				addChildMenuAuth(crewId, authority.getAuthId());
 			}
 		}
 	}

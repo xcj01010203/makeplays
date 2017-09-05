@@ -98,7 +98,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         
                         //用户职务列表
                         $("#roleList").html("");
-                        var roleListHtml = [];
+                        var roleListHtml = [];   
                         $.each(userSysRoleList, function (index, item) {
                            var singleGroupHtml = [];
                         
@@ -213,7 +213,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                          */
                          //PC端权限
                         $("#pcAuthList").html("");
-                        var pcAuthListHtml = [];    //所有的一级权限集合
+                        var pcAuthListHtml = [];    //所有的一级权限集合                     
+                        var isAllCheckedMap={};
+                        var isShowReadOnlyMap={};
                         $.each(pcAuthList, function(findex, fitem) {
                            var firstlvlAuthHtml = [];   //单个第一级权限
                            
@@ -225,8 +227,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                            var secondAuthList = fitem.subAuthList;
                            
                            firstlvlAuthHtml.push("<div class='first-level-auth'>");
-                           firstlvlAuthHtml.push("<label id='"+ fauthId +"' class='single-auth group-auth'>"+ fauthName +"</label>");
+                           firstlvlAuthHtml.push("<label id='"+ fauthId +"' class='group-auth'><input type='checkbox' class='checkbox-group-auth' id='auth_"+fauthId+"' onclick='checkRootAuth(this, false)'>"+ fauthName +"</label>");
+                           firstlvlAuthHtml.push("<label class='group-auth'><input type='checkbox' class='checkbox-group-readonly' id='readonly_"+fauthId+"' onclick='checkRootAuth(this, true)'>可编辑</label>");
                            
+                           var isShowReadOnly=false;//是否包含可编辑权限
+                           var isAllChecked=0;//0:不选中,1：全部选中，2：部分选中
+                           var isAllReadOnly=null;//0:可编辑，1：只读，2：部分只读
+                           if(fhasAuth){  //是否拥有此权限
+                        	   isAllChecked=1;
+                           }
                            //遍历二级权限
                            $.each(secondAuthList, function(sindex, sitem) {
                                var secondlvlAuthHtml = [];  //单个第二级权限
@@ -240,23 +249,47 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                
                                secondlvlAuthHtml.push("<div class='second-level-auth'>");
                                if (sdifferInRAndW) {//是否区分读写操作
-                               
+                               		isShowReadOnly=true;
                                   if (shasAuth) {  //是否拥有此权限
+                                	  if(isAllChecked==0){
+                                		  isAllChecked=1;
+                                	  }
+                                	  
                                       secondlvlAuthHtml.push("<label id='"+ sauthId +"' class='single-auth selected' onclick='changeUserAuth(this, false)'>"+ sauthName +"</label>");
-                                      
                                       if (sreadonly) {  //是否只读
+                                    	  if(isAllReadOnly==null){
+                                    		  isAllReadOnly=1;
+                                    	  }
+                                    	  if(isAllReadOnly==0) {
+                                        	  isAllReadOnly=2;
+                                    	  }
                                         secondlvlAuthHtml.push("<label class='allow-modify-tag' onclick='changeUserAuth(this, true)'>可编辑</label>");
                                       } else {
+                                    	  if(isAllReadOnly==null){
+                                    		  isAllReadOnly=0;
+                                    	  }
+	                                      if(isAllReadOnly==1){
+	                                    	  isAllReadOnly=2;
+	                                      }
                                         secondlvlAuthHtml.push("<label class='allow-modify-tag selected' onclick='changeUserAuth(this, true)'>可编辑</label>");
                                       }
                                   } else {
+                                	  if(isAllChecked==1){
+                                		  isAllChecked=2;
+                                	  }
                                       secondlvlAuthHtml.push("<label id='"+ sauthId +"' class='single-auth' onclick='changeUserAuth(this, false)'>"+ sauthName +"</label>");
                                       secondlvlAuthHtml.push("<label class='allow-modify-tag' onclick='changeUserAuth(this, true)'>可编辑</label>");
                                   }
                                } else {
                                    if (shasAuth) {  //是否拥有此权限
+                                	   if(isAllChecked==0){
+                                  		   isAllChecked=1;
+                                  	   }
                                        secondlvlAuthHtml.push("<label id='"+ sauthId +"' class='single-auth selected' onclick='changeUserAuth(this, false, "+sreadonly+")'>"+ sauthName +"</label>");
                                    } else {
+                                 	   if(isAllChecked==1){
+                                		   isAllChecked=2;
+                                	   }
                                        secondlvlAuthHtml.push("<label id='"+ sauthId +"' class='single-auth' onclick='changeUserAuth(this, false, "+sreadonly+")'>"+ sauthName +"</label>");
                                    }
                                }
@@ -280,23 +313,51 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                    
                                    
                                    if (tdifferInRAndW) {
+                                	   isShowReadOnly=true;
                                        if (thasAuth) {
+                                    	   if(isAllChecked==0){
+                                      		   isAllChecked=1;
+                                      	   }
                                            thirdlvlAuthHtml.push("<label id='"+ tauthId +"' class='single-auth selected' onclick='changeUserAuth(this, false)'>"+ tauthName +"</label>");
                                            
                                            if (treadonly) {
+                                        	   if(isAllReadOnly==null){
+                                         		  isAllReadOnly=1;
+                                         	  }
+                                         	  if(isAllReadOnly==0) {
+                                             	  isAllReadOnly=2;
+                                         	  }
                                                thirdlvlAuthHtml.push("<label class='allow-modify-tag' onclick='changeUserAuth(this, true)'>可编辑</label>");
                                            } else {
+                                        	   if(isAllReadOnly==null){
+                                         		  isAllReadOnly=0;
+                                         	  }
+     	                                      if(isAllReadOnly==1){
+    	                                    	  isAllReadOnly=2;
+    	                                      }
                                                thirdlvlAuthHtml.push("<label class='allow-modify-tag selected' onclick='changeUserAuth(this, true)'>可编辑</label>");
                                            }
                                            
                                        } else {
+                                    	   if(!isAllReadOnly){
+                                     		  isAllReadOnly=0;
+                                     	  }
+ 	                                      if(isAllReadOnly==1){
+ 	                                    	  isAllReadOnly=2;
+ 	                                      }
                                            thirdlvlAuthHtml.push("<label id='"+ tauthId +"' class='single-auth' onclick='changeUserAuth(this, false)'>"+ tauthName +"</label>");
                                            thirdlvlAuthHtml.push("<label class='allow-modify-tag' onclick='changeUserAuth(this, true)'>可编辑</label>");
                                        }
                                    } else {
                                        if (thasAuth) {
+                                    	   if(isAllChecked==0){
+                                      		   isAllChecked=1;
+                                      	   }
                                            thirdlvlAuthHtml.push("<label id='"+ tauthId +"' class='single-auth selected' onclick='changeUserAuth(this, false, "+sreadonly+")'>"+ tauthName +"</label>");
                                        } else {
+                                     	   if(isAllChecked==1){
+                                    		   isAllChecked=2;
+                                    	   }
                                            thirdlvlAuthHtml.push("<label id='"+ tauthId +"' class='single-auth' onclick='changeUserAuth(this, false)'>"+ tauthName +"</label>");
                                        }
                                    }
@@ -306,7 +367,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                
                                secondlvlAuthHtml.push(thirdlvlAuthHtml.join(""));
                                
-                               secondlvlAuthHtml.push("</div>");
+                               secondlvlAuthHtml.push("</div>");                         
                                
                                firstlvlAuthHtml.push(secondlvlAuthHtml.join(""));
                            });
@@ -314,13 +375,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                            firstlvlAuthHtml.push("</div>");
                            
                            pcAuthListHtml.push(firstlvlAuthHtml.join(""));
+                           
+                           isAllCheckedMap["auth_"+fauthId]=isAllChecked;
+                           isAllCheckedMap["readonly_"+fauthId]=isAllReadOnly;
+                           isShowReadOnlyMap["readonly_"+fauthId]=isShowReadOnly;
                         });
                         
-                        $("#pcAuthList").append(pcAuthListHtml.join(""));
-                        
-                        
-                        
-                        
+                        $("#pcAuthList").append(pcAuthListHtml.join(""));                        
+                        for(var id in isAllCheckedMap){
+                        	var value=isAllCheckedMap[id];
+                        	if(id.indexOf('auth')!=-1){
+                            	if(value==0){
+                            		$("#"+id).prop("checked", false);
+                            	}else if(value==1){
+                            		$("#"+id).prop("checked", true);
+                            	}else if(value==2){
+                            		$("#"+id).prop("checked", true);
+                            		$("#"+id).prop("indeterminate", true);
+                            	}
+                        	}else if(id.indexOf('readonly')!=-1){
+                        		if(value==0){
+                            		$("#"+id).prop("checked", true);
+                            	}else if(value==1){
+                            		$("#"+id).prop("checked", false);
+                            	}else if(value==2){
+                            		$("#"+id).prop("checked", true);
+                            		$("#"+id).prop("indeterminate", true);
+                            	}
+                        	}
+                        }
+                        for(var id in isShowReadOnlyMap){
+                        	if(!isShowReadOnlyMap[id]){
+                        		$("#"+id).parent().remove();
+                        	}
+                        }
                         
                         //app端权限,app端只有一级权限
                         $("#appAuthList").html("");
@@ -371,7 +459,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
             });
         }
-        
         
         
         //修改用户在剧组中的状态
@@ -502,7 +589,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $.ajax({
                 url: "/userManager/saveUserAuthInfo",
                 type: "post",
-                async: true,
+                async: false,
                 dataType: "json",
                 data: {aimUserId: aimUserId, operateType: operateType, authId: authId, readonly: readonly},
                 success: function(response) {
@@ -510,7 +597,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         parent.showErrorMessage(response.message);
                         return false;
                     }
-                    
                     if ($this.hasClass("selected")) {
                         $this.removeClass("selected");
                         if (!isModify) {
@@ -528,6 +614,169 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             //显示三级权限
                             $this.siblings(".third-level-auth").show();
                         }
+                    }
+
+                 	var root=null;
+                    if($this.parent().hasClass("second-level-auth")) {
+                    	root=$this.parent().parent();
+                    }
+                    if($this.parent().hasClass("third-level-auth")) {
+                    	root=$this.parent().parent().parent();
+                    }
+                  	//设置根权限checkbox
+                    if (!isModify) {
+                    	var childs = root.find(".single-auth");
+                    	var isAllChecked=null;
+                    	for(var i=0;i<childs.length;i++){
+                    		if($(childs[i]).hasClass("selected")) {
+                    			if(isAllChecked==null) {
+                    				isAllChecked=1;
+                    			}else if(isAllChecked==0){
+                    				isAllChecked=2;
+                    				break;
+                    			}
+                			}else{
+                				if(isAllChecked==null) {
+                    				isAllChecked=0;
+                    			}else if(isAllChecked==1){
+                    				isAllChecked=2;
+                    				break;
+                    			}
+                			}
+                    	}
+                    	root.find(".checkbox-group-auth").prop("indeterminate", false);
+                    	if(isAllChecked==0){
+                    		root.find(".checkbox-group-auth").prop("checked", false);
+                    	}else if(isAllChecked==1){
+                    		root.find(".checkbox-group-auth").prop("checked", true);
+                    	}else if(isAllChecked==2){
+                    		root.find(".checkbox-group-auth").prop("checked", true);
+                    		root.find(".checkbox-group-auth").prop("indeterminate", true);
+                    	}
+                    }
+					//设置只读选中情况
+                	var isAllReadOnly=null;
+                	var objs = root.find(".allow-modify-tag");
+                	for(var i=0;i<objs.length;i++) {
+                		if($(objs[i]).prev().hasClass('selected')) {
+                			if($(objs[i]).hasClass('selected')) {
+                    			if(isAllReadOnly==null){
+                    				isAllReadOnly=0;
+                    			}else if(isAllReadOnly==1){
+                    				isAllReadOnly=2;
+                    				break;
+                    			}
+                			}else{
+                				if(isAllReadOnly==null){
+                    				isAllReadOnly=1;
+                    			}else if(isAllReadOnly==0){
+                    				isAllReadOnly=2;
+                    				break;
+                    			}
+                			}
+                		}
+                	}
+                	root.find(".checkbox-group-readonly").prop("indeterminate", false);
+                	if(isAllReadOnly==0) {
+                		root.find(".checkbox-group-readonly").prop("checked", true);
+                	}else if(isAllReadOnly==null || isAllReadOnly==1){
+                		root.find(".checkbox-group-readonly").prop("checked", false);
+                	}else if(isAllReadOnly==2){
+                		root.find(".checkbox-group-readonly").prop("checked", true);
+                		root.find(".checkbox-group-readonly").prop("indeterminate", true);
+                	}
+                }
+            });
+        }
+        
+        //全选根权限
+        function checkRootAuth(own, isModify) {
+        	var $this = $(own);
+        	var operateType=1; //operateType 操作类型 1：新增  2：修改  3：删除
+        	var authId = "";
+        	if(isModify) {
+        		authId=$this.parent().prev().attr("id");
+        	} else {
+        		authId=$this.parent().attr("id");
+        	}        	
+        	var readonly = false; //只读
+        	//isModify为true表示是点击"可编辑"多选框
+            if (isModify) {
+            	//判断是否可以设置可编辑全选，如果第二级权限都未选中，则不可以设置可编辑
+            	var childs=$this.parent().siblings(".second-level-auth").find(".allow-modify-tag");
+            	var isHasReadonly=false;
+        		for(var i=0;i<childs.length;i++){
+        			if($(childs[i]).prev().hasClass('selected')){
+        				isHasReadonly=true;
+        				break;
+        			}
+        		}
+        		if(!isHasReadonly){
+        			$this.prop('checked',false);
+        			return;
+        		}
+        		
+                operateType = 4;
+                
+                if (!$this.prop('checked')) {
+                    readonly=true;
+                }
+                
+            } else {//点击根权限
+                if ($this.prop('checked')) {
+                    operateType = 1;
+                } else {
+                    operateType = 3;
+                }
+            }
+        	$.ajax({
+                url: "/userManager/saveUserAuthInfo",
+                type: "post",
+                async: false,
+                dataType: "json",
+                data: {aimUserId: aimUserId, operateType: operateType, authId: authId, readonly: readonly},
+                success: function(response) {
+                    if (!response.success) {
+                        parent.showErrorMessage(response.message);
+                        return false;
+                    }
+                    if(isModify) {//设置可编辑
+                    	if (!$this.prop('checked')) {
+                    		//所有子节点去掉可编辑属性
+                    		var childs=$this.parent().siblings(".second-level-auth").find(".allow-modify-tag");
+                    		childs.removeClass('selected');
+                    	} else {
+                    		//所有子节点可编辑设为选中
+                    		var childs=$this.parent().siblings(".second-level-auth").find(".allow-modify-tag");
+                    		for(var i=0;i<childs.length;i++){
+                    			if($(childs[i]).prev().hasClass('selected')){
+                    				$(childs[i]).addClass('selected');
+                    			}
+                    		}
+                    	}
+                    } else {
+                        if (!$this.prop('checked')) {
+                        	//所有子节点设为未选中
+                        	var childs=$this.parent().siblings(".second-level-auth").find(".single-auth");
+                        	childs.removeClass("selected");
+                        	//可编辑设为未选中
+                        	childs.next(".allow-modify-tag").removeClass("selected");
+                            
+                            //三级权限隐藏
+                            childs.siblings(".third-level-auth").hide();
+                            //childs.siblings(".third-level-auth").find(".single-auth").removeClass("selected");
+                            
+                        } else {
+                        	var childs=$this.parent().siblings(".second-level-auth").find(".single-auth");
+                        	childs.addClass("selected");
+                        	//可编辑设为选中
+                        	childs.next(".allow-modify-tag").addClass("selected");
+                            
+                            //显示三级权限
+                            childs.siblings(".third-level-auth").show();
+                            childs.siblings(".third-level-auth").find(".single-auth").addClass("selected");
+                        }
+                        $this.parent().next().find('input[type=checkbox]').prop('checked', $this.prop('checked'));
                     }
                 }
             });

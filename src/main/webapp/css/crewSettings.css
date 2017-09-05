@@ -134,6 +134,7 @@ input[type=button]:focus {
   background-size: 16px 16px;
   float: right;  
   margin-top: -32px;
+  cursor: pointer;
   display: none;
 }
 .crewSettings-rootdiv .crewSettings table tr td span:HOVER{
@@ -209,9 +210,12 @@ input[type=button]:focus {
 .crewSettings-rootdiv .crewSettings table.group-user-table tr td {
     border: 1px solid #DCDCDC;
 }
+.crewSettings-rootdiv .crewSettings table.group-user-table tr td a {
+	cursor: pointer;
+}
 .crewSettings-rootdiv .crewSettings table.group-user-table tr:not(.role-name-tr):hover {
 	background: #ECECEC;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 .crewSettings-rootdiv .crewSettings table.group-user-table .role-name-tr {
     text-align: left;
@@ -680,4 +684,22 @@ div.return-img:HOVER {
 }
 .closeTag:hover {
     background-position: -20px 0;
+}
+.multi-checkbox {
+	width:16px;
+	height:16px;
+}
+button.select-btn {
+    width: 60px;
+    height: 24px;
+    text-align: center;
+    margin: 20px 10px;
+    line-height: 24px;
+    border: 0px;
+    box-sizing: border-box;
+    float: left;
+}
+button.select-btn:hover {
+	border: 1px solid #91c7f2;
+  	background: #e3f2fd;
 }

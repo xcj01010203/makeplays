@@ -53,8 +53,8 @@ div.toolbar {
 .exportImg:hover{background:url(../../images/export_hover.png) no-repeat 2px; background-size: 24px 24px;}
 .rolecene{width:306px;margin-top: -2px; margin-right: -11px; height:31px;background: url("../../images/colorExample3.png") no-repeat;float: right;}
 
-.batch_update_button{width:24px; height:24px;background: url("../images/view/batch-update.png") no-repeat; background-size: 24px 24px; margin-right:21px;margin-top:6px;}
-.batch_update_button:HOVER{background: url("../images/view/batch-update-hover.png") no-repeat; background-size: 24px 24px;}
+.batch_update_button{width:24px; height:24px;background: url("../images/batch-update.png") no-repeat; background-size: 24px 24px; margin-right:21px;margin-top:6px;}
+.batch_update_button:HOVER{background: url("../images/batch-update-hover.png") no-repeat; background-size: 24px 24px;}
 
 .coalition_location_button{width:24px; height:24px;background: url("../images/view/get-same-location.png") no-repeat; background-size: 24px 24px; margin-right:21px;margin-top:6px;}
 .coalition_location_button:HOVER{background: url("../images/view/same-location-hover.png") no-repeat; background-size: 24px 24px;}

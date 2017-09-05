@@ -1,5 +1,7 @@
 package com.xiaotu.makeplays.user.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +26,7 @@ import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -42,7 +46,6 @@ import com.xiaotu.makeplays.crew.model.constants.CrewUserStatus;
 import com.xiaotu.makeplays.crew.service.CrewInfoService;
 import com.xiaotu.makeplays.crew.service.CrewRoleUserMapService;
 import com.xiaotu.makeplays.feedback.service.FeedbackService;
-import com.xiaotu.makeplays.mobile.common.utils.MobileUtils;
 import com.xiaotu.makeplays.roleactor.model.ViewRoleModel;
 import com.xiaotu.makeplays.roleactor.model.constants.ViewRoleType;
 import com.xiaotu.makeplays.roleactor.service.ViewRoleService;
@@ -63,6 +66,7 @@ import com.xiaotu.makeplays.utils.FileUtils;
 import com.xiaotu.makeplays.utils.MD5Util;
 import com.xiaotu.makeplays.utils.MsgUtils;
 import com.xiaotu.makeplays.utils.Page;
+import com.xiaotu.makeplays.utils.PropertiesUitls;
 import com.xiaotu.makeplays.utils.RegexUtils;
 import com.xiaotu.makeplays.utils.StringUtil;
 import com.xiaotu.makeplays.utils.UUIDUtils;
@@ -132,6 +136,18 @@ public class UserController extends BaseController{
 	@RequestMapping("/toUserDetailInfoPage")
 	public ModelAndView toUserDetailInfoPage(){
 		ModelAndView mv = new ModelAndView("/usercenter/userDetailInfo");
+		return mv;
+	}
+	
+	/**
+	 * 跳转到批量设置用户权限页面
+	 */
+	@ResponseBody
+	@RequestMapping("/toUserMultiSetAuthPage")
+	public ModelAndView toUserMultiSetAuthPage(String userIds){
+		ModelAndView mv = new ModelAndView("/user/userMultiSetAuth");
+
+		mv.addObject("userIds", userIds);
 		return mv;
 	}
 	
@@ -1506,7 +1522,7 @@ public class UserController extends BaseController{
 			}
 			
 			//新增
-			if (operateType != 3 && userAuthMap == null) {
+			if ((operateType != 3 && userAuthMap == null) || operateType == 1) {
 				userAuthMap = new UserAuthMapModel();
 				userAuthMap.setAuthId(authId);
 				userAuthMap.setCrewId(crewId);
@@ -1517,18 +1533,22 @@ public class UserController extends BaseController{
 				
 				this.sysLogService.saveSysLog(request, "新增用户权限关联关系", Constants.TERMINAL_PC, UserAuthMapModel.TABLE_NAME, aimUserId + "," + authId, 1);
 			}
-			
-			//修改
-			if (operateType != 3 && userAuthMap != null) {
-				userAuthMap.setAuthId(authId);
-				userAuthMap.setCrewId(crewId);
-				userAuthMap.setReadonly(readonly);
-				userAuthMap.setUserId(aimUserId);
-				this.userAuthMapService.updateOne(userAuthMap);
-				
-				this.sysLogService.saveSysLog(request, "修改用户权限关联关系", Constants.TERMINAL_PC, UserAuthMapModel.TABLE_NAME, aimUserId + "," + authId, 2);
-			}
-			
+			if(operateType == 4) {
+				//批量设置只读属性
+				this.userAuthMapService.multiSetReadOnly(crewId, aimUserId, authId, readonly);
+				this.sysLogService.saveSysLog(request, "修改用户权限只读属性", Constants.TERMINAL_PC, UserAuthMapModel.TABLE_NAME, aimUserId + "," + authId, 2);			
+			} else {
+				//修改
+				if (operateType != 3 && userAuthMap != null) {
+					userAuthMap.setAuthId(authId);
+					userAuthMap.setCrewId(crewId);
+					userAuthMap.setReadonly(readonly);
+					userAuthMap.setUserId(aimUserId);
+					this.userAuthMapService.updateOne(userAuthMap);
+					
+					this.sysLogService.saveSysLog(request, "修改用户权限关联关系", Constants.TERMINAL_PC, UserAuthMapModel.TABLE_NAME, aimUserId + "," + authId, 2);
+				}
+			}			
 		} catch (IllegalArgumentException ie) {
 			success = false;
 			message = ie.getMessage();
@@ -2645,6 +2665,294 @@ public class UserController extends BaseController{
 
 		resultMap.put("success", success);
 		resultMap.put("message", message);
+		return resultMap;
+	}
+	
+	/**
+	 * 获取多个用户权限信息
+	 * @param request
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping("/queryMultiUserAuthInfo")
+	@ResponseBody
+	public Map<String, Object> queryMultiUserAuthInfo(HttpServletRequest request, String userIds) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		boolean success = true;
+		String message = "";
+		
+		String crewId = this.getCrewId(request);
+		
+		try {
+			//用户权限信息
+			List<UserAuthDto> appAuthList = new ArrayList<UserAuthDto>();	//app端权限
+			List<UserAuthDto> pcAuthList = new ArrayList<UserAuthDto>();	//pc端权限
+			
+			//剧组拥有的权限信息
+			List<AuthorityModel> authList = this.authorityService.queryCrewAuthByCrewId(crewId);
+			//用户已经有的权限信息
+			List<Map<String, Object>> ownAuthList = this.userAuthMapService.queryByCrewUserIds(crewId, userIds);
+			
+			List<UserAuthDto> userAuthList = this.loopMultiAuthList(authList, new ArrayList<UserAuthDto>(), ownAuthList);
+			
+			for (UserAuthDto userAuth : userAuthList) {
+				int authPlatform = userAuth.getAuthPlantform();
+				if (authPlatform == AuthorityPlatform.Mobile.getValue()) {
+					appAuthList.add(userAuth);
+				}
+				if (authPlatform == AuthorityPlatform.PC.getValue()) {
+					pcAuthList.add(userAuth);
+				}
+				if (authPlatform == AuthorityPlatform.Common.getValue()) {
+					appAuthList.add(userAuth);
+					pcAuthList.add(userAuth);
+				}
+			}
+			
+			resultMap.put("appAuthList", appAuthList);
+			resultMap.put("pcAuthList", pcAuthList);
+			
+		} catch (IllegalArgumentException ie) {
+			success = false;
+			message = ie.getMessage();
+			logger.error(message,ie);
+		} catch (Exception e) {
+			success = false;
+			message = "未知异常";
+			
+			logger.error("未知异常", e);
+		}
+		
+		resultMap.put("success", success);
+		resultMap.put("message", message);
+		return resultMap;
+	}
+	
+	/**
+	 * 遍历权限元素
+	 * 按照父子管理整理出格式
+	 * 
+	 * 此处遍历的原则是从最底层权限一层一层向上剥离
+	 * @param authList	系统中所有权限信息
+	 * @param userAuthList	封装后的用户权限信息
+	 * @param ownAuthList	用户拥有的权限信息
+	 * @return
+	 */
+	private List<UserAuthDto> loopMultiAuthList (List<AuthorityModel> authList, List<UserAuthDto> userAuthList, List<Map<String, Object>> ownAuthList) {
+		List<AuthorityModel> parentAuthList = new ArrayList<AuthorityModel>();
+		List<AuthorityModel> childAuthList = new ArrayList<AuthorityModel>();	//当前层中的子权限
+		for (AuthorityModel fauth : authList) {
+			String fauthId = fauth.getAuthId();
+			String fparentId = fauth.getParentId();
+			
+			boolean isParent = false;
+			boolean ischild = false;
+			for (AuthorityModel sauth : authList) {
+				String sauthId = sauth.getAuthId();
+				String sparentId = sauth.getParentId();
+				
+				if (fauthId.equals(sparentId)) {
+					isParent = true;
+				}
+				
+				if (fparentId.equals(sauthId)) {
+					ischild = true;
+				}
+			}
+			
+			//此处parentAuthList和childAuthList数据在多层权限结构中必然后交集
+			//fauth为父权限中的一个
+			if (isParent) {
+				parentAuthList.add(fauth);
+			}
+			//fauth为子权限中的一个，如果fauth既不是父权限，也不是子权限，则说明，fauth为系统权限中最顶层的叶子节点权限
+			if (ischild || (!isParent && !ischild)) {
+				childAuthList.add(fauth);
+			}
+		}
+		
+		//childAuthList中存在parentAuthList不存在的权限就是当前循环中的叶子权限
+		List<AuthorityModel> lastAuthList = new ArrayList<AuthorityModel>();
+		for (AuthorityModel cauth : childAuthList) {
+			boolean exist = false;
+			for (AuthorityModel pauth : parentAuthList) {
+				if (cauth.getAuthId().equals(pauth.getAuthId())) {
+					exist = true;
+					break;
+				}
+			}
+			if (!exist) {
+				lastAuthList.add(cauth);
+			}
+		}
+		
+		List<UserAuthDto> myUserAuthDtoList = new ArrayList<UserAuthDto>();
+		
+		/*
+		 * 为最后的结果字段赋值
+		 * lastAuthList表示当前循环中的叶子权限
+		 * 但是相对于上一层传过来的userAuthList，lastAuthList中有些数据为userAuthList中数据的父权限
+		 * 因此，此处对比出lastAuthList中每个权限的子权限，然后为响应字段赋值
+		 * 
+		 * 如果数据在userAuthList存在而lastAuthList中不存在，则说明此数据层级为当前循环的叶子权限
+		 */
+		for (AuthorityModel lauth : lastAuthList) {
+			String authId = lauth.getAuthId();
+			
+			List<UserAuthDto> subUserAuthDto = new ArrayList<UserAuthDto>();
+			for (UserAuthDto userAuth : userAuthList) {
+				String uparentId = userAuth.getParentId();
+				
+				if (uparentId.equals(authId)) {
+					subUserAuthDto.add(userAuth);
+				}
+			}
+			
+			UserAuthDto userAuthDto = new UserAuthDto();
+			userAuthDto.setAuthId(authId);
+			userAuthDto.setParentId(lauth.getParentId());
+			userAuthDto.setAuthName(lauth.getAuthName());
+			userAuthDto.setSequence(lauth.getSequence());
+			userAuthDto.setSubAuthList(subUserAuthDto);
+			userAuthDto.setDifferInRAndW(lauth.getDifferInRAndW());
+			userAuthDto.setAuthPlantform(lauth.getAuthPlantform());
+			
+			boolean hasAuth = false;
+			for (Map<String, Object> userAuthMap : ownAuthList) {
+				if (authId.equals((String) userAuthMap.get("authId"))) {
+					userAuthDto.setHasAuthStatus(Integer.parseInt(userAuthMap.get("hasAuth") + ""));
+					userAuthDto.setReadonlyStatus(Integer.parseInt(userAuthMap.get("readonly") + ""));
+					
+					hasAuth = true;
+					break;
+				}
+			}
+			
+			if (!hasAuth) {
+				userAuthDto.setHasAuthStatus(0);
+				userAuthDto.setReadonly(true);
+			}
+			
+			myUserAuthDtoList.add(userAuthDto);
+		}
+		
+		for (UserAuthDto userAuth : userAuthList) {
+			boolean exists = false;
+			for (AuthorityModel lauth : lastAuthList) {
+				if (userAuth.getParentId().equals(lauth.getAuthId())) {
+					exists = true;
+					break;
+				}
+			}
+			
+			if (!exists) {
+				myUserAuthDtoList.add(userAuth);
+			}
+		}
+		
+		Collections.sort(myUserAuthDtoList, new Comparator<UserAuthDto>() {
+			@Override
+			public int compare(UserAuthDto o1, UserAuthDto o2) {
+				return o1.getSequence() - o2.getSequence();
+			}
+		});
+		
+		//如果全是叶子权限了，说明已经遍历到最顶层了
+		if (parentAuthList.size() > 0) {
+			//把最底层的权限剥掉后，继续遍历，一直到只剩下最顶层的为止
+			authList.removeAll(lastAuthList);
+			myUserAuthDtoList = this.loopMultiAuthList(authList, myUserAuthDtoList, ownAuthList);
+		}
+		
+		return myUserAuthDtoList;
+	}
+	
+	/**
+	 * 批量保存用户权限信息
+	 * @param userIds	用户IDs,多个以逗号分隔
+	 * @param operateType 操作类型 1：新增  2：修改  3：删除
+	 * @param authId 权限ID
+	 * @param readonly 是否只读
+	 * @return
+	 */
+	@RequestMapping("/saveMultiUserAuthInfo")
+	@ResponseBody
+	public Map<String, Object> saveMultiUserAuthInfo(HttpServletRequest request, String userIds, Integer operateType, String authId, Boolean readonly) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		boolean success = true;
+		String message = "";
+		
+		String crewId = this.getCrewId(request);
+		try {
+			
+			if (StringUtils.isBlank(authId)) {
+				throw new IllegalArgumentException("请选择需要操作的权限");
+			}
+			
+			if (StringUtils.isBlank(userIds)) {
+				throw new IllegalArgumentException("请选择需要操作的用户");
+			}
+			
+			if (readonly == null) {
+				readonly = false;
+			}
+			this.userAuthMapService.multiSaveUserAuthMap(crewId, userIds, authId, readonly, operateType);
+			this.sysLogService.saveSysLog(request, "批量修改用户权限", Constants.TERMINAL_PC, UserAuthMapModel.TABLE_NAME, userIds + "," + authId, SysLogOperType.UPDATE.getValue());		
+		} catch (IllegalArgumentException ie) {
+			success = false;
+			message = ie.getMessage();
+			logger.error(message,ie);
+		} catch (Exception e) {
+			success = false;
+			message = "未知异常";			
+			logger.error("未知异常", e);
+			this.sysLogService.saveSysLog(request, "保存用户权限关联关系失败：" + e.getMessage(), Constants.TERMINAL_PC, UserAuthMapModel.TABLE_NAME, userIds + "," + authId, SysLogOperType.ERROR.getValue());
+		}
+		
+		resultMap.put("success", success);
+		resultMap.put("message", message);
+		
+		return resultMap;
+	}
+	
+	/**
+	 * 上传用户头像
+	 * @param request
+	 * @param file 头像文件
+	 * @return
+	 */
+	@RequestMapping("/uploadUserHeader")
+	@ResponseBody
+	public Map<String, Object> uploadUserHeader(HttpServletRequest request, MultipartFile file) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		boolean success = true;
+		String message = "";		
+		try {
+			String userId = this.getLoginUserId(request);
+			
+			if (file == null) {
+				throw new IllegalArgumentException("请选择头像图片");
+			}
+			
+			UserInfoModel userInfo = this.userService.updateUserImg(userId, file);
+            
+            resultMap.put("imgUrl", FileUtils.genPreviewPath(userInfo.getBigImgUrl()));
+		} catch (IllegalArgumentException ie) {
+			success = false;
+			message = ie.getMessage();
+			logger.error(message,ie);
+		} catch (Exception e) {
+			success = false;
+			message = "未知异常";			
+			logger.error("未知异常", e);
+		}
+		
+		resultMap.put("success", success);
+		resultMap.put("message", message);
+		
 		return resultMap;
 	}
 }

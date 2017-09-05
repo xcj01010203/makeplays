@@ -957,6 +957,7 @@ public class NoticeController extends BaseController{
 			
 			if(null != page){
 				resultMap.put("total", page.getTotal());
+				resultMap.put("pageCount", page.getPageCount());
 			}
 			
 			//拼接请假信息
@@ -3643,7 +3644,7 @@ public class NoticeController extends BaseController{
 	 */
 	@ResponseBody
 	@RequestMapping("/queryMonthList")
-	public Map<String, Object> queryMonthList(HttpServletRequest request, Page page){
+	public Map<String, Object> queryMonthList(HttpServletRequest request, Integer pagesize, Integer pageNo){
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		String message = "";
 		boolean success = true;
@@ -3651,10 +3652,31 @@ public class NoticeController extends BaseController{
 		try {
 			String crewId = getCrewId(request);
 			
-			List<Map<String,Object>> monthList = this.noticeService.queryCancleMonthList(crewId, page);
+			//计算共有多少张未销场的通告单
+			List<Map<String, Object>> notCancledNoticeCount = this.noticeService.queryNotCancledNoticeCount(crewId);
 			
-			resultMap.put("totalCount", page.getPageCount());
+			//未销场通告单总数
+			resultMap.put("notCancledCount", notCancledNoticeCount.size());
+			
+			Page page = null;
+			if(pagesize != null && pageNo != null) {
+				page = new Page();
+				page.setPagesize(pagesize);
+				page.setPageNo(pageNo);
+			}
+			
+			List<Map<String,Object>> monthList = this.noticeService.queryCancleMonthList(crewId, page);
+			int totalNum = 0;
+			if(monthList != null && monthList.size() > 0) {
+				for(Map<String, Object> monthMap : monthList) {
+					totalNum += Integer.parseInt(monthMap.get("noticeNum") + "");
+				}
+			}			
+			if(page != null) {
+				resultMap.put("totalCount", page.getPageCount());
+			}
 			resultMap.put("cancleNoticeMonthList", monthList);
+			resultMap.put("totalNum", totalNum);
 		} catch (Exception e) {
 			success = false;
 			message = "未知异常,查询失败";
@@ -4079,6 +4101,50 @@ public class NoticeController extends BaseController{
 		
 		resultMap.put("message", message);
 		resultMap.put("success", success);
+		return resultMap;
+	}
+	
+	/**
+	 * 查询通告单列表
+	 * @param request
+	 * @param page 分页
+	 * @param canceledStatus 销场状态，0：表示未销场;1：表示已销场
+	 * @param noticeDateMonth 通告单月份
+	 * @return
+	 */
+	@ResponseBody 
+	@RequestMapping("/queryNoticeList")
+	public Map<String, Object> queryNoticeList(HttpServletRequest request, Page page, Integer canceledStatus, String noticeMonth){
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		String message = "";
+		boolean success = true;
+		try {
+			String crewId = this.getCrewId(request);
+			
+			if(canceledStatus == null) {
+				canceledStatus = 0;
+			}
+			
+			List<Map<String, Object>> noticeList = this.noticeService.queryNoticeDateList(crewId, canceledStatus, noticeMonth, page);
+			
+			page.setResultList(noticeList);
+			resultMap.put("result", page);
+			message="获取成功!";
+		}catch (IllegalArgumentException ie) {
+			message = ie.getMessage();
+			success = false;
+			
+			logger.error(message, ie);
+		}catch (Exception e) {
+			message = "未知异常,查询失败!";
+			success = false;
+			
+			logger.error(message, e);
+		}
+		
+		resultMap.put("message", message);
+		resultMap.put("success", success);
+		
 		return resultMap;
 	}
 }

@@ -204,12 +204,12 @@ public class SceneViewFacade extends BaseFacade{
 	public Object saveSceneViewInfo(HttpServletRequest request, String crewId,
 			String userId, String sceneViewId, String vName, String vCity,
 			String vAddress, Double vLongitude, Double vLatitude,
-			String distanceToHotel, Integer holePeoples, String deviceSpace,
-			Boolean isModifyView, Double modifyViewCost, String modifyViewTime,
-			Boolean hasProp, Double propCost, String propTime,
+			String distanceToHotel, String holePeoples, String deviceSpace,
+			Boolean isModifyView, String modifyViewCost, String modifyViewTime,
+			Boolean hasProp, String propCost, String propTime,
 			String enterViewDate, String leaveViewDate, String viewUseTime,
 			String contactNo, String contactName, String contactRole,
-			Double viewPrice, String freeStartDate, String freeEndDate,
+			String viewPrice, String freeStartDate, String freeEndDate,
 			String remark) {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		UserInfoModel userInfo = new UserInfoModel();
@@ -281,8 +281,8 @@ public class SceneViewFacade extends BaseFacade{
 			if(StringUtil.isNotBlank(distanceToHotel) && distanceToHotel.length() > 50){
 				throw new IllegalArgumentException("距离住宿地距离最大长度为50");
 			}
-			if(StringUtil.isNotBlank(holePeoples + "") && holePeoples.toString().length() > 8){
-				throw new IllegalArgumentException("容纳人数最大长度为8");
+			if(StringUtil.isNotBlank(holePeoples + "") && holePeoples.toString().length() > 50){
+				throw new IllegalArgumentException("容纳人数最大长度为50");
 			}
 			if(StringUtil.isNotBlank(deviceSpace) && deviceSpace.length() > 100){
 				throw new IllegalArgumentException("设备空间最大长度为100");

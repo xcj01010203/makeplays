@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.xiaotu.makeplays.notice.model.NoticeInfoModel;
 import com.xiaotu.makeplays.utils.BaseDao;
 import com.xiaotu.makeplays.utils.Page;
+import com.xiaotu.makeplays.utils.StringUtil;
 
 /**
  * 通告单相关的dao操作
@@ -58,10 +59,10 @@ public class NoticeInfoDao extends BaseDao<NoticeInfoModel> {
 				sql.append(" GROUP_CONCAT(DISTINCT res.shootLocation) shootLocation,res.groupName,sum(IF(res.shootPage is NOT NULL,res.shootPage,res.pageCount)) sumPage,count(res.viewId) viewCount,");
 				sql.append(" GROUP_CONCAT(DISTINCT res.mainrole) mainrole,res.canceledStatus,res.groupDirector,res.finishCount,res.finishPage");
 				sql.append(" FROM ( SELECT res1.noticeId,res1.noticeName,res1.noticeDate,res1.published,res1.publishTime,");
-				sql.append(" res1.shootLocation,res1.groupName,res1.viewId,res1.pageCount,GROUP_CONCAT(DISTINCT res1.mainrole) AS mainrole,");
+				sql.append(" res1.shootLocation,res1.groupName,res1.createTime,res1.viewId,res1.pageCount,GROUP_CONCAT(DISTINCT res1.mainrole) AS mainrole,");
 				sql.append(" res1.canceledStatus,res1.groupDirector,res1.finishCount,res1.finishPage, res1.shootPage FROM ( SELECT");
 				sql.append(" tni.noticeId,tni.noticeName,tni.noticeDate,tni.published,tni.publishTime,tsa.vname shootLocation,");
-				sql.append(" tsg.groupName,tsi.viewId,tsi.pageCount,maintsr.viewRoleId AS mainroleid,maintsr.viewRoleName AS mainrole,");
+				sql.append(" tsg.groupName,tsg.createTime,tsi.viewId,tsi.pageCount,maintsr.viewRoleId AS mainroleid,maintsr.viewRoleName AS mainrole,");
 				sql.append(" tni.canceledStatus,tnt.groupDirector,tsnm2.finishCount,tsnm2.finishPage, tsnm.shootPage");
 				
 				sql.append(" FROM tab_notice_info tni");
@@ -90,7 +91,13 @@ public class NoticeInfoDao extends BaseDao<NoticeInfoModel> {
 					//查询已销场的通告单
 					String cancledNotice = (String) conditionMap.get("cancledNotice");
 					if (StringUtils.isNotBlank(cancledNotice)) {
-						sql.append(" AND tni.canceledStatus = 1");
+						sql.append(" AND tni.canceledStatus = 1 ");
+					}
+					//根据销场状态查询通告单
+					Integer canceledStatus = (Integer) conditionMap.get("canceledStatus");
+					if(canceledStatus != null) {
+						sql.append(" AND tni.canceledStatus = ? ");
+						params.add(canceledStatus);
 					}
 					
 					//根据通告月份查询通告单
@@ -158,11 +165,11 @@ public class NoticeInfoDao extends BaseDao<NoticeInfoModel> {
 						params.add(sdf.parse(noticeEndDate));
 					}
 				}
-				sql.append(" GROUP BY tni.noticeId,tni.noticeName,tni.noticeDate, tsa.vname,tsg.groupName, tsi.viewId");
+				sql.append(" GROUP BY tni.noticeId,tni.noticeName,tni.noticeDate, tsa.vname,tsg.groupName,tsg.createTime, tsi.viewId");
 				sql.append(" ,tsi.pageCount,maintsr.viewRoleId,maintsr.viewRoleName, tni.canceledStatus");
 				sql.append(" ) res1 group by res1.noticeId,res1.noticeName,res1.noticeDate,res1.shootLocation,"
-						+ "res1.groupName,res1.viewId,res1.pageCount,res1.canceledStatus");
-				sql.append(" ) res group by res.noticeId,res.noticeName,res.noticeDate,res.groupName,res.canceledStatus order by res.noticeDate DESC");
+						+ "res1.groupName,res1.createTime,res1.viewId,res1.pageCount,res1.canceledStatus");
+				sql.append(" ) res group by res.noticeId,res.noticeName,res.noticeDate,res.groupName,res.canceledStatus order by res.noticeDate DESC,res.createTime");
 		
 		if (forSimple != null && forSimple) {
 			return this.query(sql.toString(),params.toArray(), null);
@@ -854,13 +861,24 @@ public class NoticeInfoDao extends BaseDao<NoticeInfoModel> {
 	}
 	
 	/**
+	 * 查询当前剧组中共有多少张未销场 的通告单
+	 * @param creId
+	 * @return
+	 */
+	public List<Map<String, Object>> queryNotCancledNoticeCount (String crewId){
+		String sql = " SELECT noticeId,DATE_FORMAT(noticeDate, '%Y-%m') noticeMonth,noticeName FROM tab_notice_info WHERE canceledStatus = 0 AND crewId= ? ORDER BY noticeDate desc";
+		return this.query(sql, new Object[] {crewId}, null);
+	}
+	
+	/**
 	 * 分页月份列表
 	 * @param crewId
 	 * @param page
 	 * @return
 	 */
 	public List<Map<String, Object>> queryCancledMonthList(String crewId, Page page){
-		String sql = " SELECT DISTINCT(DATE_FORMAT(noticeDate, '%Y-%m')) noticeMonth FROM tab_notice_info WHERE canceledStatus = 1 AND crewId= ? ORDER BY noticeMonth DESC";
+		String sql = " SELECT DISTINCT(DATE_FORMAT(noticeDate, '%Y-%m')) noticeMonth,count(noticeId) noticeNum FROM tab_notice_info " 
+				+ " WHERE canceledStatus = 1 AND crewId= ? group by DATE_FORMAT(noticeDate, '%Y-%m') ORDER BY noticeMonth DESC";
 		return this.query(sql, new Object[] {crewId}, page);
 	}
 	
@@ -938,5 +956,43 @@ public class NoticeInfoDao extends BaseDao<NoticeInfoModel> {
 		sql.append(" AND tnp.noticeId = tni.noticeId ");
 		sql.append(" AND tnp.noticeVersion = DATE_FORMAT(tni.updateTime, '%Y%m%d%H%i%s')  ");
 		return this.query(sql.toString(), new Object[] {crewId, userId}, NoticeInfoModel.class, null);
+	}
+	
+	/**
+	 * 分页查询通告单日期列表
+	 * @param crewId
+	 * @param canceledStatus
+	 * @param noticeMonth
+	 * @param page
+	 * @return
+	 */
+	public List<Map<String, Object>> queryNoticeDateList(String crewId, Integer canceledStatus, String noticeMonth, Page page) {
+		StringBuilder sql = new StringBuilder();
+		List<Object> params = new ArrayList<Object>();
+		params.add(crewId);
+		sql.append(" select * from (");
+		sql.append(" select a.*,cast((@rowNO := @rowNO + 1) as SIGNED INTEGER) AS rownum from ( ");
+		sql.append(" select noticeDate, count(noticeId) noticeNum ");
+		sql.append(" from tab_notice_info tni ");
+		sql.append(" where tni.crewId=? ");
+		if(canceledStatus != null) {
+			sql.append(" and tni.canceledStatus=? ");
+			params.add(canceledStatus);
+		}
+		if(StringUtil.isNotBlank(noticeMonth)) {
+			sql.append(" and DATE_FORMAT(tni.noticeDate, '%Y-%m')=? ");
+			params.add(noticeMonth);
+		}
+		sql.append(" group by noticeDate ");
+		sql.append(" ) a ");
+		sql.append(" INNER JOIN (SELECT @rowNO := 0) it ");
+		sql.append(" order by noticeDate ");
+		sql.append(" ) mytable ");
+		if(canceledStatus == 0) {
+			sql.append(" order by noticeDate ");
+		} else {
+			sql.append(" order by noticeDate desc ");
+		}
+		return this.query(sql.toString(), params.toArray(), page);
 	}
 }

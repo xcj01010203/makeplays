@@ -127,7 +127,7 @@ if(obj!=null){
               </p>
               <p>
                   <span>容纳人数&nbsp;:</span>
-                  <input type="text" placeholder="例如：1000人" id="holePeoples" maxlength="8" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                  <input type="text" placeholder="例如：1000人" id="holePeoples" maxlength="8"><!--  onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" -->
               </p>
           </li>
           <li>

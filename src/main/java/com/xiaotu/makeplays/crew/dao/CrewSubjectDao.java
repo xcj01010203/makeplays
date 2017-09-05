@@ -19,7 +19,7 @@ public class CrewSubjectDao extends BaseDao<CrewSubjectModel> {
 	 * @return
 	 */
 	public List<CrewSubjectModel> querySubjectList () {
-		String sql = "select * from tab_subject_info";
+		String sql = "select * from tab_subject_info order by subjectId+0";
 		return this.query(sql, null, CrewSubjectModel.class, null);
 	}
 }
